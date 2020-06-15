@@ -12,15 +12,14 @@
     "devDependencies": {
         "@voerro/vue-tagsinput": "^2.2.0",
         "axios": "^0.19.2",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.5.0",
         "cross-env": "^7.0",
-        "css-loader": "^3.5.2",
-        "jquery": "^3.2",
+        "css-loader": "^3.6.0",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
+        "sass": "^1.26.8",
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
@@ -28,11 +27,12 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
         "animate.css": "^3.7.2",
+        "jquery": "^3.5.1",
         "laravel-vue-pagination": "^2.3.1",
-        "postcss": "^7.0.27",
+        "postcss": "^7.0.32",
         "vform": "^1.0.1",
-        "vue-loader": "^15.9.1",
+        "vue-loader": "^15.9.2",
         "vue-multi-select": "^4.5.0",
-        "vue-router": "^3.1.6"
+        "vue-router": "^3.3.4"
     }
 }
