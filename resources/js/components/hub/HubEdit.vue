@@ -23,8 +23,7 @@
                                         </div>
                                     </div>
                                 </div>
-                  
-                          <input name="idhubs" type="text" ref="Hubi" id="idhubs" v-model="idhubs" value="" >
+                 
                                 <div class="form-group">
                                     <label for="validationCustomUsername">Adresse   : </label>
                                     <div class="input-group">
