@@ -12,7 +12,7 @@
                                 <diPage Layoutv class="col-sm-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Collapsed Menu</h5>
+                                            <h5>Tableau de Bord</h5>
                                             <div class="card-header-right">
                                                 <div class="btn-group card-option">
                                                     <button type="button" class="btn dropdown-toggle btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

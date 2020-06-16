@@ -97,7 +97,7 @@
     <!-- [ chat message ] start -->
     <section class="header-chat">
         <div class="h-list-header">
-            <h6>Josephin Doe</h6>
+            <h6>Send Express</h6>
             <a href="#!" class="h-back-user-list"><i class="feather icon-chevron-left"></i></a>
         </div>
         <div class="h-list-body">

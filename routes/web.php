@@ -24,7 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 // admin routes 
-
+Route::group([ 'middleware'=>'auth'], function () {   
+    
 Route::get('/admin', 'admin\HomeAdminController@index')->name('index');
 
 // admin routes Users  
@@ -90,3 +91,5 @@ Route::get('/admin/retours', 'admin\RetourController@index')->name('index');
 
 
 Route::get('/admin/tracking', 'TrackingController@index')->name('index');
+
+});
