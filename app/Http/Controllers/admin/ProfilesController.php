@@ -92,21 +92,41 @@ public function add_permission(Request $request){
 
     public function add_roles(Request $request){ 
 
- $name = $request->input('name');
-$permissions = $request->input('permissions');
+            $name = $request->input('name');
+            $permissions = $request->input('permissions');
 
-$role = Role::create(['name' => $request->input('name')]);
-$role = Role::findByName($request->input('name'));
+            $role = Role::create(['name' => $name]);
+            $role = Role::findByName($request->input('name'));
 
 
 
-$role->givePermissionTo($request->input('permissions'));
-       //$id = $role = Role::create(['name' => 'writer']);
+            $role->givePermissionTo($permissions);
+                //$id = $role = Role::create(['name' => 'writer']);
  
 
 
        
 
+
+    }
+
+    public function permission_edit(Request $request,$id){
+
+        $EditPermission = Permission::find($id);
+        $EditPermission->name = request('name');
+        $EditPermission->guard_name = request('guard');
+        $EditPermission->save();
+
+        $permissions = Permission::all();
+
+        return response()->json($permissions);
+    }
+    public function permission_show($id){
+
+ 
+        $ShowPer = Permission::find($id);
+        //dd($users);
+        return response()->json($ShowPer);
 
     }
 
@@ -117,22 +137,17 @@ $role->givePermissionTo($request->input('permissions'));
 
 
     }
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+  
+    public function wi_show($id)
     {
-        //
-    }
+        
+        $ShowPer = Permission::find($id);
+        //dd($users);
+        return response()->json($ShowPer);
 
+
+    }
     /**
      * Display the specified resource.
      *

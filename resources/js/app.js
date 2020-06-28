@@ -22,7 +22,12 @@ Vue.component('wilaya-table', require('./components/hub/wilaya/WilayaData.vue').
 Vue.component('hub-table', require('./components/hub/HubData.vue').default);
 Vue.component('profiles-table', require('./components/profiles/ProfilesTable.vue').default);
 Vue.component('permission-table', require('./components/profiles/PermissionTable.vue').default);
+Vue.component('addcom-table', require('./components/commandes/AddCommandes.vue').default);
+Vue.component('colis-table', require('./components/colis/ListColis.vue').default);
+Vue.component('coms-table', require('./components/commandes/ListComs.vue').default);
+Vue.component('manif-table', require('./components/reception/ListManif.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
+
 
 
 /**

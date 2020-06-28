@@ -16,7 +16,8 @@
                     </li>
                 
                       <li data-username="Animations" class="nav-item"><a href="{{ url('/admin') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-home"></i></span><span class="pcoded-mtext">Tableau de Bord </span></a></li>
-                           <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/users') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-users"></i></span><span class="pcoded-mtext">Utilisateurs </span></a></li>
+                      @role('admin')   
+                      <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/users') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-users"></i></span><span class="pcoded-mtext">Utilisateurs </span></a></li>
                                 <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/profiles') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-address-card"></i></span><span class="pcoded-mtext">Profiles </span></a></li>
 
 
@@ -30,13 +31,22 @@
                              </li>
                         </ul>
                     </li>
-                
+                    @endrole
                     <li class="nav-item pcoded-menu-caption">
                         <label>Operation</label>
                     </li>
+                
+
+                    @role('admin')  
+
              <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/rec') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-building"></i></span><span class="pcoded-mtext">Reception </span><span class="pcoded-badge label label-info">900+</span> </a></li>
-
-
+             @endrole
+             @role('client pro')
+             <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/addcoms/') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-upload"></i></span><span class="pcoded-mtext"> Importer </span> </a></li>
+             <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/commandes/') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-boxes"></i></span><span class="pcoded-mtext">Mes Importations </span> </a></li>
+             <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/listcolis/all') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-dolly-flatbed"></i></span><span class="pcoded-mtext">Colis  </span> </a></li>
+             @endrole
+             @role('admin')
                 <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
                     <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-sitemap"></i></span><span class="pcoded-mtext">Transit</span></a>
                     <ul class="pcoded-submenu">
@@ -74,7 +84,7 @@
 
                                    <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/tracking') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-check
 "></i></span><span class="pcoded-mtext">Tracking</span></a></li>
-
+@endrole
                 </ul>
             </div>
         </div>

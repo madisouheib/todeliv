@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
- Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -25,7 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // admin routes 
 Route::group([ 'middleware'=>'auth'], function () {   
-    
+
 Route::get('/admin', 'admin\HomeAdminController@index')->name('index');
 
 // admin routes Users  
@@ -45,6 +45,16 @@ Route::get('/admin/wilaya', 'admin\WilayaController@index')->name('index');
 
 Route::get('/admin/hub', 'admin\HubsController@index')->name('index');
 
+
+
+// admin routes inhouse   ---------------------------------- 
+Route::get('/admin/commandes', 'admin\CommandesController@index')->name('index');
+Route::get('/admin/archoms', 'admin\CommandesController@archive_commandes')->name('archive_commandes');
+Route::get('/admin/addcoms/{id}', 'admin\ColisController@upload_colis')->name('upload_colis');
+Route::get('/admin/addcoms', 'admin\ColisController@upload_colis')->name('upload_colis');
+Route::post('/admin/upload', 'admin\ColisController@import')->name('import');
+
+Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('list_colis');
 // admin routes reception   
 
 
@@ -91,5 +101,9 @@ Route::get('/admin/retours', 'admin\RetourController@index')->name('index');
 
 
 Route::get('/admin/tracking', 'TrackingController@index')->name('index');
+Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
+
+Route::get('/admin/print-pdf/{id}','admin\ColisController@view_pdf')->name('view_pdf');
+Route::get('/admin/export/{id}', 'admin\ColisController@export')->name('export');
 
 });

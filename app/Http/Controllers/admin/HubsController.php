@@ -97,6 +97,15 @@ HubWilaya::create([
 
     }
 
+
+public function hub_delete($id){
+
+    $delhub  = Hub::find($id);
+
+$delhub->delete();
+
+}
+
     /**
      * Display the specified resource.
      *

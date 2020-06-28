@@ -52,7 +52,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer <i class=" fas fa-window-close"></i> </button>
-                                <button type="button" class="btn btn-success" @click="add_roles()">Sauvgarder <i class="fas fa-save"></i></button>
+                                <button type="button" class="btn btn-success" @click="add_roles()" data-dismiss="modal" >Sauvgarder <i class="fas fa-save"></i></button>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,17 @@ axios.post('/api/addroles', {
 name: this.nameroles ,
 permissions : this.name 
  
-}).then(resposne=>location.reload() ).catch(error => console.log(error))
+}).then(
+
+res => { 
+
+
+this.getRoles()
+
+
+}
+
+ ).catch(error => console.log(error))
 
 
 },

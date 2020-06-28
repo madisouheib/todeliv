@@ -50,7 +50,7 @@ Your Permission deleted Successfly
                    
                                       <td> {{ permissions.guard_name }} </td>
 
-                                        <td class="text-center" > <button data-toggle="modal" data-target="#Modalprofileedit"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#Modaleditpermissions"  @click="GetPermissionId(permissions.id)" class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
                                         
                                             <button  class="btn btn-square  btn-danger " @click="deletePermission(permissions.id)" ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
                                         </td>
@@ -60,6 +60,9 @@ Your Permission deleted Successfly
                                 </tbody>
                             </table>
                         </div>
+
+
+                        <permissions-edit  v-bind:ShowPer="ShowPer"  @permissions-edit-edit="getPermission" ></permissions-edit>
                     </div>
 
 
@@ -71,10 +74,11 @@ Your Permission deleted Successfly
 <script>
 
 
-
+import PermissionsEdit from './PermissionsEdit.vue';
   export default {
+
  components: {
-    
+    'permissions-edit': PermissionsEdit 
 
   },
  
@@ -87,8 +91,8 @@ Your Permission deleted Successfly
  guard : '',
  id:'',
  seen : false ,
- del: false
-   
+ del: false,
+   ShowPer:''
     };
      },
  created ()
@@ -158,7 +162,19 @@ this.getPermission()
 ).catch(error => console.log(error))
     $('.toast-danger').toast('show');
 
-}
+},
+
+ GetPermissionId(id){
+
+   axios.get('/api/showpermission/'+ id)
+     .then(response => this.ShowPer = response.data)
+     .catch(err => console.log(err));
+
+
+
+
+
+ }
 
 
  },

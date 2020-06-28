@@ -79,7 +79,7 @@
                                         </div>
   <select class="custom-select" required v-model="role">
 
-        <option value="">Selectionner le Hub</option>
+        <option value="">Selectionner le role</option>
           <option v-for="role in roles " :key="role.id"  :value="role.name " > {{ role.name  }} </option>
   
 </select>
@@ -118,7 +118,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Adresse " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text"  v-model="adresse" class="form-control" id="validationCustomUsername" placeholder="Adresse " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a adresse.
                                         </div>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer <i class=" fas fa-window-close"></i> </button>
-                                <button type="button" class="btn btn-success">Sauvgarder <i class="fas fa-save"></i></button>
+                                <button  @click="user_add()" data-dismiss="modal"  type="button" class="btn btn-success">Sauvgarder <i class="fas fa-save"></i></button>
                             </div>
                         </div>
                     </div>
@@ -184,8 +184,8 @@ methods: {
 
     },
 
-wilayastore(){
-axios.post('/api/add_user', {
+user_add(){
+axios.post('/api/adduser', {
 name: this.name,
 email : this.email,
 username  : this.username,
@@ -193,10 +193,10 @@ password : this.password ,
 adresse : this.adresse,
 role:this.role,
 phone:this.phone,
-hub : this.hub
+hub : this.hubi
 
 
-}).then(resposne=>this.$emit('wilaya-added',resposne)).catch(error => console.log(error))
+}).then(resposne=>this.$emit('users-added',resposne)).catch(error => console.log(error))
 
 
 },

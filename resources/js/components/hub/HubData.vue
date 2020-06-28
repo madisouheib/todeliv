@@ -33,7 +33,7 @@
 
                                         <td class="text-center" > <button data-toggle="modal" data-target="#Modaledithub" @click="GetHubId(hub.id_hub)"   class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
                                         
-                                            <button data-toggle="modal" data-target="#Modaldelhub"  class="btn btn-square  btn-danger " ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
+                                            <button @click="del_hub(hub.id_hub)" class="btn btn-square  btn-danger " ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                               
@@ -106,7 +106,20 @@ this.getHubs() ;
 
  },
    
-        
+          del_hub(id){
+
+
+   axios.delete('/api/deletehub/'+id)
+     .then(res => { 
+
+console.log('hii succefly')
+this.getHubs();
+
+
+}
+     ).catch(err => console.log(err));
+     
+ },
  GetHubId(id_hub){
 
    axios.get('/api/showhub/'+ id_hub)

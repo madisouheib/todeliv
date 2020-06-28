@@ -36,7 +36,7 @@
                             <div class="pro-head">
                                 <img src="/dash/assets/images/user/avatar-2.jpg" class="img-radius" alt="User-Profile-Image">
                                 <span>Send Express</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                            <a href="" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>

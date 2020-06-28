@@ -22,20 +22,13 @@
 
 
 
-@include('dashboard.partials.filtrenavs.navfiltre_recp')
 
 
 
 
 
-                        <div class="table-responsive">
-         <reception-table>
 
-
-
-
-         </reception-table>
-                        </div>
+                 <manif-table>  </manif-table>
                     </div>
                 </div>
             </div>
