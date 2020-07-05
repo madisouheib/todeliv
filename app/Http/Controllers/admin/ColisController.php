@@ -146,6 +146,14 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
   return $pdf->stream('medium.pdf');
 
     }
+    public function view_pdf_commandes($id){
+
+        $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'commandes.id_clt', '=', 'users.id')->where('id_coms','=',$id)->get();
+        //dd($data);
+        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf', [ 'data' => $data]);  
+
+        return $pdf->stream('medium.pdf');
+    }
 
 
 

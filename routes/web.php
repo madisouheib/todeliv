@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([ 'middleware'=>'auth'], function () {   
 
 Route::get('/admin', 'admin\HomeAdminController@index')->name('index');
-
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // admin routes Users  
 
 Route::get('/admin/users', 'admin\UsersController@index')->name('index');
@@ -60,6 +60,9 @@ Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('l
 
 Route::get('/admin/rec', 'admin\ReceptionController@index')->name('index');
 Route::get('/admin/addrecp', 'admin\ReceptionController@add_recp')->name('add_recp');
+Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('archive_recp');
+
+Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
 
 
 
@@ -104,6 +107,10 @@ Route::get('/admin/tracking', 'TrackingController@index')->name('index');
 Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
 Route::get('/admin/print-pdf/{id}','admin\ColisController@view_pdf')->name('view_pdf');
+
+Route::get('/admin/print_com/{id}','admin\ColisController@view_pdf_commandes')->name('view_pdf_commandes');
+
+
 Route::get('/admin/export/{id}', 'admin\ColisController@export')->name('export');
 
 });

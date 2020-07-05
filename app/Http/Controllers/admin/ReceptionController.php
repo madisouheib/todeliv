@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class ReceptionController extends Controller
 {
     /**
@@ -16,6 +16,13 @@ class ReceptionController extends Controller
     {
         return view('dashboard.pages.recep.rec_table');
     }
+    public function pass()
+    {
+$id = 'khoukha.amigo';
+    $dat =     Hash::make($id); 
+return $dat;
+  
+    }
 
 
     public function add_recp()
@@ -23,6 +30,12 @@ class ReceptionController extends Controller
         return view('dashboard.pages.recep.rec_validate');
     }
 
+    public function archive_recp(){
+
+
+        return view('dashboard.pages.recep.rec_archive');
+
+    }
     /**
      * Show the form for creating a new resource.
      *

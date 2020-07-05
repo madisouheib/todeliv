@@ -4,7 +4,7 @@
 <div>
       
     
-    <div class="row"> 
+    <div v-if="ShowCom.confirmed_user == null "   class="row"> 
      
                                                    
                           
@@ -69,8 +69,9 @@
  <th class="text-center" ><i class="fas fa-address-card"></i> Wilaya </th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Prix </th>
                         
-                                        <th class="text-center"><i class="fas fa-align-left"></i> Statuts </th>
-                                        <th class="text-center"><i class="fas fa-edit"></i> Info </th>
+                                       
+                                        <th class="text-center"><i class="fas fa-edit"></i> Action </th>
+                                         <th class="text-center"><i class="fas fa-align-left"></i> Statuts </th>
                                         <th class="text-center"><i class="fas fa-save"></i> Exporter </th>
                                         
                                     </tr>
@@ -85,11 +86,11 @@
 <td class="text-center" > {{ col.price}}   </td>
 <td class="text-center" >   <button data-toggle="modal" data-target="#ModalColisInfo" class="btn btn-square  btn-primary " @click="getColInfos(col.id_colis)"  ><i style="margin:0px;"  class=" fas fa-plus-circle"></i></button> 
 
-<button data-toggle="modal" data-target="#ModalDelColis"  class="btn btn-square  btn-danger " @click="getColInfos(col.id_colis)"   ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
+<button v-if="ShowCom.confirmed_user == null " data-toggle="modal" data-target="#ModalDelColis"  class="btn btn-square  btn-danger " @click="getColInfos(col.id_colis)"   ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
   </td>
 <td v-if="col.confirmed ==  null " > En attente</td>
 <td v-else="" >Livré</td>
-<td class="text-center"> <a :href="'/admin/print-pdf/'+col.id_colis" class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>    </td>
+<td class="text-center"> <a target="_blank"  :href="'/admin/print-pdf/'+col.id_colis" class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>    </td>
 
                                     </tr>
                           
@@ -130,8 +131,8 @@ colis:{},
 
 ShowColis: '',
 idcom : this.url_id,
-userid : this.user_id
-
+userid : this.user_id,
+ShowCom:''
  }
   },
  created ()
@@ -141,6 +142,7 @@ userid : this.user_id
 
 this.getColis();
 this.getColInfos();
+this.getComInfos();
  },
  
  methods:{
@@ -176,6 +178,19 @@ var id = this.url_id ;
      { 
        
    this.ShowColis = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+ getComInfos(){
+
+ axios.get('/api/getCominfos/'+this.idcom)
+     .then(response =>
+     { 
+       
+   this.ShowCom = response.data
      
  }
      ).catch(err => console.log(err));

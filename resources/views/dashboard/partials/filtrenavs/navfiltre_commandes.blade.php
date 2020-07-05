@@ -36,7 +36,7 @@
 
 <div class="col-3">
 
-<button class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </button>
+<a href="{{ url('/admin/archoms')}}" class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </a>
 
 </div>
 <div class="col-3"> <a class="btn btn-success btn-square" href="{{ url('admin/download')}}"> Telecharger Modele <i class="fas fa-file-excel"></i>  </a> </div>

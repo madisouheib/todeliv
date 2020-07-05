@@ -32,11 +32,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon feather icon-settings"></i>
                         </a>
+                        
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
                                 <img src="/dash/assets/images/user/avatar-2.jpg" class="img-radius" alt="User-Profile-Image">
                                 <span>Send Express</span>
-                            <a href="" class="dud-logout" title="Logout">
+                            <a href="{{ url('/logout')}}" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>

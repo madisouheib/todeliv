@@ -76,6 +76,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-3">
+
+
+<a  :href="'/admin/archrecep'" class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </a>
+                        </div>
                         
                                             </div>
 
@@ -115,10 +120,12 @@
                                                                    <td class="text-center" v-else > <i   class="fas fa-check-circle" style="
                                         color:#3CB371;font-size:1.6em;"> </i>  </td>
                         
-                                        <td class="text-center" > <button v-if="com.confirmed == null" data-toggle="modal" data-target="#MdalValidManif" @click="Get(com.id_coms)" style="padding-right:6px;"   class="btn btn-square btn-success  text-center " >  <i class="fas fa-check-circle"></i>  </button> <button v-else style="padding-right:6px;" class="btn btn-dark btn-square" >
-                                        <i class=" fas fa-archive">  </i> </button> </td>
+                                        <td class="text-center"  > <button v-if="com.confirmed == null" data-toggle="modal" data-target="#MdalValidManif" @click="Get(com.id_coms)" style="padding-right:6px;"   class="btn btn-square btn-success  text-center " >  <i class="fas fa-check-circle"></i>  </button> <button v-else   data-toggle="modal" data-target="#MdalClotureManif"  style="padding-right:6px;"  @click="Get(com.id_coms)" class="btn btn-dark btn-square" >
+                                        <i class=" fas fa-archive">  </i> </button>
+                                        
+                                         </td>
                                       
-                                        <th class="text-center" > <a  :href="'/admin/export/'+com.id_coms" class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <button class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </button>  </th>
+                                        <th class="text-center" > <a  :href="'/admin/export/'+com.id_coms" class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/print_com/'+com.id_coms"  class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
                                     </tr>
                                  
                 
@@ -129,6 +136,7 @@
 
     </pagination>
     <manif-validate v-bind:idcoms="idcoms"  @manif-validate="getManifs" ></manif-validate>
+        <manif-cloture v-bind:idcoms="idcoms"  @manif-cloture="getManifs" ></manif-cloture>
                         </div>
 
 </div>
@@ -140,11 +148,13 @@
 
 <script>
 import ValidateManif from './ValidateManif' ; 
+import ClotureManif from './ClotureManif' ; 
   export default {
      props: ['id_user'],
      
  components: {
-'manif-validate': ValidateManif 
+'manif-validate': ValidateManif ,
+'manif-cloture': ClotureManif
 
   },
 

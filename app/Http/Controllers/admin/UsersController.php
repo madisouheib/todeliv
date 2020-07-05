@@ -25,9 +25,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function user_delete($id)
     {
-        //
+        $deluser  = User::find($id);
+        $deluser->delete();
+
+
+
     }
         /**
      * Show the  users  axios from database.
@@ -98,6 +102,15 @@ $hub = request('hub');
 public function show_user($id){
 
     $ShowUser = Users::join('hubs', 'users.hub_id', '=', 'hubs.id_hub')->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')->join('roles', 'model_has_roles.role_id', '=', 'roles.id')->where('users.id','=',$id)->first();
+
+    return response()->json($ShowUser);
+
+
+}
+
+public function show_user_delete($id){
+
+    $ShowUser = Users::find($id);
 
     return response()->json($ShowUser);
 

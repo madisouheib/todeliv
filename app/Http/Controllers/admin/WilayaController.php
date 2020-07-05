@@ -23,9 +23,13 @@ class WilayaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function wilaya_add(Request $request)
-    {
- Wilaya::create($request->all());
-    }
+                {
+                  Wilaya::create($request->all());
+                }
+
+
+
+
 public function wilaya_data()
  {
     $wilaya = Wilaya::orderBy('id_wilaya', 'desc')->paginate(4);
@@ -76,6 +80,7 @@ public function wilaya_tags()
         
         $Editwilaya = Wilaya::find($id);
         $Editwilaya->nom_wilaya = request('name');
+        $Editwilaya->mat_wilaya = request('mat');
         $Editwilaya->save();
         //dd($users);
    

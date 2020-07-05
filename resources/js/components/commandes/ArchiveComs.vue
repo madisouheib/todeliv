@@ -95,7 +95,7 @@ getComs(page = 1)
  {
 var id = this.id_user ; 
 
-     axios.get('/api/getcoms/'+id+'?page='+page)
+     axios.get('/api/getarchivecoms/'+id+'?page='+page)
      .then(response =>
      { 
        

@@ -61,6 +61,7 @@ Route::post('/adduser', 'admin\UsersController@store');
 Route::get('/fetchuser/{id}', 'admin\UsersController@users_data_fetched');
 
 Route::get('/getuser/{id}', 'admin\UsersController@show_user');
+Route::get('/getuserdelete/{id}', 'admin\UsersController@show_user_delete');
 
 
 Route::post('/addcom', 'admin\CommandesController@add_com');
@@ -72,6 +73,7 @@ Route::post('/addcom', 'admin\CommandesController@add_com');
 Route::get('/getcolis/{id}', 'admin\ColisController@data_colis');
 
 Route::get('/getcoms/{id}', 'admin\CommandesController@data_coms');
+Route::get('/getarchivecoms/{id}', 'admin\CommandesController@data_coms_archive');
 
 Route::get('/getColisinfos/{id}', 'admin\ColisController@infos_colis');
 
@@ -82,8 +84,18 @@ Route::post('/addcolis', 'admin\ColisController@add_colis');
 Route::delete('/deletecolis/{id}', 'admin\ColisController@colis_delete');
 
 Route::get('/getmanifs', 'admin\CommandesController@data_manifs');
+Route::get('/getarchivemanifs', 'admin\CommandesController@data_manifs_archive');
+
+
 Route::patch('/validatemanif/{id}', 'admin\CommandesController@validate_manif');
+Route::patch('/cloturemanif/{id}', 'admin\CommandesController@cloture_manif');
+Route::patch('/validatemanifuser/{id}', 'admin\CommandesController@validate_manif_user');
 
 
 
 Route::get('/getclientpro', 'admin\UsersController@data_client_pro');
+
+
+Route::get('/getCominfos/{id}', 'admin\CommandesController@infos_coms');
+
+Route::delete('/deleteuser/{id}', 'admin\UsersController@user_delete');

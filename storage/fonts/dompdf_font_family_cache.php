@@ -80,4 +80,10 @@
   'cairo' => array(
     'normal' => $fontDir . '/cairo-normal_5bb41ca031cbdd621530744b95b3a35b',
   ),
+  'dinnextltarabic-medium' => array(
+    'normal' => $fontDir . '/dinnextltarabic-medium-normal_3790d92c58b37025621f59851ea3aee1',
+  ),
+  'cairo-regular' => array(
+    'normal' => $fontDir . '/cairo-regular-normal_db8aa75b9f54f123b3261a21e0a2cefe',
+  ),
 ) ?>

@@ -42,13 +42,13 @@ $idcom = $this->data ;
 
 
             'nom_client'     => $row['Nom'],
-            'tel'     => $row['Num'],
-            'adresse'     => $row['Adresse'],
+            'tel'     => trim($row['Num']),
+            'adress'     => $row['Adresse'],
             'commune'     => $row['Commun'],
             'wilaya'    => $row['Wilaya'], 
             'produit'     => $row['Produit'],
             'qte'     => $row['Qu'],
-            'price'     => $row['Prix'],
+            'price'     => trim($row['Prix']),
             'remarque'     => $row['Remarque'],
             'id_com'     => $idcom
 

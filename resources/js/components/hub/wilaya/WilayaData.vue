@@ -5,7 +5,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th><i class="fas fa-map"></i> Nom de la wilaya</th>
+                                        <th class="text-center" ><i class="fas fa-map"></i> Nom de la wilaya</th>
+                                          <th class="text-center" ><i class="fas fa-map-pin"></i> Mat de la wilaya</th>
                                       
                          
                       
@@ -17,7 +18,8 @@
                                 <tbody>
                                     <tr v-for=" wilaya  in wilayas.data" :key="wilaya.id" >
                                         <th scope="row"> {{ wilaya.id_wilaya }} </th>
-                                        <td>{{ wilaya.nom_wilaya}}  </td>
+                                        <td class="text-center">{{ wilaya.nom_wilaya}}  </td>
+                                          <td class="text-center" >{{ wilaya.mat_wilaya}}  </td>
                                
                     
                             
@@ -71,6 +73,7 @@ import WilayaDel from './WilayaDelete' ;
 
 wilayas : {},
 ShoWilaya : ''
+
 
  }
   },

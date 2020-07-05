@@ -1,5 +1,37 @@
 <template>
         <div>
+
+<div class="row">
+<div class="col-4">
+    <div class="form-group">
+   
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
+            </div>
+<select class="custom-select" required>
+    <option selected> Selectionner le partenaire </option>
+<option     v-for="pro in clientpro " :key="pro.id"  :value="pro.id " > {{ pro.full_name}} </option>
+
+</select>
+
+          
+            <div class="invalid-feedback">
+                Please choose a type.
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+</div>            
+
+
             <div class="table-responsive">                 
                 
                       <table class="table">
@@ -15,7 +47,7 @@
                                         <th class="text-center" ><i class="fas fa-address-card"></i> Hub </th>
                         
                                         <th class="text-center"><i class="fas fa-align-left"></i> Statuts </th>
-                                        <th class="text-center"><i class="fas fa-edit"></i> Action </th>
+                                      
                                         <th class="text-center"><i class="fas fa-save"></i> Exporter </th>
                                         
                                     </tr>
@@ -23,9 +55,8 @@
                                 <tbody>
                             
                                     <tr v-for=" com  in coms.data" :key="com.id_coms" >
-                                       
+                                 
                                         <th scope="row" class="text-center" > <a class="pcoded-badge label label-info" style="color:white"  :href="'/admin/listcolis/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></th>
-                                     
                                         
                         
                                       <th class="text-center"   > 3500000 DA   </th>
@@ -33,27 +64,22 @@
                                     
                                        
                                         <th class="text-center"> ORAN EST   </th>
-                                        <td class="text-center" >  <i v-if="com.confirmed_user == null"   class="fas fa-clock"></i> 
-                                        <i v-else style="color:#2dde98;font-size:1.3em;"  class="fas fa-clipboard-check"></i> 
-                                          </td>
-                        
-                                        <td class="text-center" > <a  v-if="com.confirmed_user == null"  :href="'addcoms/'+com.id_coms" class="btn btn-square btn-dark  " style="padding-right:6px;"  >  <i class="fas fa-upload"></i>  </a> 
-                                        <button v-if=" (com.confirmed_user == null ) || ( com.colis_count < 0  ) "  @click="Get(com.id_coms)" 
-                                         class="btn btn-success btn-square" data-toggle="modal" data-target="#MdalValidManifUser"  style="padding-right:6px;" > Valider <i class="fas fa-check-circle"></i> </button>
-                                         
-                                         <h6 style="color:#2dde98;font-weight:bold;" v-if="com.confirmed_user == true"  > Validé </h6>
-                                          </td>
-                                        <th class="text-center" > <a :href="'/admin/export/'+com.id_coms" class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank" :href="'/admin/print_com/'+com.id_coms" class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
+                                        <td class="text-center" >  
+                                            Cloture
+                                         </td>
+                                      
+                                        <th class="text-center" > <a  :href="'/admin/export/'+com.id_coms" class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/print_com/'+com.id_coms"  class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
                                     </tr>
                                  
-                  
+                
                                 </tbody>
                             
                             </table>
-                            <manif-validuser v-bind:idcoms="idcoms"  @manif-validuser="getComs" > </manif-validuser>
-                         <pagination :data="coms" @pagination-change-page="getComs">
+                         <pagination :data="coms" @pagination-change-page="getManifs">
 
     </pagination>
+    <manif-validate v-bind:idcoms="idcoms"  @manif-validate="getManifs" ></manif-validate>
+        <manif-cloture v-bind:idcoms="idcoms"  @manif-cloture="getManifs" ></manif-cloture>
                         </div>
 
 </div>
@@ -64,19 +90,22 @@
 
 
 <script>
-import ValidateComs from './ValidateComs' ; 
+import ValidateManif from './ValidateManif' ; 
+import ClotureManif from './ClotureManif' ; 
   export default {
      props: ['id_user'],
      
  components: {
-'manif-validuser': ValidateComs 
+'manif-validate': ValidateManif ,
+'manif-cloture': ClotureManif
 
   },
 
      data(){
  return {
 coms:{},
-idcoms:''
+idcoms : '',
+clientpro : {}
 
 
  }
@@ -86,27 +115,38 @@ idcoms:''
 
 
 
-this.getComs();
+this.getManifs();
+this.GetClientPro();
  },
  
  methods:{
+  GetClientPro(){
 
-getComs(page = 1)
+   axios.get('/api/getclientpro/')
+     .then(response => {   this.clientpro= response.data })
+     .catch(err => console.log(err));
+
+
+
+
+
+ },
+getManifs(page = 1)
  {
-var id = this.id_user ; 
 
-     axios.get('/api/getcoms/'+id+'?page='+page)
+
+     axios.get('/api/getarchivemanifs/?page='+page)
      .then(response =>
      { 
        
    this.coms= response.data
-   console.log(response.data)
+
      
  }
      ).catch(err => console.log(err));
 
  },
-   Get(id){
+  Get(id){
 
 
 this.idcoms = id ;
@@ -117,6 +157,7 @@ this.idcoms = id ;
 
  }
 
+ 
  }
 
 

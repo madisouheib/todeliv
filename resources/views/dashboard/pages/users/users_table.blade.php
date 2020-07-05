@@ -37,7 +37,7 @@
     
 
 @include('dashboard.pages.users.users_edit')
-@include('dashboard.pages.users.users_delete')
+
 
     
         

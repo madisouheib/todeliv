@@ -31,7 +31,7 @@
 <div class="row" style="margin: 5%;">
 <input type="hidden" name="idcoms" value="{{ Request::segment(3) }}">
 <div class="col-8">
-<input type="file" name="colis" class="form-control">
+<input type="file" name="colis" class="form-control" required>
 
 </div>
 <div class="col-4">

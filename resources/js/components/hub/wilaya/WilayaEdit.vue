@@ -11,9 +11,21 @@
                                     <label for="nomwi">Nom de wilaya : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-user-tie"></i> </span>
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map"></i> </span>
                                         </div>
                                         <input v-model="ShoWilaya.nom_wilaya" type="text" class="form-control" name="nomwilaya"  id="nomwilaya" placeholder="Nom de la wilaya "  required>
+                                        <div class="invalid-feedback">
+                                            Please choose a wilaya.
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="form-group">
+                                    <label for="nomwi">Matricule de wilaya : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-pin"></i> </span>
+                                        </div>
+                                        <input v-model="ShoWilaya.mat_wilaya" type="text" class="form-control" name="nomwilaya"  id="nomwilaya" placeholder="Nom de la wilaya "  required>
                                         <div class="invalid-feedback">
                                             Please choose a wilaya.
                                         </div>
@@ -41,7 +53,9 @@ export default {
 
   updateWilaya(){
 axios.patch('/api/editwilaya/'+ this.ShoWilaya.id_wilaya, {
-name: this.ShoWilaya.nom_wilaya
+name: this.ShoWilaya.nom_wilaya,
+mat: this.ShoWilaya.mat_wilaya,
+
 
 
 }).then(resposne=>this.$emit('wilaya-edit',resposne)).catch(error => console.log(error))

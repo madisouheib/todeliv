@@ -25,7 +25,11 @@ Vue.component('permission-table', require('./components/profiles/PermissionTable
 Vue.component('addcom-table', require('./components/commandes/AddCommandes.vue').default);
 Vue.component('colis-table', require('./components/colis/ListColis.vue').default);
 Vue.component('coms-table', require('./components/commandes/ListComs.vue').default);
+Vue.component('coms-archive', require('./components/commandes/ArchiveComs.vue').default);
 Vue.component('manif-table', require('./components/reception/ListManif.vue').default);
+
+Vue.component('manif-archive', require('./components/reception/ArchiveManif.vue').default);
+
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 

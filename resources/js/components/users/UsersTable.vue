@@ -38,9 +38,9 @@
                                         <td>{{  user.email}} </td>
                                         <td>{{  user.name}} </td>
                                         <td><button data-toggle="modal" data-target="#Modalinfo" class="btn btn-square  btn-primary " @click="getUser(user.id)"  ><i style="margin:0px;"  class=" fas fa-plus-circle"></i></button></td>
-                                        <td class="text-center" > <button data-toggle="modal" data-target="#Modaledituser"   class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
+                                        <td v-if="user.id !== 3" class="text-center" > <button data-toggle="modal" data-target="#Modaledituser"   class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
                                         
-                                            <button data-toggle="modal" data-target="#Modaldelete"  class="btn btn-square  btn-danger " ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
+                                            <button  data-toggle="modal" data-target="#Modaldelete"  @click="getUserDel(user.id)"   class="btn btn-square  btn-danger " ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                            
@@ -50,6 +50,7 @@
                             </table>
          
                             <users-add @users-added="getUsers" ></users-add>
+                              <users-delete  v-bind:ShowUser="ShowUser"  @users-delete="getUsers"></users-delete>  
 <view-user v-bind:ShowUser="ShowUser"   ></view-user>
 
                        <pagination :data="users" @pagination-change-page="getUsers">
@@ -62,11 +63,13 @@
 <script>
   import UsersAdd from './UsersAdd.vue';
     import ViewUser from './ViewUser.vue';
+    import UsersDelete from './UsersDelete.vue';
   export default {
 
  components: {
        'users-add' : UsersAdd,
-       'view-user':   ViewUser
+       'view-user':   ViewUser,
+       'users-delete': UsersDelete
 
   },
  
@@ -154,6 +157,20 @@ this.getUsers();
 
 
      axios.get('/api/getuser/'+ id )
+     .then(response =>
+     { 
+        
+     this.ShowUser = response.data
+     
+ }
+     )
+     .catch(err => console.log(err));
+
+ },
+ getUserDel(id){
+
+
+     axios.get('/api/getuserdelete/'+ id )
      .then(response =>
      { 
         
