@@ -35,8 +35,8 @@ return [
             ],
             'cairo' => [
                 'R'  => 'Cairo-Regular.ttf',    // regular font
-                'B'  => 'Cairo-bold.ttf',       // optional: bold font
-                'I'  => 'Cairo-Light.ttf',     // optional: italic font
+                'B'  => '',       // optional: bold font
+                'I'  => '',     // optional: italic font
                 'BI' => '', // optional: bold-italic font
      
             ],

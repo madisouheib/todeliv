@@ -145,6 +145,85 @@ hr {
     </table>
     <hr >
 </div>
+
+
+<div  style="page-break-after:always;"   >
+  <table style="width:100%;">
+  <tr>
+  <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
+  <td style="width: 30%;text-align:center;"><h2> Facture n• send-{{ $dat->id_colis  }}  </h2>  </td>
+  <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
+  
+  
+    </tr>
+  </table>
+  <table style="width:100%;height: 20%;">
+    <tr>
+    <td style="width:50%;"> 
+    <h4 style="font-family: cairo, sans-serif;">  Vendeur </h4>
+    <p>  {{Str::upper($dat->name)  }} <br>
+    
+      {{Str::upper($dat->phone)  }} <br>
+      {{Str::upper($dat->adresse)  }} <br>
+    </p>
+    
+    </td>
+    <td style="width:50%;">
+    <h4 style="font-family: cairo, sans-serif;">  Achteur </h4>
+    <p> 
+      {{Str::upper($dat->nom_client)  }} <br>
+      {{Str::upper($dat->tel)  }} <br>
+      {{Str::upper($dat->adress)  }} <br>
+  
+  
+    </p>
+  </td>
+      </tr>
+  </table>
+  <table style="width:100%;height: 20%;" >   
+      <tr>
+  <td style="width:30%;" > </td>
+        <td style="width:30%;padding-top:20%;">
+          <h3 style="margin-right:0px;float: right;" >  Prix :    </h3>
+  
+        </td>
+        <td style="width:40%;padding-top:20%;">
+          <h3  style="font-family:cairo;font-size:18px;" > <?php echo $dat['price'];  ?> DA </h3>
+        </td>
+  
+  
+  
+      </tr>
+    </table>
+  
+    <table style="width:100%;height: 40%;margin-top:20px;"  border="1">
+  <tr style="">
+  <td style="height: 30px;width:70%">Désignation</td>
+  <td style="width:30%">Prix </td>
+  
+  
+  </tr>
+  <tr style="">
+    <td style="width:70%;padding-bottom:300px;"> <h3 style="margin-bottom:300px;"> {{ $dat->produit }}   </h3>  </td>
+    <td style="width:30%;padding-bottom:300px;"> <h3 style="font-family:cairo;"> <?php echo $dat['price'];  ?>  DA  </h3> </td>
+    
+    
+    </tr>
+  
+    </table>
+    <table style="width:100%;">
+    <tr >
+      <td style="width:30%;"></td>
+      <td style="width:40%;"> <h3 style="margin-top:10px;"> Total :  </h3>  </td>
+      <td style="width:30%;background-color:#0079c1;"> <h3 style="font-family:cairo;color:#fff;"> <?php echo $dat['price'];  ?> DA   </h3> </td>
+      
+      
+      </tr>
+    </table>
+    <br>
+    <h3 style="margin-left:500px;margin-top:10;"> Signature Vendeur </h3>
+  </div>
+  
 @endforeach
 
 
