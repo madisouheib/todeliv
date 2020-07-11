@@ -147,7 +147,7 @@ if($id == 'all' ){
     }
     public function view_pdf($id){
 
-$data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'commandes.id_clt', '=', 'users.id')->where('id_colis','=',$id)->first()->toArray();
+$data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->join('users', 'commandes.id_clt', '=', 'users.id')->where('id_colis','=',$id)->first()->toArray();
 //dd($data);
  // This  $data array will be passed to our PDF blade
 
@@ -159,9 +159,9 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
     }
     public function view_pdf_commandes($id){
 
-        $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'commandes.id_clt', '=', 'users.id')->where('id_coms','=',$id)->get();
+        $data = Colis::join('commandes', 'colis.id_com', '=', 'commandes.id_coms')->join('users', 'commandes.id_clt', '=', 'users.id')->where('id_coms','=',$id)->get();
         //dd($data);
-        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf',[ $id, [ 'data' => $data]]);  
+        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf',[ 'data' => $data]);  
 
         return $pdf->stream('medium.pdf');
     }

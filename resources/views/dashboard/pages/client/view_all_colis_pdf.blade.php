@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   
- <title> Send Expres Manifest N-{{ $id  }} </title>
+ <title> Send Expres Manifest </title>
 </head>
 <body>
 
@@ -60,7 +60,8 @@ hr {
 }
 
   </style>
-   @foreach($data as $dat)
+   @foreach($data ?? '' as $dat)
+   
    <div style="page-break-after:always;"    >
   <table  id="tabledata"     border="1">
 

@@ -72,9 +72,9 @@ hr {
   
   </td>
   <td>
-   <h3> 16 </h3>  
+   <h3> 
 
-    {{Str::upper($wilaya)  }}
+    {{ $wilaya  }}</h3>   
   
   </td>
   <td> tracking id : 
