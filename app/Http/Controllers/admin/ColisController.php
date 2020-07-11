@@ -27,17 +27,28 @@ class ColisController extends Controller
     public function import(Request $request) 
     {
 
-      
-        $request->validate([
-            'colis'=> 'required' 
+        $data=$request->input('idcoms');
 
-            ]);
+        if(isset($data)){
 
-            $idclient = Auth::id();
-          $data =   Commandes::create(['id_clt'=> $idclient ])->id_coms;
-           // $data=$request->input('idcoms');
+            $data=$request->input('idcoms');
+
+        }else {
+
+
+            $request->validate([
+                'colis'=> 'required' 
+    
+                ]);
+    
+                $idclient = Auth::id();
+              $data =   Commandes::create(['id_clt'=> $idclient ])->id_coms;
+             
+           
+            
+
+        }
        
-        
 
         Excel::import(new ColisImport($data),$request->file('colis'));
 
@@ -150,7 +161,7 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
 
         $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'commandes.id_clt', '=', 'users.id')->where('id_coms','=',$id)->get();
         //dd($data);
-        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf', [ 'data' => $data]);  
+        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf',[ $id, [ 'data' => $data]]);  
 
         return $pdf->stream('medium.pdf');
     }

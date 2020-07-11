@@ -37,7 +37,7 @@
                                         <i v-else style="color:#2dde98;font-size:1.3em;"  class="fas fa-clipboard-check"></i> 
                                           </td>
                         
-                                        <td class="text-center" > <a  v-if="com.confirmed_user == null"  :href="'addcoms/'+com.id_coms" class="btn btn-square btn-dark  " style="padding-right:6px;"  >  <i class="fas fa-upload"></i>  </a> 
+                                        <td class="text-center" > <button  v-if="com.confirmed_user == null"   data-toggle="modal" data-target="#MdalRemoveManif" @click="Get(com.id_coms)"  class="btn btn-square btn-danger  " style="padding-right:6px;"  >  <i class="fas fa-trash"></i>  </button> 
                                         <button v-if=" (com.confirmed_user == null ) || ( com.colis_count < 0  ) "  @click="Get(com.id_coms)" 
                                          class="btn btn-success btn-square" data-toggle="modal" data-target="#MdalValidManifUser"  style="padding-right:6px;" > Valider <i class="fas fa-check-circle"></i> </button>
                                          
@@ -50,6 +50,7 @@
                                 </tbody>
                             
                             </table>
+                            <manif-delete v-bind:idcoms="idcoms"  @manif-delete="getComs" > </manif-delete>
                             <manif-validuser v-bind:idcoms="idcoms"  @manif-validuser="getComs" > </manif-validuser>
                          <pagination :data="coms" @pagination-change-page="getComs">
 
@@ -65,12 +66,13 @@
 
 <script>
 import ValidateComs from './ValidateComs' ; 
+ import ComsDelete from './DeleteComs.vue' ; 
   export default {
      props: ['id_user'],
      
  components: {
-'manif-validuser': ValidateComs 
-
+'manif-validuser': ValidateComs ,
+'manif-delete': ComsDelete
   },
 
      data(){

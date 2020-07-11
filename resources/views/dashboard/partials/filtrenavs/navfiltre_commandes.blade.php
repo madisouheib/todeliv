@@ -39,7 +39,7 @@
 <a href="{{ url('/admin/archoms')}}" class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </a>
 
 </div>
-<div class="col-3"> <a class="btn btn-success btn-square" href="{{ url('admin/download')}}"> Telecharger Modele <i class="fas fa-file-excel"></i>  </a> </div>
+<div class="col-3"></div>
 <div class="col-3">
 
 <a class="btn btn-info btn-square" href="{{ url('admin/addcoms')}}"   > IMPORTER  <i class="fas fa-plus"></i></a>

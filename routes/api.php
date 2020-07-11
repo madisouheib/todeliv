@@ -99,3 +99,8 @@ Route::get('/getclientpro', 'admin\UsersController@data_client_pro');
 Route::get('/getCominfos/{id}', 'admin\CommandesController@infos_coms');
 
 Route::delete('/deleteuser/{id}', 'admin\UsersController@user_delete');
+
+
+
+
+Route::delete('/deletecoms/{id}', 'admin\CommandesController@manif_delete');

@@ -41,6 +41,11 @@
 
              <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/rec') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-building"></i></span><span class="pcoded-mtext">Reception </span><span class="pcoded-badge label label-info">900+</span> </a></li>
              @endrole
+
+             @role('coordinateur')  
+
+             <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/rec') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-building"></i></span><span class="pcoded-mtext">Reception </span><span class="pcoded-badge label label-info">900+</span> </a></li>
+             @endrole
              @role('client pro')
              <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/addcoms/') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-upload"></i></span><span class="pcoded-mtext"> Importer </span> </a></li>
              <li data-username="Animations" class="nav-item"><a href="{{ url('/admin/commandes/') }}" class="nav-link"><span class="pcoded-micon"><i class="fas fa-boxes"></i></span><span class="pcoded-mtext">Mes Importations </span> </a></li>

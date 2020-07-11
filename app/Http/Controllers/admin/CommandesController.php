@@ -34,6 +34,17 @@ class CommandesController extends Controller
       return response()->json($Comas);
 
     }
+
+public function manif_delete($id){
+
+  $delComs  = commandes::find($id);
+  $delComs->delete();
+
+
+}
+
+
+
 public function data_coms($id){
 
   $Comas = commandes::withCount(['colis'])->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(4);

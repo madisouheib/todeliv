@@ -40,10 +40,10 @@
 
 <div class="col-3">
 
-<a class="btn btn-dark btn-square" :href="'/admin/addcoms/'+url_id" >  Upload <i class="fas fa-upload"></i> </a>
+<a class="btn btn-dark btn-square" :href="'/admin/addcoms/'+url_id" >  Importer des Colis <i class="fas fa-upload"></i> </a>
 
 </div>
-<div class="col-3"> <a class="btn btn-success btn-square" :href="'/admin/download'"> Telecharger Modele <i class="fas fa-file-excel"></i>  </a> </div>
+
 <div class="col-3">
 
     <button class="btn btn-info btn-square"  data-toggle="modal" data-target="#ModaladdColis"  > AJOUTER Un Colis <i class="fas fa-plus"></i></button>
