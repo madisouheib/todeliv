@@ -2,7 +2,11 @@ import Vue from 'vue'
 
 
 window.axios = require('axios');
+import moment from 'moment';
+require('moment/locale/fr');
 
+moment.locale('fr');
+Vue.prototype.moment = moment
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,7 +32,26 @@ Vue.component('coms-table', require('./components/commandes/ListComs.vue').defau
 Vue.component('coms-archive', require('./components/commandes/ArchiveComs.vue').default);
 Vue.component('manif-table', require('./components/reception/ListManif.vue').default);
 
+
+Vue.component('inhouse-table', require('./components/inhouse/ListInHouse.vue').default);
+
 Vue.component('manif-archive', require('./components/reception/ArchiveManif.vue').default);
+Vue.component('manif-detail', require('./components/reception/AddRecp.vue').default);
+
+Vue.component('froute-list', require('./components/froute/FicheList.vue').default);
+Vue.component('froute-colis', require('./components/froute/ListColisFiche.vue').default);
+Vue.component('delivery-list', require('./components/delivery/Delevery.vue').default);
+
+Vue.component('delivred-list', require('./components/delivred/DelivredList.vue').default);
+
+Vue.component('delivery-colislist', require('./components/delivery/DetailDelevery.vue').default);
+
+Vue.component('undelivred-list', require('./components/undelivred/ListUndelivred.vue').default);
+Vue.component('tracking-detail', require('./components/tracking/Tracking.vue').default);
+Vue.component('nav-admin', require('./components/AdminNavbar.vue').default);
+Vue.component('nav-client', require('./components/UserNavbar.vue').default);
+
+
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
@@ -42,4 +65,8 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
  const core = new Vue({
     el: '#core'
+});
+
+const nav = new Vue({
+    el: '#nav'
 });

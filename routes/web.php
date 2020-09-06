@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +28,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([ 'middleware'=>'auth'], function () {   
 
 Route::get('/admin', 'admin\HomeAdminController@index')->name('index');
+Route::get('/admin/data', 'admin\HomeAdminController@index')->name('data_stats');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // admin routes Users  
 
 Route::get('/admin/users', 'admin\UsersController@index')->name('index');
-
+Route::group(['middleware' => ['role:admin']], function () {
 // admin routes Profiles   
 
 Route::get('/admin/profiles', 'admin\ProfilesController@index')->name('index');
@@ -46,23 +48,6 @@ Route::get('/admin/wilaya', 'admin\WilayaController@index')->name('index');
 Route::get('/admin/hub', 'admin\HubsController@index')->name('index');
 
 
-
-// admin routes inhouse   ---------------------------------- 
-Route::get('/admin/commandes', 'admin\CommandesController@index')->name('index');
-Route::get('/admin/archoms', 'admin\CommandesController@archive_commandes')->name('archive_commandes');
-Route::get('/admin/addcoms/{id}', 'admin\ColisController@upload_colis')->name('upload_colis');
-Route::get('/admin/addcoms', 'admin\ColisController@upload_colis')->name('upload_colis');
-Route::post('/admin/upload', 'admin\ColisController@import')->name('import');
-
-Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('list_colis');
-// admin routes reception   
-
-
-Route::get('/admin/rec', 'admin\ReceptionController@index')->name('index');
-Route::get('/admin/addrecp', 'admin\ReceptionController@add_recp')->name('add_recp');
-Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('archive_recp');
-
-Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
 
 
 
@@ -82,11 +67,14 @@ Route::get('/admin/inhouse', 'admin\InHouseController@index')->name('index');
 
 // admin routes  F-route   
 Route::get('/admin/ondelivery', 'admin\OnDeliveryController@index')->name('index');
-Route::get('/admin/listdelivery', 'admin\OnDeliveryController@list_delivery')->name('list_delivery');
+Route::get('/admin/listdelivery/{id}', 'admin\OnDeliveryController@list_delivery')->name('list_delivery');
+Route::get('/admin/fichepdf/{idfiche}', 'admin\FicheColisController@pdf_all_fiche')->name('pdf_all_fiche');
+
+
 
 // admin routes  Livraison    
 Route::get('/admin/livraison', 'admin\LivraisonController@index')->name('index');
-Route::get('/admin/listenliv', 'admin\LivraisonController@list_livraison')->name('list_livraison');
+Route::get('/admin/listenliv/{id}', 'admin\LivraisonController@list_livraison')->name('list_livraison');
 
 // admin routes  echouée    
 Route::get('/admin/echlivraison', 'admin\FailedController@index')->name('index');
@@ -103,7 +91,7 @@ Route::get('/admin/retours', 'admin\RetourController@index')->name('index');
 //----- tracking id 
 
 
-Route::get('/admin/tracking', 'TrackingController@index')->name('index');
+
 Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
 Route::get('/admin/print-pdf/{id}','admin\ColisController@view_pdf')->name('view_pdf');
@@ -112,5 +100,32 @@ Route::get('/admin/print_com/{id}','admin\ColisController@view_pdf_commandes')->
 
 
 Route::get('/admin/export/{id}', 'admin\ColisController@export')->name('export');
+
+
+
+
+
+});
+
+
+
+// admin routes inhouse   ---------------------------------- 
+Route::get('/admin/commandes', 'admin\CommandesController@index')->name('index');
+Route::get('/admin/archoms', 'admin\CommandesController@archive_commandes')->name('archive_commandes');
+Route::get('/admin/addcoms/{id}', 'admin\ColisController@upload_colis')->name('upload_colis');
+Route::get('/admin/addcoms', 'admin\ColisController@upload_colis')->name('upload_colis');
+Route::post('/admin/upload', 'admin\ColisController@import')->name('import');
+
+Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('list_colis');
+// admin routes reception   
+
+
+Route::get('/admin/rec', 'admin\ReceptionController@index')->name('index');
+Route::get('/admin/addrecp/{idcom}', 'admin\ReceptionController@add_recp')->name('add_recp');
+Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('archive_recp');
+
+Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
+
+Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
 
 });

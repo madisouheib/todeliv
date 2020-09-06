@@ -9,7 +9,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <p> a ce vous-etes sure de Valider  le manifest de <h5 v-text="idcoms"> </h5>   </p>
+                                <p> a ce vous-etes sure de Valider  le manifest de   </p><h5 v-text="idcoms"> </h5> 
 
                             </div>
                             <div class="modal-footer">

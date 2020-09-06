@@ -34,30 +34,45 @@ private $data ;
 $idcom = $this->data ; 
      
 
-
-     
-
-        return new Colis([
-
+if(!array_filter($row)) { 
+    
+    return null;
 
 
-            'nom_client'     => $row['Nom'],
-            'tel'     => trim($row['Num']),
-            'adress'     => $row['Adresse'],
-            'commune'     => $row['Commun'],
-            'wilaya'    => $row['Wilaya'], 
-            'produit'     => $row['Produit'],
-            'qte'     => $row['Qu'],
-            'price'     => trim($row['Prix']),
-            'remarque'     => $row['Remarque'],
-            'id_com'     => $idcom
 
-            //
-        ]);
+}else {
+
+
+
+    return new Colis([
+
+
+
+        'nom_client'     => $row['Nom'],
+        'tel'     => $row['Num'],
+        'adress'     => $row['Adresse'],
+        'commune'     => $row['Commun'],
+        'wilaya'    => $row['Wilaya'], 
+        'produit'     => $row['Produit'],
+        'qte'     => $row['Qu'],
+        'price'     => $row['Prix'],
+        'remarque'     => $row['Remarque'],
+        'id_com'     => $idcom
+
+        //
+    ]);
+
+
+}
+
+      
 
    
 
         
     
     }
+
+
+    
 }

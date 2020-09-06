@@ -9,8 +9,10 @@ use App\Exports\ColisExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Colis;
 use App\Commandes;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use Carbon\Carbon;
 class ColisController extends Controller
 {
  
@@ -105,6 +107,34 @@ if($id == 'all' ){
         return response()->json($Colis);
     }
 
+
+
+
+
+
+//____________________ Start section of validation ********
+
+    public function data_colis_validation($idcom){
+
+
+        
+            $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(8);
+        
+    
+            
+        
+         
+                return response()->json($Colis);
+            }
+
+//____________________ END  section of validation ********
+
+
+
+
+
+
+
     public function infos_colis($id){
 
         $infosColis = Colis::find($id);
@@ -165,6 +195,113 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
 
         return $pdf->stream('medium.pdf');
     }
+//code a barre cvalidation vien input controller 
+public function data_colis_inhouse(){
+
+    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')->where('validation','=',true)->where('id_stats','=',null)->orWhere('id_stats','=',11)->orderBy('id_colis', 'desc')->paginate(8);
+
+    return response()->json($Colis);
+
+
+}
+
+
+    public function tmp_colis_validate(Request $request){
+        $id = request('id');
+       
+        $tmpColis = Colis::find($id);
+
+
+            $tmpColis->tmp_validation = true;
+            $tmpColis->tmp_signaler = false;
+            $tmpColis->signaler = false;
+            $tmpColis->save();
+
+
+       
+        
+
+    }
+
+    public function tmp_colis_signaler(Request $request){
+
+$id = request('id');
+        $tmpColis = Colis::find($id);
+        $CountTmp = Colis::where('id_colis','=',$id)->whereNull('tmp_signaler')->count();
+
+        if( $CountTmp == 0  )
+        {
+
+            $tmpColis->tmp_signaler = true;
+            $tmpColis->tmp_validation = false;
+            $tmpColis->validation = false;
+ 
+            $tmpColis->save();
+
+        }
+
+
+
+    }
+
+    //// Validation groupé colis  reception part ::::::::::::::::::::::::: // 
+
+
+public function validate_colis_gp(){
+
+    $id = request('id');
+
+    $FinaleValidationColis = Colis::where('id_com', '=', $id)->where('tmp_validation', '=', true)->update(['validation' => true  ,'tmp_signaler'=> false,'signaler'=> false ]);
+    $FinaleValidationC = Colis::where('id_com', '=', $id)->where('tmp_validation', '=', false)->update(['validation' => false  ,'tmp_signaler'=> true,'signaler'=> true ]);
+
+     
+         
+
+
+}
+
+//____________________ Start section of signal ********
+
+
+public function signaler_colis_gp(){
+
+    $id = request('id');
+
+    $FinaleSignalColis = Colis::where('id_com', '=', $id)->where('tmp_signaler', '=', true)->update(['signaler'=> true ,'tmp_validation'=> false , 'validation'=> false ]);
+
+     
+    
+
+
+}
+public function colis_signaler(){
+
+    $id = request('id');
+
+    $FinalByOneColis = Colis::where('id_colis', '=', $id)->update(['signaler'=> true ,'tmp_validation'=> false , 'validation'=> false,'tmp_signaler'=>true ]);
+
+
+}
+public function colis_valider(){
+
+    $id = request('id');
+
+    $FinalByOneColis = Colis::where('id_colis', '=', $id)->update(['validation'=> true ,'tmp_signaler'=> false , 'signaler'=> false,'tmp_validation'=>true ]);
+
+
+
+}
+
+public function data_clients(){
+
+
+    $FetchClients = User::leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')->where('model_has_roles.role_id', '=',19)->get();
+
+    return response()->json($FetchClients);
+
+}
+
+
 
 
 

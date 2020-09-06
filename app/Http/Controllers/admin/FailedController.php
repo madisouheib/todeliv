@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Colis;
 class FailedController extends Controller
 {
     /**
@@ -17,69 +17,23 @@ class FailedController extends Controller
         return view('dashboard.pages.faild.faild_table');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+ 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+public function data_failed_colis(){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->leftJoin('stats', 'stats.id_stats', '=', 'colis.id_stats')
+    ->where('validation','=',true)
+    ->where('stats.order_stats','=',5)
+    ->orderBy('id_colis', 'desc')->paginate(8);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    return response()->json($Colis);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
+}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

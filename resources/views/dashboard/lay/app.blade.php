@@ -26,12 +26,12 @@
 
 </head>
 
-    <body>
+    <body  >
 
 
 @include('dashboard.core.header')
 
-<div id="core">
+<div id="core" >
 
 
 

@@ -10,7 +10,7 @@
                             </div>
                             <div class="modal-body">
                                 <p style="color:red;"> une fois vous validez le manifest vous pouvez pas supprimer ou ajouter un nouveau colis </p>
-                                <p> a ce vous-etes sure de Valider  le manifest <h5 v-text="idcoms"> </h5>   </p>
+                                <p> a ce vous-etes sure de Valider  le manifest   </p><h5 v-text="idcoms"> </h5> 
 
                             </div>
                             <div class="modal-footer">

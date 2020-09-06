@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Commandes;
 use App\Colis;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class CommandesController extends Controller
 
 {
@@ -72,10 +73,12 @@ public function data_coms_archive($id){
 public function data_manifs(){
 
     
-  $Comas = commandes::withCount('colis')->where([['cloture','=',null],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(4);
+  $Comas = commandes::withCount(['price as prices' => function($query) {
+    $query->select(DB::raw('sum(price)'));
+}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(4);
 
 
- 
+
         return response()->json($Comas);
 
 
@@ -86,7 +89,6 @@ public function data_manifs_archive(){
   $Comas = commandes::withCount('colis')->where([['cloture','=',1],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(4);
 
 
- 
   return response()->json($Comas);
 }
 

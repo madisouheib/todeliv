@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Fiche ;
+use App\User ; 
+use Illuminate\Support\Facades\DB;
 class LivraisonController extends Controller
 {
     /**
@@ -16,11 +18,55 @@ class LivraisonController extends Controller
     {
         return view('dashboard.pages.livraison.livraison_table');
     }
- public function list_livraison() {
+ public function list_livraison($id) {
 
-    return view('dashboard.pages.livraison.livraison_detail');
+//$Data= Fiche::where()
+$DataFicheId = Fiche::whereNull('closed_at')->whereNotNull('valid_fiche')->where('fiche.id_liv','=',$id)->pluck('id_fiche')->toArray();
+
+$NameUser = User::where('id','=',$id)->pluck('name')->first();
+
+    return view('dashboard.pages.livraison.livraison_detail')->with('listfiche',$DataFicheId)->with('namelivreur',$NameUser);
 
  }
+
+
+
+ public function data_fiche_delevery(){
+    $DataUsers = Fiche::whereNull('closed_at')->whereNotNull('valid_fiche')->pluck('id_liv')->toArray();
+    
+    $DatauserUnique = array_unique($DataUsers);
+    
+    
+    $DataLivr = User::withCount(['amount as prices' => function($query) {
+        $query->select(DB::raw('sum(price)'));
+    }],'fiche')->whereIn('id',$DatauserUnique)->paginate(10);
+   
+    return response()->json($DataLivr);
+    
+       } 
+
+
+       public function data_livreur_delevery(){
+
+        $DataUsers = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->pluck('id_liv')->toArray();
+    
+        $DatauserUnique = array_unique($DataUsers);
+
+        
+        $DataLivr = User::withCount(['montant as prix' => function($query) {
+            $query->select(DB::raw('sum(price)'));
+        }])->whereIn('id',$DatauserUnique)->paginate(10);
+       
+        //dd($DataLivr);
+        return response()->json($DataLivr);
+
+
+
+
+       }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,53 +83,5 @@ class LivraisonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   
 }

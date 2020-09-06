@@ -26,6 +26,12 @@ class HomeAdminController extends Controller
     {
         //
     }
+     public function data_stats(){
+$data = 4 ; 
+        return view('dashboard.partials.navbar')->with('data',$data);
+
+
+     }
 
     /**
      * Store a newly created resource in storage.

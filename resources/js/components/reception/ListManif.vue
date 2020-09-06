@@ -108,19 +108,23 @@
                             
                                     <tr v-for=" com  in coms.data" :key="com.id_coms" >
                                  
-                                        <th scope="row" class="text-center" > <a class="pcoded-badge label label-info" style="color:white"  :href="'/admin/listcolis/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></th>
+                                        <th scope="row" class="text-center" >  <a  v-if="com.colis_count >  (com.validate_count + com.signaler_count) " class="pcoded-badge label label-info" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a>  <a  v-else class="pcoded-badge label label-success" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></th>
                                         
                         
-                                      <th class="text-center"   > 3500000 DA   </th>
-                                      <th class="text-center" >{{ com.colis_count}}    </td>
+                                      <th class="text-center"   > {{ com.prices }} DA   </th>
+                                      <th class="text-center" > <span style="color:green;font-weight:bold;"> {{  com.validate_count + com.signaler_count }}     </span>       / <span style="color:black;font-weight:bold;">  {{ com.colis_count}} </span>     </th>
                                     
                                        
-                                        <th class="text-center"> ORAN EST   </th>
+                                        <th class="text-center"> ORAN EST    </th>
                                         <td class="text-center" v-if="com.confirmed == null" >  <i style="font-size:1.6em;" class="fas fa-clock"></i>   </td>
                                                                    <td class="text-center" v-else > <i   class="fas fa-check-circle" style="
                                         color:#3CB371;font-size:1.6em;"> </i>  </td>
                         
-                                        <td class="text-center"  > <button v-if="com.confirmed == null" data-toggle="modal" data-target="#MdalValidManif" @click="Get(com.id_coms)" style="padding-right:6px;"   class="btn btn-square btn-success  text-center " >  <i class="fas fa-check-circle"></i>  </button> <button v-else   data-toggle="modal" data-target="#MdalClotureManif"  style="padding-right:6px;"  @click="Get(com.id_coms)" class="btn btn-dark btn-square" >
+                                        <td class="text-center"  >
+                               
+
+                                            
+                                             <button  v-if="com.colis_count ==  (com.validate_count + com.signaler_count) "  data-toggle="modal" data-target="#MdalValidManif" @click="Get(com.id_coms)" style="padding-right:6px;"   class="btn btn-square btn-success  text-center " >  <i class="fas fa-check-circle"></i>  </button> <button v-else   data-toggle="modal" data-target="#MdalClotureManif"  style="padding-right:6px;"  @click="Get(com.id_coms)" class="btn btn-dark btn-square" >
                                         <i class=" fas fa-archive">  </i> </button>
                                         
                                          </td>

@@ -72,12 +72,84 @@ Route::post('/addcom', 'admin\CommandesController@add_com');
 
 Route::get('/getcolis/{id}', 'admin\ColisController@data_colis');
 
+Route::get('/inhouse', 'admin\ColisController@data_colis_inhouse');
+
+// failed colis ---------------- routes : 
+Route::get('/datafailed', 'admin\FailedController@data_failed_colis');
+
+
+Route::get('/getclients', 'admin\ColisController@data_clients');
+
+
+
+// get livreur price 
+Route::get('/livreurdetail/{id}', 'admin\OnDeliveryController@detail_livreur');
+
+
+Route::get('/getstats', 'admin\StatsController@stats_tags');
+
+Route::get('/stats', 'admin\StatsController@stats_nav');
+
+Route::get('/getstatus/{id}', 'admin\StatsColisController@stats_show');
+
+
+Route::patch('/validelivery', 'admin\OnDeliveryController@validate_delevery_gp');
+
+Route::get('/track/{id}', 'admin\StatsColisController@tracking_show');
+
+
+Route::get('/getcolisvaldiation/{id}', 'admin\ColisController@data_colis_validation');
+
+Route::patch('/valdiationgrp', 'admin\ColisController@validate_colis_gp');
+Route::patch('/signalgrp', 'admin\ColisController@signaler_colis_gp');
+
+
+Route::post('/addstatscolis', 'admin\StatsColisController@add_stats_colis');
+
+
+/// FIche SESCTION -----------------------------------------------------------
+Route::get('/getfroute', 'admin\FicheController@data_fiche');
+
+Route::get('/getcolisfiche/{id}', 'admin\FicheColisController@data_fiche_colis');
+Route::delete('/deletecolisfiche/{id}', 'admin\FicheColisController@delete_colis_fiche');
+
+Route::post('/addcolisfiche', 'admin\FicheColisController@add_colis_fiche');
+
+
+Route::get('/getlivreur', 'admin\FicheController@data_livreur');
+Route::get('/getlasf', 'admin\FicheController@get_last_id');
+
+
+Route::post('/addfiche', 'admin\FicheController@add_fiche');
+
+Route::patch('/validfiche', 'admin\FicheController@valid_fiche');
+
+
+Route::patch('/invalidfiche', 'admin\FicheController@invalid_fiche');
+
+
+
+
+
 Route::get('/getcoms/{id}', 'admin\CommandesController@data_coms');
 Route::get('/getarchivecoms/{id}', 'admin\CommandesController@data_coms_archive');
 
 Route::get('/getColisinfos/{id}', 'admin\ColisController@infos_colis');
 
 Route::post('/addcolis', 'admin\ColisController@add_colis');
+//-----------------------------------
+
+Route::patch('/tmpcolisv', 'admin\ColisController@tmp_colis_validate');
+
+Route::patch('/tmpsignalergrp', 'admin\ColisController@tmp_colis_signaler');
+
+Route::patch('/signalone', 'admin\ColisController@colis_signaler');
+Route::patch('/validbyone', 'admin\ColisController@colis_valider');
+
+
+
+
+Route::get('/delivliste/{idliv}', 'admin\OnDeliveryController@data_colis_froute');
 
 
 
@@ -86,6 +158,22 @@ Route::delete('/deletecolis/{id}', 'admin\ColisController@colis_delete');
 Route::get('/getmanifs', 'admin\CommandesController@data_manifs');
 Route::get('/getarchivemanifs', 'admin\CommandesController@data_manifs_archive');
 
+
+
+
+//en livraison 
+Route::get('/ondelevery', 'admin\LivraisonController@data_livreur_delevery');
+
+Route::get('/getdelivred', 'admin\LivraisonController@data_fiche_delevery');
+
+
+
+Route::get('/filtredelivery/{id}', 'admin\OnDeliveryController@filtre_fiche_delevery_validation');
+
+Route::get('/getfiltrefroute/{id}', 'admin\FicheController@data_fiche_filtre');
+
+
+Route::get('/enlivstats/{idliv}', 'admin\OnDeliveryController@stats_liv_fiche');
 
 Route::patch('/validatemanif/{id}', 'admin\CommandesController@validate_manif');
 Route::patch('/cloturemanif/{id}', 'admin\CommandesController@cloture_manif');

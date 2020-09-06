@@ -17,33 +17,9 @@
 </div>
 
                     <div class="card-block table-border-style">
-                        <div class="text-center" style="margin:10px;">  <i class="fas fa-search text-center" style="font-size:2.4em"></i>  </div>
-                       
-<input class="form-control input-g" value="" type="text" placeholder="Recherche numero de tracking ... "> 
-<div class="row">
-
-<div class="col-6">
-<div class="card-header">
-    <h4>   Partenaire   </h4>
-</div>
-<div class="card-block">
 
 
-</div>
-</div>
-<div class="col-6">
-    <div class="card-header">
-    <h4>   Client     </h4>
-    </div>
-    <div class="card-block">
-
-
-    </div>
-
-</div>
-</div>
-
-
+            <tracking-detail :url_id='@json( Request::segment(3) )' > </tracking-detail>
 
                 </div>
             </div>
