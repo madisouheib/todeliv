@@ -231,7 +231,9 @@ idfiche : this.idfiche ,
 iduser : this.userid 
 
 
-}).then( this.getColis()).catch(error => console.log(error))
+}).then( response =>
+     { 
+         this.colis = response.data } ).catch(error => console.log(error))
 
 
 
