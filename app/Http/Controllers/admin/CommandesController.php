@@ -48,7 +48,9 @@ public function manif_delete($id){
 
 public function data_coms($id){
 
-  $Comas = commandes::withCount(['colis'])->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(4);
+  $Comas = commandes::withCount(['price as prices' => function($query) {
+    $query->select(DB::raw('sum(price)'));
+},'colis'])->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(4);
 
 
  

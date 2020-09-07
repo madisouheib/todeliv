@@ -5072,6 +5072,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -40756,150 +40758,153 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "table-responsive " },
     [
-      _c("div", [
-        _c("table", { staticClass: "table table-responsive " }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.coms.data, function(com) {
-              return _c("tr", { key: com.id_coms }, [
+      _c("table", { staticClass: "table " }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.coms.data, function(com) {
+            return _c("tr", { key: com.id_coms }, [
+              _c(
+                "th",
+                { staticClass: "text-center", attrs: { scope: "row" } },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-info btn-glow-info",
+                      staticStyle: { color: "white" },
+                      attrs: { href: "/admin/listcolis/" + com.id_coms }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-folder-open" }),
+                      _vm._v("  #Manif- " + _vm._s(com.id_coms) + "  "),
+                      _c("i", { staticClass: "fas fa-list" })
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-center" }, [
                 _c(
-                  "th",
-                  { staticClass: "text-center", attrs: { scope: "row" } },
-                  [
-                    _c(
-                      "a",
+                  "label",
+                  {
+                    staticClass: "badge badge-warning",
+                    staticStyle: { "font-size": "14px", padding: "10px" }
+                  },
+                  [_vm._v(" " + _vm._s(com.prices) + "  DA   ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(com.colis_count) + "    ")
+              ]),
+              _c("th", { staticClass: "text-center" }, [
+                _vm._v(" ORAN EST   ")
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                com.confirmed_user == null
+                  ? _c("i", { staticClass: "fas fa-clock" })
+                  : _c("i", {
+                      staticClass: "fas fa-clipboard-check",
+                      staticStyle: { color: "#2dde98", "font-size": "1.3em" }
+                    })
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                com.confirmed_user == null
+                  ? _c(
+                      "button",
                       {
-                        staticClass: "pcoded-badge label label-info",
-                        staticStyle: { color: "white" },
-                        attrs: { href: "/admin/listcolis/" + com.id_coms }
+                        staticClass: "btn btn-square btn-danger  ",
+                        staticStyle: { "padding-right": "6px" },
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#MdalRemoveManif"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.Get(com.id_coms)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-trash" })]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                com.confirmed_user == null || com.colis_count < 0
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-square",
+                        staticStyle: { "padding-right": "6px" },
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#MdalValidManifUser"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.Get(com.id_coms)
+                          }
+                        }
                       },
                       [
-                        _c("i", { staticClass: "fas fa-folder-open" }),
-                        _vm._v("  #Manif- " + _vm._s(com.id_coms) + "  "),
-                        _c("i", { staticClass: "fas fa-list" })
+                        _vm._v(" Valider "),
+                        _c("i", { staticClass: "fas fa-check-circle" })
                       ]
                     )
+                  : _vm._e(),
+                _vm._v(" "),
+                com.confirmed_user == true
+                  ? _c(
+                      "h6",
+                      {
+                        staticStyle: { color: "#2dde98", "font-weight": "bold" }
+                      },
+                      [_vm._v(" Validé ")]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "text-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-outline-success",
+                    attrs: { href: "/admin/export/" + com.id_coms }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-file-excel",
+                      staticStyle: { margin: "0px" }
+                    })
                   ]
                 ),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
-                  _vm._v(" 3500000 DA   ")
-                ]),
-                _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
-                  _vm._v(_vm._s(com.colis_count) + "    ")
-                ]),
-                _c("th", { staticClass: "text-center" }, [
-                  _vm._v(" ORAN EST   ")
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-center" }, [
-                  com.confirmed_user == null
-                    ? _c("i", { staticClass: "fas fa-clock" })
-                    : _c("i", {
-                        staticClass: "fas fa-clipboard-check",
-                        staticStyle: { color: "#2dde98", "font-size": "1.3em" }
-                      })
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-center" }, [
-                  com.confirmed_user == null
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-square btn-danger  ",
-                          staticStyle: { "padding-right": "6px" },
-                          attrs: {
-                            "data-toggle": "modal",
-                            "data-target": "#MdalRemoveManif"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.Get(com.id_coms)
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-trash" })]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  com.confirmed_user == null || com.colis_count < 0
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success btn-square",
-                          staticStyle: { "padding-right": "6px" },
-                          attrs: {
-                            "data-toggle": "modal",
-                            "data-target": "#MdalValidManifUser"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.Get(com.id_coms)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(" Valider "),
-                          _c("i", { staticClass: "fas fa-check-circle" })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  com.confirmed_user == true
-                    ? _c(
-                        "h6",
-                        {
-                          staticStyle: {
-                            color: "#2dde98",
-                            "font-weight": "bold"
-                          }
-                        },
-                        [_vm._v(" Validé ")]
-                      )
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-outline-success",
-                      attrs: { href: "/admin/export/" + com.id_coms }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-file-excel",
-                        staticStyle: { margin: "0px" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-outline-danger",
-                      attrs: {
-                        target: "_blank",
-                        href: "/admin/print_com/" + com.id_coms
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-file-pdf",
-                        staticStyle: { margin: "0px" }
-                      })
-                    ]
-                  )
-                ])
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-outline-danger",
+                    attrs: {
+                      target: "_blank",
+                      href: "/admin/print_com/" + com.id_coms
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-file-pdf",
+                      staticStyle: { margin: "0px" }
+                    })
+                  ]
+                )
               ])
-            }),
-            0
-          )
-        ])
+            ])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("manif-delete", {

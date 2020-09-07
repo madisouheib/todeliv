@@ -1,7 +1,7 @@
 <template>
-            <div>  
-                <div>                
-                <table class="table table-responsive ">
+            <div class="table-responsive ">  
+                          
+                <table class="table ">
     
                                     <thead>
                                         <tr>
@@ -19,15 +19,16 @@
                                         
                                     </tr>
                                 </thead>
+
                                 <tbody>
                             
                  <tr v-for=" com  in coms.data" :key="com.id_coms" >
                                        
-                                        <th scope="row" class="text-center" > <a class="pcoded-badge label label-info" style="color:white"  :href="'/admin/listcolis/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></th>
+                                        <th scope="row" class="text-center" > <a class="btn btn-info btn-glow-info" style="color:white"  :href="'/admin/listcolis/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></th>
                                      
                                         
                         
-                                      <th class="text-center"   > 3500000 DA   </th>
+                                      <th class="text-center"   > <label class="badge badge-warning" style="font-size:14px;padding:10px;"> {{ com.prices }}  DA   </label>  </th>
                                       <th class="text-center" >{{ com.colis_count}}    </td>
                                     
                                        
@@ -50,13 +51,14 @@
                                 </tbody>
                             
                             </table>
-                             </div>
-                            <manif-delete v-bind:idcoms="idcoms"  @manif-delete="getComs" > </manif-delete>
-                            <manif-validuser v-bind:idcoms="idcoms"  @manif-validuser="getComs" > </manif-validuser>
-                         <pagination :data="coms" @pagination-change-page="getComs"> </pagination> 
                       
-                        </div>
-
+     
+                      
+                  
+                                          <manif-delete v-bind:idcoms="idcoms"  @manif-delete="getComs" > </manif-delete>
+                            <manif-validuser v-bind:idcoms="idcoms"  @manif-validuser="getComs" > </manif-validuser>
+                         <pagination :data="coms" @pagination-change-page="getComs"> </pagination>   
+      </div>
 
 </template>
 
