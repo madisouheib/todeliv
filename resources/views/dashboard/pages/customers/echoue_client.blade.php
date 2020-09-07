@@ -21,20 +21,17 @@
 
 
 
+<client-failed :user_id='@json( Auth::user()->id )' >   </client-failed>
 
 
 
 
-
-
-
-                 <manif-table >  </manif-table>
                     </div>
                 </div>
             </div>
             <!-- [ basic-table ] end -->
 
-    
+      
     
         
             @endsection

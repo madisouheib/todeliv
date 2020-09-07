@@ -23,7 +23,12 @@ class StatsController extends Controller
         
         }
 
+public function stats_tags_client(){
 
+    $DataStats = Stats::where('order_stats','=',5)->get();
+    return response()->json($DataStats);
+
+}
 
 
         public function stats_nav(){
@@ -60,5 +65,52 @@ return response()->json($DataStat);
 
 
         }
+
+
+  public function stats_nav_user($id){
+
+
+
+
+    $GetEch = Stats::where('order_stats','=',5)->pluck('id_stats')->toArray();
+    $DataStat = array();
+    
+
+    
+    
+    $DataStat['rec']= Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where(function ($query) {
+        $query->where('validation','=', 1)
+            ->where('id_stats', '=', 11);
+    })->orWhere(function($query) {
+        $query->where('validation', '=',1)
+            ->where('id_stats', '=', null);	
+    })->where('commandes.id_clt','=',$id)->count();
+    
+    
+    
+    $DataStat['enliv'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_stats','=',10)->where('commandes.id_clt','=',$id)->count();
+    $DataStat['livre']  = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_stats','=',4)->where('commandes.id_clt','=',$id)->count();
+    
+
+    
+    $DataStat['ech']  = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->whereIn('colis.id_stats',$GetEch)->where('commandes.id_clt','=',$id)->count();
+    
+    $DataStat['retour']  = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_stats','=',3)->where('commandes.id_clt','=',$id)->count();
+    
+    
+    
+    return response()->json($DataStat);
+
+
+
+
+
+
+
+
+
+
+
+  }      
         
 }

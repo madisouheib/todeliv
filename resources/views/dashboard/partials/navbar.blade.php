@@ -23,7 +23,7 @@
  @endrole
  @role('client pro')
 
- <nav-client> </nav-client>
+ <nav-client :user_id='@json( Auth::user()->id )' > </nav-client>
   @endrole
             </div>
         </div>

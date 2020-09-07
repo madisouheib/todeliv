@@ -74,6 +74,25 @@ Route::get('/getcolis/{id}', 'admin\ColisController@data_colis');
 
 Route::get('/inhouse', 'admin\ColisController@data_colis_inhouse');
 
+//Clients spaces --------------------------------------------------------#
+Route::get('/userecp/{id}', 'admin\ClientController@data_user_recp');
+
+
+Route::get('/userenliv/{id}', 'admin\ClientController@data_user_enliv');
+
+Route::get('/userlivre/{id}', 'admin\ClientController@data_user_livre');
+
+Route::get('/useretour/{id}', 'admin\ClientController@data_user_retour');
+
+Route::get('/userechouer/{id}', 'admin\ClientController@data_user_echoue');
+
+
+
+
+Route::patch('/updstatsuser', 'admin\ClientController@stats_edit');
+
+
+
 // failed colis ---------------- routes : 
 Route::get('/datafailed', 'admin\FailedController@data_failed_colis');
 
@@ -88,7 +107,13 @@ Route::get('/livreurdetail/{id}', 'admin\OnDeliveryController@detail_livreur');
 
 Route::get('/getstats', 'admin\StatsController@stats_tags');
 
+Route::get('/getstatsclient', 'admin\StatsController@stats_tags_client');
+
 Route::get('/stats', 'admin\StatsController@stats_nav');
+
+Route::get('/statsuser/{id}', 'admin\StatsController@stats_nav_user');
+
+
 
 Route::get('/getstatus/{id}', 'admin\StatsColisController@stats_show');
 
@@ -134,7 +159,7 @@ Route::patch('/invalidfiche', 'admin\FicheController@invalid_fiche');
 Route::get('/getcoms/{id}', 'admin\CommandesController@data_coms');
 Route::get('/getarchivecoms/{id}', 'admin\CommandesController@data_coms_archive');
 
-Route::get('/getColisinfos/{id}', 'admin\ColisController@infos_colis');
+Route::get('/getcolisinfos/{id}', 'admin\ColisController@infos_colis');
 
 Route::post('/addcolis', 'admin\ColisController@add_colis');
 //-----------------------------------

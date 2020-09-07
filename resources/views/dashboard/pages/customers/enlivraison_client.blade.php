@@ -9,7 +9,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Reception </h5>
+                        <h5> <i class="fas fa-shipping-fast"></i> En Livraison </h5>
                      
 
 
@@ -21,20 +21,18 @@
 
 
 
+<client-enliv :user_id='@json( Auth::user()->id )' >   </client-enliv>
 
 
 
 
-
-
-
-                 <manif-table >  </manif-table>
                     </div>
                 </div>
             </div>
             <!-- [ basic-table ] end -->
 
-    
+ 
+      
     
         
             @endsection

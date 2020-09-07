@@ -21,20 +21,18 @@
 
 
 
+<client-recp :user_id='@json( Auth::user()->id )' >   </client-recp>
 
 
 
 
-
-
-
-                 <manif-table >  </manif-table>
                     </div>
                 </div>
             </div>
             <!-- [ basic-table ] end -->
 
-    
+       
+      
     
         
             @endsection

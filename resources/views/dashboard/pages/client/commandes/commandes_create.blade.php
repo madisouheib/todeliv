@@ -48,8 +48,6 @@
         </form>
             <!-- [ basic-table ] end -->
 
-            @include('dashboard.partials.colis_information')
-            @include('dashboard.partials.colis_suivi')
-    
+  
         
             @endsection

@@ -21,20 +21,18 @@
 
 
 
+<client-retour :user_id='@json( Auth::user()->id )' >   </client-retour>
 
 
 
 
-
-
-
-                 <manif-table >  </manif-table>
                     </div>
                 </div>
             </div>
             <!-- [ basic-table ] end -->
 
-    
+
+      
     
         
             @endsection

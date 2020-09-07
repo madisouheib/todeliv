@@ -27,86 +27,23 @@
                                                 </div>
                                             </div>
                                         </div>
-<div class="row">
-                                                 <div class="col-md-6 col-xl-4">
-                                    <div class="card Active-visitor">
-                                        <div class="card-block text-center">
-                                            <h5 class="mb-3">Reception</h5>
-                                            <i class="fas  fa-box f-30 text-c-blue"></i>
-                                            <h2 class="f-w-300 mt-3">800</h2>
-                                            <span class="text-muted">Nombre de colis </span>
-                                            <div class="progress mt-4 m-b-40">
-                                                <div class="progress-bar progress-d-theme" role="progressbar" style="width: 75%; height:7px;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row card-active">
-                                                <div class="col-md-6 col-6">
-                                                    <h4>400</h4>
-                                                    <span class="text-muted">Reçu</span>
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <h4>300</h4>
-                                                    <span class="text-muted">Non Reçu </span>
-                                                </div>
-                                              
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-   <div class="col-md-6 col-xl-4">
-                                    <div class="card Active-visitor">
-                                        <div class="card-block text-center">
-                                            <h5 class="mb-3"> Livraison </h5>
-                                            <i class="fas fas fa-truck f-30 text-c-green"></i>
-                                            <h2 class="f-w-300 mt-3">1,285</h2>
-                                            <span class="text-muted">Nombre de colis </span>
-                                            <div class="progress mt-4 m-b-40">
-                                                <div class="progress-bar progress-c-theme " role="progressbar" style="width: 75%; height:7px;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row card-active">
-                                                <div class="col-md-6 col-6">
-                                                    <h4>400</h4>
-                                                    <span class="text-muted">En Livraison </span>
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <h4>300</h4>
-                                                    <span class="text-muted"> Livrée </span>
-                                                </div>
-                                              
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-   <div class="col-md-6 col-xl-4">
-                                    <div class="card Active-visitor">
-                                        <div class="card-block text-center">
-                                            <h5 class="mb-3">Retour</h5>
-                                            <i class="fas  fa-undo f-30 text-c-red"></i>
-                                            <h2 class="f-w-300 mt-3">1,285</h2>
-                                            <span class="text-muted">Nombre de colis </span>
-                                            <div class="progress mt-4 m-b-40">
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%; height:7px;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row card-active">
-                                                <div class="col-md-6 col-6">
-                                                    <h4>400</h4>
-                                                    <span class="text-muted">Annulée </span>
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <h4>300</h4>
-                                                    <span class="text-muted"> Autres </span>
-                                                </div>
-                                              
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-    
+   @role('admin')
 
-                         
-                                
-                                    </div>
+<stats-admin> </stats-admin>
+ @endrole
+ @role('client pro')
+
+ <stats-client :user_id='@json( Auth::user()->id )'  >   </stats-client>
+  @endrole
+
+
+
+
+
+
+
                                     
                                 </div>
                                 <!-- [ mini-menu ] end -->

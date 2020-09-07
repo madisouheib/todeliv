@@ -89,7 +89,7 @@
 <button v-if="ShowCom.confirmed_user == null " data-toggle="modal" data-target="#ModalDelColis"  class="btn btn-square  btn-danger " @click="getColInfos(col.id_colis)"   ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
   </td>
 <td v-if="col.confirmed ==  null " > En attente</td>
-<td v-else="" >Livré</td>
+<td v-else >Livré</td>
 <td class="text-center"> <a target="_blank"  :href="'/admin/print-pdf/'+col.id_colis" class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>    </td>
 
                                     </tr>
@@ -173,7 +173,7 @@ var id = this.url_id ;
 
  getColInfos(id){
 
- axios.get('/api/getColisinfos/'+id)
+ axios.get('/api/getcolisinfos/'+id)
      .then(response =>
      { 
        

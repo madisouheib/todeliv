@@ -27,9 +27,9 @@
 
             <!-- [ basic-table ] end -->
 
-            @include('dashboard.partials.colis_information')
+           
             @include('dashboard.pages.ondelivery.ondelivery_alert_add')
-            @include('dashboard.partials.colis_suivi')
+        
     
         
             @endsection

@@ -129,3 +129,17 @@ Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
 Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
 
 });
+
+
+
+
+Route::get('/admin/recpuser', 'admin\ClientController@data_recp_client')->name('data_recp_client');
+
+Route::get('/admin/enlivuser', 'admin\ClientController@data_enlivraison_client')->name('data_enlivraison_client');
+
+Route::get('/admin/livreuser', 'admin\ClientController@data_livre_client')->name('data_livre_client');
+
+
+Route::get('/admin/retouruser', 'admin\ClientController@data_retour_client')->name('data_retour_client');
+
+Route::get('/admin/echoueuser', 'admin\ClientController@data_echoue_client')->name('data_echoue_client');

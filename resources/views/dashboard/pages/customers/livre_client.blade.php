@@ -9,7 +9,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Reception </h5>
+                        <h5><i class="fas fa-check-circle"></i> Livré  </h5>
                      
 
 
@@ -21,20 +21,18 @@
 
 
 
+<client-livre :user_id='@json( Auth::user()->id )' >   </client-livre>
 
 
 
 
-
-
-
-                 <manif-table >  </manif-table>
                     </div>
                 </div>
             </div>
             <!-- [ basic-table ] end -->
 
-    
+
+      
     
         
             @endsection

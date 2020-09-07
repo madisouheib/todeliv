@@ -48,8 +48,23 @@ Vue.component('delivery-colislist', require('./components/delivery/DetailDelever
 
 Vue.component('undelivred-list', require('./components/undelivred/ListUndelivred.vue').default);
 Vue.component('tracking-detail', require('./components/tracking/Tracking.vue').default);
+//clients space : 
+
+
+Vue.component('client-recp', require('./components/client/RecpUser.vue').default);
+Vue.component('client-enliv', require('./components/client/EnLivraisonUser.vue').default);
+Vue.component('client-livre', require('./components/client/LivreUser.vue').default);
+Vue.component('client-retour', require('./components/client/RetourUser.vue').default);
+Vue.component('client-failed', require('./components/client/FailedUser.vue').default);
+
+
+
 Vue.component('nav-admin', require('./components/AdminNavbar.vue').default);
 Vue.component('nav-client', require('./components/UserNavbar.vue').default);
+
+
+Vue.component('stats-client', require('./components/stats/StatsUserHome.vue').default);
+Vue.component('stats-admin', require('./components/stats/StatsAdminHome.vue').default);
 
 
 

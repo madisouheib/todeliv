@@ -31,7 +31,7 @@
             </div>
             <!-- [ basic-table ] end -->
 
-            @include('dashboard.partials.colis_information')
+
       
     
         
