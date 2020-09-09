@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Fiche ;
 use App\User ; 
+use App\Colis ; 
 use Illuminate\Support\Facades\DB;
 class LivraisonController extends Controller
 {
@@ -72,16 +73,124 @@ $NameUser = User::where('id','=',$id)->pluck('name')->first();
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function get_delivred()
     {
-        //
+       
+
+
+        $ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+        ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+        ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+        ->where('validation','=',true)
+        ->where('colis.id_stats','=',4)->orderBy('colis.id_colis', 'desc')->get();
+        $TotalPrice =   Colis::
+        where('validation','=',true)
+        ->where('colis.id_stats','=',4)->sum('price'); 
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+    
+
+
+
+
+        return response()->json($Colis);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+public function get_returned(){
+
+
+    $ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->where('validation','=',true)
+    ->where('colis.id_stats','=',3)->orderBy('colis.id_colis', 'desc')->get();
+    $TotalPrice =   Colis::
+    where('validation','=',true)
+    ->where('colis.id_stats','=',3)->sum('price'); 
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+
+
+
+    return response()->json($Colis);
+
+
+
+
+
+}
+
+
+public function get_returned_livreur($id){
+
+
+    $ColisData =    Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->where('validation','=',true)
+    ->where('fiche.id_liv','=',$id)
+    ->where('colis.id_stats','=',3)
+    ->orderBy('colis.id_colis', 'desc')
+    ->get();
+
+    $TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->where('validation','=',true)
+    ->where('fiche.id_liv','=',$id)
+    ->where('colis.id_stats','=',3)
+    ->sum('price'); 
+
+    $Colis = array('colis' => $ColisData , 'amount' => $TotalPrice );
+
+    return response()->json($Colis);
+
+
+}
+
+
+
+
+
+    public function get_delivred_livreur($id){
+
+
+
+        $ColisData =    Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+        ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+        ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+        ->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+        ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+        ->where('validation','=',true)
+        ->where('fiche.id_liv','=',$id)
+        ->where('colis.id_stats','=',4)
+        ->orderBy('colis.id_colis', 'desc')
+        ->get();
+
+        $TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+        ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+        ->where('validation','=',true)
+        ->where('fiche.id_liv','=',$id)
+        ->where('colis.id_stats','=',4)
+        ->sum('price'); 
+
+        $Colis = array('colis' => $ColisData , 'amount' => $TotalPrice );
+
+        return response()->json($Colis);
+    }
+public function update_all_livre()
+{
+
+
+
+
+}
+  
    
 }

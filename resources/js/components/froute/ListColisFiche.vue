@@ -209,6 +209,10 @@ getColis(page = 1)
  
  keymonitor(event) {
 
+
+
+
+
  let keyMessage = 'keyup: ';
  if(this.codebars !== '' ){
 
@@ -219,7 +223,10 @@ this.goga = this.colis.data.find(d => d.id_colis == this.codebars) ;
 
 
 
-axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then( this.getColis()).catch(error => console.log(error))
+axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then( this.getColis(),
+
+ this.codebars = ''
+).catch(error => console.log(error))
 
 
 }else {
@@ -233,7 +240,10 @@ iduser : this.userid
 
 }).then( response =>
      { 
-         this.colis = response.data } ).catch(error => console.log(error))
+         this.colis = response.data 
+         
+         this.codebars = '';
+         } ).catch(error => console.log(error))
 
 
 
@@ -245,7 +255,7 @@ iduser : this.userid
 
 
 
-this.codebars = '';
+
 }
  },
  GiveIdColis(id){

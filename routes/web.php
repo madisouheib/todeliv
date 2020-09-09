@@ -120,17 +120,6 @@ Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('l
 // admin routes reception   
 
 
-Route::get('/admin/rec', 'admin\ReceptionController@index')->name('index');
-Route::get('/admin/addrecp/{idcom}', 'admin\ReceptionController@add_recp')->name('add_recp');
-Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('archive_recp');
-
-Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
-
-Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
-
-});
-
-
 
 
 Route::get('/admin/recpuser', 'admin\ClientController@data_recp_client')->name('data_recp_client');
@@ -143,3 +132,14 @@ Route::get('/admin/livreuser', 'admin\ClientController@data_livre_client')->name
 Route::get('/admin/retouruser', 'admin\ClientController@data_retour_client')->name('data_retour_client');
 
 Route::get('/admin/echoueuser', 'admin\ClientController@data_echoue_client')->name('data_echoue_client');
+
+Route::get('/admin/rec', 'admin\ReceptionController@index')->name('index');
+Route::get('/admin/addrecp/{idcom}', 'admin\ReceptionController@add_recp')->name('add_recp');
+Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('archive_recp');
+
+Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
+
+Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
+
+});
+

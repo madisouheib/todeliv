@@ -80,7 +80,7 @@ hr {
   <td> tracking id : 
     send-{{ $id_colis }} <br>
     
-    <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG('11', 'C39')}}" alt="barcode" /> </td>
+    <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($id_colis, 'C39')}}" alt="barcode" /> </td>
   <td  colspan="3" style="padding:0px;">
 
    <h6 style="font-size: 12px;"> Remarque : </h6>
@@ -120,7 +120,7 @@ hr {
 
 <tr >
 <td style="padding-bottom:3px;"  >  <p style="margin:0px;"> {{ '#'.$id_colis  }}  </p> 
-  <img  style="height: 25px;width:120px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG('17', 'C39')}}" alt="barcode" />
+  <img  style="height: 25px;width:120px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($id_colis, 'C39')}}" alt="barcode" />
 
 </td>
 

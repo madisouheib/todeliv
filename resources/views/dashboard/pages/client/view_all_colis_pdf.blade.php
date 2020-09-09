@@ -89,7 +89,7 @@ hr {
   <td> tracking id : 
     send-{{ $dat->id_colis }} <br>
     
-    <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG('11', 'C39')}}" alt="barcode" /> </td>
+    <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($dat->id_colis, 'C39')}}" alt="barcode" /> </td>
   <td  colspan="3" style="padding:0px;">
 
    <h6 style="font-size: 12px;"> Remarque : </h6>

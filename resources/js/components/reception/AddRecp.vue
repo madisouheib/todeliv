@@ -270,7 +270,11 @@ axios.patch('/api/tmpsignalergrp/',{
 id : this.codebars
 
 
-}).then( this.getColis()).catch(error => console.log(error))
+}).then( this.getColis(),
+
+this.codebars = ''
+
+).catch(error => console.log(error))
 
 
 }else {
@@ -280,7 +284,10 @@ axios.patch('/api/tmpcolisv/', {
 id : this.codebars
 
 
-}).then( this.getColis()).catch(error => console.log(error))
+}).then( this.getColis(),
+
+this.codebars = ''
+).catch(error => console.log(error))
 
 
 
@@ -292,7 +299,7 @@ id : this.codebars
 
 
 
-this.codebars = '';
+
 }
  },
  GiveIdColis(id){

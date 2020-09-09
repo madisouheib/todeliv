@@ -153,7 +153,20 @@ Route::patch('/validfiche', 'admin\FicheController@valid_fiche');
 Route::patch('/invalidfiche', 'admin\FicheController@invalid_fiche');
 
 
+// Deleried  list 
 
+
+Route::get('/delivered', 'admin\LivraisonController@get_delivred');
+Route::get('/deliv/{id}', 'admin\LivraisonController@get_delivred_livreur');
+
+
+
+Route::get('/returned', 'admin\LivraisonController@get_returned');
+Route::get('/return/{id}', 'admin\LivraisonController@get_get_returned_livreur');
+
+
+
+Route::patch('/cashbygp', 'admin\ColisController@update_all_livre');
 
 
 Route::get('/getcoms/{id}', 'admin\CommandesController@data_coms');
@@ -170,6 +183,10 @@ Route::patch('/tmpsignalergrp', 'admin\ColisController@tmp_colis_signaler');
 
 Route::patch('/signalone', 'admin\ColisController@colis_signaler');
 Route::patch('/validbyone', 'admin\ColisController@colis_valider');
+
+
+Route::patch('/cashbyone', 'admin\ColisController@cash_by_one');
+
 
 
 

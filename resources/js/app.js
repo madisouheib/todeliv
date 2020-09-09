@@ -66,6 +66,9 @@ Vue.component('nav-client', require('./components/UserNavbar.vue').default);
 Vue.component('stats-client', require('./components/stats/StatsUserHome.vue').default);
 Vue.component('stats-admin', require('./components/stats/StatsAdminHome.vue').default);
 
+Vue.component('retour-admin', require('./components/retour/ListRetour.vue').default);
+
+
 
 
 Vue.component('pagination', require('laravel-vue-pagination'));

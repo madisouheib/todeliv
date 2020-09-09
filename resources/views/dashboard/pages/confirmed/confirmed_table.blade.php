@@ -23,7 +23,7 @@
 
 
 
-<delivred-list>  </delivred-list>
+<delivred-list :user_id='@json( Auth::user()->id )'  >  </delivred-list>
 
 
                         

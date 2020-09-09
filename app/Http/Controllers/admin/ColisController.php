@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Colis;
 use App\Commandes;
 use App\User;
+use App\StatsColis;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Carbon\Carbon;
@@ -118,7 +119,7 @@ if($id == 'all' ){
 
 
         
-            $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(8);
+            $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
         
     
             
@@ -243,6 +244,89 @@ $id = request('id');
 
 
     }
+
+   
+
+
+    
+
+
+    public function cash_by_one(Request $request){
+
+        $id = request('id');
+        $iduser = request('iduser');
+      
+        $CashByGp = Colis::find($id);
+        $CashByGp->id_stats = 12;
+        $CashByGp->save();
+
+
+        StatsColis::create([
+        'id_colis' => $id ,
+        'id_stats'        => 12 ,
+        'by_id_user'     =>  $iduser 
+    
+         ]);
+
+
+
+}
+
+public function update_all_livre(Request $request){
+
+    $idliv = request('idliv');
+    $byuser = request('userid');
+
+
+
+if($idliv == null ){
+
+    $GetIdColis =   Colis::where('colis.id_stats','=',4)->pluck('colis.id_colis')->toArray();
+
+    Colis::where('colis.id_stats','=',4)->update(['id_stats' => 12]);
+$count = count($GetIdColis);
+
+for($i=0 ; $i < $count ;$i++ ){
+
+    $add =   StatsColis::create([
+        'id_stats' =>  12,
+        'id_colis' =>  $GetIdColis[$i],
+        'by_id_user' =>  $byuser
+    ]);
+
+
+}
+
+}else {
+
+
+  $GetIdColis =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->where('fiche.id_liv','=',$idliv)->where('colis.id_stats','=',4)->pluck('colis.id_colis')->toArray();
+
+  $count = count($GetIdColis);
+
+    Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->where('fiche.id_liv','=',$idliv)->where('colis.id_stats','=',4)->update(['id_stats' => 12]);
+
+    for($i=0 ; $i < $count ;$i++ ){
+
+      $add =   StatsColis::create([
+            'id_stats' =>  12,
+            'id_colis' =>  $GetIdColis[$i],
+            'by_id_user' =>  $byuser
+        ]);
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+}
 
     //// Validation groupé colis  reception part ::::::::::::::::::::::::: // 
 
