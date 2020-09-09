@@ -223,9 +223,9 @@ this.goga = this.colis.data.find(d => d.id_colis == this.codebars) ;
 
 
 
-axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then( this.getColis(),
+axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then( this.getColis()
 
- this.codebars = ''
+
 ).catch(error => console.log(error))
 
 
@@ -242,7 +242,7 @@ iduser : this.userid
      { 
          this.colis = response.data 
          
-         this.codebars = '';
+ 
          } ).catch(error => console.log(error))
 
 

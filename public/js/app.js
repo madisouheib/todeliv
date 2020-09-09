@@ -7332,7 +7332,7 @@ __webpack_require__.r(__webpack_exports__);
           this.goga = this.colis.data.find(function (d) {
             return d.id_colis == _this3.codebars;
           });
-          axios["delete"]('/api/deletecolisfiche/' + this.goga.id_delivery).then(this.getColis(), this.codebars = '')["catch"](function (error) {
+          axios["delete"]('/api/deletecolisfiche/' + this.goga.id_delivery).then(this.getColis())["catch"](function (error) {
             return console.log(error);
           });
         } else {
@@ -7342,7 +7342,6 @@ __webpack_require__.r(__webpack_exports__);
             iduser: this.userid
           }).then(function (response) {
             _this3.colis = response.data;
-            _this3.codebars = '';
           })["catch"](function (error) {
             return console.log(error);
           });
