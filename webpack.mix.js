@@ -20,7 +20,7 @@ mix.js('resources/js/app.js', 'public/js').sass('resources/sass/app.scss', 'publ
    'resources/js/files/material-datetimepicker/js/bootstrap-material-datetimepicker.js',
    'resources/js/files/form-picker-custom.js',
    'resources/js/files/prism/js/prism.min.js',
-   'resources/js/files/select2/js/select2.full.min.js'
+
 
 
 

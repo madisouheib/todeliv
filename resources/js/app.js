@@ -42,7 +42,7 @@ Vue.component('froute-list', require('./components/froute/FicheList.vue').defaul
 Vue.component('froute-colis', require('./components/froute/ListColisFiche.vue').default);
 Vue.component('delivery-list', require('./components/delivery/Delevery.vue').default);
 
-Vue.component('delivred-list', require('./components/delivred/DelivredList.vue').default);
+Vue.component('delivred-liste', require('./components/delivred/DelivredList.vue').default);
 
 Vue.component('delivery-colislist', require('./components/delivery/DetailDelevery.vue').default);
 
