@@ -131,7 +131,7 @@
                                         
                                         <th class="text-center"><i class="fas fa-map-marker-alt"></i> Wilaya  </th>
                             
-        <th class="text-center"><i class="fas fa-calendar-alt"></i> Date validation </th>
+        <th class="text-center"><i class="fas fa-calendar-alt"></i> Date Validation </th>
             
                                
 

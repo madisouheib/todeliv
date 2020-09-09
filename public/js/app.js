@@ -52481,7 +52481,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-calendar-alt" }),
-          _vm._v(" Date validation ")
+          _vm._v(" Date Validation ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
