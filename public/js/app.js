@@ -71311,7 +71311,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('nav-admin', __webpack_requ
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('nav-client', __webpack_require__(/*! ./components/UserNavbar.vue */ "./resources/js/components/UserNavbar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('stats-client', __webpack_require__(/*! ./components/stats/StatsUserHome.vue */ "./resources/js/components/stats/StatsUserHome.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('stats-admin', __webpack_require__(/*! ./components/stats/StatsAdminHome.vue */ "./resources/js/components/stats/StatsAdminHome.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('retour-admin', __webpack_require__(/*! ./components/retour/ListRetour.vue */ "./resources/js/components/retour/ListRetour.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('retour', __webpack_require__(/*! ./components/retour/ListRetour.vue */ "./resources/js/components/retour/ListRetour.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 /**
  * Next, we will create a fresh Vue application instance and attach it to

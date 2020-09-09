@@ -43,7 +43,7 @@ Vue.component('froute-colis', require('./components/froute/ListColisFiche.vue').
 Vue.component('delivery-list', require('./components/delivery/Delevery.vue').default);
 
 Vue.component('delivred-liste', require('./components/delivred/DelivredList.vue').default);
-
+                                                               
 Vue.component('delivery-colislist', require('./components/delivery/DetailDelevery.vue').default);
 
 Vue.component('undelivred-list', require('./components/undelivred/ListUndelivred.vue').default);
@@ -66,7 +66,7 @@ Vue.component('nav-client', require('./components/UserNavbar.vue').default);
 Vue.component('stats-client', require('./components/stats/StatsUserHome.vue').default);
 Vue.component('stats-admin', require('./components/stats/StatsAdminHome.vue').default);
 
-Vue.component('retour-admin', require('./components/retour/ListRetour.vue').default);
+Vue.component('retour', require('./components/retour/ListRetour.vue').default);
 
 
 

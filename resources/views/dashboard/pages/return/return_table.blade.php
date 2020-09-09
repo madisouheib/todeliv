@@ -21,7 +21,7 @@
 
 
 
-                        <retour-admin :user_id='@json( Auth::user()->id )'  >   </retour-admin>
+                        <retour :user_id='@json( Auth::user()->id )'  >   </retour>
 
 
 
