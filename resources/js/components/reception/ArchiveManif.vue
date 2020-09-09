@@ -60,7 +60,7 @@
                                         
                         
                                       <th class="text-center"   > 3500000 DA   </th>
-                                      <th class="text-center" >{{ com.colis_count}}    </td>
+                                      <th class="text-center" >{{ com.colis_count}}    </th>
                                     
                                        
                                         <th class="text-center"> ORAN EST   </th>

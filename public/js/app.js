@@ -6354,7 +6354,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url_id', 'user_id'],
+  props: ['user_id'],
   filters: {
     moment: function (_moment) {
       function moment(_x) {
@@ -6389,14 +6389,6 @@ __webpack_require__.r(__webpack_exports__);
       clt: '',
       stats: {},
       id_colis: '',
-      addstats: {
-        id_colis: '',
-        userid: '',
-        ShowStats: {},
-        success: '',
-        danger: '',
-        warning: ''
-      },
       colisvalid: {
         id_colis: '',
         iduser: ''
@@ -6634,6 +6626,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -44081,23 +44075,25 @@ var render = function() {
       _vm._v(" "),
       _vm._m(4),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: " btn btn-success btn-glow-success",
-          attrs: { "data-toggle": "modal", "data-target": "#ModalValidByGp" },
-          on: {
-            click: function($event) {
-              return _vm.GetIDColiGP()
+      _c("div", { staticClass: "col-3" }, [
+        _c(
+          "button",
+          {
+            staticClass: " btn btn-success btn-glow-success",
+            attrs: { "data-toggle": "modal", "data-target": "#ModalValidByGp" },
+            on: {
+              click: function($event) {
+                return _vm.GetIDColiGP()
+              }
             }
-          }
-        },
-        [
-          _c("b", [_vm._v("    Encaissement groupé  ")]),
-          _vm._v(" "),
-          _c("i", { staticClass: "fas fa-money-check-alt" })
-        ]
-      )
+          },
+          [
+            _c("b", [_vm._v("    Encaissement groupé  ")]),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-money-check-alt" })
+          ]
+        )
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -44744,6 +44740,8 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("div", { staticClass: "input-group" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
                     _c(
                       "select",
                       {
@@ -44826,7 +44824,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
-                _vm._m(2),
+                _vm._m(3),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -44891,6 +44889,18 @@ var staticRenderFns = [
     return _c("label", [
       _c("i", { staticClass: "fas fa-list-alt" }),
       _vm._v("  Discription :    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
+        [_c("i", { staticClass: "fas fa-user-tag" })]
+      )
     ])
   },
   function() {
@@ -50311,6 +50321,7 @@ var render = function() {
                 _c("th", { staticClass: "text-center" }, [
                   _vm._v(_vm._s(com.colis_count) + "    ")
                 ]),
+                _vm._v(" "),
                 _c("th", { staticClass: "text-center" }, [
                   _vm._v(" ORAN EST   ")
                 ]),

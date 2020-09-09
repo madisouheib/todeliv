@@ -32,7 +32,7 @@
             </div>
             <!-- [ basic-table ] end -->
 
-   
+        </div>
     
         
             @endsection

@@ -117,9 +117,9 @@
                                 </div>
                             </div>
                        
-
+<div class="col-3"> 
 <button class=" btn btn-success btn-glow-success" @click="GetIDColiGP()"  data-toggle="modal" data-target="#ModalValidByGp"   ><b>    Encaissement groupé  </b> <i class="fas fa-money-check-alt"></i> </button>
-
+</div>
                                                 </div>
                         <div class="table-responsive">
 
@@ -206,7 +206,7 @@
 
 
   export default {
-     props: ['url_id','user_id'],
+     props: ['user_id'],
          filters: {
   moment: function (date) {
       
@@ -237,27 +237,14 @@ wil : '',
 clt:'',
 stats : {},
 id_colis: '',
-addstats :{
-id_colis :'',
-userid: '',
-ShowStats : {},
-success: '' ,
-danger : '' ,
-warning : '' 
-},
+
 colisvalid :{
 id_colis :'',
 iduser :''
-
-
-
 },
 colisvalidgp:{
 idliv :'',
 iduser :''
-
-
-
 },
 prices : '',
 coursiers : {},

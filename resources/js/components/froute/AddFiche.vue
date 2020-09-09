@@ -34,7 +34,9 @@
                                     <div class="form-group">
                          
                                         <div class="input-group">
-                 
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-user-tag"></i> </span>
+                                            </div>
                                 <select class="custom-select" required v-model="idliv">
                                 <option value="">Coursier </option>
                             <option v-for=" liv  in coursiers" :key="liv.id"  :value="liv.id"> {{ liv.name }}  </option>
