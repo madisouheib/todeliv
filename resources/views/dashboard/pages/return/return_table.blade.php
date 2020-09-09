@@ -9,7 +9,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5> Les retours   </h5>
+                        <h5>Retour </h5>
                      
 
 
@@ -17,14 +17,19 @@
 
 </div>
 
+                    <div class="card-block table-border-style">
 
-<retour-admin :user_id='@json( Auth::user()->id )'  >   </retour-admin>
+
+
+                        <retour-admin :user_id='@json( Auth::user()->id )'  >   </retour-admin>
+
+
+
 
                     </div>
                 </div>
             </div>
             <!-- [ basic-table ] end -->
-
 
     
         
