@@ -39,11 +39,14 @@
     
     
     
-    
+ 
     </div>
-    <div class="col-2"> <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:10px;"> <i class="fas fa-money-check-alt"></i> {{ this.UserDetail.prices }} DA </label></div>
+    <div class="col-2"> <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:10px;"> <i class="fas fa-money-check-alt"></i> {{ this.UserDetail.prices }} DA  </label></div>
     <div class="col-3">
-    <button class="btn btn-square btn-outline-success" data-toggle="modal" data-target="#ModalValidFiche"  style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
+    <button v-if="this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count " class="btn btn-square btn-outline-success" data-toggle="modal" data-target="#ModalValidFiche"  style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
+
+    <button v-else class="btn  btn-glow-dark btn-dark " disabled  style=""> Validation groupée  <i class="fas fa-minus-circle" ></i></button>
+
     </div>
 
 
@@ -173,8 +176,8 @@
                              
                                         <th scope="row" class="text-center" > <b class="badge badge-light" style="font-size:14px;"> #Send-{{ col.id_colis }}   </b> </th>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo"  class="btn  btn-glow-dark  btn-square   btn-dark"><i  style="margin:0px;"  class="fas fa-plus"></i></button>   
-                                             <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a>
+                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo"  class="btn btn-sm  btn-glow-dark  btn-square   btn-dark" @click="getColInfos(col.id_colis)"><i  style="margin:0px;"  class="fas fa-plus"></i></button>   
+                                             <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm   btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a>
                                         
                                         </th>
                                         <th class="text-center" > <b class="badge badge-light " style="font-size:16px;"> {{ col.price }} DA     </b> </th>
@@ -191,14 +194,14 @@
                                         
                                             </th>
                           
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-square  btn-glow-dark btn-dark " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
+                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn  btn-sm   btn-square  btn-glow-dark btn-dark " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
                         
                                           
                                         </th>
                                      
 <td>
 
- <button class=" btn btn-dark btn-glow-dark" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Mettre à jour  <i class=" fas fa-dolly"></i>        </button>
+ <button class=" btn btn-dark btn-glow-dark  btn-sm " @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Mettre à jour  <i class=" fas fa-dolly"></i>        </button>
                                         </td>
 
                               
@@ -226,7 +229,7 @@
 
 <script>
 
- import ColisInfos from '../colis/ColisInfos.vue';
+ import ColisInfos from './ColisInfos.vue';
   import Stats from '../inhouse/StatsInfos.vue';
    import ActionStats from './EtatColis.vue';
     import ValidFiche from './ValidDelev.vue';
@@ -328,7 +331,7 @@ getColis(page = 1)
 
  getColInfos(id){
 
- axios.get('/api/getColisinfos/'+id)
+ axios.get('/api/getcolisinfos/'+id)
      .then(response =>
      { 
        

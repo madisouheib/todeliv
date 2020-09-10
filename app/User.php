@@ -66,6 +66,43 @@ class User extends Authenticatable
     }
 
 
+    public function totalchnge(){
+
+
+        return $this->hasManyDeep(  'App\Colis',
+        ['App\Fiche', 'App\FicheColis'], // Intermediate models, beginning at the far parent (Country).
+        [
+           'id_liv', // Foreign key on the "FicheColis" table.
+           'id_fiche',    // Foreign key on the "Colis" table.
+           'id_colis'     // Foreign key on the "Fiche" table.
+        ],
+        [
+          'id', // Local key on the "User" table.
+          'id_fiche', // Local key on the "FicheColis" table.
+          'id_colis'  // Local key on the "Colis" table.
+        ])->where('fiche.cloture','=',false)->where('colis.id_stats','!=',10);
+        
+    }
+
+    public function totalexist(){
+
+
+        return $this->hasManyDeep(  'App\Colis',
+        ['App\Fiche', 'App\FicheColis'], // Intermediate models, beginning at the far parent (Country).
+        [
+           'id_liv', // Foreign key on the "FicheColis" table.
+           'id_fiche',    // Foreign key on the "Colis" table.
+           'id_colis'     // Foreign key on the "Fiche" table.
+        ],
+        [
+          'id', // Local key on the "User" table.
+          'id_fiche', // Local key on the "FicheColis" table.
+          'id_colis'  // Local key on the "Colis" table.
+        ])->where('fiche.cloture','=',false);
+        
+    }
+
+
     public function montant(){
 
 
@@ -80,7 +117,7 @@ class User extends Authenticatable
           'id', // Local key on the "User" table.
           'id_fiche', // Local key on the "FicheColis" table.
           'id_colis'  // Local key on the "Colis" table.
-        ]);
+        ])->where('fiche.cloture','=',false);
         
     }
 

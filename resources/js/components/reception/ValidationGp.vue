@@ -49,9 +49,9 @@ id: this.idcoms
 
     
     mounted(){
-console.log(this.idcoms);
 
-console.log('hii tehreeeee ');
+
+
 
     }
 

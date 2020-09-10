@@ -35,6 +35,10 @@ public function delete_colis_fiche($id){
 
     $delColis->delete();
 
+    $EditColis = Colis::find($idColis);
+$EditColis->id_stats = null  ;
+
+$EditColis->save();
 
 
 
@@ -48,7 +52,7 @@ public function add_colis_fiche(Request $request){
     $iduser = request('iduser');
  $CountColis = FicheColis::leftJoin('stats_colis','stats_colis.id_colis','=','fiche_fields.id_colis')->where('id_fiche','=',$idfiche)->where('fiche_fields.id_colis','=',$idcolis)->count();
 
-$DataValidation =Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_colis','=',$idcolis)->where('colis.validation','=',true)->where('commandes.confirmed','=',true)->count();
+$DataValidation =Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_colis','=',$idcolis)->where('colis.validation','=',true)->whereNull('colis.id_stats')->orWhere('colis.id_stats','=',11)->count();
 
 if($DataValidation == 1){
 

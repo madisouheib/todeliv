@@ -97,7 +97,7 @@
                                         <th scope="row" class="text-center" >#send- {{ col.id_colis  }}</th>
 
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
+                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
                                         </th>
                                       <th class="text-center"   > {{ col.price  }} DA    </th>
                                         <th class="text-center" >  {{ col.wilaya }}</th>
@@ -126,7 +126,7 @@
     <pagination :data="colis" @pagination-change-page="getColis"></pagination>
 
 <stats-colis    ref="childref" >    </stats-colis>
- <delete-colis v-bind:id_delivery="id_delivery" >   </delete-colis>
+ <delete-colis @colis-deleted="getColis" v-bind:id_delivery="id_delivery" >   </delete-colis>
   <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
       </div>
      </div>
@@ -153,7 +153,7 @@
      data(){
  return {
 colis:{},
-
+colishouse: {},
 ShowColis:{} ,
 userid : this.user_id,
 ShowCom:'',
@@ -171,7 +171,7 @@ id_delivery : ''
 
 
 this.getColis();
-
+this.getColisInHouse();
  },
  
  methods:{
@@ -191,10 +191,30 @@ getColis(page = 1)
      ).catch(err => console.log(err));
 
  },
+ getColisInHouse(page = 1)
+ {
+     
+   
+
+
+
+
+     axios.get('/api/inhouse?page='+page)
+     .then(response =>
+     { 
+       
+   this.colishouse = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ }
+ ,
 
  getColInfos(id){
 
- axios.get('/api/getColisinfos/'+id)
+ axios.get('/api/getcolisinfos/'+id)
      .then(response =>
      { 
        
@@ -221,15 +241,32 @@ getColis(page = 1)
 if(this.SignalStats != "") {
 this.goga = this.colis.data.find(d => d.id_colis == this.codebars) ;
 
+var  DataAll = this.colis.data ;
+var code = this.codebars;  
+var valObj = DataAll.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObj.length > 0) {
+
+axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then(
+ this.getColis(),
+this.codebars = ''
 
 
-axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then( this.getColis(),
-
- this.codebars = ''
 ).catch(error => console.log(error))
 
 
+}
 }else {
+
+
+var  DataAllValid = this.colishouse.data ;
+var code = this.codebars;  
+var valObjValid = DataAllValid.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObjValid.length > 0) {
+
 
 axios.post('/api/addcolisfiche/', {
 
@@ -241,11 +278,12 @@ iduser : this.userid
 }).then( response =>
      { 
          this.colis = response.data ,
-         
          this.codebars = ''
+         
+ 
          } ).catch(error => console.log(error))
 
-
+}
 
 
 }

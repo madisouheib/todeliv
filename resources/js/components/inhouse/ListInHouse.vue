@@ -159,7 +159,7 @@
                                                 </div>
                         <div class="table-responsive">
 
-                            <table class="table table-hover table-bordered">
+                            <table class="table  table-sm  table-bordered">
    
                                 <thead class="thead-dark">
                                        <tr>
@@ -183,21 +183,21 @@
                              
                                         <th scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></th>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"   class="btn   btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-search-plus" ></i></button> 
-                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></th>
+                                        <th style=""   class="text-center" > <button  data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"   class="btn   btn-sm btn-glow-primary   btn-primary"><i  style="margin:0px;"  class="fas fa-search-plus" ></i></button> 
+                                        <a   target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark btn-sm"> <i style="margin:0px;color:#FFCC00;"  class="fas fa-box"></i></a></th>
                                         <th class="text-center" > <label class="badge badge-warning" style="font-size:16px;">   {{ col.price }}  DA  </label> </th>
                                         <th class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i>  </label> </th>
                                         <th class="text-center" > {{ col.name }}  </th>
                                         <th class="text-center" >{{ col.nom_hub }}   </th>
                           
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
+                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-success btn-sm " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
                         
                                           
                                         </th>
                                      
 <td>
 
- <button class=" btn btn-dark btn-glow-dark" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
+ <button class=" btn btn-dark btn-glow-dark btn-sm" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
                                         </td>
 
                                      

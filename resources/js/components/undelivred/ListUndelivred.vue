@@ -159,15 +159,15 @@
                                                 </div>
                         <div class="table-responsive">
 
-                            <table class="table">
+                            <table class="table table-hover table-bordered">
    
-                                <thead>
+                                <thead class="thead-dark">
                                        <tr>
                                    <th class="text-center" ># Tracking-id </th>
-                                        <th class="text-center" ><i class="fas fa-user-circle"></i> infos</th>
+                                        <th class="text-center" ><i class="fas fa-user-circle"></i> Infos</th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
-                                        <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
-                                        <th class="text-center" ><i class="fas fa-address-card"></i> partenaire </th>
+                                        <th class="text-center"><i class="fas fa-map-marker-alt"></i> Wilaya & commune </th>
+                                        <th class="text-center" ><i class="fas fa-address-card"></i> Partenaire </th>
                                         <th class="text-center" ><i class="fas fa-tasks"></i> Valider par HUB </th>
             
                                
@@ -183,20 +183,20 @@
                              
                                         <th scope="row" class="text-center" >#send-{{ col.id_colis }}</th>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button></th>
-                                        <th class="text-center" > {{ col.price }}  </th>
+                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn  btn-sm  btn-glow-info   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button></th>
+                                        <th class="text-center" > <label class="badge badge-warning" style="font-size:14px;">  {{ col.price }} DA  </label>   </th>
                                         <th class="text-center" >{{ col.wilaya }} /  {{  col.commune }} </th>
-                                        <th class="text-center" > {{ col.name }}  </th>
+                                        <th class="text-center" > {{ col.name }}   </th>
                                         <th class="text-center" >{{ col.nom_hub }}   </th>
                           
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-square  btn-success " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
+                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-sm btn-success btn-glow-success  btn-success " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
                         
                                           
                                         </th>
                                      
 <td>
 
- <button class=" btn btn-dark btn-glow-dark" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
+ <button class=" btn btn-dark btn-glow-dark btn-sm" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
                                         </td>
 
                                      
@@ -223,7 +223,7 @@
 
 <script>
 
- import ColisInfos from '../colis/ColisInfos.vue';
+ import ColisInfos from './ColisInfos.vue';
   import Stats from '../inhouse/StatsInfos.vue';
    import ActionStats from './EtatColis.vue';
 
@@ -306,7 +306,7 @@ this.getColis();
 
  getColInfos(id){
 
- axios.get('/api/getColisinfos/'+id)
+ axios.get('/api/getcolisinfos/'+id)
      .then(response =>
      { 
        

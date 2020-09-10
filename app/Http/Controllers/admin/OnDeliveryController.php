@@ -138,8 +138,8 @@ public function data_colis_froute($idliv){
        
         $DataLivr = User::withCount(['amount as prices' => function($query) {
             $query->select(DB::raw('sum(price)'));
-        }],'fiche')->leftJoin('fiche','fiche.id_liv','=','users.id')->where('fiche.cloture','=',false)->where('id','=',$id)->first();
-       
+        },'fiche','totalchnge','totalexist'])->leftJoin('fiche','fiche.id_liv','=','users.id')->where('fiche.cloture','=',false)->where('id','=',$id)->first();
+  
         return response()->json($DataLivr);
 
 

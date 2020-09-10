@@ -181,7 +181,7 @@
      data(){
  return {
 colis:{},
-
+colisrecp:{},
 ShowColis:{} ,
 idcom : this.url_id,
 userid : this.user_id,
@@ -198,6 +198,7 @@ id_colis : ''
 
 
 this.getColis();
+this.getColisInHouse();
 this.getColInfos();
 this.getComInfos();
  },
@@ -227,10 +228,28 @@ var id = this.url_id ;
      ).catch(err => console.log(err));
 
  },
+getColisInHouse(page = 1)
+ {
+     
+   
 
+
+
+
+     axios.get('/api/inhouse?page='+page)
+     .then(response =>
+     { 
+       
+   this.colisrecp = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ },
  getColInfos(id){
 
- axios.get('/api/getColisinfos/'+id)
+ axios.get('/api/getcolisinfos/'+id)
      .then(response =>
      { 
        
@@ -261,36 +280,69 @@ var id = this.url_id ;
 
 
 
-if(this.SignalStats != "") {
+if(this.SignalStats !== "") {
 
-
+var  DataAll = this.colis.data ;
+var code = this.codebars;  
+var valObj = DataAll.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObj.length > 0) {
 
 axios.patch('/api/tmpsignalergrp/',{
 
 id : this.codebars
 
 
-}).then( this.getColis(),
+}).then( 
+    
+    response =>
+     { 
+       
+   this.colis = response.data,
+     this.codebars = ''
+ }
+    
 
-this.codebars = ''
+
+
 
 ).catch(error => console.log(error))
+}
+
+
 
 
 }else {
+
+
+var  DataAllValid = this.colis.data ;
+var code = this.codebars;  
+var valObjValid = DataAllValid.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObjValid.length > 0) {
+
+
+
 
 axios.patch('/api/tmpcolisv/', {
 
 id : this.codebars
 
 
-}).then( this.getColis(),
+}).then( 
+   response =>
+     { 
+       
+   this.colis = response.data,
+     this.codebars = ''
+ }
+    
 
-this.codebars = ''
 ).catch(error => console.log(error))
 
-
-
+}
 
 }
 

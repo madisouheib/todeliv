@@ -49,9 +49,7 @@ id: this.id_colis
 
     
     mounted(){
-console.log(this.idcoms);
 
-console.log('hii tehreeeee ');
 
     }
 

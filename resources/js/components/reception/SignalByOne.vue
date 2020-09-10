@@ -33,7 +33,7 @@ export default {
 signaler(){
 
 
-console.log('hi bro');
+
 axios.patch('/api/signalone/',{
 id  : this.id_colis 
 

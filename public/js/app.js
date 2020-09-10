@@ -5166,6 +5166,69 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/delivery/ColisInfos.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/delivery/ColisInfos.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['ShowColis'],
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/delivery/Delevery.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/delivery/Delevery.vue?vue&type=script&lang=js& ***!
@@ -5409,10 +5472,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _colis_ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../colis/ColisInfos.vue */ "./resources/js/components/colis/ColisInfos.vue");
+/* harmony import */ var _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColisInfos.vue */ "./resources/js/components/delivery/ColisInfos.vue");
 /* harmony import */ var _inhouse_StatsInfos_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../inhouse/StatsInfos.vue */ "./resources/js/components/inhouse/StatsInfos.vue");
 /* harmony import */ var _EtatColis_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EtatColis.vue */ "./resources/js/components/delivery/EtatColis.vue");
 /* harmony import */ var _ValidDelev_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ValidDelev.vue */ "./resources/js/components/delivery/ValidDelev.vue");
+//
+//
+//
 //
 //
 //
@@ -5646,7 +5712,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url_id', 'user_id'],
   components: {
-    'view-colis': _colis_ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'view-colis': _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     'stats-colis': _inhouse_StatsInfos_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'action-colis': _EtatColis_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     'valid-modal': _ValidDelev_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -5705,7 +5771,7 @@ __webpack_require__.r(__webpack_exports__);
     getColInfos: function getColInfos(id) {
       var _this3 = this;
 
-      axios.get('/api/getColisinfos/' + id).then(function (response) {
+      axios.get('/api/getcolisinfos/' + id).then(function (response) {
         _this3.ShowColis = response.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -7288,6 +7354,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       colis: {},
+      colishouse: {},
       ShowColis: {},
       userid: this.user_id,
       ShowCom: '',
@@ -7301,6 +7368,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getColis();
+    this.getColisInHouse();
   },
   methods: {
     getColis: function getColis() {
@@ -7313,38 +7381,64 @@ __webpack_require__.r(__webpack_exports__);
         return console.log(err);
       });
     },
-    getColInfos: function getColInfos(id) {
+    getColisInHouse: function getColisInHouse() {
       var _this2 = this;
 
-      axios.get('/api/getColisinfos/' + id).then(function (response) {
-        _this2.ShowColis = response.data;
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('/api/inhouse?page=' + page).then(function (response) {
+        _this2.colishouse = response.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    getColInfos: function getColInfos(id) {
+      var _this3 = this;
+
+      axios.get('/api/getcolisinfos/' + id).then(function (response) {
+        _this3.ShowColis = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
     },
     keymonitor: function keymonitor(event) {
-      var _this3 = this;
+      var _this4 = this;
 
       var keyMessage = 'keyup: ';
 
       if (this.codebars !== '') {
         if (this.SignalStats != "") {
           this.goga = this.colis.data.find(function (d) {
-            return d.id_colis == _this3.codebars;
+            return d.id_colis == _this4.codebars;
           });
-          axios["delete"]('/api/deletecolisfiche/' + this.goga.id_delivery).then(this.getColis(), this.codebars = '')["catch"](function (error) {
-            return console.log(error);
+          var DataAll = this.colis.data;
+          var code = this.codebars;
+          var valObj = DataAll.filter(function (elem) {
+            if (elem.id_colis == code) return true;
           });
+
+          if (valObj.length > 0) {
+            axios["delete"]('/api/deletecolisfiche/' + this.goga.id_delivery).then(this.getColis(), this.codebars = '')["catch"](function (error) {
+              return console.log(error);
+            });
+          }
         } else {
-          axios.post('/api/addcolisfiche/', {
-            idcolis: this.codebars,
-            idfiche: this.idfiche,
-            iduser: this.userid
-          }).then(function (response) {
-            _this3.colis = response.data, _this3.codebars = '';
-          })["catch"](function (error) {
-            return console.log(error);
+          var DataAllValid = this.colishouse.data;
+          var code = this.codebars;
+          var valObjValid = DataAllValid.filter(function (elem) {
+            if (elem.id_colis == code) return true;
           });
+
+          if (valObjValid.length > 0) {
+            axios.post('/api/addcolisfiche/', {
+              idcolis: this.codebars,
+              idfiche: this.idfiche,
+              iduser: this.userid
+            }).then(function (response) {
+              _this4.colis = response.data, _this4.codebars = '';
+            })["catch"](function (error) {
+              return console.log(error);
+            });
+          }
         }
       }
     },
@@ -9550,6 +9644,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       colis: {},
+      colisrecp: {},
       ShowColis: {},
       idcom: this.url_id,
       userid: this.user_id,
@@ -9562,6 +9657,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getColis();
+    this.getColisInHouse();
     this.getColInfos();
     this.getComInfos();
   },
@@ -9583,40 +9679,72 @@ __webpack_require__.r(__webpack_exports__);
         return console.log(err);
       });
     },
-    getColInfos: function getColInfos(id) {
+    getColisInHouse: function getColisInHouse() {
       var _this2 = this;
 
-      axios.get('/api/getColisinfos/' + id).then(function (response) {
-        _this2.ShowColis = response.data;
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('/api/inhouse?page=' + page).then(function (response) {
+        _this2.colisrecp = response.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    getColInfos: function getColInfos(id) {
+      var _this3 = this;
+
+      axios.get('/api/getcolisinfos/' + id).then(function (response) {
+        _this3.ShowColis = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
     },
     getComInfos: function getComInfos() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/api/getCominfos/' + this.idcom).then(function (response) {
-        _this3.ShowCom = response.data;
+        _this4.ShowCom = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
     },
     keymonitor: function keymonitor(event) {
+      var _this5 = this;
+
       var keyMessage = 'keyup: ';
 
       if (this.codebars !== '') {
-        if (this.SignalStats != "") {
-          axios.patch('/api/tmpsignalergrp/', {
-            id: this.codebars
-          }).then(this.getColis(), this.codebars = '')["catch"](function (error) {
-            return console.log(error);
+        if (this.SignalStats !== "") {
+          var DataAll = this.colis.data;
+          var code = this.codebars;
+          var valObj = DataAll.filter(function (elem) {
+            if (elem.id_colis == code) return true;
           });
+
+          if (valObj.length > 0) {
+            axios.patch('/api/tmpsignalergrp/', {
+              id: this.codebars
+            }).then(function (response) {
+              _this5.colis = response.data, _this5.codebars = '';
+            })["catch"](function (error) {
+              return console.log(error);
+            });
+          }
         } else {
-          axios.patch('/api/tmpcolisv/', {
-            id: this.codebars
-          }).then(this.getColis(), this.codebars = '')["catch"](function (error) {
-            return console.log(error);
+          var DataAllValid = this.colis.data;
+          var code = this.codebars;
+          var valObjValid = DataAllValid.filter(function (elem) {
+            if (elem.id_colis == code) return true;
           });
+
+          if (valObjValid.length > 0) {
+            axios.patch('/api/tmpcolisv/', {
+              id: this.codebars
+            }).then(function (response) {
+              _this5.colis = response.data, _this5.codebars = '';
+            })["catch"](function (error) {
+              return console.log(error);
+            });
+          }
         }
       }
     },
@@ -10151,7 +10279,6 @@ __webpack_require__.r(__webpack_exports__);
     signaler: function signaler() {
       var _this = this;
 
-      console.log('hi bro');
       axios.patch('/api/signalone/', {
         id: this.id_colis
       }).then(function (resposne) {
@@ -10272,10 +10399,7 @@ __webpack_require__.r(__webpack_exports__);
       $('.toast-success').toast('show');
     }
   },
-  mounted: function mounted() {
-    console.log(this.idcoms);
-    console.log('hii tehreeeee ');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -10382,10 +10506,7 @@ __webpack_require__.r(__webpack_exports__);
       $('.toast-success').toast('show');
     }
   },
-  mounted: function mounted() {
-    console.log(this.idcoms);
-    console.log('hii tehreeeee ');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -11398,6 +11519,66 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/undelivred/ColisInfos.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/undelivred/ColisInfos.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['ShowColis'],
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/undelivred/EtatColis.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/undelivred/EtatColis.vue?vue&type=script&lang=js& ***!
@@ -11503,7 +11684,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _colis_ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../colis/ColisInfos.vue */ "./resources/js/components/colis/ColisInfos.vue");
+/* harmony import */ var _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColisInfos.vue */ "./resources/js/components/undelivred/ColisInfos.vue");
 /* harmony import */ var _inhouse_StatsInfos_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../inhouse/StatsInfos.vue */ "./resources/js/components/inhouse/StatsInfos.vue");
 /* harmony import */ var _EtatColis_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EtatColis.vue */ "./resources/js/components/undelivred/EtatColis.vue");
 //
@@ -11735,7 +11916,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url_id', 'user_id'],
   components: {
-    'view-colis': _colis_ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'view-colis': _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     'stats-colis': _inhouse_StatsInfos_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'action-colis': _EtatColis_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
@@ -11786,7 +11967,7 @@ __webpack_require__.r(__webpack_exports__);
     getColInfos: function getColInfos(id) {
       var _this2 = this;
 
-      axios.get('/api/getColisinfos/' + id).then(function (response) {
+      axios.get('/api/getcolisinfos/' + id).then(function (response) {
         _this2.ShowColis = response.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -42075,6 +42256,222 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/delivery/ColisInfos.vue?vue&type=template&id=91c6edca&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/delivery/ColisInfos.vue?vue&type=template&id=91c6edca& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "ModalColisInfo",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalCenterTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("table", { staticClass: "table table-striped" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _vm._m(1),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.nom_client))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(2),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.wilaya))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(3),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.tel))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(4),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.price))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(5),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.qte))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(6),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.commune))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(7),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.adress))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(8),
+                    _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                      _vm._v(_vm._s(_vm.ShowColis.remarque))
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-center",
+          attrs: { id: "exampleModalCenterTitle" }
+        },
+        [
+          _vm._v("information sur le colis "),
+          _c("i", { staticClass: "fas fa-box-open" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas  fa-address-card" }),
+      _vm._v(" Nom & prenom  : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-map" }),
+      _vm._v(" Wilaya : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-phone" }),
+      _vm._v(" Numero de telephone : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-money-bill " }),
+      _vm._v(" Prix  : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-bars" }),
+      _vm._v(" Quantité : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-sitemap" }),
+      _vm._v(" Commune : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-map-marker-alt" }),
+      _vm._v(" Adresse : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-sticky-note" }),
+      _vm._v("  Remarque : ")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/delivery/Delevery.vue?vue&type=template&id=72778ce0&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/delivery/Delevery.vue?vue&type=template&id=72778ce0& ***!
@@ -42452,19 +42849,46 @@ var render = function() {
           },
           [
             _c("i", { staticClass: "fas fa-money-check-alt" }),
-            _vm._v(" " + _vm._s(this.UserDetail.prices) + " DA ")
+            _vm._v(" " + _vm._s(this.UserDetail.prices) + " DA  ")
           ]
         )
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "col-3" }, [
+        this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-square btn-outline-success",
+                attrs: {
+                  "data-toggle": "modal",
+                  "data-target": "#ModalValidFiche"
+                }
+              },
+              [
+                _vm._v(" Validation groupée  "),
+                _c("i", { staticClass: "fas fa-check-circle" })
+              ]
+            )
+          : _c(
+              "button",
+              {
+                staticClass: "btn  btn-glow-dark btn-dark ",
+                attrs: { disabled: "" }
+              },
+              [
+                _vm._v(" Validation groupée  "),
+                _c("i", { staticClass: "fas fa-minus-circle" })
+              ]
+            )
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-2" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group" }, [
-            _vm._m(3),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "select",
@@ -42517,7 +42941,7 @@ var render = function() {
       _c("div", { staticClass: "col-2" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group" }, [
-            _vm._m(4),
+            _vm._m(3),
             _vm._v(" "),
             _c(
               "select",
@@ -42570,7 +42994,7 @@ var render = function() {
       _c("div", { staticClass: "col-2" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group" }, [
-            _vm._m(5),
+            _vm._m(4),
             _vm._v(" "),
             _c(
               "select",
@@ -42600,7 +43024,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(6)
+      _vm._m(5)
     ]),
     _vm._v(" "),
     _c(
@@ -42608,7 +43032,7 @@ var render = function() {
       { staticClass: "table-responsive " },
       [
         _c("table", { staticClass: "table table-hover table-bordered" }, [
-          _vm._m(7),
+          _vm._m(6),
           _vm._v(" "),
           _c(
             "tbody",
@@ -42653,12 +43077,33 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("th", { staticClass: "text-center" }, [
-                    _vm._m(8, true),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-sm  btn-glow-dark  btn-square   btn-dark",
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#ModalColisInfo"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.getColInfos(col.id_colis)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-plus",
+                          staticStyle: { margin: "0px" }
+                        })
+                      ]
+                    ),
                     _vm._v(" "),
                     _c(
                       "a",
                       {
-                        staticClass: "btn btn-glow-dark btn-dark",
+                        staticClass: "btn  btn-sm   btn-glow-dark btn-dark",
                         attrs: {
                           target: "_blank",
                           href: "/admin/tracking/" + col.id_colis
@@ -42736,7 +43181,8 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-square  btn-glow-dark btn-dark ",
+                        staticClass:
+                          "btn  btn-sm   btn-square  btn-glow-dark btn-dark ",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#ModalColisSuivi"
@@ -42760,7 +43206,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: " btn btn-dark btn-glow-dark",
+                        staticClass: " btn btn-dark btn-glow-dark  btn-sm ",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#ModalColisAction"
@@ -42886,24 +43332,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-square btn-outline-success",
-          attrs: { "data-toggle": "modal", "data-target": "#ModalValidFiche" }
-        },
-        [
-          _vm._v(" Validation groupée  "),
-          _c("i", { staticClass: "fas fa-check-circle" })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
@@ -43021,19 +43449,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn  btn-glow-dark  btn-square   btn-dark",
-        attrs: { "data-toggle": "modal", "data-target": "#Moodalcolisinfo" }
-      },
-      [_c("i", { staticClass: "fas fa-plus", staticStyle: { margin: "0px" } })]
-    )
   }
 ]
 render._withStripped = true
@@ -44146,7 +44561,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn   btn-glow-primary   btn-primary",
+                      staticClass: "btn btn-sm  btn-glow-primary   btn-primary",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisInfo"
@@ -44168,7 +44583,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-glow-dark btn-dark",
+                      staticClass: "btn  btn-sm btn-glow-dark btn-dark",
                       attrs: {
                         target: "_blank",
                         href: "/admin/tracking/" + col.id_colis
@@ -44238,7 +44653,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-glow-success  btn-success ",
+                      staticClass: "btn btn-glow-success btn-sm  btn-success ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisSuivi"
@@ -44260,7 +44675,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-glow-success  btn-success ",
+                      staticClass: "btn btn-sm btn-glow-success  btn-success ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalCashByOne"
@@ -45928,7 +46343,7 @@ var render = function() {
                         staticClass: "btn   btn-square   btn-info",
                         attrs: {
                           "data-toggle": "modal",
-                          "data-target": "#Moodalcolisinfo"
+                          "data-target": "#ModalColisInfo"
                         },
                         on: {
                           click: function($event) {
@@ -46018,7 +46433,10 @@ var render = function() {
         _vm._v(" "),
         _c("stats-colis", { ref: "childref" }),
         _vm._v(" "),
-        _c("delete-colis", { attrs: { id_delivery: _vm.id_delivery } }),
+        _c("delete-colis", {
+          attrs: { id_delivery: _vm.id_delivery },
+          on: { "colis-deleted": _vm.getColis }
+        }),
         _vm._v(" "),
         _c("view-colis", { attrs: { ShowColis: _vm.ShowColis } })
       ],
@@ -48356,7 +48774,7 @@ var render = function() {
       "div",
       { staticClass: "table-responsive" },
       [
-        _c("table", { staticClass: "table table-hover table-bordered" }, [
+        _c("table", { staticClass: "table  table-sm  table-bordered" }, [
           _vm._m(6),
           _vm._v(" "),
           _c(
@@ -48382,7 +48800,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn   btn-glow-primary   btn-primary",
+                      staticClass:
+                        "btn   btn-sm btn-glow-primary   btn-primary",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#Moodalcolisinfo"
@@ -48396,7 +48815,7 @@ var render = function() {
                     [
                       _c("i", {
                         staticClass: "fas fa-search-plus",
-                        staticStyle: { margin: "0px", "font-size": "1.3em" }
+                        staticStyle: { margin: "0px" }
                       })
                     ]
                   ),
@@ -48404,7 +48823,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-glow-dark btn-dark",
+                      staticClass: "btn btn-glow-dark btn-dark btn-sm",
                       attrs: {
                         target: "_blank",
                         href: "/admin/tracking/" + col.id_colis
@@ -48413,11 +48832,7 @@ var render = function() {
                     [
                       _c("i", {
                         staticClass: "fas fa-box",
-                        staticStyle: {
-                          margin: "0px",
-                          "font-size": "1.4em",
-                          color: "#FFCC00"
-                        }
+                        staticStyle: { margin: "0px", color: "#FFCC00" }
                       })
                     ]
                   )
@@ -48466,7 +48881,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-glow-success  btn-success ",
+                      staticClass: "btn btn-glow-success  btn-success btn-sm ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisSuivi"
@@ -48490,7 +48905,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: " btn btn-dark btn-glow-dark",
+                      staticClass: " btn btn-dark btn-glow-dark btn-sm",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisAction"
@@ -52167,7 +52582,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn   btn-glow-primary   btn-primary",
+                      staticClass:
+                        "btn btn-sm   btn-glow-primary   btn-primary",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisInfo"
@@ -52189,7 +52605,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-glow-dark btn-dark",
+                      staticClass: "btn btn-glow-dark btn-sm  btn-dark",
                       attrs: {
                         target: "_blank",
                         href: "/admin/tracking/" + col.id_colis
@@ -52259,7 +52675,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-glow-success  btn-success ",
+                      staticClass: "btn btn-glow-success  btn-sm btn-success ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisSuivi"
@@ -52281,7 +52697,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-glow-success  btn-success ",
+                      staticClass: "btn btn-sm btn-glow-success  btn-success ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalCashByOne"
@@ -53439,6 +53855,220 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/undelivred/ColisInfos.vue?vue&type=template&id=53c4f95d&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/undelivred/ColisInfos.vue?vue&type=template&id=53c4f95d& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "ModalColisInfo",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalCenterTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("table", { staticClass: "table table-striped" }, [
+                _c("tr", [
+                  _vm._m(1),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.nom_client))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(2),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.wilaya))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(3),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.tel))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(4),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.price))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(5),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.qte))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(6),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.commune))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(7),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.adress))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(8),
+                  _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v(_vm._s(_vm.ShowColis.remarque))
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-center",
+          attrs: { id: "exampleModalCenterTitle" }
+        },
+        [
+          _vm._v("information sur le colis "),
+          _c("i", { staticClass: "fas fa-box-open" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas  fa-address-card" }),
+      _vm._v(" Nom & prenom  : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-map" }),
+      _vm._v(" Wilaya : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-phone" }),
+      _vm._v(" Numero de telephone : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-money-bill " }),
+      _vm._v(" Prix  : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-bars" }),
+      _vm._v(" Quantité : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-sitemap" }),
+      _vm._v(" Commune : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-map-marker-alt" }),
+      _vm._v(" Adresse : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fas fa-sticky-note" }),
+      _vm._v("  Remarque : ")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/undelivred/EtatColis.vue?vue&type=template&id=7a9278b6&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/undelivred/EtatColis.vue?vue&type=template&id=7a9278b6& ***!
@@ -53791,7 +54421,7 @@ var render = function() {
       "div",
       { staticClass: "table-responsive" },
       [
-        _c("table", { staticClass: "table" }, [
+        _c("table", { staticClass: "table table-hover table-bordered" }, [
           _vm._m(6),
           _vm._v(" "),
           _c(
@@ -53804,10 +54434,39 @@ var render = function() {
                   [_vm._v("#send-" + _vm._s(col.id_colis))]
                 ),
                 _vm._v(" "),
-                _vm._m(7, true),
+                _c("th", { staticClass: "text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn  btn-sm  btn-glow-info   btn-info",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#ModalColisInfo"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.getColInfos(col.id_colis)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-plus",
+                        staticStyle: { margin: "0px" }
+                      })
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "text-center" }, [
-                  _vm._v(" " + _vm._s(col.price) + "  ")
+                  _c(
+                    "label",
+                    {
+                      staticClass: "badge badge-warning",
+                      staticStyle: { "font-size": "14px" }
+                    },
+                    [_vm._v("  " + _vm._s(col.price) + " DA  ")]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "text-center" }, [
@@ -53817,7 +54476,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "text-center" }, [
-                  _vm._v(" " + _vm._s(col.name) + "  ")
+                  _vm._v(" " + _vm._s(col.name) + "   ")
                 ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "text-center" }, [
@@ -53828,7 +54487,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-square  btn-success ",
+                      staticClass:
+                        "btn btn-sm btn-success btn-glow-success  btn-success ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisSuivi"
@@ -53852,7 +54512,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: " btn btn-dark btn-glow-dark",
+                      staticClass: " btn btn-dark btn-glow-dark btn-sm",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisAction"
@@ -54092,13 +54752,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", { staticClass: "text-center" }, [_vm._v("# Tracking-id ")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-user-circle" }),
-          _vm._v(" infos")
+          _vm._v(" Infos")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -54108,12 +54768,12 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-map-marker-alt" }),
-          _vm._v(" wilaya & commune ")
+          _vm._v(" Wilaya & commune ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-address-card" }),
-          _vm._v(" partenaire ")
+          _vm._v(" Partenaire ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -54131,26 +54791,6 @@ var staticRenderFns = [
           _vm._v(" Action ")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("th", { staticClass: "text-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn   btn-square   btn-info",
-          attrs: { "data-toggle": "modal", "data-target": "#Moodalcolisinfo" }
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-plus",
-            staticStyle: { margin: "0px" }
-          })
-        ]
-      )
     ])
   }
 ]
@@ -72707,6 +73347,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/delivery/ColisInfos.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/delivery/ColisInfos.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ColisInfos_vue_vue_type_template_id_91c6edca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColisInfos.vue?vue&type=template&id=91c6edca& */ "./resources/js/components/delivery/ColisInfos.vue?vue&type=template&id=91c6edca&");
+/* harmony import */ var _ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColisInfos.vue?vue&type=script&lang=js& */ "./resources/js/components/delivery/ColisInfos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ColisInfos_vue_vue_type_template_id_91c6edca___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ColisInfos_vue_vue_type_template_id_91c6edca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/delivery/ColisInfos.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/delivery/ColisInfos.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/delivery/ColisInfos.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColisInfos.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/delivery/ColisInfos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/delivery/ColisInfos.vue?vue&type=template&id=91c6edca&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/delivery/ColisInfos.vue?vue&type=template&id=91c6edca& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_template_id_91c6edca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColisInfos.vue?vue&type=template&id=91c6edca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/delivery/ColisInfos.vue?vue&type=template&id=91c6edca&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_template_id_91c6edca___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_template_id_91c6edca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/delivery/Delevery.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/delivery/Delevery.vue ***!
@@ -76014,6 +76723,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tracking_vue_vue_type_template_id_5fe4b0f4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tracking_vue_vue_type_template_id_5fe4b0f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/undelivred/ColisInfos.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/undelivred/ColisInfos.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ColisInfos_vue_vue_type_template_id_53c4f95d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColisInfos.vue?vue&type=template&id=53c4f95d& */ "./resources/js/components/undelivred/ColisInfos.vue?vue&type=template&id=53c4f95d&");
+/* harmony import */ var _ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColisInfos.vue?vue&type=script&lang=js& */ "./resources/js/components/undelivred/ColisInfos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ColisInfos_vue_vue_type_template_id_53c4f95d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ColisInfos_vue_vue_type_template_id_53c4f95d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/undelivred/ColisInfos.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/undelivred/ColisInfos.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/undelivred/ColisInfos.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColisInfos.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/undelivred/ColisInfos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/undelivred/ColisInfos.vue?vue&type=template&id=53c4f95d&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/undelivred/ColisInfos.vue?vue&type=template&id=53c4f95d& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_template_id_53c4f95d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColisInfos.vue?vue&type=template&id=53c4f95d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/undelivred/ColisInfos.vue?vue&type=template&id=53c4f95d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_template_id_53c4f95d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColisInfos_vue_vue_type_template_id_53c4f95d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

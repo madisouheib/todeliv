@@ -211,23 +211,32 @@ public function data_colis_inhouse(){
         $id = request('id');
        
         $tmpColis = Colis::find($id);
-
+        $idcom = $tmpColis['id_com'];
 
             $tmpColis->tmp_validation = true;
             $tmpColis->tmp_signaler = false;
             $tmpColis->signaler = false;
             $tmpColis->save();
 
-
+            $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+        
+    
+            
+        
+         
+            return response()->json($Colis);
        
         
 
     }
+///getcoli all without any action --------------
+
 
     public function tmp_colis_signaler(Request $request){
 
 $id = request('id');
         $tmpColis = Colis::find($id);
+        $idcom = $tmpColis['id_com'];
         $CountTmp = Colis::where('id_colis','=',$id)->whereNull('tmp_signaler')->count();
 
         if( $CountTmp == 0  )
@@ -241,6 +250,13 @@ $id = request('id');
 
         }
 
+        $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+        
+    
+            
+        
+         
+        return response()->json($Colis);
 
 
     }
