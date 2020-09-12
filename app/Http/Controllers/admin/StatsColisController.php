@@ -82,7 +82,7 @@ public function tracking_show($id){
     ->toArray();
 
 
-    $DataStats = StatsColis::leftJoin('stats','stats.id_stats','=','stats_colis.id_stats')
+    $DataStats = StatsColis::select('stats_colis.*','stats.field_stats','users.name')->leftJoin('stats','stats.id_stats','=','stats_colis.id_stats')
     ->leftJoin('users','users.id','=','stats_colis.by_id_user')
     ->where('stats_colis.id_colis','=',$id)
     ->orderBy('id_stats_colis')->get()

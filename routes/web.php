@@ -33,7 +33,12 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // admin routes Users  
 
 Route::get('/admin/users', 'admin\UsersController@index')->name('index');
-Route::group(['middleware' => ['role:admin']], function () {
+
+
+
+
+
+Route::group(['middleware' => ['role:admin,coordinateur']], function () {
 // admin routes Profiles   
 
 Route::get('/admin/profiles', 'admin\ProfilesController@index')->name('index');
@@ -100,8 +105,10 @@ Route::get('/admin/print_com/{id}','admin\ColisController@view_pdf_commandes')->
 
 
 Route::get('/admin/export/{id}', 'admin\ColisController@export')->name('export');
+Route::get('/admin/exportdeliv', 'admin\ColisController@export_livred')->name('export_livred');
 
-
+Route::get('/admin/accounting', 'admin\ConfirmedController@index_acounting')->name('index_acounting');
+Route::get('/admin/facturation', 'admin\ConfirmedController@index_facturation')->name('index_facturation');
 
 
 

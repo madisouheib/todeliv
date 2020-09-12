@@ -125,6 +125,9 @@ Route::get('/track/{id}', 'admin\StatsColisController@tracking_show');
 
 Route::get('/getcolisvaldiation/{id}', 'admin\ColisController@data_colis_validation');
 
+
+Route::get('/getcolisrecp/{id}', 'admin\ColisController@data_colis_recp');
+
 Route::patch('/valdiationgrp', 'admin\ColisController@validate_colis_gp');
 Route::patch('/signalgrp', 'admin\ColisController@signaler_colis_gp');
 
@@ -159,7 +162,7 @@ Route::patch('/invalidfiche', 'admin\FicheController@invalid_fiche');
 Route::get('/delivered', 'admin\LivraisonController@get_delivred');
 Route::get('/deliv/{id}', 'admin\LivraisonController@get_delivred_livreur');
 
-
+Route::get('/afterdelivred', 'admin\ConfirmedController@get_delivred_confirmed');
 
 Route::get('/returned', 'admin\LivraisonController@get_returned');
 Route::get('/return/{id}', 'admin\LivraisonController@get_get_returned_livreur');

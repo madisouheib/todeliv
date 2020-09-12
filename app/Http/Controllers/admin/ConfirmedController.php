@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Colis ; 
 class ConfirmedController extends Controller
 {
     /**
@@ -17,15 +17,48 @@ class ConfirmedController extends Controller
         return view('dashboard.pages.confirmed.confirmed_table');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  
+public function index_acounting(){
+
+
+    return view('dashboard.pages.accounting.accounting_table');
+
+
+}
+
+
+public function index_facturation(){
+
+
+       return view('dashboard.pages.accounting.facturation_table');
+
+}
+
+
+public function get_delivred_confirmed()
+{
+   
+
+
+    $ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->where('validation','=',true)
+    ->where('colis.id_stats','=',12)->orderBy('colis.id_colis', 'desc')->get();
+    $TotalPrice =   Colis::
+    where('validation','=',true)
+    ->where('colis.id_stats','=',12)->sum('price'); 
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+
+
+
+    return response()->json($Colis);
+
+}
+
 
     /**
      * Store a newly created resource in storage.

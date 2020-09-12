@@ -39,7 +39,10 @@
   @endrole
 
 
+  @role('coordinateur')
 
+<stats-admin> </stats-admin>
+ @endrole
 
 
 

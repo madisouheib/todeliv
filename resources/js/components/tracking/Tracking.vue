@@ -62,12 +62,12 @@
                                                 
                                                   <li  >
                                                     <i class="task-icon bg-c-blue"></i>
-                                                    <h6> Created at  <span class="float-right text-muted">14 MAY</span></h6>
-                                                    <p class="text-muted">Par </p>
+                                                    <h6> Created at  <span class="float-right text-muted">{{ this.Client.created_at | moment }}</span></h6>
+                                                    
                                                 </li>
                                                 <li   v-for="stat in tracking " :key="stat.id_stats_colis"  :value=" stat.id_stats_colis  "  >
                                                     <i class="task-icon bg-c-green"></i>
-                                                    <h6> {{ stat.field_stats }} <span class="float-right text-muted">14 MAY</span></h6>
+                                                    <h6> {{ stat.field_stats }} <span class="float-right text-muted"> {{ stat.created_at | moment }}</span></h6>
                                                     <p class="text-muted">par : {{ stat.name }}</p>
                                                 </li>
                                            
@@ -120,6 +120,12 @@
 <script>
 export default {
     props:['url_id']  ,
+         filters: {
+  moment: function (date) {
+      
+    return moment((date)).subtract(1, "month").format(' MMMM DD [à] hh:mm ');
+  }
+},
        data(){
  return {
 tracking:{},

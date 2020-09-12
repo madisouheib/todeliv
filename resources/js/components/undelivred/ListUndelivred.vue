@@ -5,24 +5,7 @@
   
     
 <div class="row">
-    <div class="col-4">
-        <div class="form-group">
-
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend"> <i class="fab fa-searchengin"></i> </span>
-                </div>
-                <input type="text" class="form-control" id="validationCustomUsername" placeholder=" tracking id  " aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                    Please choose a traciing.
-                </div>
-            </div>
-        </div>
-    
-    
-    
-    
-    </div>
+ 
     <div class="col-4">
         <div class="form-group">
 
@@ -42,9 +25,7 @@
     
     </div>
     
-    <div class="col-3">
-    <button class="btn btn-square btn-outline-success" style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
-    </div>
+
     </div>            
     
     <div class="row"> 
@@ -177,7 +158,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for=" col  in colis.data" :key="col.id_colis" >
+                                    <tr v-for=" col  in colis.data" :key="col.id_colis"  :style="{ background: col.message !== null ? '#ffb900'   : '' ,color: col.message !== null ? '#fff'   : '' } " >
        
 
                              
@@ -189,7 +170,9 @@
                                         <th class="text-center" > {{ col.name }}   </th>
                                         <th class="text-center" >{{ col.nom_hub }}   </th>
                           
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-sm btn-success btn-glow-success  btn-success " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
+                                        <th class="text-center" >
+                                            <button v-if="col.message  !== null " data-toggle="modal" data-target="#MessageClient"   class=" btn-sm btn btn-dark btn-glow-dark" @click="MessagePert(col.message)"> <i class="fas fa-bell" style="margin:0px;"></i></button>
+                                            <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-sm btn-success btn-glow-success  btn-success " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
                         
                                           
                                         </th>
@@ -210,7 +193,7 @@
     <action-colis @colis-added="getColisData(response)"   v-bind:addstats="addstats"  >    </action-colis>
 <stats-colis    ref="childref" >    </stats-colis>
     <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
-
+<message-colis v-bind:Message="Message">  </message-colis>
                         </div>
 
       </div>
@@ -224,6 +207,7 @@
 <script>
 
  import ColisInfos from './ColisInfos.vue';
+  import Message from './Message.vue';
   import Stats from '../inhouse/StatsInfos.vue';
    import ActionStats from './EtatColis.vue';
 
@@ -233,7 +217,8 @@
     
       'view-colis':   ColisInfos,
      'stats-colis': Stats ,
-     'action-colis':ActionStats
+     'action-colis':ActionStats,
+          'message-colis':Message
 
   },
 
@@ -260,7 +245,8 @@ danger : '' ,
 warning : '' 
 
 
-}
+},
+Message: ''
  }
   },
  created ()
@@ -383,6 +369,14 @@ this.addstats.userid = this.user_id ;
 
 
  },
+MessagePert(mess){
+
+this.Message = mess ;
+
+
+
+
+ } ,
  GetIDColStats(id){
 
 

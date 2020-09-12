@@ -11,20 +11,9 @@
                 
                       <li data-username="Animations" class="nav-item"><a :href="'/admin'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-home"></i></span><span class="pcoded-mtext">Tableau de Bord </span></a></li>
               
-                      <li data-username="Animations" class="nav-item"><a :href="'/admin/users'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-users"></i></span><span class="pcoded-mtext">Utilisateurs </span></a></li>
-                                <li data-username="Animations" class="nav-item"><a :href="'/admin/profiles'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-address-card"></i></span><span class="pcoded-mtext">Profiles </span></a></li>
+               
 
-
-                    <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
-                        <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-warehouse"></i></span><span class="pcoded-mtext">Stations</span></a>
-                        <ul class="pcoded-submenu">
-                          
-                      <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hub <span class="pcoded-badge label label-info">100+</span> </a>
-                             </li>
-                               <li class="  pcoded-trigger"><a :href="'/admin/wilaya'" class="">Wilayas</a>
-                             </li>
-                        </ul>
-                    </li>
+                
                   
                     <li class="nav-item pcoded-menu-caption">
                         <label>Operation</label>
@@ -63,25 +52,14 @@
                                    <li data-username="Animations" class="nav-item"><a :href="'/admin/livre'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-check
 "></i></span><span class="pcoded-mtext">Colis Livrée</span> <span class="pcoded-badge label label-success"> {{ stats.livre }}</span>  </a></li>
 
-   <li class="nav-item pcoded-menu-caption">
-                        <label>Plus </label>
-                    </li>
+  
 
 
 
- <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
-                    <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-money-check"></i></span><span class="pcoded-mtext">Comptabilité</span></a>
-                    <ul class="pcoded-submenu">
-                      
-                  <li class="  pcoded-trigger"><a :href="'/admin/accounting'" class=""><i class="fas fa-calculator"></i>  Saisies <span class="pcoded-badge label label-primary">0</span> </a>
-                         </li>
-                           <li class="  pcoded-trigger"><a :href="'/admin/facturation'" class=""> <i class="fas fa-file-alt"></i> Facturation  <span class="pcoded-badge label label-success">0</span>  </a>
-                         </li>
-                    </ul>
-                </li>
 
-                                   <li data-username="Animations" class="nav-item"><a :href="'/admin/tracking'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-check
-"></i></span><span class="pcoded-mtext">Tracking</span></a></li>
+             
+
+                                
 
                 </ul>
             </div>

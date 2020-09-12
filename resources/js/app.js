@@ -58,9 +58,12 @@ Vue.component('client-retour', require('./components/client/RetourUser.vue').def
 Vue.component('client-failed', require('./components/client/FailedUser.vue').default);
 
 
+Vue.component('compta-accounting', require('./components/accounting/TabAccountig.vue').default);
+
 
 Vue.component('nav-admin', require('./components/AdminNavbar.vue').default);
 Vue.component('nav-client', require('./components/UserNavbar.vue').default);
+Vue.component('nav-cord', require('./components/CordinateurNav.vue').default);
 
 
 Vue.component('stats-client', require('./components/stats/StatsUserHome.vue').default);

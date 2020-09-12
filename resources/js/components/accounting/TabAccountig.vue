@@ -23,18 +23,48 @@
     
     
     </div>
-<div class="col-3">
+<div class="col-2">
 
-     <span class="badge badge-success badge-glow-success" style="font-size:16px;padding:10px;"> Total Encaissé :  {{ this.prices }} DA <i class="fas fa-money-check"></i>  </span>
+     <span class="badge badge-success badge-glow-success" style="font-size:16px;padding:10px;"> T-Payé :  {{ this.prices }} DA <i class="fas fa-money-check"></i>  </span>
 
 </div>
+<div class="col-3">
+
+     <span class="badge badge-success badge-glow-success" style="font-size:16px;padding:10px;"> T-Encaissé :  {{ this.prices }} DA <i class="fas fa-money-check"></i>  </span>
+
+</div>
+<div class="col-2">
+
+<input class="form-control" type="number" name="" v-model="livprices" placeholder="Saisie prix de livraison global .. ">
+</div>
     
-   <div class="col-2"><a  :href="'/admin/exportdeliv'" class="btn btn-success btn-glow-success"> Télecharger <i class="fas fa-file-excel"></i></a></div>
-    </div>            
+</div>
     
     <div class="row"> 
      
-                                                   
+                              <div class="col-2">
+
+<div class="form-group">
+                         
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
+                                            </div>
+                                <select class="custom-select" required >
+                                <option value="">Partenaire </option>
+                            <option v-for=" client  in clients" :key="client.id"  :value="client.id"> {{ client.name }}  </option>
+                                </select>
+                                
+                                          
+                                            <div class="invalid-feedback">
+                                                Please choose a Coursier.
+                                            </div>
+                                        </div>
+                                    </div>
+
+    </div>
+
+                     
                           
                             <div class="col-2">
                             
@@ -57,17 +87,21 @@
                                     </div>
                                 </div>
                             </div>
-    <div class="col-2">
+  
+                            
+   
+                              <div class="col-2">
 
 <div class="form-group">
                          
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-user-tag"></i> </span>
+                                                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-lightbulb  "></i> </span>
                                             </div>
-                                <select class="custom-select" required v-model="idliv" @change="GetNewlist(idliv)">
-                                <option value="">Coursier </option>
-                            <option v-for=" liv  in coursiers" :key="liv.id"  :value="liv.id"> {{ liv.name }}  </option>
+                                <select class="custom-select" required >
+                                <option value="">Etat </option>
+                                <option value="13">  Retour </option>
+                                          <option value="12">  Livré </option>
                                 </select>
                                 
                                           
@@ -78,48 +112,12 @@
                                     </div>
 
     </div>
-                            
-                            <div class="col-2">
-                                <div class="form-group">
-                                 
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-calendar-alt"></i> </span>
-                                        </div>
-                                        <input type="text" id="date" class="form-control" placeholder="Date">
-                                        <div class="invalid-feedback">
-                                            Please choose a date.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             
                            
-                            <div class="col-2">
                             
-                                <div class="form-group">
                        
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
-                                        </div>
-                            <select class="custom-select" required>
-                            <option value="">Tentatives </option>
-            
-                            <option value="1">Tentative 1 </option>
-                            <option value="2">Tentative 2 </option>
-                            <option value="3">Tentative 3 </option>
-                            </select>
-                                         <div class="invalid-feedback">
-                                            Please choose a type.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                       
-<div class="col-3"> 
-<button class=" btn btn-success btn-glow-success" @click="GetIDColiGP()"  data-toggle="modal" data-target="#ModalValidByGp"   ><b>    Encaissement groupé  </b> <i class="fas fa-money-check-alt"></i> </button>
-</div>
+
                                                 </div>
                         <div class="table-responsive">
 
@@ -140,6 +138,8 @@
                                
 
                                         <th class="text-center"><i class="fas fa-align-left"></i> Suivi </th>
+
+                                        <th class="text-center"><i class="fas fa-money-check"></i> Tarif </th>
                                    
                                     </tr>
                                 </thead>
@@ -164,14 +164,14 @@
                                         <th class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }}   <i class="fas fa-map-marker-alt"></i>  </label> </th>
                                         <th class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.updated_at | moment   }} </label>    </th>
                               
-                          
+
                                         <th class="text-center" >
                                             <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success btn-sm  btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
-                                                                    <button data-toggle="modal" data-target="#ModalCashByOne" @click="$refs.childcash.dataAction(col.id_colis,userid)" class="btn btn-sm btn-glow-success  btn-success " ><i style="margin:0px;padding:2px;font-size:1.3em;"  class=" fas fa-money-check-alt"></i></button>         
+                                                                   
 
                                           
                                         </th>
-                                     
+                                                               <th> <input class="form-control" type="number" :value="livprices" style="width:100px;" placeholder="Prix.. ">   </th>
 
 
                                      
@@ -185,8 +185,7 @@
    <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
            
 <stats-colis    ref="childref" >    </stats-colis>
-<cash-one  @colis-edit="getColis()" ref="childcash" >  </cash-one>
-<cash-gp @colis-edit="getColis()"  v-bind:colisvalidgp="colisvalidgp"   > </cash-gp>
+
                         </div>
 
       </div>
@@ -200,8 +199,7 @@
 <script>
 
  import ColisInfos from './ColisInfos.vue';
-  import ValidCashByOne from './ByOneCash.vue';
-    import ValidCashByGp from './ByGroupCash.vue';
+
   import Stats from './StatsInfos.vue';
 
 
@@ -213,12 +211,13 @@
     return moment((date)).format('YYYY-MM-DD [à] hh:mm ');
   }
 },
+
+ 
  components: {
     
       'view-colis':   ColisInfos,
-     'stats-colis': Stats ,
-     'cash-one': ValidCashByOne ,
-     'cash-gp':ValidCashByGp 
+     'stats-colis': Stats 
+
 
 
   },
@@ -248,7 +247,8 @@ iduser :''
 },
 prices : '',
 coursiers : {},
-idliv : ''
+idliv : '',
+livprices:''
 
 
 
@@ -268,6 +268,7 @@ this.getCoursier();
 
  },
  
+ 
  methods:{
 
 getColis(page = 1)
@@ -278,7 +279,7 @@ getColis(page = 1)
 
 
 
-     axios.get('/api/delivered')
+     axios.get('/api/afterdelivred')
      .then(response =>
      { 
        
@@ -411,14 +412,7 @@ this.addstats.userid = this.user_id ;
 
  },
 
- GetIDColiGP(){
-
-this.colisvalidgp.idliv = this.idliv ;
-
-this.colisvalidgp.iduser = this.user_id ;
-
-
- },
+ 
  GetIDColStats(id){
 
 

@@ -57,8 +57,6 @@
 
 
 
-                                   <li data-username="Animations" class="nav-item"><a href="animation.html" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-check
-"></i></span><span class="pcoded-mtext">Statistique</span></a></li>
 
                                    <li data-username="Animations" class="nav-item"><a :href="'/admin/tracking'" class="nav-link">
                                    <span class="pcoded-micon"><i class="fas fa-project-diagram

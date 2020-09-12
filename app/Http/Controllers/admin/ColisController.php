@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\ColisImport;
 use App\Exports\ColisExport;
+use App\Exports\ColisExportDelivered;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Colis;
 use App\Commandes;
@@ -83,11 +84,11 @@ class ColisController extends Controller
 
 
 
-    public function export($id) 
+    public function export_livred() 
     {
 
      
-        return Excel::download(new ColisExport($id), 'export_colis.xlsx');
+        return Excel::download(new ColisExportDelivered(), 'export_colis_livre.xlsx');
     }
 
 
@@ -231,6 +232,19 @@ public function data_colis_inhouse(){
     }
 ///getcoli all without any action --------------
 
+    public function data_colis_recp($idcom){
+
+        
+        $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+        
+    
+            
+        
+         
+        return response()->json($Colis);
+
+
+    }
 
     public function tmp_colis_signaler(Request $request){
 

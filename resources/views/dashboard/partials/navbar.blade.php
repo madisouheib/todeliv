@@ -25,6 +25,11 @@
 
  <nav-client :user_id='@json( Auth::user()->id )' > </nav-client>
   @endrole
+
+  @role('coordinateur')
+
+ <nav-cord :user_id='@json( Auth::user()->id )' > </nav-cord>
+  @endrole
             </div>
         </div>
     </nav>

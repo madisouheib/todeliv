@@ -36,7 +36,7 @@ public function stats_tags_client(){
 $GetEch = Stats::where('order_stats','=',5)->pluck('id_stats')->toArray();
 $DataStat = array();
 
-$DataStat['rec'] = Colis::whereNull('colis.id_stats')->count();
+$DataStat['rec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->whereNull('colis.id_stats')->where('validation','=',false)->where('commandes.confirmed_user','=',true)->count();
 
 
 $DataStat['inhouse']= Colis::where(function ($query) {
