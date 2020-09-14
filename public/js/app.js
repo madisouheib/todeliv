@@ -7992,23 +7992,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -48123,48 +48106,6 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.codebars,
-                  expression: "codebars"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                id: "validationCustomUsername",
-                placeholder: " tracking id ...   ",
-                "aria-describedby": "inputGroupPrepend",
-                required: ""
-              },
-              domProps: { value: _vm.codebars },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.codebars = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "invalid-feedback" }, [
-              _vm._v(
-                "\n                    Please choose a code.\n                "
-              )
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "col-2" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "switch switch-danger d-inline m-r-10" }, [
@@ -48219,7 +48160,7 @@ var render = function() {
       [
         _c("div", { staticClass: "table-responsive" }, [
           _c("table", { staticClass: "table table-bordered" }, [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
@@ -48369,18 +48310,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
         [_c("i", { staticClass: "fas fa-barcode" })]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
-        [_c("i", { staticClass: "fab fa-searchengin" })]
       )
     ])
   },

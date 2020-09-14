@@ -50,10 +50,12 @@ public function add_colis_fiche(Request $request){
     $idcolis = request('idcolis');
     $idfiche = request('idfiche');
     $iduser = request('iduser');
- $CountColis = FicheColis::leftJoin('stats_colis','stats_colis.id_colis','=','fiche_fields.id_colis')->where('id_fiche','=',$idfiche)->where('fiche_fields.id_colis','=',$idcolis)->count();
-
-$DataValidation =Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_colis','=',$idcolis)->where('colis.validation','=',true)->whereNull('colis.id_stats')->orWhere('colis.id_stats','=',11)->count();
-
+    $CountColis = FicheColis::where('id_fiche','=',$idfiche)->where('fiche_fields.id_colis','=',$idcolis)->count();
+ 
+    $DataValidation =Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->where('colis.id_colis','=',$idcolis)->where('colis.validation','=',true)->where(function ($query) {
+            $query->where('colis.id_stats', '=', null)
+                  ->orWhere('colis.id_stats', '=', 11);
+        })->count();
 if($DataValidation == 1){
 
 
@@ -85,14 +87,16 @@ $EditColis = Colis::find($idcolis);
 $EditColis->id_stats = 10  ;
 
 $EditColis->save();
+
+$DataFicheColis = FicheColis::select('colis.*','fiche_fields.*','fiche.*','users.name as partenaire')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users','users.id','=','commandes.id_clt')->where('fiche_fields.id_fiche','=',$idfiche)->paginate(10);
+
+
+return response()->json($DataFicheColis);
     }
  }
 
 
- $DataFicheColis = FicheColis::select('colis.*','fiche_fields.*','fiche.*','users.name as partenaire')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users','users.id','=','commandes.id_clt')->where('fiche_fields.id_fiche','=',$idfiche)->paginate(10);
 
-
-return response()->json($DataFicheColis);
 
    
 

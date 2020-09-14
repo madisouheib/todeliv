@@ -20,24 +20,7 @@
   
     
     </div>
-        <div class="col-4">
-        <div class="form-group">
-  
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend"> <i class="fab fa-searchengin"></i> </span>
-                </div>
-                <input type="text" class="form-control"  id="validationCustomUsername" placeholder=" tracking id ...   "  v-model="codebars" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                    Please choose a code.
-                </div>
-            </div>
-        </div>
-    
-
-  
-    
-    </div>
+   
     <div class="col-2">
 
      <div class="form-group">

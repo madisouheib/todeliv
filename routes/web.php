@@ -38,7 +38,7 @@ Route::get('/admin/users', 'admin\UsersController@index')->name('index');
 
 
 
-Route::group(['middleware' => ['role:admin,coordinateur']], function () {
+Route::group(['middleware' => ['role:admin|coordinateur']], function () {
 // admin routes Profiles   
 
 Route::get('/admin/profiles', 'admin\ProfilesController@index')->name('index');
