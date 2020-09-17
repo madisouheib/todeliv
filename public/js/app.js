@@ -8036,7 +8036,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('/api/inhouse?page=' + page).then(function (response) {
+      axios.get('/api/inhousedata').then(function (response) {
         _this2.colishouse = response.data;
       })["catch"](function (err) {
         return console.log(err);
@@ -8073,7 +8073,7 @@ __webpack_require__.r(__webpack_exports__);
             });
           }
         } else {
-          var DataAllValid = this.colishouse.data;
+          var DataAllValid = this.colishouse;
           var code = this.codebars;
           var valObjValid = DataAllValid.filter(function (elem) {
             if (elem.id_colis == code) return true;

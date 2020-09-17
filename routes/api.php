@@ -142,7 +142,7 @@ Route::get('/getcolisfiche/{id}', 'admin\FicheColisController@data_fiche_colis')
 Route::delete('/deletecolisfiche/{id}', 'admin\FicheColisController@delete_colis_fiche');
 
 Route::post('/addcolisfiche', 'admin\FicheColisController@add_colis_fiche');
-
+Route::get('/inhousedata', 'admin\FicheColisController@data_colis_inhouse');
 
 Route::get('/getlivreur', 'admin\FicheController@data_livreur');
 Route::get('/getlasf', 'admin\FicheController@get_last_id');

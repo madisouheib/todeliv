@@ -23,6 +23,14 @@ $DataFicheColis = FicheColis::select('colis.*','fiche_fields.*','fiche.*','users
 return response()->json($DataFicheColis);
 
 }
+public function data_colis_inhouse(){
+
+
+    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')->where('validation','=',true)->where('id_stats','=',null)->orWhere('id_stats','=',11)->orderBy('id_colis', 'desc')->get();
+
+    return response()->json($Colis);
+    
+}
 
 public function delete_colis_fiche($id){
 
@@ -88,15 +96,15 @@ $EditColis->id_stats = 10  ;
 
 $EditColis->save();
 
-$DataFicheColis = FicheColis::select('colis.*','fiche_fields.*','fiche.*','users.name as partenaire')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users','users.id','=','commandes.id_clt')->where('fiche_fields.id_fiche','=',$idfiche)->paginate(10);
 
-
-return response()->json($DataFicheColis);
     }
  }
 
 
+ $DataFicheColis = FicheColis::select('colis.*','fiche_fields.*','fiche.*','users.name as partenaire')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users','users.id','=','commandes.id_clt')->where('fiche_fields.id_fiche','=',$idfiche)->paginate(10);
 
+
+ return response()->json($DataFicheColis);
 
    
 

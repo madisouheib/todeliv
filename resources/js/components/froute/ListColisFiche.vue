@@ -182,7 +182,7 @@ getColis(page = 1)
 
 
 
-     axios.get('/api/inhouse?page='+page)
+     axios.get('/api/inhousedata')
      .then(response =>
      { 
        
@@ -243,7 +243,7 @@ this.codebars = ''
 }else {
 
 
-var  DataAllValid = this.colishouse.data ;
+var  DataAllValid = this.colishouse ;
 var code = this.codebars;  
 var valObjValid = DataAllValid.filter(function(elem){
     if(elem.id_colis == code ) return true;
