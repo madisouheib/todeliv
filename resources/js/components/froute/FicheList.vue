@@ -1,5 +1,6 @@
 <template>
     <div>
+      <button style="float:right;" @click="getFroute()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
 
 <div class="row">
 <div class="col col-2">
@@ -32,7 +33,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-shipping-fast"></i> </span>
             </div>
-<select class="custom-select" required>
+<select class="custom-select" v-model="livr" @change="FiltreFicheLivr(livr)" required>
 <option v-for=" liv  in livreur" :key="liv.id"  :value="liv.id"> {{ liv.name }}  </option>
 
 </select>
@@ -143,10 +144,14 @@
                       
                                 </tbody>
                             </table>
-                        </div>
-<valid-fiche  @fiche-edited="getFroute()" v-bind:id_fiche="id_fiche">    </valid-fiche>
+                   <valid-fiche  @fiche-edited="getFroute()" v-bind:id_fiche="id_fiche">    </valid-fiche>
                         <add-fiche @fiche-added="getFroute()" v-bind:id_user="id_user">   </add-fiche>
 <unlink-fiche @fiche-edited="getFroute()" v-bind:id_fiche="id_fiche"  >   </unlink-fiche>
+       <pagination :data="froute" 
+  @pagination-change-page="getFroute"> </pagination>        
+                        </div>
+                   
+
 </div>
 </template>
 
@@ -176,6 +181,7 @@
  return {
 froute:{},
 livreur: {},
+livr:'',
 hubs : {},
 id_user : this.user_id ,
 id_fiche : '',
@@ -223,6 +229,21 @@ getFroute(page = 1)
      
  }
      ).catch(err => console.log(err));
+
+
+ },
+ FiltreFicheLivr(livr){
+
+ axios.get('/api/getfichebyliv/'+livr)
+     .then(response =>
+     { 
+       
+   this.froute= response.data
+   
+     
+ }
+     ).catch(err => console.log(err));
+
 
 
  }

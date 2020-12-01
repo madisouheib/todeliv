@@ -84,7 +84,7 @@ border-radius: 4px;
   <td style="width: 7%"> #{{ $col->id_colis}} <br> SEND </td>
   <td style="width: 31%;padding:2px;"  > <img  style="width:200px;height:30px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($col->id_colis, 'C39')}}" alt="barcode" />  </td>
   <td style="width: 14%"  style="background-color:black;color:white;">COD</td>
-  <td colspan="2" style="width: 16%"> Date : {{ $col->created  }} </td>
+  <td colspan="2" style="width: 16%"> Date : {{ $col->created  }}  <span style="background-color:black;color:white;padding:2px;margin:1px;padding-top:-3px;float:right"> T: {{ $col->stats_count }} </span> </td>
   
   <td  style="width: 20%;padding:0px;height:20px;text-align:center;" > <p  > Signature  </p>    </td>
   <td  style="width: 20%;padding:0px;text-align:center;" > <p> Remarque  </p>  </td>
@@ -114,7 +114,7 @@ border-radius: 4px;
           </tbody>
         </table>
             </td>
-<td colspan="2">  {{ $col->wilaya  }} </td>
+<td colspan="2">  {{ $col->wilaya  }}  </td>
 
 <td rowspan="3" style="width: 20%" >    </td>
 <td rowspan="3" style="width: 20%" > </td>

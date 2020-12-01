@@ -45,11 +45,25 @@ public function get_delivred_confirmed()
     ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
     ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
     ->where('validation','=',true)
-    ->where('colis.id_stats','=',12)->orderBy('colis.id_colis', 'desc')->get();
+    ->where(function ($query) {
+        $query->where('id_stats', '=', 12)
+              ->orWhere('id_stats', '=', 13);
+    })
+    ->orderBy('colis.id_colis', 'desc')->paginate(40);
+
+
+
     $TotalPrice =   Colis::
     where('validation','=',true)
     ->where('colis.id_stats','=',12)->sum('price'); 
-$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+    $PriceRetour =   Colis::
+where('validation','=',true)
+->where('colis.id_stats','=',13)->sum('price'); 
+
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice,'retour'=>$PriceRetour );
+
+
+
 
 
 

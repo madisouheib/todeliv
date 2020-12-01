@@ -5,24 +5,8 @@
       
     
 <div class="row">
-    <div class="col-3">
-        <div class="form-group">
-
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend"> <i class="fab fa-searchengin"></i> </span>
-                </div>
-                <input type="text" class="form-control" id="validationCustomUsername" placeholder=" tracking id  " aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                    Please choose a traciing.
-                </div>
-            </div>
-        </div>
-    
-    
-    
-    
-    </div>
+      
+   
     <div class="col-3">
         <div class="form-group">
 
@@ -30,7 +14,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup"> <i class="fas fa-barcode"></i> </span>
                 </div>
-                <input type="text" class="form-control" id="validationCust" placeholder=" code a bare   " aria-describedby="inputGroup" required>
+                <input type="text" class="form-control" v-model="codebars"  @keyup="keymonitor"   id="validationCust" placeholder=" code a bare   " aria-describedby="inputGroup" required>
                 <div class="invalid-feedback">
                     Please choose a code.
                 </div>
@@ -41,11 +25,15 @@
     
  
     </div>
-    <div class="col-2"> <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:10px;"> <i class="fas fa-money-check-alt"></i> {{ this.UserDetail.prices }} DA  </label></div>
     <div class="col-3">
-    <button v-if="this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count " class="btn btn-square btn-outline-success" data-toggle="modal" data-target="#ModalValidFiche"  style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
 
-    <button v-else class="btn  btn-glow-dark btn-dark " disabled  style=""> Validation groupée  <i class="fas fa-minus-circle" ></i></button>
+<button class="btn btn-glow-primary btn-sm btn-primary" data-toggle="modal" data-target="#ModalColisActionGp" @click="GetIDColisGrp()" type="button" > Mise à jour groupée <i class="fas fa-dolly"> </i>  </button>
+    </div>
+    <div class="col-2"> <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-money-check-alt"></i> {{ this.UserDetail.prices }} DA  </label></div>
+    <div class="col-3">
+    <button v-if="this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count " class="btn btn-square btn-sm btn-outline-success" data-toggle="modal" data-target="#ModalValidFiche"  style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
+
+    <button v-else class="btn  btn-glow-dark btn-dark btn-sm " disabled  style=""> Validation groupée  <i class="fas fa-minus-circle" ></i></button>
 
     </div>
 
@@ -65,7 +53,7 @@
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
                                         </div>
  <select class="custom-select" name="" required v-model="wil">
-    <option       v-for="wilaya in wilayas " :key="wilaya.key"  :value=" wilaya.key  "  > {{ wilaya.name}}    </option>
+    <option    style="padding:30%;font-weight:bold;"     v-for="wilaya in wilayas " :key="wilaya.key"   > {{ wilaya }}    </option>
     
 </select>
 
@@ -77,18 +65,19 @@
                                     </div>
                                 </div>
                             </div>
-    
-    
-                            <div class="col-2">
+
+                     
+                                <div class="col-2">
                             
                                 <div class="form-group">
                                 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-list"></i>  </span>
                                         </div>
-                            <select class="custom-select" required v-model="clt">
-                            <option v-for=" client  in clients " :key="client.id"  :value="client.id"      >  {{ client.name }}  </option>
+                            <select class="custom-select"  @change="FiltreFiches(flist)" v-model="flist" >
+                          
+                            <option style="padding:30%;font-weight:bold;" v-for=" fiche  in listfiche " :key="fiche.id_fiche"  :value="fiche.id_fiche"   > #Fiche - {{ fiche.id_fiche }}  </option>
                       
                             </select>
                             
@@ -102,29 +91,7 @@
                             
                         
                             
-                            <div class="col-2">
-                            
-                                <div class="form-group">
-                         
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-tasks"></i> </span>
-                                        </div>
-                            <select class="custom-select" required>
-  <option selected >Mise a jour  </option>
-                                 <option       v-for="stat in stats " :key="stat.id_stats"  :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
-                          
-                        
-                            </select>
-                            
-                                      
-                                        <div class="invalid-feedback">
-                                            Please choose a one.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
+                         <div class="col-2">
                             
                                 <div class="form-group">
                        
@@ -132,12 +99,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
                                         </div>
-                            <select class="custom-select" required>
-                            <option value="">Tentatives </option>
+                            <select class="custom-select" @change="Tentatives(tent)"  v-model="tent">
+                            <option  style="padding:30%;font-weight:bold;"  value="all" selected>Tentatives </option>
             
-                            <option value="1">Tentative 1 </option>
-                            <option value="2">Tentative 2 </option>
-                            <option value="3">Tentative 3 </option>
+                            <option  style="padding:30%;font-weight:bold;"  value="0"> Tentative 0 </option>
+                            <option  style="padding:30%;font-weight:bold;"  value="1"> Tentative 1 </option>
+                            <option  style="padding:30%;font-weight:bold;"  value="2"> Tentative 2 </option>
                             </select>
                                          <div class="invalid-feedback">
                                             Please choose a type.
@@ -145,11 +112,17 @@
                                     </div>
                                 </div>
                             </div>
+   <div class="col-6" v-if="ShowBtn == true ">
+<label class="badge  badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-file"></i> {{ this.FicheDetail.fprice }} DA  </label>
+    <button v-if="this.FicheDetail.ftotal_count == this.FicheDetail.fchtotal_count " class="btn btn-sm  btn-glow-success btn-sm    btn-success" data-toggle="modal" data-target="#ModalFicheValid"  style=""> Validation Par Fiche  <i class="fas fa-check-circle" ></i></button>
 
+    <button v-else class="btn  btn-glow-dark btn-dark btn-sm " disabled  style=""> Validation Par Fiche  <i class="fas fa-minus-circle" ></i></button>
+
+    </div>
 
 
                                                 </div>
-                        <div class="table-responsive ">
+                        <div class="table-responsive">
 
                             <table class="table table-hover table-bordered">
    
@@ -161,6 +134,8 @@
                                         <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
                                         <th class="text-center" ><i class="fas fa-address-card"></i> Partenaire </th>
                                         <th class="text-center" ><i class="fas fa-tasks"></i> Status </th>
+
+                                          <th class="text-center" ><i class="fas fa-calendar-alt"></i> Date </th>
             
                                
 
@@ -171,19 +146,26 @@
                                 <tbody>
              
                                     <tr v-for=" col  in colis.data" :key="col.id_colis"   :style="{ background: col.id_stats == 4 ? '#2dde98'   : '' || col.id_stats == 3 ? '#ff4c4c'  : '' ||   col.id_stats == 10 ? ''  : '#ffc20e'   , color: col.id_stats == 4 ? 'white'  : ''  || col.id_stats == 3 ? 'white'   : '' || col.id_stats == 10 ? ''   : 'white' }"  >
-       
-
-                             
-                                        <th scope="row" class="text-center" > <b class="badge badge-light" style="font-size:14px;"> #Send-{{ col.id_colis }}   </b> </th>
+   <td scope="row" class="text-center" >                 
+                          <div class="form-group">
+                                    <div  class="checkbox checkbox-fill d-inline" >   
+                                         <input   type="checkbox" v-model="mycolis" :value="col.id_colis" :name="'checkbox-fill-'+col.id_colis" :id="'checkbox-fill-'+col.id_colis" >
+                                 <label :for="'checkbox-fill-'+col.id_colis" class="cr"> #Send-{{ col.id_colis }}  </label>  
+                               </div>
+                          </div>        
+                        </td>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo"  class="btn btn-sm  btn-glow-dark  btn-square   btn-dark" @click="getColInfos(col.id_colis)"><i  style="margin:0px;"  class="fas fa-plus"></i></button>   
-                                             <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm   btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a>
+         <td class="text-center" >
+                                         <button data-toggle="modal" data-target="#ModalColisInfo"  class="btn btn-sm  btn-glow-dark  btn-square   btn-dark" @click="getColInfos(col.id_colis)"><i  style="margin:0px;"  class="fas  fa-user-circle"></i></button>   
+       <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm  btn-glow-dark btn-dark">
+        <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i>
+         </a>
                                         
-                                        </th>
-                                        <th class="text-center" > <b class="badge badge-light " style="font-size:16px;"> {{ col.price }} DA     </b> </th>
-                                        <th class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i></b>  </th>
-                                        <th class="text-center" > {{ col.name }}  </th>
-                                        <th class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.field_stats }} <i v-if="col.id_stats == 3" class="fas fa-redo-alt "></i>
+                                        </td>
+                                        <td class="text-center" > <b class="badge badge-light " style="font-size:16px;"> {{ col.price }} DA     </b> </td>
+                                        <td class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i></b>  </td>
+                                        <td class="text-center" > {{ col.name }}   </td>
+                                        <td class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.field_stats }} <i v-if="col.id_stats == 3" class="fas fa-redo-alt "></i>
                                         <i v-else-if="col.id_stats == 4 " class="fas fa-check-circle"></i>
 
                                         <i v-else-if="col.id_stats == 10 " class="fas fa-shipping-fast"></i>
@@ -192,12 +174,12 @@
                                         
                                          </b> 
                                         
-                                            </th>
-                          
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn  btn-sm   btn-square  btn-glow-dark btn-dark " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
+                                            </td>
+                          <td class="text-center"><b class="badge badge-light" style="font-size:14px;">{{ col.created_at | moment    }} <br> ( {{ col.created_at | days    }} jours )    </b>   </td>
+                                        <td class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn  btn-sm   btn-square  btn-glow-dark btn-dark " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
                         
                                           
-                                        </th>
+                                        </td>
                                      
 <td>
 
@@ -213,10 +195,12 @@
 
     </pagination>
     <valid-modal v-bind:id_liv="UserDetail" >  </valid-modal>
+<valid-fiche @fiche-validate="reload()"   v-bind:flist="flist">  </valid-fiche>
+
     <action-colis  @colis-added="refreshData()"  v-bind:addstats="addstats"  >    </action-colis>
 <stats-colis    ref="childref" >    </stats-colis>
     <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
-
+<valid-gp   @colis-added="refreshData()"  v-bind:addstatsgp="addstatsgp"  >   </valid-gp>
                         </div>
 
       </div>
@@ -232,33 +216,70 @@
  import ColisInfos from './ColisInfos.vue';
   import Stats from '../inhouse/StatsInfos.vue';
    import ActionStats from './EtatColis.vue';
+  import EtatGroupColis from './EtatGroupColis';
     import ValidFiche from './ValidDelev.vue';
+    import ValidByFiche from './ValidFiche.vue';
+
+
 
   export default {
      props: ['url_id','user_id'],
+      filters: {
+  moment: function (date) {
+      
+    return moment((date)).format('YYYY-MM-DD [à] hh:mm ');
+  },
+days: function (date){
+
+
+var a = moment((date));
+var b = moment([]);
+return b.diff(a, 'days') // 1
+/*
+var a = moment((date)).format("DD.MM.YYYY");
+
+var b = moment().format("DD.MM.YYYY") ;
+return  a.diff(b,'days') // 1
+*/
+
+}
+
+  
+},
  components: {
     
       'view-colis':   ColisInfos,
      'stats-colis': Stats ,
      'action-colis':ActionStats,
-     'valid-modal' : ValidFiche 
+     'valid-modal' : ValidFiche ,
+     'valid-gp' : EtatGroupColis,
+     'valid-fiche': ValidByFiche
+
 
   },
 
      data(){
  return {
 colis:{},
-
+mycolis : [],
 ShowColis: '',
+codebars :'',
 idcom : this.url_id,
 userid : this.user_id,
 ShowCom:'',
+FicheDetail : {},
 clients : {},
 wilayas : {},
 wil : '',
+tent : '',
 clt:'',
+flist :'',
+ShowBtn :'',
+listfiche : {},
 stats : {},
 id_colis: '',
+addstatsgp:{}
+,
 addstats :{
 id_colis :'',
 ShowStats : {},
@@ -273,24 +294,25 @@ UserDetail : {}
  {
 
 
-
 this.getColis();
 
 this.GetWilayas();
-this.getCLients();
+
 this.GetStats();
 this.getPrice();
-
+ this.getFiche();
  },
  
  methods:{
 
-     refreshData(){
+  refreshData(){
 
-this.getColis();
-this.getPrice();
+        this.getColis();
+        this.getPrice();
 
-     },
+        this.mycolis = [];
+
+},
 
 
 
@@ -309,15 +331,105 @@ getPrice(){
 
 
 },
+reload(){
+
+var page = 1 ; 
+   axios.get('/api/delivliste/'+this.url_id+'?page='+page)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
+ this.getFiche();
+     
+ }
+     ).catch(err => console.log(err));
+
+
+
+}
+,
+FiltreFiches(flist){
+
+var page = 1 ; 
+ axios.get('/api/filtreflist/'+flist+'?page='+page)
+     .then(response =>
+     {       this.colis = response.data  }
+     ).catch(err => console.log(err));
+
+
+     axios.get('/api/livreurfiche/'+this.flist)
+     .then(response =>
+     { 
+//console.log(response.data)
+this.FicheDetail = response.data
+     this.ShowBtn = true ;
+ }
+     ).catch(err => console.log(err));
+
+this.mycolis = [];
+}
+
+,
+ 
+ keymonitor(event) {
+
+ let keyMessage = 'keyup: ';
+ if(this.codebars !== '' ){
+
+
+
+
+
+var  DataAll = this.colis.data ;
+var  DataAllExist = this.mycolis ;
+var code = this.codebars;  
+var valObj = DataAll.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+var existObj = DataAllExist.filter(function(elem){
+    if(elem == code ) return true;
+});
+if(valObj.length > 0) {
+
+if(existObj.length > 0) {
+
+this.codebars = '';
+
+}else {
+
+
+this.mycolis.push(code);
+this.codebars = '';
+}
+
+
+
+
+}else {
+
+
+this.codebars = '';
+    
+}
+
+
+
+
+
+}
+} 
+,
 getColis(page = 1)
  {
-     
-   
 
 
+   if(this.flist !== '') {
 
+this.FiltreFiches(this.flist);
 
-     axios.get('/api/delivliste/'+this.url_id+'?page='+page)
+   }else {
+
+   axios.get('/api/delivliste/'+this.url_id+'?page='+page)
      .then(response =>
      { 
        
@@ -325,6 +437,10 @@ getColis(page = 1)
      
  }
      ).catch(err => console.log(err));
+
+ 
+   }
+  
 
 
  },
@@ -374,7 +490,7 @@ getColis(page = 1)
 
 
 
- axios.get('/api/getwilayas')
+ axios.get('/api/wilayaflist/'+this.url_id)
      .then(response =>
      { 
        
@@ -384,6 +500,45 @@ getColis(page = 1)
      ).catch(err => console.log(err));
 
  },
+ getFiche(){
+
+
+
+
+     axios.get('/api/fichelist/'+this.url_id)
+     .then(response =>
+     { 
+       
+   this.listfiche = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+    Tentatives(tent) {
+var page = 1 ; 
+ axios.get('/api/delivliste/'+this.url_id+'?page='+page)
+     .then(response =>
+     { 
+       
+ 
+  if(tent !== 'all') {
+ const  cols  = response.data.data
+ this.colis.data =   cols.filter(col => col.stats_count == tent );
+  }else {
+
+this.colis = response.data
+
+  }
+        
+ }
+     ).catch(err => console.log(err));
+
+//console.log(this.colis.data);
+    
+      //return  this.colis = colis.filter(col => col.stats_count == tent)
+  } ,
   GetStats(){
 
 
@@ -401,13 +556,23 @@ getColis(page = 1)
  },
 
  GetIDColis(id){
-console.log(this.userid);
+
 this.addstats.id_colis = id ;
 
 this.addstats.userid = this.user_id ;
 
 
  },
+ 
+  GetIDColisGrp(id){
+
+this.addstatsgp.cols = this.mycolis ;
+
+this.addstatsgp.userid = this.user_id ;
+
+
+ }
+ ,
  GetIDColStats(id){
 
 

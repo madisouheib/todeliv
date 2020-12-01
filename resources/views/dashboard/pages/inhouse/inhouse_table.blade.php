@@ -9,7 +9,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Reception </h5>
+                        <h5>IN HOUSE  </h5>
                      
 
 

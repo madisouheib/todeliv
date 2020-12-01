@@ -3,7 +3,8 @@
     
 <div>
   
-    
+          <button style="float:right;" @click="getColis()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
+
 <div class="row">
     <div class="col-4">
         <div class="form-group">
@@ -12,7 +13,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend"> <i class="fab fa-searchengin"></i> </span>
                 </div>
-                <input type="text" class="form-control" id="validationCustomUsername" placeholder=" tracking id  " aria-describedby="inputGroupPrepend" required>
+                <input type="text" class="form-control" id="validationCustomUsername" placeholder=" Tracking id ...  "  @keyup="onBarcodeScanned"  v-model="codebars"  aria-describedby="inputGroupPrepend" required>
                 <div class="invalid-feedback">
                     Please choose a traciing.
                 </div>
@@ -40,8 +41,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
                                         </div>
-                            <select class="custom-select" name="" required v-model="wil">
-    <option       v-for="wilaya in wilayas " :key="wilaya.key"  :value=" wilaya.key  "  > {{ wilaya.name}}    </option>
+                            <select class="custom-select" name=""  @change="FiltreWilaya(wil)" required v-model="wil">
+    <option       v-for="wilaya in wilayas " :key="wilaya.key"   > {{ wilaya.name}}    </option>
     
 </select>
 
@@ -61,7 +62,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-user-tag"></i> </span>
                                             </div>
-                                <select class="custom-select" required v-model="idliv" @change="GetNewlist(idliv)">
+                                <select class="custom-select" required v-model="idliv" @change="FiltreRetour(idliv)">
                                 <option value="">Coursier </option>
                             <option v-for=" liv  in coursiers" :key="liv.id"  :value="liv.id"> {{ liv.name }}  </option>
                                 </select>
@@ -99,7 +100,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
                                         </div>
-                            <select class="custom-select" required>
+                            <select v-model="tent" @change="FiltreTentatives(tent)" class="custom-select" required>
                             <option value="">Tentatives </option>
             
                             <option value="1">Tentative 1 </option>
@@ -113,7 +114,11 @@
                                 </div>
                             </div>
                        
+<div class="col-3">
 
+<button class="btn btn-danger" data-toggle="modal" data-target="#ModalValidRetour"  type="submit" > validation groupée <i class="fas fa-check-circle"></i> </button>
+
+</div>
 
 
                                                 </div>
@@ -151,22 +156,22 @@
 </div>
       </td>
                              
-                                        <th scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></th>
+                                        <td scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></td>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"   class="btn btn-sm   btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-search-plus" ></i></button> 
-                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-sm  btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></th>
-                                                  <th class="text-center" > <label class="badge badge-light" style="padding:10px;font-size:14px;">  {{ col.nom_client }}  </label>  </th>
-                                        <th class="text-center" > <label class="badge badge-danger" style="font-size:16px;">   {{ col.price }}  DA  </label> </th>
-                                        <th class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }}   <i class="fas fa-map-marker-alt"></i>  </label> </th>
-                                        <th class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.updated_at | moment   }} </label>    </th>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"   class="btn btn-sm   btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-search-plus" ></i></button> 
+                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-sm  btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></td>
+                                                  <td class="text-center" > <label class="badge badge-light" style="padding:10px;font-size:14px;">  {{ col.nom_client }}  </label>  </td>
+                                        <td class="text-center" > <label class="badge badge-danger" style="font-size:16px;">   {{ col.price }}  DA  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }}   <i class="fas fa-map-marker-alt"></i>  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.updated_at | moment   }} </label>    </td>
                               
                           
-                                        <th class="text-center" >
+                                        <td class="text-center" >
                                             <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-sm btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
                                                                     <button data-toggle="modal" data-target="#ModalCashByOne" @click="$refs.childcash.dataAction(col.id_colis,userid)" class="btn btn-sm btn-glow-success  btn-success " ><i style="margin:0px;padding:2px;font-size:1.3em;"  class=" fas fa-money-check-alt"></i></button>         
 
                                           
-                                        </th>
+                                        </td>
                                      
 
 
@@ -181,7 +186,7 @@
    <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
            
 <stats-colis    ref="childref" >    </stats-colis>
-
+<valid-retour @fiche-edited="getColis()" >    </valid-retour>
                         </div>
 
       </div>
@@ -195,6 +200,7 @@
 <script>
 
  import ColisInfos from './ColisInfos.vue';
+ import ValidRetour from './ValidRetour.vue';
 
   import Stats from './StatsInfos.vue';
 
@@ -210,7 +216,8 @@
  components: {
     
       'view-colis':   ColisInfos,
-     'stats-colis': Stats 
+     'stats-colis': Stats ,
+     'valid-retour': ValidRetour 
 
 
 
@@ -219,11 +226,13 @@
      data(){
  return {
 colis:{},
-
+codebars:'',
 ShowColis: {},
+checkcolis:{},
 idcom : this.url_id,
 userid : this.user_id,
 ShowCom:'',
+tent :'',
 clients : {},
 wilayas : {},
 wil : '',
@@ -264,7 +273,7 @@ idliv : ''
  {
 
 
-
+ this.$barcodeScanner.init(this.onBarcodeScanned);
 this.getColis();
 
 this.GetWilayas();
@@ -289,21 +298,20 @@ getColis(page = 1)
      { 
        
 this.colis = response.data['colis'];
-this.prices = response.data['amount']
-     
+this.prices = response.data['amount'];
+     this.checkcolis =response.data['colis'];
  }
      ).catch(err => console.log(err));
 
 
  },
- getColisData(id){
+
+FiltreTentatives(tent){
 
 
-this.getColis();
- },
- GetNewlist(idliv){
 
-     axios.get('/api/return/'+idliv)
+
+     axios.get('/api/refiltrtent/'+tent)
      .then(response =>
      { 
        
@@ -314,8 +322,117 @@ this.prices = response.data['amount']
      ).catch(err => console.log(err));
 
 
- },
+}
+ ,
+ 
+ 
+ FiltreWilaya(wil){
 
+
+
+
+     axios.get('/api/retourwils/'+wil)
+     .then(response =>
+     { 
+       
+this.colis = response.data['colis'];
+this.prices = response.data['amount']
+     
+ }
+     ).catch(err => console.log(err));
+
+
+}
+ 
+ ,
+ 
+ FiltreRetour(id){
+
+
+
+
+     axios.get('/api/retourliv/'+id)
+     .then(response =>
+     { 
+       
+this.colis = response.data['colis'];
+this.prices = response.data['amount']
+     
+ }
+     ).catch(err => console.log(err));
+
+
+}
+ 
+ ,
+ getColisData(id){
+
+
+this.getColis();
+ },
+ 
+onBarcodeScanned(codebars) {
+this.resetBarcode();
+
+
+
+ if(this.codebars !== '' ){
+
+
+
+
+
+var  DataAll = this.checkcolis ;
+var code = this.codebars;  
+var valObj = DataAll.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObj.length > 0) {
+
+ if(this.timer) {
+                // So we clear and null it so it doesn't contact the api
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => {
+                // contact your endpoint here
+axios.get('/api/coderetour/'+code).then( 
+    
+    response =>
+     { 
+       
+   this.colis = response.data['colis'],
+     this.codebars = ''
+ }
+    
+
+
+
+
+).catch(error => console.log(error))
+                // Assuming your scanner can emit keystrokes
+                // within 100 milliseconds from one another
+                // otherwise increase this value as necessary
+            }, 100);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+}
+ },
+  resetBarcode () {
+        let codebars = this.$barcodeScanner.getPreviousCode()
+        // do something...
+      },
  getColInfos(id){
 
  axios.get('/api/getcolisinfos/'+id)

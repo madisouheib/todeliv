@@ -49,14 +49,33 @@ $DataStat['inhouse']= Colis::where(function ($query) {
 
 
 
-$DataStat['enliv'] = Colis::where('colis.id_stats','=',10)->count();
-$DataStat['livre']  = Colis::where('colis.id_stats','=',4)->count();
+$DataStat['enliv'] = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->where('fiche.valid_fiche','=',true)
+->whereNull('fiche.closed_at')
+->where('fiche.cloture','=',0)
+->where('colis.id_stats','=',10)->count();
 
-$DataStat['countfiche']  = Fiche::where('fiche.cloture','=',false)->count();
+$DataStat['livre']  = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')->where('colis.id_stats','=',4)->count();
 
-$DataStat['ech']  = Colis::whereIn('colis.id_stats',$GetEch)->count();
+$DataStat['countfiche']  = Fiche::where('fiche.cloture','=',0)->count();
 
-$DataStat['retour']  = Colis::where('colis.id_stats','=',3)->count();
+$DataStat['ech']  = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')->whereIn('colis.id_stats',$GetEch)->count();
+
+$DataStat['retour']  = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')->where('colis.id_stats','=',3)->count();
 
 
 

@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Auth::routes();
 
@@ -99,9 +97,6 @@ Route::get('/admin/retours', 'admin\RetourController@index')->name('index');
 
 Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
-Route::get('/admin/print-pdf/{id}','admin\ColisController@view_pdf')->name('view_pdf');
-
-Route::get('/admin/print_com/{id}','admin\ColisController@view_pdf_commandes')->name('view_pdf_commandes');
 
 
 Route::get('/admin/export/{id}', 'admin\ColisController@export')->name('export');
@@ -127,6 +122,9 @@ Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('l
 // admin routes reception   
 
 
+Route::get('/admin/print-pdf/{id}','admin\ColisController@view_pdf')->name('view_pdf');
+
+Route::get('/admin/print_com/{id}','admin\ColisController@view_pdf_commandes')->name('view_pdf_commandes');
 
 
 Route::get('/admin/recpuser', 'admin\ClientController@data_recp_client')->name('data_recp_client');

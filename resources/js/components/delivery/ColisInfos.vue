@@ -11,11 +11,8 @@
                             </div>
                             <div class="modal-body">
                <table class="table table-striped">
-                   <tbody>  
 <tr>
 <td> <i class="fas  fa-address-card"> </i> Nom & prenom  : </td><td style="font-weight:bold;" >{{ ShowColis.nom_client}}</td> </tr>
-
-
 <tr>
 <td> <i class="fas fa-map"> </i> Wilaya : </td><td style="font-weight:bold;" >{{ ShowColis.wilaya }}</td> </tr>
 <tr>
@@ -34,7 +31,7 @@
 <tr>
 <td> <i class="fas fa-sticky-note"> </i>  Remarque : </td><td style="font-weight:bold;" >{{ ShowColis.remarque}}</td> </tr>
 
-</tbody>
+
 
                </table>
 

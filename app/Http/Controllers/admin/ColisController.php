@@ -200,7 +200,7 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
 //code a barre cvalidation vien input controller 
 public function data_colis_inhouse(){
 
-    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')->where('validation','=',true)->where('id_stats','=',null)->orWhere('id_stats','=',11)->orderBy('id_colis', 'desc')->paginate(8);
+    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')->where('validation','=',true)->where('id_stats','=',null)->orWhere('id_stats','=',11)->orderBy('id_colis', 'desc')->paginate(80);
 
     return response()->json($Colis);
 
@@ -409,7 +409,7 @@ public function colis_valider(){
 public function data_clients(){
 
 
-    $FetchClients = User::leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')->where('model_has_roles.role_id', '=',19)->get();
+    $FetchClients = User::select('users.*')->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')->where('model_has_roles.role_id', '=',19)->get();
 
     return response()->json($FetchClients);
 

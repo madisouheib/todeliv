@@ -17,7 +17,12 @@ class Colis extends Model
     protected $fillable = [
         'nom_client','wilaya','remarque','id_com','tel','adress','commune','qte','produit','price','tmp_validation','validation','signaler','tmp_signaler','id_stats'
     ];
+    public function stats(){
 
+        return $this->hasMany(StatsColis::class,'id_colis', 'id_colis')->where('id_stats','=',10);
+    
+    
+    }
 
 
 }

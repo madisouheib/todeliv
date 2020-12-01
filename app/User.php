@@ -47,6 +47,16 @@ class User extends Authenticatable
      return $this->hasManyThrough('App\Fiche','App\FicheColis','id_fiche','id_liv', 'id', 'id_fiche');
     }
 
+
+    public function deliv(){
+
+
+
+               
+        //return $this->hasManyThrough('App\Question','App\Cours','id_module','id_cours', 'idmodule', 'id_cours');
+        return $this->hasManyThrough('App\FicheColis','App\Fiche','id_liv','id_fiche', 'id', 'id_fiche')->whereNull('fiche.closed_at')->where('fiche.valid_fiche','=',true)->where('cloture','=',false);
+       }
+
     public function amount(){
 
 
@@ -80,7 +90,7 @@ class User extends Authenticatable
           'id', // Local key on the "User" table.
           'id_fiche', // Local key on the "FicheColis" table.
           'id_colis'  // Local key on the "Colis" table.
-        ])->where('fiche.cloture','=',false)->where('colis.id_stats','!=',10);
+        ])->where('fiche.cloture','=',false)->where('fiche.valid_fiche','=',true)->where('colis.id_stats','!=',10);
         
     }
 
@@ -98,7 +108,7 @@ class User extends Authenticatable
           'id', // Local key on the "User" table.
           'id_fiche', // Local key on the "FicheColis" table.
           'id_colis'  // Local key on the "Colis" table.
-        ])->where('fiche.cloture','=',false);
+        ])->where('fiche.valid_fiche','=',true)->where('fiche.cloture','=',false);
         
     }
 

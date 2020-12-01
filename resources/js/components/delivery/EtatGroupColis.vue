@@ -2,7 +2,7 @@
     
     <div>  
   
-                <div id="ModalColisAction" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div id="ModalColisActionGp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -69,7 +69,7 @@
 
 <script>
 export default {
-    props:['addstats']  ,
+    props:['addstatsgp']  ,
        data(){
  return {
 stats:{} ,
@@ -138,11 +138,11 @@ if(this.idstat == 'all'){
 status = this.idstatech
 
 
-axios.post('/api/addstatsredsip', {
-idcolis: this.addstats.id_colis,
+axios.post('/api/addstgpredisp', {
+idcolis: this.addstatsgp.cols,
 
 idstats : status,
-iduser : this.addstats.userid
+iduser : this.addstatsgp.userid
 
 
 
@@ -172,11 +172,12 @@ status = this.idstat
 
 
 }
-axios.post('/api/addstatscolis', {
-idcolis: this.addstats.id_colis,
+axios.post('/api/addstatscols', {
+
+idcolis: this.addstatsgp.cols,
 
 idstats : status,
-iduser : this.addstats.userid
+iduser : this.addstatsgp.userid
 
 
 

@@ -19,7 +19,7 @@
     <meta name="author" content="Codedthemes" />
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('dash/assets/images/favicon.ico') }} " type="image/x-icon">
+    <link rel="icon" href="{{ asset('dash/assets/images/logoexp.png') }} " type="image/x-icon">
     <!-- fontawesome icon -->
   <link rel="stylesheet"  href="{{ mix('css/app.css') }}" >
 

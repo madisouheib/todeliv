@@ -5,6 +5,8 @@ window.axios = require('axios');
 import moment from 'moment';
 require('moment/locale/fr');
 
+
+
 moment.locale('fr');
 Vue.prototype.moment = moment
 /**
@@ -17,7 +19,19 @@ Vue.prototype.moment = moment
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import VueBarcodeScanner from 'vue-barcode-scanner';
 
+// inject barcode scanner with option (add sound effect)
+// sound will trigger when it's already scanned
+let options = {
+    sound: true, // default is false
+    //soundSrc: '/static/sound.wav', // default is blank
+    //sensitivity: 300, // default is 100
+
+    //callbackAfterTimeout: true // default is false
+  }
+  
+  Vue.use(VueBarcodeScanner, options)
 
 
 Vue.component('reception-table', require('./components/TableReception.vue').default);

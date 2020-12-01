@@ -112,7 +112,7 @@ $EditColis->save();
 
 public function pdf_all_fiche($idfiche){
 
-$dataFicheColis = FicheColis::select('fiche_fields.*','colis.*','partenaire.name as partenaire','partenaire.adresse as partenaire_adresse','colis.created_at as created')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users as partenaire','partenaire.id','=','commandes.id_clt')->where('fiche.id_fiche','=',$idfiche)->get();
+$dataFicheColis = FicheColis::select('fiche_fields.*','colis.*','partenaire.name as partenaire','partenaire.adresse as partenaire_adresse','colis.created_at as created')->withCount('stats')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users as partenaire','partenaire.id','=','commandes.id_clt')->where('fiche.id_fiche','=',$idfiche)->get();
 $dataPrice = FicheColis::leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->where('fiche_fields.id_fiche','=',$idfiche)->pluck('colis.price')->all();
 
 

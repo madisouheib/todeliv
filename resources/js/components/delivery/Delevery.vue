@@ -1,49 +1,26 @@
 <template>
 <div>  
     <div class="row">
+
 <div class="col col-2">
      
-    <div class="form-group">
+   <div class="form-group">
+                                
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
+                                        </div>
+                            <select class="custom-select" @change="Filtreclient(coursier)"  v-model="coursier">
+                            <option v-for=" liv  in livreur  " :key="liv.id"  :value="liv.id"     >  {{ liv.name }}  </option>
+                      
+                            </select>
                             
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-tasks"></i> </span>
-            </div>
-<select class="custom-select" @change="GetValidationDelivery(idliv)"   v-model="idliv" required>
-<option value="">Etat  </option>
-<option value="1">Valider</option>
-<option value="2">Non Valider</option>
-<option value="3">archiver</option>
-</select>
-
-          
-            <div class="invalid-feedback">
-                Please choose a one.
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col col-2">
-     
-    <div class="form-group">
-                            
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-shipping-fast"></i> </span>
-            </div>
-<select class="custom-select" required>
-<option value="">Livreur  </option>
-<option value="1">Bilal</option>
-<option value="1">Moustapha</option>
-<option value="1">Djamel </option>
-</select>
-
-          
-            <div class="invalid-feedback">
-                Please choose a one.
-            </div>
-        </div>
-    </div>
+                                      
+                                        <div class="invalid-feedback">
+                                            Please choose a type.
+                                        </div>
+                                    </div>
+                                </div>
 </div>
 <div class="col col-2">
      
@@ -54,10 +31,8 @@
                 <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
             </div>
 <select class="custom-select" required>
-<option value="">HUB  </option>
-<option value="1">Bilal</option>
-<option value="1">Moustapha</option>
-<option value="1">Djamel </option>
+<option v-for=" hub  in hubs" :key="hub.id_hub"  :value="hub.id_hub"> {{ hub.nom_hub }}  </option>
+
 </select>
 
           
@@ -96,26 +71,25 @@
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant total</th>
                                         <th class="text-center" ><i class="fas fa-clipboard-list"></i> Nombre Colis </th>
                    
-                                        <th class="text-center" ># Froute-id </th>
-                                  
-
                                         <th class="text-center"><i class="fas fa-align-left"></i> Statut </th>
-                                       
+                                         <th class="text-center" ># Exporter </th>
                              
                                     </tr>
                                 </thead>
                                 <tbody>
                             
                                     <tr v-for=" livreur  in deliv.data" :key="livreur.id"  >
-                                        <th scope="row" class="text-center" style="width:140px;"   ><a  :href="'/admin/listenliv/'+livreur.id"   style="width:140px;"  class="pcoded-badge btn btn-glow-primary btn-primary"> <i class=" fas fa-list"> </i>  {{  livreur.name  }}   <i class="fas fa-shipping-fast"></i> </a> </th>
+                                        <th scope="row" class="text-center" style="width:140px;"   ><a  :href="'/admin/listenliv/'+livreur.id"   style="width:250px;"  class="pcoded-badge btn btn-glow-primary btn-primary"> <i class=" fas fa-list"> </i>  {{  livreur.name  }}   <i class="fas fa-shipping-fast"></i> </a> </th>
                                         
                                         <th class="text-center" > {{ livreur.created_at | moment }}   </th>
                                             <th class="text-center" > <i class="fas fa-clock"></i> </th>
                                       <th class="text-center"   >  <label class="badge badge-warning " style="font-size:16px;">   {{ livreur.prix }}  DA     </label>  </th>
-                                      <th class="text-center"  >  {{ livreur.fiche_count }}</th>
-                                        <th class="text-center" > {{ livreur.fiche_count }}   </th>
+                                      <th class="text-center"  >  <label class="badge badge-dark " style="font-size:14px;">    {{ livreur.deliv_count }} </label></th>
+                                                                              <td class="text-center" ><span class="pcoded-badge label label-success label-glow-success">En Livraison   <i class="fas fa-shipping-fast"></i> </span></td>
+                                                                               <th class="text-center" > <button class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </button> <a target="_blank"  :href="'/admin/fichepdf/'+livreur.id"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
+
                                 
-                                        <td class="text-center" ><span class="pcoded-badge label label-success label-glow-success">En Livraison   <i class="fas fa-shipping-fast"></i> </span></td>
+
 
 
                                      
@@ -150,9 +124,11 @@
 deliv:{},
 livreur: {},
 hubs : {},
+coursier : '',
 id_user : this.user_id ,
 id_fiche : '',
-idliv : ''
+idliv : '',
+hubs : {}
 
 
 
@@ -201,7 +177,33 @@ console.log(id);
 
  }
  ,
- 
+ GetHubs()
+ {
+
+
+     axios.get('/api/huball')
+     .then(response =>
+     { 
+       
+   this.hubs= response.data
+   
+     
+ }
+     ).catch(err => console.log(err));
+
+ },
+ Filtreclient(coursier){
+
+     axios.get('/api/fetchdeliv')
+     .then(response =>
+     { 
+       
+   this.deliv= response.data
+   
+     
+ }
+     ).catch(err => console.log(err));
+ },
  getLivreur()
  {
 

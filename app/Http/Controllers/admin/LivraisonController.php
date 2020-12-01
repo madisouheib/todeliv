@@ -22,7 +22,7 @@ class LivraisonController extends Controller
  public function list_livraison($id) {
 
 //$Data= Fiche::where()
-$DataFicheId = Fiche::whereNull('closed_at')->whereNotNull('valid_fiche')->where('fiche.id_liv','=',$id)->pluck('id_fiche')->toArray();
+$DataFicheId = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->where('fiche.id_liv','=',$id)->pluck('id_fiche')->toArray();
 
 $NameUser = User::where('id','=',$id)->pluck('name')->first();
 
@@ -30,7 +30,16 @@ $NameUser = User::where('id','=',$id)->pluck('name')->first();
 
  }
 
+public function update_retour_cash(){
 
+
+
+
+   Colis::where('id_stats', '=', 3) ->update(['id_stats' => 13]);
+
+
+
+}
 
  public function data_fiche_delevery(){
     $DataUsers = Fiche::whereNull('closed_at')->whereNotNull('valid_fiche')->pluck('id_liv')->toArray();
@@ -49,12 +58,14 @@ $NameUser = User::where('id','=',$id)->pluck('name')->first();
 
        public function data_livreur_delevery(){
 
-        $DataUsers = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->pluck('id_liv')->toArray();
+        $DataUsers = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->where('cloture','=',0)->pluck('id_liv')->toArray();
+
+        //$DataUsers = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->pluck('id_fiche')->toArray();
     
         $DatauserUnique = array_unique($DataUsers);
 
         
-        $DataLivr = User::withCount(['montant as prix' => function($query) {
+        $DataLivr = User::withCount(['deliv','montant as prix' => function($query) {
             $query->select(DB::raw('sum(price)'));
         }])->whereIn('id',$DatauserUnique)->paginate(10);
        
@@ -76,31 +87,135 @@ $NameUser = User::where('id','=',$id)->pluck('name')->first();
     public function get_delivred()
     {
        
-
+//--Colis Pour Livré ----------------------------------------------------------------------------------/
 
         $ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
         ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
         ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
         ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+        ->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+        ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
         ->where('validation','=',true)
-        ->where('colis.id_stats','=',4)->orderBy('colis.id_colis', 'desc')->get();
-        $TotalPrice =   Colis::
-        where('validation','=',true)
+        ->whereNotNull('fiche.closed_at')
+        ->whereNotNull('fiche.cloture')
+        ->where('colis.id_stats','=',4)
+        ->orderBy('colis.id_colis', 'desc')
+        ->get();
+//--Price Pour Livré ----------------------------------------------------------------------------------/
+
+        $TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+        ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+        ->where('validation','=',true)
+        ->whereNotNull('fiche.closed_at')
+        ->whereNotNull('fiche.cloture')
         ->where('colis.id_stats','=',4)->sum('price'); 
-$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
-    
 
 
+     
+
+        $Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
 
 
         return response()->json($Colis);
 
+
+
+
     }
 
+public function filtre_wil_delivred($id){
+
+
+
+//--Colis Pour Livré ----------------------------------------------------------------------------------/
+
+$ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->where('colis.id_stats','=',4)
+->where('colis.wilaya','like','%'.$id.'%')
+->orderBy('colis.id_colis', 'desc')
+->get();
+//--Price Pour Livré ----------------------------------------------------------------------------------/
+
+$TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->where('colis.wilaya','like','%'.$id.'%')
+->where('colis.id_stats','=',4)->sum('price'); 
+
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+return response()->json($Colis);
+
+
+}
+
+public function code_delivred($id){
+
+
+
+//--Colis Pour Livré ----------------------------------------------------------------------------------/
+
+$ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->where('colis.id_stats','=',4)
+->where('colis.id_colis','=',$id)
+->orderBy('colis.id_colis', 'desc')
+->get();
+//--Price Pour Livré ----------------------------------------------------------------------------------/
+
+$TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->where('colis.id_colis','=',$id)
+->where('colis.id_stats','=',4)->sum('price'); 
+
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+return response()->json($Colis);
+
+
+}
+
+
+
+    public function get_wils_delivred(){
+
+$cols = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->groupBy('wilaya')->pluck('wilaya')->toArray();
+
+
+
+        return response()->json($cols);
+    }
 public function get_returned(){
 
 
-    $ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    $ColisData = Colis::select('commandes.id_clt', 'colis.*','users.name','hubs.nom_hub')
     ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
     ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
     ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
@@ -122,12 +237,91 @@ $Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
 
 
 }
+public function get_returned_tentatives($tent){
+
+    $ColisData = Colis::select('commandes.id_clt', 'colis.*','users.name','hubs.nom_hub')->WithCount('stats')
+    ->having('stats_count','=', $tent)
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->where('validation','=',true)
+    ->where('colis.id_stats','=',3)->orderBy('colis.id_colis', 'desc')->get();
+
+    $TotalPrice =   Colis::
+    where('validation','=',true)
+    ->where('colis.id_stats','=',3)->sum('price'); 
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
 
 
+
+
+
+    return response()->json($Colis);
+
+
+}
+
+public function get_returned_lv($id){
+
+
+    $ColisData = Colis::select('commandes.id_clt', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('fiche_fields', 'fiche_fields.id_colis', '=', 'colis.id_colis')
+    ->leftJoin('fiche', 'fiche.id_fiche', '=', 'fiche_fields.id_fiche')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->where('validation','=',true)
+    ->where('fiche.id_liv','=',$id)
+    ->where('colis.id_stats','=',3)->orderBy('colis.id_colis', 'desc')->get();
+
+    $TotalPrice =   Colis::
+    where('validation','=',true)
+    ->where('colis.id_stats','=',3)->sum('price'); 
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+
+
+
+    return response()->json($Colis);
+
+
+
+
+}
+
+public function get_returned_wilaya($wil){
+
+    $ColisData = Colis::select('commandes.id_clt', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->where('validation','=',true)
+    ->where('colis.wilaya','like','%'.$wil.'%')
+    ->where('colis.id_stats','=',3)->orderBy('colis.id_colis', 'desc')->get();
+
+    $TotalPrice =   Colis::
+    where('validation','=',true)
+    ->where('colis.id_stats','=',3)->sum('price'); 
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+
+
+
+    return response()->json($Colis);
+
+
+
+
+
+
+}
 public function get_returned_livreur($id){
 
 
-    $ColisData =    Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    $ColisData =    Colis::select('commandes.id_clt', 'colis.*','users.name','hubs.nom_hub')
     ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
     ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
     ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
@@ -153,7 +347,33 @@ public function get_returned_livreur($id){
 
 }
 
+public function get_returned_barecode($id){
 
+
+    $ColisData =    Colis::select('commandes.id_clt', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+
+    ->where('validation','=',true)
+    ->where('colis.id_colis','=',$id)
+    ->where('colis.id_stats','=',3)
+    ->orderBy('colis.id_colis', 'desc')
+    ->get();
+
+    $TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->where('validation','=',true)
+    ->where('fiche.id_liv','=',$id)
+    ->where('colis.id_stats','=',3)
+    ->sum('price'); 
+
+    $Colis = array('colis' => $ColisData , 'amount' => $TotalPrice );
+
+    return response()->json($Colis);
+
+
+}
 
 
 

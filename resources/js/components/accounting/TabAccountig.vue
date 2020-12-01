@@ -30,10 +30,10 @@
 </div>
 <div class="col-3">
 
-     <span class="badge badge-success badge-glow-success" style="font-size:16px;padding:10px;"> T-Encaissé :  {{ this.prices }} DA <i class="fas fa-money-check"></i>  </span>
+     <span class="badge badge-danger badge-glow-danger" style="font-size:16px;padding:10px;margin-left:4px;"> T-Retour :  {{ this.retour }} DA <i class="fas fa-money-check"></i>  </span>
 
 </div>
-<div class="col-2">
+<div class="col-3">
 
 <input class="form-control" type="number" name="" v-model="livprices" placeholder="Saisie prix de livraison global .. ">
 </div>
@@ -125,7 +125,7 @@
    
                                 <thead class="thead-dark">
                                        <tr>
-                                                   <th class="text-center" > </th>
+                                         
                                    <th class="text-center" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> Infos</th>
                                                     <th class="text-center" ><i class="fas fa-user-circle"></i> Client</th>
@@ -144,34 +144,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for=" col  in colis" :key="col.id_colis" >
+                                    <tr v-for=" col  in colis.data" :key="col.id_colis" >
        
-<td> 
-    <div  class="checkbox checkbox-fill d-inline" >   
-                                         <input   type="checkbox" :name="'checkbox-fill-'+col.id_colis" :id="'checkbox-fill-'+col.id_colis" >
-                                                         <label :for="'checkbox-fill-'+col.id_colis" class="cr"></label>  
 
-
-</div>
-      </td>
                              
-                                        <th scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></th>
+                                        <td scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></td>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"   class="btn btn-sm  btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-search-plus" ></i></button> 
-                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></th>
-                                                  <th class="text-center" > <label class="badge badge-light" style="padding:10px;font-size:14px;">  {{ col.nom_client }}  </label>  </th>
-                                        <th class="text-center" > <label class="badge badge-success" style="font-size:16px;">   {{ col.price }}  DA  </label> </th>
-                                        <th class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }}   <i class="fas fa-map-marker-alt"></i>  </label> </th>
-                                        <th class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.updated_at | moment   }} </label>    </th>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"   class="btn btn-sm  btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-user-circle" ></i></button> 
+                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></td>
+                                                  <td class="text-center" > <label class="badge badge-light" style="padding:10px;font-size:14px;">  {{ col.nom_client }}  </label>  </td>
+
+                                        <td  v-if="col.id_stats == 12" class="text-center" > <label class="badge badge-success" style="font-size:16px;">   {{ col.price }}  DA  </label> </td>
+                                                                                <td  v-if="col.id_stats == 13" class="text-center" > <label class="badge badge-danger" style="font-size:16px;">   {{ col.price }}  DA  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }}   <i class="fas fa-map-marker-alt"></i>  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.updated_at | moment   }} </label>    </td>
                               
 
-                                        <th class="text-center" >
-                                            <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success btn-sm  btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
+                                        <td class="text-center" >
+                                            <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success btn-sm  btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas  fa-location-arrow"></i></button>         
                                                                    
 
                                           
-                                        </th>
-                                                               <th> <input class="form-control" type="number" :value="livprices" style="width:100px;" placeholder="Prix.. ">   </th>
+                                        </td>
+                                                               <td> <input class="form-control" type="number" :value="livprices" style="width:100px;" placeholder="Prix.. ">   </td>
 
 
                                      
@@ -233,6 +228,7 @@ ShowCom:'',
 clients : {},
 wilayas : {},
 wil : '',
+retour:'',
 clt:'',
 stats : {},
 id_colis: '',
@@ -285,6 +281,7 @@ getColis(page = 1)
        
 this.colis = response.data['colis'];
 this.prices = response.data['amount']
+this.retour = response.data['retour']
      
  }
      ).catch(err => console.log(err));

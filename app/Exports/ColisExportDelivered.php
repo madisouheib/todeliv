@@ -19,7 +19,16 @@ class ColisExportDelivered implements FromCollection,WithHeadings, ShouldAutoSiz
     {
 
 
-        return Colis::select('colis.nom_client as Nom','colis.produit as produit','colis.adress as Adresse','colis.wilaya as Wialaya','colis.tel as Tel','colis.commune as Commune','colis.qte as Qu','colis.updated_at as date','colis.remarque as remarque','users.name as partenaire','colis.price as Prix')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users','users.id','=','commandes.id_clt')->where('colis.id_stats','=',4)->get();
+        return Colis::select('colis.nom_client as Nom','colis.produit as produit','colis.adress as Adresse','colis.wilaya as Wialaya','colis.tel as Tel','colis.commune as Commune','colis.qte as Qu','colis.updated_at as date','colis.remarque as remarque','users.name as partenaire','colis.price as Prix')
+        ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+        ->leftJoin('users','users.id','=','commandes.id_clt')
+        ->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+        ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+        ->where('validation','=',true)
+        ->whereNotNull('fiche.closed_at')
+        ->whereNotNull('fiche.cloture')
+        ->where('colis.id_stats','=',4)
+        ->get();
     }
 
     public function headings():array

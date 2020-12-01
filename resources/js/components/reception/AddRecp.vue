@@ -113,7 +113,7 @@
                                                                                                
                                         </th>
 
-                                        <th scope="row" class="text-center" >#send- {{ col.id_colis  }}</th>
+                                        <th scope="row" class="text-center" > #send- {{ col.id_colis  }}</th>
 
                                         
                                         <th class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Fiche ;
 use App\FicheColis;
 use App\User ; 
+use App\Colis ; 
 use Illuminate\Support\Facades\DB;
 class OnDeliveryController extends Controller
 {
@@ -111,7 +112,9 @@ return response()->json($StatsColi);
 
 public function data_colis_froute($idliv){
 
-    $DataColis = Fiche::select('colis.*','fiche_fields.*','stats.*','users.name')->leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+    $DataColis = FicheColis::select('colis.*','fiche_fields.*','stats.*','users.name')
+    ->WithCount('stats')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
     ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
     ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
     ->leftJoin('users','users.id','=','commandes.id_clt')
@@ -119,12 +122,49 @@ public function data_colis_froute($idliv){
     ->whereNull('fiche.closed_at')
     ->where('fiche.id_liv','=',$idliv)
     ->where('fiche.valid_fiche','=',true)
-    ->paginate(10);
+     ->where('colis.id_stats','!=',12)
+    ->paginate(100);
 
     return response()->json($DataColis);
 }
 
+public function data_deliv_byliv($liv)
+{
 
+        
+//--Colis Pour Livré ----------------------------------------------------------------------------------/
+
+$ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('fiche.id_liv','=',$liv)
+->where('validation','=',true)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->where('colis.id_stats','=',4)
+->orderBy('colis.id_colis', 'desc')
+->get();
+//--Price Pour Livré ----------------------------------------------------------------------------------/
+
+$TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+->where('validation','=',true)
+->where('fiche.id_liv','=',$liv)
+->whereNotNull('fiche.closed_at')
+->whereNotNull('fiche.cloture')
+->where('colis.id_stats','=',4)->sum('price'); 
+
+$Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+return response()->json($Colis);
+
+
+
+}
 
     /**
      * Store a newly created resource in storage.
@@ -151,13 +191,106 @@ public function validate_delevery_gp(Request $request){
 $date = date('Y-m-d h:i:s');
 //dd($date);
 
-Fiche::where('id_liv', '=', $idliv)
+Fiche::where('id_liv', '=', $idliv)->where('valid_fiche','=',true)
     ->update([
         'cloture' => true,
         'closed_at' => $date
 
     ]);
 
+
+
+
+}
+
+public function validate_delevery_fiche($id){
+    $date = date('Y-m-d h:i:s');
+    Fiche::where('id_fiche', '=', $id)->where('valid_fiche','=',true)
+    ->update([
+        'cloture' => true,
+        'closed_at' => $date
+
+    ]);
+
+
+}
+
+  public function data_colis_listfiche($user){
+
+
+$GetFiches = Fiche::where('fiche.id_liv','=',$user)->whereNull('closed_at')->where('valid_fiche','=',true)->where('cloture','=',false)->get();
+
+
+return response()->json($GetFiches);
+
+  }
+
+public function data_wilaya_listfiche($liv){
+
+
+
+
+    //dd($liv);
+
+$DataWilayas = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+->leftjoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+->whereNull('closed_at')
+->whereNotNull('valid_fiche')
+->where('fiche.id_liv','=',$liv)
+->groupBy('wilaya')->pluck('wilaya')->toArray();
+
+return response()->json($DataWilayas);
+
+}
+
+public function data_filtre_listfiche($id){
+
+    $DataColis = FicheColis::select('colis.*','fiche_fields.*','stats.*','users.name')
+    ->WithCount('stats')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+    ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->leftJoin('users','users.id','=','commandes.id_clt')
+    ->leftJoin('stats','stats.id_stats','=','colis.id_stats')
+    ->whereNull('fiche.closed_at')
+    ->where('fiche.id_fiche','=',$id)
+    ->where('fiche.valid_fiche','=',true)
+     ->where('colis.id_stats','!=',12)
+    ->paginate(100);
+
+    return response()->json($DataColis);
+
+
+}
+
+public function detail_livreur_fiche($id)
+{
+    
+   
+   $Data = array();
+$Price = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+->where('colis.id_stats','=',4)
+->where('fiche.id_fiche','=',$id)
+->sum('colis.price');
+
+$CountAll = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+->where('fiche.id_fiche','=',$id)
+->count();
+
+$CountWithChange = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+->where('fiche.cloture','=',false)
+->where('fiche.valid_fiche','=',true)
+->where('colis.id_stats','!=',10)
+->where('fiche.id_fiche','=',$id)
+->count();
+
+//dd($CountWithChange);
+$Data['ftotal_count']= $CountWithChange;
+$Data['fchtotal_count']= $CountAll;
+$Data['fprice'] = $Price;
+    return response()->json($Data);
 
 
 

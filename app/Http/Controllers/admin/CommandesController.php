@@ -77,7 +77,35 @@ public function data_manifs(){
     
   $Comas = commandes::withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
-}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(4);
+}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(40);
+
+
+
+        return response()->json($Comas);
+
+
+}
+
+public function filtre_client($code){
+  
+  $Comas = commandes::withCount(['price as prices' => function($query) {
+    $query->select(DB::raw('sum(price)'));
+}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1],['id_clt','=',$code]])->orderBy('id_coms', 'desc')->paginate(40);
+
+
+
+        return response()->json($Comas);
+
+
+
+
+}
+
+public function filtre_etat($code){
+
+  $Comas = commandes::withCount(['price as prices' => function($query) {
+    $query->select(DB::raw('sum(price)'));
+}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1],['confirmed','=',$code]])->orderBy('id_coms', 'desc')->paginate(40);
 
 
 

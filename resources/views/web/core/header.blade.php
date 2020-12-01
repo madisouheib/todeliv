@@ -40,8 +40,8 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="cg__logoContainer">
-                                <a href="index.html">
-                                    <img src="" alt="" class="cg__logoImg">
+                            <a href="{{ url('/')}}">
+                            <img src="{{ url('/dash/assets/images/logoexp.png')}}" alt="" height="170" width="170" class="cg__logoImg">
                                 </a>
                             </div>
                             <div class="cg__separator visible-xs"></div>

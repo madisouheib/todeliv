@@ -11,7 +11,7 @@
                             </div>
                             <div class="modal-body">
                <table class="table table-striped">
-<thead>
+<thead class="thead-dark text-center" >
     <th>
      <i class="fas fa-user-cog "></i>   Utilisateur : 
     </th>
@@ -30,7 +30,7 @@ Date & Time :
 </thead>
 <tr  v-for=" stat  in ShowStats " :key="stat.id_stast_colis "   >
 
-<td>   <i class="fas fa-arrow-alt-circle-right"> </i>  {{ stat.name }}    </td>   <td> {{ stat.field_stats }} </td> <td> Date :  {{ stat.created_at | moment  }}  </td>  </tr>
+<td>  <i class="fas fa-arrow-alt-circle-right"> </i>  {{ stat.name }}  </td>   <td>  <label class="badge badge-warning" style="padding:5px;font-size:14px;">  {{ stat.field_stats }} </label> </td> <td> <label class="badge badge-light" style="padding:4px;font-size:14px;">  Date :  {{ stat.created_at | moment  }} </label>   </td>  </tr>
 
                 
 

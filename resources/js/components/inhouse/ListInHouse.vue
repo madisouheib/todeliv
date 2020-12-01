@@ -3,26 +3,10 @@
     
 <div>
   
-    
-<div class="row">
-    <div class="col-4">
-        <div class="form-group">
+      <button style="float:right;" @click="getColis()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend"> <i class="fab fa-searchengin"></i> </span>
-                </div>
-                <input type="text" class="form-control" id="validationCustomUsername" placeholder=" tracking id  " aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                    Please choose a traciing.
-                </div>
-            </div>
-        </div>
-    
-    
-    
-    
-    </div>
+<div class="row">
+
     <div class="col-4">
         <div class="form-group">
 
@@ -30,7 +14,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup"> <i class="fas fa-barcode"></i> </span>
                 </div>
-                <input type="text" class="form-control" id="validationCust" placeholder=" code a bare   " aria-describedby="inputGroup" required>
+                <input type="text" class="form-control" @keyup="onBarcodeScanned"  v-model="codebars" id="validationCust" placeholder=" code a bare   " aria-describedby="inputGroup" required>
                 <div class="invalid-feedback">
                     Please choose a code.
                 </div>
@@ -42,9 +26,7 @@
     
     </div>
     
-    <div class="col-3">
-    <button class="btn btn-square btn-outline-success" style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
-    </div>
+  
     </div>            
     
     <div class="row"> 
@@ -59,10 +41,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
                                         </div>
-                            <select class="custom-select" name="" required v-model="wil">
-    <option       v-for="wilaya in wilayas " :key="wilaya.key"  :value=" wilaya.key  "  > {{ wilaya.name}}    </option>
-    
-</select>
+                            <select class="custom-select"  @change="FiltreWilaya(wil)"  v-model="wil" >
+
+    <option   value="all" > Tout   </option>
+    <option   v-for="wilaya in wilayas " :key="wilaya.key"   > {{ wilaya}}    </option>
+
+                                         </select>
 
                             
                                       
@@ -82,8 +66,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
                                         </div>
-                            <select class="custom-select" required v-model="clt">
-                            <option v-for=" client  in clients " :key="client.id"  :value="client.id"      >  {{ client.name }}  </option>
+                            <select class="custom-select" @change="Filtreclient(clt)"  v-model="clt">
+                            <option v-for=" client  in clients  " :key="client.id"  :value="client.id"     >  {{ client.full_name }}  </option>
                       
                             </select>
                             
@@ -102,7 +86,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-calendar-alt"></i> </span>
                                         </div>
-                                        <input type="text" id="date" class="form-control" placeholder="Date">
+                                        <input type="text" id="date" class="form-control" placeholder="Date ">
                                         <div class="invalid-feedback">
                                             Please choose a date.
                                         </div>
@@ -110,28 +94,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-2">
-                            
-                                <div class="form-group">
-                         
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-tasks"></i> </span>
-                                        </div>
-                            <select class="custom-select" required>
-  <option selected >Mise a jour  </option>
-                                 <option       v-for="stat in stats " :key="stat.id_stats"  :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
-                          
-                        
-                            </select>
-                            
-                                      
-                                        <div class="invalid-feedback">
-                                            Please choose a one.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    
                             <div class="col-2">
                             
                                 <div class="form-group">
@@ -140,12 +103,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
                                         </div>
-                            <select class="custom-select" required>
+                            <select class="custom-select" @change="Tentatives(tent)"  v-model="tent">
                             <option value="">Tentatives </option>
             
+                            <option value="0">Tentative 0 </option>
                             <option value="1">Tentative 1 </option>
                             <option value="2">Tentative 2 </option>
-                            <option value="3">Tentative 3 </option>
                             </select>
                                          <div class="invalid-feedback">
                                             Please choose a type.
@@ -159,7 +122,7 @@
                                                 </div>
                         <div class="table-responsive">
 
-                            <table class="table  table-sm  table-bordered">
+                            <table class="table   table-bordered">
    
                                 <thead class="thead-dark">
                                        <tr>
@@ -168,7 +131,8 @@
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
                                         <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
                                         <th class="text-center" ><i class="fas fa-address-card"></i> partenaire </th>
-                                        <th class="text-center" ><i class="fas fa-tasks"></i> Valider par HUB </th>
+                                        <th class="text-center" ><i class="fas fa-tasks"></i>HUB </th>
+                                             <th class="text-center" ><i class="fas fa-calendar-alt"></i>Date </th>
             
                                
 
@@ -181,20 +145,20 @@
        
 
                              
-                                        <th scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></th>
+                                        <td scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></td>
                                         
-                                        <th style=""   class="text-center" > <button  data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"   class="btn   btn-sm btn-glow-primary   btn-primary"><i  style="margin:0px;"  class="fas fa-search-plus" ></i></button> 
-                                        <a   target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark btn-sm"> <i style="margin:0px;color:#FFCC00;"  class="fas fa-box"></i></a></th>
-                                        <th class="text-center" > <label class="badge badge-warning" style="font-size:16px;">   {{ col.price }}  DA  </label> </th>
-                                        <th class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i>  </label> </th>
-                                        <th class="text-center" > {{ col.name }}  </th>
-                                        <th class="text-center" >{{ col.nom_hub }}   </th>
-                          
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-success btn-sm " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
+                                        <td style=""   class="text-center" > <button  data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"   class="btn   btn-sm btn-glow-primary   btn-primary"><i  style="margin:0px;"  class="fas fa-user-circle" ></i></button> 
+                                        <a   target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark btn-sm"> <i style="margin:0px;color:#FFCC00;"  class="fas fa-box"></i></a></td>
+                                        <td class="text-center" > <label class="badge badge-warning" style="font-size:16px;">   {{ col.price }}  DA  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;margin:0px;"> {{ col.wilaya }} <br>  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i>  </label> </td>
+                                        <td class="text-center" > {{ col.name }}    </td>
+                                        <td class="text-center" >{{ col.nom_hub }}   </td>
+                                                                                             <td class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.created_at | moment    }} <br> ( {{ col.created_at | days    }} jours ) </label>    </td>        
+                                        <td class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-success btn-sm " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-location-arrow"></i></button>         
                         
                                           
-                                        </th>
-                                     
+                                        </td>
+  
 <td>
 
  <button class=" btn btn-dark btn-glow-dark btn-sm" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
@@ -232,6 +196,28 @@
 
   export default {
      props: ['url_id','user_id'],
+             filters: {
+  moment: function (date) {
+      
+    return moment((date)).format('YYYY-MM-DD [à] hh:mm ');
+  },
+days: function (date){
+
+
+var a = moment((date));
+var b = moment([]);
+return b.diff(a, 'days') // 1
+/*
+var a = moment((date)).format("DD.MM.YYYY");
+
+var b = moment().format("DD.MM.YYYY") ;
+return  a.diff(b,'days') // 1
+*/
+
+}
+
+  
+},
  components: {
     
       'view-colis':   ColisInfos,
@@ -242,14 +228,18 @@
 
      data(){
  return {
-colis:{},
 
+colis:{},
 ShowColis: '',
+checkcolis :{},
 idcom : this.url_id,
 userid : this.user_id,
 ShowCom:'',
+codebars : '',
+tent : '',
 clients : {},
 wilayas : {},
+tentative : '',
 wil : '',
 clt:'',
 stats : {},
@@ -270,12 +260,12 @@ warning : ''
  {
 
 
-
+   this.$barcodeScanner.init(this.onBarcodeScanned);
 this.getColis();
 
 this.GetWilayas();
-this.getCLients();
-this.GetStats();
+this.getClients();
+
 
 this.getColInfos();
  },
@@ -295,7 +285,7 @@ getColis(page = 1)
      { 
        
    this.colis = response.data
-     
+     this.checkcolis = response.data
  }
      ).catch(err => console.log(err));
 
@@ -309,11 +299,23 @@ this.getColis();
 
  getColInfos(id){
 
- axios.get('/api/getColisinfos/'+id)
+ axios.get('/api/getcolisinfos/'+id)
      .then(response =>
      { 
        
    this.ShowColis = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+ Filtreclient(clt){
+axios.get('/api/byclienth/'+clt)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
      
  }
      ).catch(err => console.log(err));
@@ -334,25 +336,113 @@ this.getColis();
 
  }
  ,
- getCLients(){
+ FiltreWilaya(wil){
 
- axios.get('/api/getclients')
+axios.get('/api/bywilayah/'+wil)
      .then(response =>
      { 
        
-   this.cLients = response.data
+   this.colis = response.data
      
  }
      ).catch(err => console.log(err));
 
 
  },
+ getClients(){
+
+ axios.get('/api/getclients')
+     .then(response =>
+     { 
+       
+   this.clients = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+ Tentatives(tent){
+
+axios.get('/api/bytentative/'+tent)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+ onBarcodeScanned(codebars) {
+this.resetBarcode();
+
+
+
+ if(this.codebars !== '' ){
+
+
+
+
+
+var  DataAll = this.checkcolis.data ;
+var code = this.codebars;  
+var valObj = DataAll.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObj.length > 0) {
+
+ if(this.timer) {
+                // So we clear and null it so it doesn't contact the api
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => {
+                // contact your endpoint here
+axios.get('/api/codehouse/'+code).then( 
+    
+    response =>
+     { 
+       
+   this.colis = response.data,
+     this.codebars = ''
+ }
+    
+
+
+
+
+).catch(error => console.log(error))
+                // Assuming your scanner can emit keystrokes
+                // within 100 milliseconds from one another
+                // otherwise increase this value as necessary
+            }, 100);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+}
+ },
+  resetBarcode () {
+        let codebars = this.$barcodeScanner.getPreviousCode()
+        // do something...
+      },
  GetWilayas(){
 
 
 
 
- axios.get('/api/getwilayas')
+ axios.get('/api/getwils')
      .then(response =>
      { 
        
@@ -362,21 +452,7 @@ this.getColis();
      ).catch(err => console.log(err));
 
  },
-  GetStats(){
-
-
-
-
- axios.get('/api/getstats')
-     .then(response =>
-     { 
-       
-   this.stats = response.data
-     
- }
-     ).catch(err => console.log(err));
-
- },
+  
 
  GetIDColis(id){
 

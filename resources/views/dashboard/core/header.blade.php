@@ -8,11 +8,9 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
-            <a href="index.html" class="b-brand">
-                   <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
-                   </div>
-                   <span class="b-title">Send Express</span>
+            <a href="{{url('/admin/index')}}" class="b-brand">
+            <img class="img-responsive" src="{{ url('/dash/assets/images/logoexp.png')}}" width="50" height="50" >
+                   <span class="b-title">Send Expresss</span>
                </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="#!">

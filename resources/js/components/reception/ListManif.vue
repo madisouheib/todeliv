@@ -9,7 +9,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
             </div>
-<select class="custom-select" required>
+<select class="custom-select"  @change="FiltreClient(clt)" v-model="clt" >
     <option selected> Selectionner le partenaire </option>
 <option     v-for="pro in clientpro " :key="pro.id"  :value="pro.id " > {{ pro.full_name}} </option>
 
@@ -63,10 +63,10 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-box"></i> </span>
                                     </div>
-                        <select class="custom-select" required>
+                        <select class="custom-select"  @change="FiltreEtat(etat)" v-model="etat">
                         <option value="">Selectionner l'etat </option>
                         <option value="1">Valider</option>
-                        <option value="1">Non Valider</option>
+                        <option value="0">Non Valider</option>
                         </select>
                         
                                   
@@ -136,7 +136,8 @@
                                 </tbody>
                             
                             </table>
-                         <pagination :data="coms" @pagination-change-page="getManifs">
+                         <pagination :data="coms"    :per-page="20"
+  @pagination-change-page="getManifs">
 
     </pagination>
     <manif-validate v-bind:idcoms="idcoms"  @manif-validate="getManifs" ></manif-validate>
@@ -154,7 +155,7 @@
 import ValidateManif from './ValidateManif' ; 
 import ClotureManif from './ClotureManif' ; 
   export default {
-     props: ['id_user'],
+     props: ['user_id'],
      
  components: {
 'manif-validate': ValidateManif ,
@@ -166,7 +167,9 @@ import ClotureManif from './ClotureManif' ;
  return {
 coms:{},
 idcoms : '',
-clientpro : {}
+clientpro : {},
+clt : '',
+etat : ''
 
 
  }
@@ -207,6 +210,25 @@ getManifs(page = 1)
      ).catch(err => console.log(err));
 
  },
+ FiltreClient(code){
+
+
+     axios.get('/api/manifiltre/'+code)
+     .then(response =>
+     { 
+       
+   this.coms= response.data
+
+     
+ }
+     ).catch(err => console.log(err));
+
+
+//console.log(this.filtredComs);
+
+
+
+ },
   Get(id){
 
 
@@ -217,9 +239,23 @@ this.idcoms = id ;
 
 
  }
+,
+FiltreEtat(etat){
+     axios.get('/api/manifetat/'+etat)
+     .then(response =>
+     { 
+       
+   this.coms= response.data
 
- 
+     
  }
+     ).catch(err => console.log(err));
+
+
+}
+ 
+ },
+ 
 
 
      }

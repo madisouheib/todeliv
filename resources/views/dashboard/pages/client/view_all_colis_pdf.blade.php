@@ -41,6 +41,11 @@ table tr td {
   
 
 }
+hr {
+
+border: 1px dashed red;
+
+}
 #tableadditional {
 
   border-collapse: collapse;
@@ -62,7 +67,7 @@ hr {
   </style>
    @foreach($data ?? '' as $dat)
    
-   <div style="page-break-after:always;"    >
+   <div   >
   <table  id="tabledata"     border="1">
 
  
@@ -144,11 +149,11 @@ hr {
  
 </tr>
     </table>
-    <hr >
+    <hr style=" " >
 </div>
 
 
-<div  style="page-break-after:always;"   >
+<div  style=""   >
   <table style="width:100%;">
   <tr>
   <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
@@ -181,9 +186,9 @@ hr {
   </td>
       </tr>
   </table>
-  <table style="width:100%;height: 20%;" >   
+  <table style="width:100%;height: 10%;" >   
       <tr>
-  <td style="width:30%;" > </td>
+  <td style="width:20%;" > </td>
         <td style="width:30%;padding-top:20%;">
           <h3 style="margin-right:0px;float: right;" >  Prix :    </h3>
   
@@ -197,7 +202,7 @@ hr {
       </tr>
     </table>
   
-    <table style="width:100%;height: 40%;margin-top:20px;"  border="1">
+    <table style="width:100%;height: 10%;margin-top:10px;"  border="1">
   <tr style="">
   <td style="height: 30px;width:70%">Désignation</td>
   <td style="width:30%">Prix </td>
@@ -205,8 +210,8 @@ hr {
   
   </tr>
   <tr style="">
-    <td style="width:70%;padding-bottom:300px;"> <h3 style="margin-bottom:300px;"> {{ $dat->produit }}   </h3>  </td>
-    <td style="width:30%;padding-bottom:300px;"> <h3 style="font-family:cairo;"> <?php echo $dat['price'];  ?>  DA  </h3> </td>
+    <td style="width:70%;padding-bottom:200px;"> <h3 style="margin-bottom:300px;"> {{ $dat->produit }}   </h3>  </td>
+    <td style="width:30%;padding-bottom:200px;"> <h3 style="font-family:cairo;"> <?php echo $dat['price'];  ?>  DA  </h3> </td>
     
     
     </tr>
@@ -222,7 +227,7 @@ hr {
       </tr>
     </table>
     <br>
-    <h3 style="margin-left:500px;margin-top:10;"> Signature Vendeur </h3>
+    <h4 style="margin-left:500px;margin-top:10;"> Signature Vendeur </h4>
   </div>
   
 @endforeach

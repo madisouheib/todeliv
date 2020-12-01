@@ -16,6 +16,11 @@ class FicheColis extends Model
         'id_user','id_colis','id_fiche'
     ];
 
+    public function stats(){
 
+        return $this->hasMany(StatsColis::class,'id_colis', 'id_colis')->where('id_stats','=',10);
+    
+    
+    }
 
 }

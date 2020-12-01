@@ -85,7 +85,7 @@ $hub = request('hub');
     public function data_client_pro(){
 
 
-        $usersPro = Users::rightJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')->rightJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')->where('roles.name','=','client pro')->get();
+        $usersPro = Users::select('users.id','users.full_name')->rightJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')->rightJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')->where('roles.name','=','client pro')->get();
 
         return response()->json($usersPro);
 

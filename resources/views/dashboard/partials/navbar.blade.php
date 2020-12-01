@@ -4,18 +4,30 @@
    <nav class="pcoded-navbar navbar-collapsed">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
-                    <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
+
+
+    
+
+                <a href="{{ url('/admin')}}" class="b-brand" >
+                    
+                    <div class="">
+                        <img class="img-responsive" src="{{ url('/dash/assets/images/logoexp.png')}}" width="50" height="50">
                     </div>
-                    <span class="b-title">Send Express</span>
+                    <span class="b-title">Send Express </span>
                 </a>
-                <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+
+
+
+                <a class="mobile-menu" id="mobile-collapse" href="#!">
+                    
+                
+                    
+                    <span></span></a>
             </div>
 
 
 
-            <div class="navbar-content scroll-div" id="nav" >
+            <div class="navbar-content scroll-div" id="nav"   >
                 <ul class="nav pcoded-inner-navbar">
  @role('admin')
 

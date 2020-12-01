@@ -3,7 +3,8 @@
     
 <div>
   
-    
+          <button style="float:right;" @click="getColis()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
+
 <div class="row">
  
     <div class="col-4">
@@ -13,7 +14,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup"> <i class="fas fa-barcode"></i> </span>
                 </div>
-                <input type="text" class="form-control" id="validationCust" placeholder=" code a bare   " aria-describedby="inputGroup" required>
+                <input type="text" class="form-control" v-model="codebars" @keyup="onBarcodeScanned(codebars)"    id="validationCust" placeholder=" code a bare ...   " aria-describedby="inputGroup" required>
                 <div class="invalid-feedback">
                     Please choose a code.
                 </div>
@@ -40,8 +41,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
                                         </div>
-                            <select class="custom-select" name="" required v-model="wil">
-    <option       v-for="wilaya in wilayas " :key="wilaya.key"  :value=" wilaya.key  "  > {{ wilaya.name}}    </option>
+                            <select class="custom-select" name="" @change="FiltreWilaya(wil)"  required v-model="wil">
+    <option       v-for="wilaya in wilayas " :key="wilaya.key"    > {{ wilaya.name}}    </option>
     
 </select>
 
@@ -63,8 +64,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-id-card-alt"></i> </span>
                                         </div>
-                            <select class="custom-select" required v-model="clt">
-                            <option v-for=" client  in clients " :key="client.id"  :value="client.id"      >  {{ client.name }}  </option>
+                            <select class="custom-select" @change="FiltreClient(clt)" v-model="clt">
+                            <option v-for=" client  in clients "  :key="client.id"  :value="client.id"      >  {{ client.name }}  </option>
                       
                             </select>
                             
@@ -99,7 +100,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-tasks"></i> </span>
                                         </div>
-                            <select class="custom-select" required>
+                            <select class="custom-select" @change="FiltreUpdate(idstat)"  v-model="idstat"  >
   <option selected >Mise a jour  </option>
                                  <option       v-for="stat in stats " :key="stat.id_stats"  :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
                           
@@ -121,12 +122,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
                                         </div>
-                            <select class="custom-select" required>
+                            <select @change="FiltreTentatives(tent)" v-model="tent" class="custom-select" >
                             <option value="">Tentatives </option>
             
-                            <option value="1">Tentative 1 </option>
-                            <option value="2">Tentative 2 </option>
-                            <option value="3">Tentative 3 </option>
+                            <option value="0">Tentative 1 </option>
+                            <option value="1">Tentative 2 </option>
+                            <option value="2">Tentative 3 </option>
                             </select>
                                          <div class="invalid-feedback">
                                             Please choose a type.
@@ -149,8 +150,8 @@
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
                                         <th class="text-center"><i class="fas fa-map-marker-alt"></i> Wilaya & commune </th>
                                         <th class="text-center" ><i class="fas fa-address-card"></i> Partenaire </th>
-                                        <th class="text-center" ><i class="fas fa-tasks"></i> Valider par HUB </th>
-            
+                                        <th class="text-center" ><i class="fas fa-tasks"></i>  HUB </th>
+            <th class="text-center">  <i class="fas fa-calendar-alt"></i> Date </th>
                                
 
                                         <th class="text-center"><i class="fas fa-align-left"></i> Suivi </th>
@@ -162,20 +163,21 @@
        
 
                              
-                                        <th scope="row" class="text-center" >#send-{{ col.id_colis }}</th>
+                                        <td scope="row" class="text-center" >#send-{{ col.id_colis }}</td>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn  btn-sm  btn-glow-info   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button></th>
-                                        <th class="text-center" > <label class="badge badge-warning" style="font-size:14px;">  {{ col.price }} DA  </label>   </th>
-                                        <th class="text-center" >{{ col.wilaya }} /  {{  col.commune }} </th>
-                                        <th class="text-center" > {{ col.name }}   </th>
-                                        <th class="text-center" >{{ col.nom_hub }}   </th>
-                          
-                                        <th class="text-center" >
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn  btn-sm  btn-glow-info   btn-info"><i  style="margin:0px;"  class="fas fa-user-circle"></i></button></td>
+                                        <td class="text-center" > <label class="badge badge-warning" style="font-size:14px;">  {{ col.price }} DA  </label>   </td>
+                                        <td class="text-center" >{{ col.wilaya }} /  {{  col.commune }} </td>
+                                        <td class="text-center" > {{ col.name }}   </td>
+                                        <td class="text-center" >{{ col.nom_hub }}   </td>
+                                                    <td class="text-center"><b class="badge badge-light" style="font-size:14px;">{{ col.created_at | moment    }} <br> ( {{ col.created_at | days    }} jours )    </b>   </td>
+
+                                        <td class="text-center" >
                                             <button v-if="col.message  !== null " data-toggle="modal" data-target="#MessageClient"   class=" btn-sm btn btn-dark btn-glow-dark" @click="MessagePert(col.message)"> <i class="fas fa-bell" style="margin:0px;"></i></button>
-                                            <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-sm btn-success btn-glow-success  btn-success " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
+                                            <button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-sm btn-success btn-glow-success  btn-success " ><i style="margin:0px;"  class=" fas fa-location-arrow"></i></button>         
                         
                                           
-                                        </th>
+                                        </td>
                                      
 <td>
 
@@ -213,6 +215,28 @@
 
   export default {
      props: ['url_id','user_id'],
+         filters: {
+  moment: function (date) {
+      
+    return moment((date)).format('YYYY-MM-DD [à] hh:mm ');
+  },
+days: function (date){
+
+
+var a = moment((date));
+var b = moment([]);
+return b.diff(a, 'days') // 1
+/*
+var a = moment((date)).format("DD.MM.YYYY");
+
+var b = moment().format("DD.MM.YYYY") ;
+return  a.diff(b,'days') // 1
+*/
+
+}
+
+  
+},
  components: {
     
       'view-colis':   ColisInfos,
@@ -225,11 +249,14 @@
      data(){
  return {
 colis:{},
-
+checkcolis:{},
+codebars:'',
 ShowColis: '',
+tent :'',
 idcom : this.url_id,
 userid : this.user_id,
 ShowCom:'',
+idstat : '',
 clients : {},
 wilayas : {},
 wil : '',
@@ -251,7 +278,7 @@ Message: ''
   },
  created ()
  {
-
+  this.$barcodeScanner.init(this.onBarcodeScanned);
 
 
 this.getColis();
@@ -261,31 +288,133 @@ this.getCLients();
 this.GetStats();
 
 
- },
+ } ,destroyed () {
+      // Remove listener when component is destroyed
+      this.$barcodeScanner.destroy()
+    },
  
  methods:{
 
 getColis(page = 1)
  {
      
-   
-
-
-
-
      axios.get('/api/datafailed?page='+page)
      .then(response =>
      { 
        
    this.colis = response.data
-     
+     this.checkcolis = response.data
  }
      ).catch(err => console.log(err));
 
 
  },
+ FiltreWilaya(wil){
+
+     
+     axios.get('/api/failedwilaya/'+wil)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
+     this.checkcolis = response.data
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+  FiltreUpdate(idstat){
+
+     
+     axios.get('/api/failedupdate/'+idstat)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
+     this.checkcolis = response.data
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+  FiltreTentatives(tent){
+console.log(tent);
+
+     axios.get('/api/failedtentativ/'+tent)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
+     this.checkcolis = response.data
+ }
+     ).catch(err => console.log(err));
+
+
+ },
+ onBarcodeScanned(codebars) {
+this.resetBarcode();
+
+
+
+ if(this.codebars !== '' ){
+
+
+
+
+
+var  DataAll = this.checkcolis.data ;
+var code = this.codebars;  
+var valObj = DataAll.filter(function(elem){
+    if(elem.id_colis == code ) return true;
+});
+if(valObj.length > 0) {
+
+ if(this.timer) {
+                // So we clear and null it so it doesn't contact the api
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => {
+                // contact your endpoint here
+axios.get('/api/undivcode/'+code).then( 
+    
+    response =>
+     { 
+       
+   this.colis = response.data,
+     this.codebars = ''
+ }
+    
+
+
+
+
+).catch(error => console.log(error))
+                // Assuming your scanner can emit keystrokes
+                // within 100 milliseconds from one another
+                // otherwise increase this value as necessary
+            }, 100);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+}
+ },
+  resetBarcode () {
+        let codebars = this.$barcodeScanner.getPreviousCode()
+        // do something...
+      },
  getColisData(id){
-console.log(id);
+
 
 this.getColis();
  },
@@ -323,10 +452,26 @@ this.getColis();
      .then(response =>
      { 
        
-   this.cLients = response.data
+   this.clients = response.data
      
  }
      ).catch(err => console.log(err));
+
+
+ },
+ FiltreClient(clt){
+
+
+     axios.get('/api/datafailfiltre/'+clt)
+     .then(response =>
+     { 
+       
+   this.colis = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+
 
 
  },

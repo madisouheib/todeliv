@@ -1,20 +1,18 @@
 <template>
     
      
-                <div id="ModalValidFiche" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div id="ModalFicheValid" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle"> <i class="fas fa-boxes"> </i> Validation </h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle"> <i class="fas fa-boxes"> </i> Validation par fiche  </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <p style="font-weight:bold; text-align:center;font-size:16px;color:red;" > Vous etes sure de valider les feuilles de route de :     </p>
-                                <h4 class="text-center"> {{ id_liv.name }} <i class="fas fa-id-card-alt"></i> </h4>
-<h5 class="text-center"> Montant Total Encaissé  : </h5>
-<div class="text-center">
-<label class="badge badge-success " style="padding:2%;font-size:18px;"> <i class="fas fa-money-bill"></i> {{id_liv.prices }} DA   </label>
-                            </div></div>
+                                <p style="font-weight:bold; text-align:center;font-size:16px;color:red;" ><b>  Vous etes sure de valider la feuille de route N: </b>     </p>
+                                <h2 class="text-center" style="font-weight:bold;"> <i class="fas fa-file-alt"></i>  F-route : {{ flist }}  </h2>
+
+</div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer <i class=" fas fa-window-close"></i> </button>
                                 <button type="button" class="btn btn-success"    data-dismiss="modal"   @click="validation()"  >Valider  <i class="fas fa-check-circle"></i></button>
@@ -27,13 +25,13 @@
 
 <script>
 export default {
-    props:['id_liv']  ,
+    props:['flist']  ,
     methods : {
 
 
 validation(){
 
-axios.patch('/api/validelivery/',{idliv: this.id_liv.id }).then(resposne=>this.$emit('fiche-edited',resposne)).catch(error => console.log(error))
+axios.patch('/api/validfichedeliv/'+this.flist).then(resposne=>this.$emit('fiche-validate',resposne)).catch(error => console.log(error))
     $('.toast-success').toast('show');
 
 

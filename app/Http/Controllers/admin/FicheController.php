@@ -26,6 +26,18 @@ return response()->json($DataFiche);
 
 }
 
+public function data_fiche_filtre_livr($id){
+
+
+    $DataFiche =  Fiche::select('fiche.*','livreur.name as livreur','cordinateur.name as cordinateur')->leftJoin('users as livreur','livreur.id','=','fiche.id_liv')->leftJoin('users as cordinateur','cordinateur.id','=','fiche.id_cord')->withCount(['price as prices' => function($query) {
+        $query->select(DB::raw('sum(price)'));
+    },'fichecolis'])->where('cloture','=',0)->where('id_liv','=',$id)->orderBy('id_fiche', 'DESC')->paginate(8);
+    
+    return response()->json($DataFiche);
+
+
+}
+
 
 public function  data_fiche_filtre($id){
 

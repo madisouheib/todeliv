@@ -1,7 +1,8 @@
 <template>
-            <div class="table-responsive ">  
+
+            <div class="table-responsive">  
                           
-                <table class="table ">
+                <table class="table">
     
                                     <thead>
                                         <tr>
@@ -52,12 +53,10 @@
                             
                             </table>
                       
-     
-                      
-                  
+
                                           <manif-delete v-bind:idcoms="idcoms"  @manif-delete="getComs" > </manif-delete>
                             <manif-validuser v-bind:idcoms="idcoms"  @manif-validuser="getComs" > </manif-validuser>
-                         <pagination :data="coms" @pagination-change-page="getComs"> </pagination>   
+                         <pagination :data="coms" @pagination-change-page="getComs"> </pagination>    
       </div>
 
 </template>

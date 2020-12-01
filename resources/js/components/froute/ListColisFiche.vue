@@ -9,7 +9,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-barcode"></i> </span>
                 </div>
-                <input type="text" class="form-control"  @keyup="keymonitor"  id="validationCustomUsername" placeholder=" code a bare   "  v-model="codebars" aria-describedby="inputGroupPrepend" required>
+                <input type="text" class="form-control"  @keyup="onBarcodeScanned(codebars)"  id="validationCustomUsername" placeholder=" code a bare   "  v-model="codebars" aria-describedby="inputGroupPrepend" required>
                 <div class="invalid-feedback">
                     Please choose a code.
                 </div>
@@ -151,7 +151,7 @@ id_delivery : ''
  created ()
  {
 
-
+ this.$barcodeScanner.init(this.onBarcodeScanned);
 
 this.getColis();
 this.getColisInHouse();
@@ -209,16 +209,15 @@ getColis(page = 1)
 
  },
 
- 
- keymonitor(event) {
+
+ onBarcodeScanned(codebars) {
+this.resetBarcode();
 
 
 
 
 
- let keyMessage = 'keyup: ';
  if(this.codebars !== '' ){
-
 
 
 if(this.SignalStats != "") {
@@ -230,14 +229,19 @@ var valObj = DataAll.filter(function(elem){
     if(elem.id_colis == code ) return true;
 });
 if(valObj.length > 0) {
-
+ if(this.timer) {
+                // So we clear and null it so it doesn't contact the api
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => {
 axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then(
  this.getColis(),
 this.codebars = ''
 
 
 ).catch(error => console.log(error))
-
+ }, 100);
 
 }
 }else {
@@ -248,8 +252,18 @@ var code = this.codebars;
 var valObjValid = DataAllValid.filter(function(elem){
     if(elem.id_colis == code ) return true;
 });
+
+
+
 if(valObjValid.length > 0) {
 
+ if(this.timer) {
+                // So we clear and null it so it doesn't contact the api
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => {
+                // contact your endpoint here
 
 axios.post('/api/addcolisfiche/', {
 
@@ -265,11 +279,27 @@ iduser : this.userid
          
  
          } ).catch(error => console.log(error))
+                // Assuming your scanner can emit keystrokes
+                // within 100 milliseconds from one another
+                // otherwise increase this value as necessary
+            }, 100);
+
+
 
 }
 
 
+
+
+
+
+
 }
+
+
+
+
+
 
 
 
@@ -279,6 +309,11 @@ iduser : this.userid
 
 }
  },
+  resetBarcode () {
+        let codebars = this.$barcodeScanner.getPreviousCode()
+        // do something...
+      }
+,
  GiveIdColis(id){
 
 this.id_delivery = id ;

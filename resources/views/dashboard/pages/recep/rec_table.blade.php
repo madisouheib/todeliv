@@ -28,7 +28,7 @@
 
 
 
-                 <manif-table >  </manif-table>
+                 <manif-table  :user_id='@json( Auth::user()->id )'   >  </manif-table>
                     </div>
                 </div>
             </div>
