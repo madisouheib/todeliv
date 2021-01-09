@@ -2,7 +2,7 @@
 <div>
 <div class="row">
  
-    <div class="col-4">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
   
             <div class="input-group">
@@ -20,7 +20,7 @@
   
     
     </div>
-    <div class="col-2">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
      <div class="form-group">
 
@@ -36,10 +36,10 @@
 
     </div>
     
-    <div class="col-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <button class="btn btn-square btn-outline-success" data-toggle="modal" data-target="#ModalvalidGp"   > validation groupée   <i class="fas fa-check-circle" ></i></button>
     </div>
-    <div class="col-2">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <button class="btn btn-square btn-outline-danger" data-toggle="modal" data-target="#Modalsign"   > Signaler  <i class="fas fa-exclamation" ></i></button>
         </div>
     </div>            

@@ -16,6 +16,21 @@ class OnDeliveryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function CheckLogin($id)
+
+    {
+    
+        $CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
+        ->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
+        ->leftJoin('roles','roles.id','=','model_has_roles.role_id')->where('users.id','=',$id)->first();
+        
+        //dd($CheckLogin['guard']);
+        return $CheckLogin;
+        
+    
+    
+    }
     public function index()
     {
         return view('dashboard.pages.ondelivery.ondelivery_table');
@@ -128,11 +143,52 @@ public function data_colis_froute($idliv){
     return response()->json($DataColis);
 }
 
+
+//filtre en livraison by livreur : 
+
+
+public function filtre_fiche_delevery_livreur($id){
+
+ 
+
+
+    
+
+    $DataUsers = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->where('cloture','=',0)->pluck('id_liv')->toArray();
+
+    //$DataUsers = Fiche::whereNull('closed_at')->where('valid_fiche','=',true)->pluck('id_fiche')->toArray();
+
+    $DatauserUnique = array_unique($DataUsers);
+
+ 
+
+    if (in_array($id, $DatauserUnique)) {
+
+        $DataLivr = User::withCount(['deliv','montant as prix' => function($query) {
+            $query->select(DB::raw('sum(price)'));
+        }])->where('id','=',$id)->paginate(8);
+        return response()->json($DataLivr);
+
+    }else {
+
+return true ;
+
+    }
+
+  
+    //dd($DataLivr);
+
+
+
+
+}
+
 public function data_deliv_byliv($liv)
 {
 
-        
-//--Colis Pour Livré ----------------------------------------------------------------------------------/
+
+
+
 
 $ColisData = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
 ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
@@ -158,6 +214,9 @@ $TotalPrice =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','coli
 ->where('colis.id_stats','=',4)->sum('price'); 
 
 $Colis = array('colis'=> $ColisData , 'amount'=> $TotalPrice );
+
+
+
 
 
 return response()->json($Colis);

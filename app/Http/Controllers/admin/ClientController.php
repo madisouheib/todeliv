@@ -23,7 +23,17 @@ public function data_recp_client(){
 public function data_user_recp($id){
 
 
-    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')->where('validation','=',true)->where('id_stats','=',null)->orWhere('id_stats','=',11)->where('id_clt','=',$id)->orderBy('id_colis', 'desc')->paginate(8);
+    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+    ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+    ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+    ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+    ->where('validation','=',true)
+  
+    ->where(function ($query) {
+        $query->where('id_stats','=',null)
+        ->orWhere('id_stats','=',11);
+    })
+    ->where('commandes.id_clt','=',$id)->orderBy('id_colis', 'desc')->paginate(8);
 
     return response()->json($Colis);
 

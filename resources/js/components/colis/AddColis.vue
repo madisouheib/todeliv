@@ -153,7 +153,7 @@
   
      
     export default {
-         props:['idcom']  ,
+         props:['GetInf']  ,
 data(){
     return {
 
@@ -196,7 +196,8 @@ qte : this.qte ,
 adresse : this.adresse,
 wilaya:this.wilaya,
 commune:this.commune,
-idcom : this.idcom,
+idcom : this.GetInf.idcom,
+iduser : this.GetInf.userid,
 price : this.price,
 remarque:this.remarque
 

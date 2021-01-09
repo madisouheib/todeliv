@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+    Route::get('/', function () {
+        return view('home');
+    });
 
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Auth::routes();
 
 // admin routes 
 Route::group([ 'middleware'=>'auth'], function () {   
@@ -34,6 +36,7 @@ Route::get('/admin/users', 'admin\UsersController@index')->name('index');
 
 
 
+Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
 
 Route::group(['middleware' => ['role:admin|coordinateur']], function () {
@@ -61,6 +64,8 @@ Route::get('/admin/transitretour', 'admin\TransitController@transit_retour')->na
 Route::get('/admin/transitenvoie', 'admin\TransitController@transit_envoie')->name('transit_envoie');
 
 Route::get('/admin/transit/{id}', 'admin\TransitController@detail')->name('detail');
+
+Route::get('/admin/transitrecp/{id}', 'admin\TransitController@detail_recp')->name('detail_recp');
 Route::get('/admin/addtransit', 'admin\TransitController@add_transit')->name('add_transit');
 
 
@@ -95,7 +100,6 @@ Route::get('/admin/retours', 'admin\RetourController@index')->name('index');
 
 
 
-Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
 
 
@@ -144,7 +148,10 @@ Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('
 
 Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
 
+
+Route::get('/admin/tracking', 'TrackingController@index_search')->name('index_search');
 Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
+
 
 });
 

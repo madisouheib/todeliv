@@ -4,7 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\User;
+use App\Transit;
+use App\Colis;
+use App\TransitColis;
+use Illuminate\Support\Facades\DB;
 class TransitController extends Controller
 {
     /**
@@ -12,6 +16,21 @@ class TransitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function CheckLogin($id)
+
+    {
+    
+        $CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
+        ->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
+        ->leftJoin('roles','roles.id','=','model_has_roles.role_id')->where('users.id','=',$id)->first();
+        
+        //dd($CheckLogin['guard']);
+        return $CheckLogin;
+        
+    
+    
+    }
 
     public function transit_envoie()
     {
@@ -21,17 +40,6 @@ class TransitController extends Controller
     {
         return view('dashboard.pages.transit.transit_table_receive');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     public function detail($id)
     {
         return view('dashboard.pages.transit.transit_detail');
@@ -42,59 +50,273 @@ class TransitController extends Controller
         return view('dashboard.pages.transit.transit_add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function detail_recp(){
+
+
+
+        return view('dashboard.pages.transit.transit_detail_receive');
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+/// Sender Section ---------------- Data Transit ---------
+public function transit_data_send($id){
+
+$Data = $this->CheckLogin($id);
+
+
+if($Data['guard'] == 'admin'){
+
+
+    $Data = Transit::select('transit.*','hubs.nom_hub')
+    ->withCount(['colis','colisapprvd'])
+    ->leftJoin('hubs','hubs.id_hub','=','transit.receive_hub')
+  
+    ->orderBy('transit.confirmed','ASC')
+->paginate(10);
+    
+    
+    return response()->json($Data);
+
+}else {
+
+
+    $Data = Transit::select('transit.*','hubs.nom_hub')
+    ->withCount(['colis','colisapprvd'])
+    ->leftJoin('hubs','hubs.id_hub','=','transit.receive_hub')
+
+    ->orderBy('transit.send_it','ASC')
+    ->where('transit.id_hub','=',$Data['hub'])->paginate(10);
+    
+    
+    return response()->json($Data);
+
+
+
+}
+
+
+
+
+
+}
+
+
+/// REception Section ---------------- Data Transit ---------
+
+public function transit_data_receiver($id){
+
+    $Data = $this->CheckLogin($id);
+
+
+    if($Data['guard'] == 'admin'){
+
+
+    
+    $Data = Transit::select('transit.*','hubs.nom_hub')
+    ->withCount(['colis','colisapprvd'])
+    ->leftJoin('hubs','hubs.id_hub','=','transit.receive_hub')
+  ->where('transit.send_it','=',true)
+    ->orderBy('transit.confirmed','ASC')
+->paginate(10);
+    
+    
+
+    
+    }else {
+
+
+    
+        $Data = Transit::select('transit.*','hubs.nom_hub')
+        ->withCount(['colis','colisapprvd'])
+        ->leftJoin('hubs','hubs.id_hub','=','transit.receive_hub')
+        ->where('transit.send_it','=',true)
+        ->orderBy('transit.confirmed','ASC')
+        ->where('transit.receive_hub','=',$Data['hub'])->paginate(10);
+
+
+
+
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    return response()->json($Data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
+
+
+public function transit_data_infos($id){
+
+    $User = User::leftJoin('hubs','hubs.id_hub','=','users.hub_id')
+    ->find($id);
+
+    return response()->json($User);
+}
+
+public function transit_data_add(Request $request){
+
+    $field =  $request->input('field');
+    $vers_hub =  $request->input('vers_hub');
+    $de_hub =  $request->input('de_hub');
+    $idcord =  $request->input('idcord');
+ 
+   
+
+
+ Transit::create([
+     'receive_hub' => $vers_hub,
+     'id_cordem' => $idcord,
+     'id_hub' => $de_hub,
+     'confirmed' => false,
+     'field_transit' => $field ]);
+
+
+
+
+}
+public function transit_data_colis($id){
+
+  $Data=   TransitColis::select('transitcolis.*','users.name as partenaire','colis.*')
+  ->leftJoin('colis','colis.id_colis','=','transitcolis.id_colis')
+  ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+  ->leftJoin('users','users.id','=','commandes.id_clt')
+    ->where('id_transit','=',$id)
+
+    ->paginate(20);
+return response()->json($Data);
+
+
+
+
+}
+
+
 
     /**
-     * Remove the specified resource from storage.
+     * Show the form for creating a new resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function transit_add_colis(Request $request)
     {
-        //
+        $idtrans =  $request->input('idtransit');
+        $idcolis =  $request->input('idcolis');
+$Count = TransitColis::where('id_transit','=',$idtrans)->where('id_colis','=',$idcolis)->count();
+
+
+$CountHouse = Colis::where(function ($query) {
+    $query->where('id_stats', '=', NULL)
+          ->orWhere('id_stats', '=', 11);
+})->where('id_colis','=',$idcolis)->count();
+
+ if ($CountHouse > 0 ){
+
+    if($Count == 0)
+    {
+      
+        $EditColis = Colis::find($idcolis);
+        $EditColis->id_stats = 15  ;
+        
+        $EditColis->save();
+
+
+        TransitColis::create([
+            'id_colis' => $idcolis  , 
+            'id_transit' => $idtrans 
+            ]);
     }
+
+ }
+
+
+    }
+
+    public function transit_remove_colis(Request $request)
+    {
+        $idtrans =  $request->input('idtransit');
+        $idcolis =  $request->input('idcolis');
+$Count = TransitColis::where('id_transit','=',$idtrans)->where('id_colis','=',$idcolis)->count();
+
+
+
+    if($Count > 0)
+    {
+      
+        $EditColis = Colis::find($idcolis);
+        $EditColis->id_stats = 11  ;
+        
+        $EditColis->save();
+
+
+     
+            $DelStats =  TransitColis::where('id_colis','=',$idcolis)->where('id_transit','=',$idtrans)->first();
+            $DelStats->delete();
+
+
+    }
+
+ 
+
+
+    }  
+
+public function transit_approv_colis($id){
+
+
+    $EditTransColis = TransitColis::find($id);
+    $EditTransColis->approved = true  ;
+    
+    $EditTransColis->save();
+
+}
+public function transit_unselect_colis($id){
+
+
+    $EditTransColis = TransitColis::find($id);
+    $EditTransColis->approved = false  ;
+    
+    $EditTransColis->save();
+
+}
+
+public function transit_send_valid($id){
+
+
+    $EditTrans = Transit::find($id);
+    $EditTrans->send_it = true  ;
+    
+    $EditTrans->save();
+
+}
+public function transit_send_recu(Request $request){
+$id = $request->input('idtransit');
+$idcord = $request->input('idcord');
+$idhub = $request->input('hub');
+
+
+    $EditTrans = Transit::find($id);
+    $EditTrans->confirmed = true  ;
+    $EditTrans->id_cordre = $idcord;
+    $EditTrans->save();
+
+    $GetColisTransit = TransitColis::where('id_transit','=',$id)->pluck('id_colis')->toArray();
+    $CountTr = count($GetColisTransit);
+    for($x = 0; $x < $CountTr; $x++ ){
+
+
+
+        $EditTrans = Colis::find($GetColisTransit[$x]);
+        $EditTrans->id_hub = $idhub  ;
+        $EditTrans->id_stats = 11  ;
+        
+        $EditTrans->save();
+
+    }
+
+    
+}
+  
+  
+   
 }

@@ -5,7 +5,7 @@
   <button style="float:right;" @click="getColis()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
     
 <div class="row">
-    <div class="col-4">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
 
             <div class="input-group">
@@ -23,20 +23,20 @@
     
     
     </div>
-<div class="col-3">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
      <span class="badge badge-success badge-glow-success" style="font-size:16px;padding:10px;"> Total Encaissé :  {{ this.prices }} DA <i class="fas fa-money-check"></i>  </span>
 
 </div>
     
-   <div class="col-2"><a  :href="'/admin/exportdeliv'" class="btn btn-success btn-glow-success"> Télecharger <i class="fas fa-file-excel"></i></a></div>
+   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a  :href="'/admin/exportdeliv'" class="btn btn-success btn-glow-success"> Télecharger <i class="fas fa-file-excel"></i></a></div>
     </div>            
     
     <div class="row"> 
      
                                                    
                           
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-    <div class="col-2">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
 <div class="form-group">
                          
@@ -79,7 +79,7 @@
 
     </div>
                             
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                  
                                     <div class="input-group">
@@ -97,7 +97,7 @@
                            
                    
                        
-<div class="col-3"> 
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"> 
 <button class=" btn btn-success btn-glow-success" @click="GetIDColiGP()"  data-toggle="modal" data-target="#ModalValidByGp"   ><b>    Encaissement groupé  </b> <i class="fas fa-money-check-alt"></i> </button>
 </div>
                                                 </div>
@@ -272,14 +272,8 @@ this.getCoursier();
  methods:{
 
 getColis(page = 1)
- {
-     
-   
-
-
-
-
-     axios.get('/api/delivered')
+ { 
+     axios.get('/api/delivered/'+this.user_id)
      .then(response =>
      { 
        
@@ -421,7 +415,7 @@ this.prices = response.data['amount']
 
 
 
-     axios.get('/api/getlivreur')
+     axios.get('/api/getlivreur/'+this.user_id)
      .then(response =>
      { 
        

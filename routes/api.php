@@ -65,7 +65,9 @@ Route::get('/fetchuser/{id}', 'admin\UsersController@users_data_fetched');
 Route::get('/getuser/{id}', 'admin\UsersController@show_user');
 Route::get('/getuserdelete/{id}', 'admin\UsersController@show_user_delete');
 
+Route::patch('/edituser', 'admin\UsersController@edit_user');
 
+Route::patch('/editpassuser', 'admin\UsersController@edit_user_pass');
 Route::post('/addcom', 'admin\CommandesController@add_com');
 
 
@@ -74,7 +76,7 @@ Route::post('/addcom', 'admin\CommandesController@add_com');
 
 Route::get('/getcolis/{id}', 'admin\ColisController@data_colis');
 
-Route::get('/inhouse', 'admin\ColisController@data_colis_inhouse');
+Route::get('/inhouse/{id}', 'admin\ColisController@data_colis_inhouse');
 
 //Clients spaces --------------------------------------------------------#
 Route::get('/userecp/{id}', 'admin\ClientController@data_user_recp');
@@ -97,18 +99,18 @@ Route::patch('/updstatsuser', 'admin\ClientController@stats_edit');
 
 
 // failed colis ---------------- routes : 
-Route::get('/datafailed', 'admin\FailedController@data_failed_colis');
+Route::get('/datafailed/{id}', 'admin\FailedController@data_failed_colis');
 
-Route::get('/undivcode/{id}', 'admin\FailedController@data_failed_colis_code');
+Route::get('/undivcode/{user}/{id}', 'admin\FailedController@data_failed_colis_code');
 
 
-Route::get('/failedwilaya/{wil}', 'admin\FailedController@data_failed_colis_wilaya');
+Route::get('/failedwilaya/{id}/{wil}', 'admin\FailedController@data_failed_colis_wilaya');
 
 //------------Mise a jour 
-Route::get('/failedupdate/{id}', 'admin\FailedController@data_failed_colis_updat');
+Route::get('/failedupdate/{user}/{id}', 'admin\FailedController@data_failed_colis_updat');
 
-Route::get('/datafailfiltre/{id}', 'admin\FailedController@data_failed_filtre_colis');
-Route::get('/failedtentativ/{tent}', 'admin\FailedController@colis_filtre_tentatives');
+Route::get('/datafailfiltre/{id}/{client}', 'admin\FailedController@data_failed_filtre_colis');
+Route::get('/failedtentativ/{id}/{tent}', 'admin\FailedController@colis_filtre_tentatives');
 
 
 
@@ -126,7 +128,7 @@ Route::get('/getstats', 'admin\StatsController@stats_tags');
 
 Route::get('/getstatsclient', 'admin\StatsController@stats_tags_client');
 
-Route::get('/stats', 'admin\StatsController@stats_nav');
+Route::get('/stats/{id}', 'admin\StatsController@stats_nav');
 
 Route::get('/statsuser/{id}', 'admin\StatsController@stats_nav_user');
 
@@ -140,6 +142,10 @@ Route::patch('/validelivery', 'admin\OnDeliveryController@validate_delevery_gp')
 Route::patch('/validfichedeliv/{id}', 'admin\OnDeliveryController@validate_delevery_fiche');
 
 Route::get('/track/{id}', 'admin\StatsColisController@tracking_show');
+
+Route::get('/tracksearch/{id}', 'admin\StatsColisController@tracking_show_search');
+
+
 
 
 Route::get('/getcolisvaldiation/{id}', 'admin\ColisController@data_colis_validation');
@@ -163,7 +169,7 @@ Route::post('/addstgpredisp', 'admin\StatsColisController@add_stats_redispatch_g
 
 
 /// FIche SESCTION -----------------------------------------------------------
-Route::get('/getfroute', 'admin\FicheController@data_fiche');
+Route::get('/getfroute/{id}', 'admin\FicheController@data_fiche');
 
 Route::get('/getcolisfiche/{id}', 'admin\FicheColisController@data_fiche_colis');
 Route::delete('/deletecolisfiche/{id}', 'admin\FicheColisController@delete_colis_fiche');
@@ -171,7 +177,7 @@ Route::delete('/deletecolisfiche/{id}', 'admin\FicheColisController@delete_colis
 Route::post('/addcolisfiche', 'admin\FicheColisController@add_colis_fiche');
 Route::get('/inhousedata', 'admin\FicheColisController@data_colis_inhouse');
 
-Route::get('/getlivreur', 'admin\FicheController@data_livreur');
+Route::get('/getlivreur/{id}', 'admin\FicheController@data_livreur');
 Route::get('/getlasf', 'admin\FicheController@get_last_id');
 
 
@@ -183,13 +189,45 @@ Route::patch('/validfiche', 'admin\FicheController@valid_fiche');
 Route::patch('/invalidfiche', 'admin\FicheController@invalid_fiche');
 
 
+//transit part --------------------
+
+Route::get('/sendtrasnit/{id}','admin\TransitController@transit_data_send');
+
+Route::get('/receivetrasnit/{id}','admin\TransitController@transit_data_receiver');
+
+Route::patch('/envtransit/{id}','admin\TransitController@transit_send_valid');
+Route::patch('/recptransit','admin\TransitController@transit_send_recu');
+
+
+Route::get('/getnfostrans/{id}','admin\TransitController@transit_data_infos');
+
+Route::post('/addtransit','admin\TransitController@transit_data_add');
+
+
+Route::get('/getcolistransit/{id}','admin\TransitController@transit_data_colis' );
+
+
+Route::post('/addcoltrans','admin\TransitController@transit_add_colis');
+
+Route::post('/delcoltrans','admin\TransitController@transit_remove_colis');
+
+Route::patch('/approvcoltrans/{id}','admin\TransitController@transit_approv_colis');
+
+Route::patch('/unselectcoltrans/{id}','admin\TransitController@transit_unselect_colis');
+
+
+
+
+
+
 
 
 // Deleried  list 
 
 
-Route::get('/delivered', 'admin\LivraisonController@get_delivred');
+Route::get('/delivered/{id}', 'admin\LivraisonController@get_delivred');
 Route::get('/deliv/{id}', 'admin\LivraisonController@get_delivred_livreur');
+
 
 Route::get('/codedeliv/{id}', 'admin\LivraisonController@code_delivred');
 
@@ -202,11 +240,11 @@ Route::get('/delivredwils/{id}', 'admin\LivraisonController@filtre_wil_delivred'
 
 
 
-Route::get('/returned', 'admin\LivraisonController@get_returned');
-Route::get('/refiltrtent/{id}', 'admin\LivraisonController@get_returned_tentatives');
-Route::get('/retourliv/{id}', 'admin\LivraisonController@get_returned_lv');
+Route::get('/returned/{id}', 'admin\LivraisonController@get_returned');
+Route::get('/refiltrtent/{id}/{user}', 'admin\LivraisonController@get_returned_tentatives');
+Route::get('/retourliv/{id}/{user}', 'admin\LivraisonController@get_returned_lv');
 
-Route::get('/retourwils/{wil}', 'admin\LivraisonController@get_returned_wilaya');
+Route::get('/retourwils/{wil}/{id}', 'admin\LivraisonController@get_returned_wilaya');
 
 Route::patch('/validreturned', 'admin\LivraisonController@update_retour_cash');
 
@@ -230,10 +268,10 @@ Route::get('/getarchivecoms/{id}', 'admin\CommandesController@data_coms_archive'
 
 Route::get('/getcolisinfos/{id}', 'admin\ColisController@infos_colis');
 
-Route::get('/bytentative/{tent}', 'admin\InHouseController@data_tentatives');
-Route::get('/bywilayah/{wil}', 'admin\InHouseController@data_filtre_wils');
-Route::get('/byclienth/{clt}', 'admin\InHouseController@data_filtre_client');
-Route::get('/codehouse/{code}', 'admin\InHouseController@data_filtre_codebars');
+Route::get('/bytentative/{tent}/user/{id}', 'admin\InHouseController@data_tentatives');
+Route::get('/bywilayah/{wil}/{id}', 'admin\InHouseController@data_filtre_wils');
+Route::get('/byclienth/{clt}/{id}', 'admin\InHouseController@data_filtre_client');
+Route::get('/codehouse/{code}/{id}', 'admin\InHouseController@data_filtre_codebars');
 
 
 Route::get('/filtreflist/{id}', 'admin\InHouseController@data_filtre_codebars');
@@ -272,14 +310,14 @@ Route::get('/filtreflist/{id}', 'admin\OnDeliveryController@data_filtre_listfich
 
 Route::delete('/deletecolis/{id}', 'admin\ColisController@colis_delete');
 
-Route::get('/getmanifs', 'admin\CommandesController@data_manifs');
+Route::get('/getmanifs/{id}', 'admin\CommandesController@data_manifs');
 Route::get('/getarchivemanifs', 'admin\CommandesController@data_manifs_archive');
 
 
 
 
 //en livraison 
-Route::get('/ondelevery', 'admin\LivraisonController@data_livreur_delevery');
+Route::get('/ondelevery/{id}', 'admin\LivraisonController@data_livreur_delevery');
 
 //en livraison 
 Route::get('/getcoursier', 'admin\LivraisonController@data_livreur_list');
@@ -296,7 +334,7 @@ Route::get('/getdelivred', 'admin\LivraisonController@data_fiche_delevery');
 
 Route::get('/filtredelivery/{id}', 'admin\OnDeliveryController@filtre_fiche_delevery_validation');
 
-Route::get('/fetchdeliv', 'admin\OnDeliveryController@filtre_fiche_delevery_livreur');
+Route::get('/fetchdeliv/{id}', 'admin\OnDeliveryController@filtre_fiche_delevery_livreur');
 
 
 Route::get('/getfiltrefroute/{id}', 'admin\FicheController@data_fiche_filtre');

@@ -7,7 +7,7 @@
 
 <div class="row">
  
-    <div class="col-4">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
 
             <div class="input-group">
@@ -33,7 +33,7 @@
      
                                                    
                           
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                
@@ -56,7 +56,7 @@
                             </div>
     
     
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                 
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                  
                                     <div class="input-group">
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                          
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                        
@@ -298,7 +298,7 @@ this.GetStats();
 getColis(page = 1)
  {
      
-     axios.get('/api/datafailed?page='+page)
+     axios.get('/api/datafailed/'+this.user_id+'?page='+page)
      .then(response =>
      { 
        
@@ -312,7 +312,7 @@ getColis(page = 1)
  FiltreWilaya(wil){
 
      
-     axios.get('/api/failedwilaya/'+wil)
+     axios.get('/api/failedwilaya/'+this.user_id+'/'+wil)
      .then(response =>
      { 
        
@@ -326,7 +326,7 @@ getColis(page = 1)
   FiltreUpdate(idstat){
 
      
-     axios.get('/api/failedupdate/'+idstat)
+     axios.get('/api/failedupdate/'+this.user_id+'/'+idstat)
      .then(response =>
      { 
        
@@ -340,7 +340,7 @@ getColis(page = 1)
   FiltreTentatives(tent){
 console.log(tent);
 
-     axios.get('/api/failedtentativ/'+tent)
+     axios.get('/api/failedtentativ/'+this.user_id+'/'+tent)
      .then(response =>
      { 
        
@@ -376,7 +376,7 @@ if(valObj.length > 0) {
             }
             this.timer = setTimeout(() => {
                 // contact your endpoint here
-axios.get('/api/undivcode/'+code).then( 
+axios.get('/api/undivcode/'+this.user_id+'/'+code).then( 
     
     response =>
      { 
@@ -462,7 +462,7 @@ this.getColis();
  FiltreClient(clt){
 
 
-     axios.get('/api/datafailfiltre/'+clt)
+     axios.get('/api/datafailfiltre/'+this.user_id+'/'+clt)
      .then(response =>
      { 
        

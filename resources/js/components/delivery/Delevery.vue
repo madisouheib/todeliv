@@ -2,7 +2,7 @@
 <div>  
     <div class="row">
 
-<div class="col col-2">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
      
    <div class="form-group">
                                 
@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
 </div>
-<div class="col col-2">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
      
     <div class="form-group">
                             
@@ -42,7 +42,7 @@
         </div>
     </div>
 </div>
-<div class="col col-2">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="form-group">
              
         <div class="input-group">
@@ -151,7 +151,7 @@ getDelivery(page = 1)
  {
 var id = this.id_user ; 
 
-     axios.get('/api/ondelevery?page='+page)
+     axios.get('/api/ondelevery/'+this.user_id+'?page='+page)
      .then(response =>
      { 
        
@@ -160,20 +160,6 @@ var id = this.id_user ;
      
  }
      ).catch(err => console.log(err));
-
- },
- GetValidationDelivery(id,page = 1 ){
-console.log(id);
-     axios.get('/api/filtredelivery/'+id+'?page='+page)
-     .then(response =>
-     { 
-       
-   this.deliv= response.data
-   
-     
- }
-     ).catch(err => console.log(err));
-
 
  }
  ,
@@ -194,7 +180,7 @@ console.log(id);
  },
  Filtreclient(coursier){
 
-     axios.get('/api/fetchdeliv')
+     axios.get('/api/fetchdeliv/'+coursier)
      .then(response =>
      { 
        
@@ -208,7 +194,7 @@ console.log(id);
  {
 
 
-     axios.get('/api/getlivreur')
+     axios.get('/api/getlivreur/'+this.user_id)
      .then(response =>
      { 
        

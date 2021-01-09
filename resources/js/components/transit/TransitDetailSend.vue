@@ -2,7 +2,7 @@
 <div>
 <div class="row">
  
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-4">
         <div class="form-group">
   
             <div class="input-group">
@@ -21,7 +21,7 @@
     
     </div>
    
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-2">
 
      <div class="form-group">
 
@@ -46,7 +46,7 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-dark">
            <thead class="thead-dark ">
                                     <tr>
                                        <th class="text-center" ></th>
@@ -64,7 +64,7 @@
                                 <tbody>
                                     <tr v-for=" col  in colis.data" :key="col.id_colis" >
                          
-                                        <th scope="" class="" >
+                                        <td scope="" class=" text-center" >
                                             <div class="form-group">
   <div   class="checkbox d-inline">
                                     <input   type="checkbox" name="checkbox-fill-1" :id="'checkbox-'+col.id_colis" checked >
@@ -75,16 +75,16 @@
 
                                             </div>        
                                                                                                
-                                        </th>
+                                        </td>
 
-                                        <th scope="row" class="text-center" >#send- {{ col.id_colis  }}</th>
+                                        <td scope="row" class="text-center" >#send- {{ col.id_colis  }}</td>
 
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
-                                        </th>
-                                      <th class="text-center"   > {{ col.price  }} DA    </th>
-                                        <th class="text-center" >  {{ col.wilaya }}</th>
-                                        <th class="text-center" > {{ col.partenaire }} </th>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
+                                        </td>
+                                      <td class="text-center"   > {{ col.price  }} DA    </td>
+                                        <td class="text-center" >  {{ col.wilaya }}</td>
+                                        <td class="text-center" > {{ col.partenaire }} </td>
 
                                         <td class="text-center" >
        
@@ -108,9 +108,7 @@
               
     <pagination :data="colis" @pagination-change-page="getColis"></pagination>
 
-<stats-colis    ref="childref" >    </stats-colis>
- <delete-colis @colis-deleted="getColis" v-bind:id_delivery="id_delivery" >   </delete-colis>
-  <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
+
       </div>
      </div>
 </template>
@@ -120,16 +118,14 @@
 
 
 <script>
-  import Stats from '../inhouse/StatsInfos.vue';
-    import DelFcolis from './DeleteColisFiche.vue';
-      import ColisInfos from './ColisInfos.vue';
+
+  
+    
 
   export default {
      props: ['url_id','user_id'],
  components: {
-       'stats-colis': Stats,
-       'delete-colis': DelFcolis,
-       'view-colis': ColisInfos 
+
      
   },
 
@@ -164,7 +160,7 @@ getColis(page = 1)
     
 
 
-     axios.get('/api/getcolisfiche/'+this.idfiche+'?page='+page)
+     axios.get('/api/getcolistransit/'+this.url_id+'?page='+page)
      .then(response =>
      { 
        
@@ -235,7 +231,14 @@ if(valObj.length > 0) {
                 this.timer = null;
             }
             this.timer = setTimeout(() => {
-axios.delete('/api/deletecolisfiche/'+this.goga.id_delivery).then(
+axios.post('/api/delcoltrans', {
+
+idcolis : this.codebars ,
+idtransit : this.url_id  
+
+
+
+}).then(
  this.getColis(),
 this.codebars = ''
 
@@ -265,16 +268,16 @@ if(valObjValid.length > 0) {
             this.timer = setTimeout(() => {
                 // contact your endpoint here
 
-axios.post('/api/addcolisfiche/', {
+axios.post('/api/addcoltrans/', {
 
-idcolis : this.codebars,
-idfiche : this.idfiche , 
-iduser : this.userid 
+idcolis : this.codebars ,
+idtransit : this.url_id  
+
 
 
 }).then( response =>
      { 
-         this.colis = response.data ,
+       this.getColis();
          this.codebars = ''
          
  

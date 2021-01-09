@@ -16,6 +16,12 @@ class TrackingController extends Controller
         return view('dashboard.pages.tracking.tracking_dashboard');
     }
 
+
+    public function index_search()
+    {
+        return view('dashboard.pages.tracking.tracking_search');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

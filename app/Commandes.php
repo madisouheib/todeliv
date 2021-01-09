@@ -19,7 +19,7 @@ class Commandes extends Model
 
 
     protected $fillable = [
-        'id_clt','nom_com','confirmed','confirmed_user','cloture'
+        'id_clt','nom_com','confirmed','confirmed_user','cloture','id_hub'
     ];
     public function colis(){
 

@@ -6,7 +6,7 @@
           <button style="float:right;" @click="getColis()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
 
             <div class="input-group">
@@ -33,7 +33,7 @@
      
                                                    
                           
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-    <div class="col-2">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
 <div class="form-group">
                          
@@ -76,7 +76,7 @@
 
     </div>
                             
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                  
                                     <div class="input-group">
@@ -92,7 +92,7 @@
                             </div>
                             
                            
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                        
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                        
-<div class="col-3">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
 <button class="btn btn-danger" data-toggle="modal" data-target="#ModalValidRetour"  type="submit" > validation groupée <i class="fas fa-check-circle"></i> </button>
 
@@ -293,7 +293,7 @@ getColis(page = 1)
 
 
 
-     axios.get('/api/returned')
+     axios.get('/api/returned/'+this.user_id)
      .then(response =>
      { 
        
@@ -311,7 +311,7 @@ FiltreTentatives(tent){
 
 
 
-     axios.get('/api/refiltrtent/'+tent)
+     axios.get('/api/refiltrtent/'+tent+'/'+this.user_id)
      .then(response =>
      { 
        
@@ -331,7 +331,7 @@ this.prices = response.data['amount']
 
 
 
-     axios.get('/api/retourwils/'+wil)
+     axios.get('/api/retourwils/'+wil+'/'+this.user_id)
      .then(response =>
      { 
        
@@ -351,7 +351,7 @@ this.prices = response.data['amount']
 
 
 
-     axios.get('/api/retourliv/'+id)
+     axios.get('/api/retourliv/'+id+'/'+this.user_id)
      .then(response =>
      { 
        
@@ -451,7 +451,7 @@ axios.get('/api/coderetour/'+code).then(
 
 
 
-     axios.get('/api/getlivreur')
+     axios.get('/api/getlivreur/'+this.user_id)
      .then(response =>
      { 
        

@@ -3,7 +3,12 @@
       <button style="float:right;" @click="getFroute()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
 
 <div class="row">
-<div class="col col-2">
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="float-right">
+        <button class="btn btn-square btn-success btn-sm"  data-toggle="modal" data-target="#Modaladdfroute"  > Ajouter une Feuille de route   <i class="fas fa-plus-square"></i> </button>
+    </div>
+    </div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
      
     <div class="form-group">
                             
@@ -25,7 +30,7 @@
         </div>
     </div>
 </div>
-<div class="col col-2">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
      
     <div class="form-group">
                             
@@ -45,7 +50,7 @@
         </div>
     </div>
 </div>
-<div class="col col-2">
+<div v-if="this.user_id == 3" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
      
     <div class="form-group">
                             
@@ -65,7 +70,7 @@
         </div>
     </div>
 </div>
-<div class="col col-2">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="form-group">
              
         <div class="input-group">
@@ -81,10 +86,7 @@
 </div>
 
 
-    <div class="col">
-        <div class="float-right">
-        <button class="btn btn-square btn-success btn-sm"  data-toggle="modal" data-target="#Modaladdfroute"  > Ajouter une Feuille de route   <i class="fas fa-plus-square"></i> </button>
-    </div></div>
+   
 </div>
 
                         <div class="table-responsive">
@@ -207,7 +209,7 @@ getFroute(page = 1)
  {
 
 
-     axios.get('/api/getfroute?page='+page)
+     axios.get('/api/getfroute/'+this.user_id+'?page='+page)
      .then(response =>
      { 
        
@@ -255,7 +257,7 @@ getFroute(page = 1)
  {
 
 
-     axios.get('/api/getlivreur')
+     axios.get('/api/getlivreur/'+this.user_id)
      .then(response =>
      { 
        

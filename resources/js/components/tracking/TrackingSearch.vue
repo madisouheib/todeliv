@@ -121,9 +121,10 @@
 </div>
 </div>
 </template>
+
 <script>
 export default {
-    props:['url_id']  ,
+    props:[]  ,
          filters: {
   moment: function (date) {
       
@@ -135,8 +136,8 @@ export default {
 tracking:{},
 userPartenaire :{},
 Client :{},
+codetrack:''
 
-idcolis: this.url_id
 
 
 
@@ -148,7 +149,6 @@ idcolis: this.url_id
 
 
 
-this.getTracking();
 
 
 
@@ -156,10 +156,10 @@ this.getTracking();
     methods : {
 
 
-getTracking(id){
+getTracking(codetrack){
 
 
-axios.get('/api/track/'+this.idcolis)
+axios.get('/api/tracksearch/'+codetrack)
      .then(response =>
      { 
        

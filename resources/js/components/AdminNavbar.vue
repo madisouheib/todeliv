@@ -40,9 +40,9 @@
                     <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-sitemap"></i></span><span class="pcoded-mtext">Transit</span></a>
                     <ul class="pcoded-submenu">
                       
-                  <li class="  pcoded-trigger"><a :href="'/admin/transitenvoie'" class="">Envoie <span class="pcoded-badge label label-info">0</span> </a>
+                  <li class="  pcoded-trigger"><a :href="'/admin/transitenvoie'" class="">Envoie <span class="pcoded-badge label label-info">{{ stats.trenv }}</span> </a>
                          </li>
-                           <li class="  pcoded-trigger"><a :href="'/admin/transitretour'" class="">Retour  <span class="pcoded-badge label label-danger">0</span>  </a>
+                           <li class="  pcoded-trigger"><a :href="'/admin/transitretour'" class="">Reception  <span class="pcoded-badge label label-danger"> {{ stats.trecp }}</span>  </a>
                          </li>
                     </ul>
                 </li>
@@ -94,7 +94,7 @@
 // Choose Locale
 
 export default {
-
+props:['user_id'],
 filters: {
   moment: function (date) {
       
@@ -125,7 +125,7 @@ this.getstats();
  getstats(){
 
 
-axios.get('/api/stats/')
+axios.get('/api/stats/'+this.user_id)
      .then(response =>
      { 
        

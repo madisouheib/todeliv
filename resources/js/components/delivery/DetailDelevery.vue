@@ -7,7 +7,7 @@
 <div class="row">
       
    
-    <div class="col-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
 
             <div class="input-group">
@@ -25,7 +25,7 @@
     
  
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
 <button class="btn btn-glow-primary btn-sm btn-primary" data-toggle="modal" data-target="#ModalColisActionGp" @click="GetIDColisGrp()" type="button" > Mise à jour groupée <i class="fas fa-dolly"> </i>  </button>
     </div>
@@ -44,7 +44,7 @@
      
                                                    
                           
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                
@@ -67,7 +67,7 @@
                             </div>
 
                      
-                                <div class="col-2">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                 
@@ -91,7 +91,7 @@
                             
                         
                             
-                         <div class="col-2">
+                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                        
@@ -112,7 +112,7 @@
                                     </div>
                                 </div>
                             </div>
-   <div class="col-6" v-if="ShowBtn == true ">
+   <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" v-if="ShowBtn == true ">
 <label class="badge  badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-file"></i> {{ this.FicheDetail.fprice }} DA  </label>
     <button v-if="this.FicheDetail.ftotal_count == this.FicheDetail.fchtotal_count " class="btn btn-sm  btn-glow-success btn-sm    btn-success" data-toggle="modal" data-target="#ModalFicheValid"  style=""> Validation Par Fiche  <i class="fas fa-check-circle" ></i></button>
 
@@ -213,12 +213,12 @@
 
 <script>
 
- import ColisInfos from './ColisInfos.vue';
-  import Stats from '../inhouse/StatsInfos.vue';
-   import ActionStats from './EtatColis.vue';
-  import EtatGroupColis from './EtatGroupColis';
-    import ValidFiche from './ValidDelev.vue';
-    import ValidByFiche from './ValidFiche.vue';
+import ColisInfos from './ColisInfos.vue';
+import Stats from '../inhouse/StatsInfos.vue';
+import ActionStats from './EtatColis.vue';
+import EtatGroupColis from './EtatGroupColis';
+import ValidFiche from './ValidDelev.vue';
+import ValidByFiche from './ValidFiche.vue';
 
 
 
@@ -373,7 +373,7 @@ this.mycolis = [];
  
  keymonitor(event) {
 
- let keyMessage = 'keyup: ';
+ 
  if(this.codebars !== '' ){
 
 
@@ -408,15 +408,13 @@ this.codebars = '';
 }else {
 
 
-this.codebars = '';
+
     
 }
 
 
-
-
-
 }
+
 } 
 ,
 getColis(page = 1)

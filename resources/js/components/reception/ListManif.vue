@@ -2,7 +2,7 @@
         <div>
 
 <div class="row">
-<div class="col-4">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="form-group">
    
         <div class="input-group">
@@ -40,7 +40,7 @@
 
                     
                         
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="form-group">
              
                                 <div class="input-group">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         
                             <div class="form-group">
                             
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
 
 <a  :href="'/admin/archrecep'" class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </a>
@@ -199,7 +199,7 @@ getManifs(page = 1)
  {
 
 
-     axios.get('/api/getmanifs/?page='+page)
+     axios.get('/api/getmanifs/'+this.user_id+'?page='+page)
      .then(response =>
      { 
        

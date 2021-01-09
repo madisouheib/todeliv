@@ -7,7 +7,7 @@
 
 <div class="row">
 
-    <div class="col-4">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
 
             <div class="input-group">
@@ -33,7 +33,7 @@
      
                                                    
                           
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                
@@ -58,7 +58,7 @@
                             </div>
     
     
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                 
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                  
                                     <div class="input-group">
@@ -95,7 +95,7 @@
                             </div>
                             
                     
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                        
@@ -280,7 +280,7 @@ getColis(page = 1)
 
 
 
-     axios.get('/api/inhouse?page='+page)
+     axios.get('/api/inhouse/'+this.user_id+'?page='+page)
      .then(response =>
      { 
        
@@ -311,7 +311,7 @@ this.getColis();
 
  },
  Filtreclient(clt){
-axios.get('/api/byclienth/'+clt)
+axios.get('/api/byclienth/'+clt+'/'+this.user_id)
      .then(response =>
      { 
        
@@ -338,7 +338,7 @@ axios.get('/api/byclienth/'+clt)
  ,
  FiltreWilaya(wil){
 
-axios.get('/api/bywilayah/'+wil)
+axios.get('/api/bywilayah/'+wil+'/'+this.user_id)
      .then(response =>
      { 
        
@@ -364,7 +364,7 @@ axios.get('/api/bywilayah/'+wil)
  },
  Tentatives(tent){
 
-axios.get('/api/bytentative/'+tent)
+axios.get('/api/bytentative/'+tent+'/user/'+this.user_id)
      .then(response =>
      { 
        
@@ -400,7 +400,7 @@ if(valObj.length > 0) {
             }
             this.timer = setTimeout(() => {
                 // contact your endpoint here
-axios.get('/api/codehouse/'+code).then( 
+axios.get('/api/codehouse/'+code+'/'+this.user_id).then( 
     
     response =>
      { 

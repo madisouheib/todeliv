@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Commandes;
 use App\Colis;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class CommandesController extends Controller
@@ -72,13 +73,39 @@ public function data_coms_archive($id){
 }
 
 
-public function data_manifs(){
+public function data_manifs($id){
 
-    
+   // dd($id);
+$CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
+->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
+->leftJoin('roles','roles.id','=','model_has_roles.role_id')->where('users.id','=',$id)->first();
+
+//dd($CheckLogin['guard']);
+if($CheckLogin['guard'] == 'admin'){
+
+
   $Comas = commandes::withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
 }, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(40);
 
+
+
+}else {
+
+
+
+  $Comas = commandes::withCount(['price as prices' => function($query) {
+    $query->select(DB::raw('sum(price)'));
+}, 'colis','signaler','validate'])
+->where('commandes.id_hub','=',$CheckLogin['hub'])
+->where([['cloture','=',null],['confirmed_user','=',1]])
+->orderBy('id_coms', 'desc')
+->paginate(40);
+
+
+
+
+}
 
 
         return response()->json($Comas);
@@ -166,8 +193,8 @@ public function validate_manif_user($id){
     $nameCom =  $request->input('namecom');
     $idclient =  $request->input('idclient');
 
-
-  Commandes::create(['nom_com' => $nameCom , 'id_clt'=> $idclient ]);
+    $idhub = Auth::user()->hub_id;
+  Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub  ]);
 
 
   return redirect('admin/commandes');

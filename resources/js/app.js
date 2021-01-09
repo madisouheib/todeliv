@@ -62,6 +62,17 @@ Vue.component('delivery-colislist', require('./components/delivery/DetailDelever
 
 Vue.component('undelivred-list', require('./components/undelivred/ListUndelivred.vue').default);
 Vue.component('tracking-detail', require('./components/tracking/Tracking.vue').default);
+Vue.component('tracking-search', require('./components/tracking/TrackingSearch.vue').default);
+
+
+Vue.component('transit-send', require('./components/transit/TransitSend.vue').default);
+Vue.component('transit-receive', require('./components/transit/TransitReceive.vue').default);
+
+Vue.component('transdetail-send', require('./components/transit/TransitDetailSend.vue').default);
+Vue.component('transdetail-receive', require('./components/transit/TransitDetailReceive.vue').default);
+
+
+
 //clients space : 
 
 

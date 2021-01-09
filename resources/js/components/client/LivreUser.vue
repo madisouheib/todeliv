@@ -5,7 +5,7 @@
   
     
 <div class="row">
-    <div class="col-4">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="form-group">
 
             <div class="input-group">
@@ -32,7 +32,7 @@
      
                                                    
                           
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             
                                 <div class="form-group">
                                
@@ -55,7 +55,7 @@
                             </div>
     
                             
-                            <div class="col-2">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                  
                                     <div class="input-group">
@@ -70,56 +70,15 @@
                                 </div>
                             </div>
                             
-                            <div class="col-2">
-                            
-                                <div class="form-group">
-                         
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-tasks"></i> </span>
-                                        </div>
-                            <select class="custom-select" required>
-  <option selected >Mise a jour  </option>
-                                 <option       v-for="stat in stats " :key="stat.id_stats"  :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
                           
-                        
-                            </select>
-                            
-                                      
-                                        <div class="invalid-feedback">
-                                            Please choose a one.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                            
-                                <div class="form-group">
-                       
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
-                                        </div>
-                            <select class="custom-select" required>
-                            <option value="">Tentatives </option>
-            
-                            <option value="1">Tentative 1 </option>
-                            <option value="2">Tentative 2 </option>
-                            <option value="3">Tentative 3 </option>
-                            </select>
-                                         <div class="invalid-feedback">
-                                            Please choose a type.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                   
 
 
 
                                                 </div>
                         <div class="table-responsive">
 
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover table-bordered table-dark">
    
                                 <thead class="thead-dark">
                                        <tr>
@@ -143,20 +102,20 @@
        
 
                              
-                                        <th scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></th>
+                                        <td scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></td>
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"   class="btn   btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-search-plus" ></i></button> 
-                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></th>
-                                                  <th class="text-center" > <label class="badge badge-light" style="padding:10px;font-size:14px;">  {{ col.nom_client }}  </label>  </th>
-                                        <th class="text-center" > <label class="badge badge-success" style="font-size:16px;">   {{ col.price }}  DA  </label> </th>
-                                        <th class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i>  </label> </th>
-                                        <th class="text-center" >{{ col.created_at | moment   }}   </th>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"   class="btn  btn-sm  btn-glow-primary   btn-primary"><i  style="margin:0px;font-size:1.3em;"  class="fas fa-search-plus" ></i></button> 
+                                        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-sm btn-dark"> <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i></a></td>
+                                                  <td class="text-center" > <label class="badge badge-light" style="padding:10px;font-size:14px;">  {{ col.nom_client }}  </label>  </td>
+                                        <td class="text-center" > <label class="badge badge-success" style="font-size:16px;">   {{ col.price }}  DA  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i>  </label> </td>
+                                        <td class="text-center" >{{ col.created_at | moment   }}   </td>
                               
                           
-                                        <th class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
+                                        <td class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-sm btn-success " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
                         
                                           
-                                        </th>
+                                        </td>
                                      
 
 

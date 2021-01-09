@@ -9,24 +9,25 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Transit Reception  </h5>
-                     
-                        
+                        <h5 style="margin-bottom:3%;"><span class="pcoded-badge label label-info">#transit-0438340   <i class="fas fa-list"></i> </span> </h5>
+                        <h4 style="color:#4A4747;margin:5px;"> Destination : <b> HUB Alger </b> </h4>   
+
+
 
 
 </div>
 
+
+     <transdetail-receive :url_id='@json( Request::segment(3) )'  >  </transdetail-receive>
+
+
+
                 
-
-<transit-receive :user_id='@json( Auth::user()->id )'   >    </transit-receive>
-
-
                 </div>
             </div>
             <!-- [ basic-table ] end -->
 
             @include('dashboard.partials.colis_information')
-            @include('dashboard.pages.transit.transit_alert_add')
             @include('dashboard.partials.colis_suivi')
     
         

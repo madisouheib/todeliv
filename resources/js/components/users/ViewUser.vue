@@ -21,11 +21,11 @@
 <tr>
 <td> <i class="fas fa-phone"> </i> Numero de telephone : </td><td>{{ ShowUser.phone}}</td> </tr>
 <tr>
-    <td> <i class="fas fa-id-card-alt "> </i> Type de compte : </td><td>{{ ShowUser.name }}</td> </tr>
+    <td> <i class="fas fa-id-card-alt "> </i> Type de compte : </td><td>{{ ShowUser.name_role}}</td> </tr>
 <tr>
 
 <tr>
-<td> <i class="fas fa-sitemap"> </i> Hub : </td><td>{{ ShowUser.name }}</td> </tr>
+<td> <i class="fas fa-sitemap"> </i> Hub : </td><td>{{ ShowUser.nom_hub}}</td> </tr>
 <tr>
 <td> <i class="fas fa-map-marker-alt"> </i> Adresse : </td><td>{{ ShowUser.adresse}}</td> </tr>
 

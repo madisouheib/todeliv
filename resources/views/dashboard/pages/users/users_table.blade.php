@@ -35,10 +35,6 @@
             <!-- [ basic-table ] end -->
 
     
-
-@include('dashboard.pages.users.users_edit')
-
-
     
         
             @endsection

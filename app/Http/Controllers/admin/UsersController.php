@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Users;
 use App\User;
 
+use App\UserProfiles;
+
 class UsersController extends Controller
 {
     /**
@@ -42,8 +44,11 @@ class UsersController extends Controller
     {
 
 
-    $users = Users::latest()->paginate(6);
-    //dd($users);
+    $users = Users::select('users.*','roles.name as field_name')->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+    ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+    ->latest()
+    ->paginate(10);
+
     return response()->json($users);
     }
 
@@ -101,10 +106,64 @@ $hub = request('hub');
     }
 public function show_user($id){
 
-    $ShowUser = Users::join('hubs', 'users.hub_id', '=', 'hubs.id_hub')->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')->join('roles', 'model_has_roles.role_id', '=', 'roles.id')->where('users.id','=',$id)->first();
+    $ShowUser = Users::select('users.*','model_has_roles.role_id','hubs.id_hub','hubs.nom_hub','roles.name as name_role')
+    ->join('hubs', 'users.hub_id', '=', 'hubs.id_hub')
+    ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+    ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+    ->where('users.id','=',$id)
+    ->first();
 
     return response()->json($ShowUser);
 
+
+}
+
+//____--------- users ediiiiit section ::::::: 
+
+
+public function edit_user(Request $request){
+
+   
+
+
+
+$id  = request('iduser');
+    $EditUser = User::find($id);
+    $EditUser->name = request('name');
+    $EditUser->full_name = request('username');
+    $EditUser->email = request('email');
+    $EditUser->adresse = request('adresse');
+    $EditUser->phone = request('phone');
+    $EditUser->service_client = request('service_client');
+    $EditUser->hub_id = request('hub');
+    $EditUser->save();
+
+$DataProfil = UserProfiles::where('model_id',$id)->update([
+    'role_id' => request('role')
+ ]);
+
+
+
+
+}
+
+// change password users 
+
+public function edit_user_pass(Request $request){
+
+
+    $id  = request('iduser');
+    $passkey = request('passkey');
+    $password = request('password') ;
+
+    if($passkey == '1962'){
+
+        $EditPass = User::find($id);
+        $EditPass->password = Hash::make($password);
+        $EditPass->save();
+
+    }
+ 
 
 }
 

@@ -72,7 +72,7 @@
 // Choose Locale
 
 export default {
-
+props:['user_id'],
 filters: {
   moment: function (date) {
       
@@ -103,7 +103,7 @@ this.getstats();
  getstats(){
 
 
-axios.get('/api/stats/')
+axios.get('/api/stats/'+this.user_id)
      .then(response =>
      { 
        

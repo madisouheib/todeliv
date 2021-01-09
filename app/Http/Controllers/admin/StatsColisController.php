@@ -431,9 +431,14 @@ public function tracking_show($id){
     ->toArray();
 
 
-    $DataStats = StatsColis::select('stats_colis.*','stats.field_stats','users.name')->leftJoin('stats','stats.id_stats','=','stats_colis.id_stats')
+    $DataStats =  StatsColis::select('stats_colis.*','stats.field_stats','users.name as cordinateur','profil.name as livreur','fiche.id_fiche as fiche','stats.order_stats as order')
+    ->leftJoin('stats','stats.id_stats','=','stats_colis.id_stats')
     ->leftJoin('users','users.id','=','stats_colis.by_id_user')
+    ->leftJoin('fiche_fields','fiche_fields.id_colis','=','stats_colis.id_colis')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->leftJoin('users as profil','profil.id','=','fiche.id_liv')
     ->where('stats_colis.id_colis','=',$id)
+    ->where('stats.order_stats' ,'!=',7)
     ->orderBy('id_stats_colis')->get()
     ->toArray();
 
@@ -451,7 +456,43 @@ return response()->json(array('colis'=>$DataColis,'stats'=>$DataStats,'partenair
 
 }
 
+// search tracking 
 
+
+
+public function tracking_show_search($id){
+
+
+    $DataColis = Colis::select('colis.*','commandes.id_clt')
+    ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->where('colis.id_colis','=',$id)->first()
+    ->toArray();
+
+
+    $DataStats =  StatsColis::select('stats_colis.*','stats.field_stats','users.name as cordinateur','profil.name as livreur','fiche.id_fiche as fiche','stats.order_stats as order')
+    ->leftJoin('stats','stats.id_stats','=','stats_colis.id_stats')
+    ->leftJoin('users','users.id','=','stats_colis.by_id_user')
+    ->leftJoin('fiche_fields','fiche_fields.id_colis','=','stats_colis.id_colis')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->leftJoin('users as profil','profil.id','=','fiche.id_liv')
+    ->where('stats_colis.id_colis','=',$id)
+    ->where('stats.order_stats' ,'!=',7)
+    ->orderBy('id_stats_colis')->get()
+    ->toArray();
+
+
+
+
+
+    $DataPartenaire = User::select('users.name','users.phone','users.service_client','hubs.nom_hub','users.email')
+    ->leftJoin('hubs','hubs.id_hub','=','users.hub_id')->where('users.id','=',$DataColis['id_clt'])->first()
+    ->toArray();
+
+
+return response()->json(array('colis'=>$DataColis,'stats'=>$DataStats,'partenaire'=>$DataPartenaire));
+
+
+}
 
 
 

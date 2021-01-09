@@ -35,8 +35,8 @@ class ColisController extends Controller
 
         if(isset($data)){
 
-            $data=$request->input('idcoms');
-
+            $data = $request->input('idcoms');
+            
         }else {
 
 
@@ -46,7 +46,9 @@ class ColisController extends Controller
                 ]);
     
                 $idclient = Auth::id();
-              $data =   Commandes::create(['id_clt'=> $idclient ])->id_coms;
+                $idhub = Auth::user()->hub_id;
+  
+              $data =   Commandes::create(['id_clt'=> $idclient , 'id_hub'=>  $idhub  ])->id_coms;
              
            
             
@@ -148,6 +150,13 @@ if($id == 'all' ){
 
 
 
+        $iduser   =  $request->input('iduser');
+
+$User = User::find($iduser);
+
+$hub = $User['hub_id'];
+
+
 
         $phone   =  $request->input('phone');
         $name    =  $request->input('name');
@@ -158,6 +167,7 @@ if($id == 'all' ){
         $produit =  $request->input('produit');
         $price   =  $request->input('price');
         $idcom   =  $request->input('idcom');
+
         $remarque   =  $request->input('remarque');
 
 
@@ -171,6 +181,7 @@ if($id == 'all' ){
                          'qte'=> $qte ,
                          'adress'=> $adresse,
                          'commune'=> $commune ,
+                         'id_hub'=> $hub ,
                          'remarque'=>$remarque
                           ]);
 
@@ -198,9 +209,49 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
         return $pdf->stream('medium.pdf');
     }
 //code a barre cvalidation vien input controller 
-public function data_colis_inhouse(){
+public function data_colis_inhouse($id){
 
-    $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')->where('validation','=',true)->where('id_stats','=',null)->orWhere('id_stats','=',11)->orderBy('id_colis', 'desc')->paginate(80);
+
+    $CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
+    ->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
+    ->leftJoin('roles','roles.id','=','model_has_roles.role_id')->where('users.id','=',$id)->first();
+    
+    //dd($CheckLogin['guard']);
+    if($CheckLogin['guard'] == 'admin'){ 
+        $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+        ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+        ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+        ->where('validation','=',true)
+        ->where(function ($query) {
+            $query->where('colis.id_stats', '=', null)
+                  ->orWhere('colis.id_stats', '=', 11);
+        })
+        ->orderBy('id_colis', 'desc')
+        ->paginate(80);
+
+
+    }else {
+
+
+        $Colis = Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
+        ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+        ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+        ->where('validation','=',true)
+        ->where(function ($query) {
+            $query->where('colis.id_stats', '=', null)
+                  ->orWhere('colis.id_stats', '=', 11);
+        })
+        ->where('colis.id_hub','=',$CheckLogin['hub'])
+        ->orderBy('id_colis', 'desc')
+        ->paginate(80);
+
+
+
+    }
+
+   
 
     return response()->json($Colis);
 

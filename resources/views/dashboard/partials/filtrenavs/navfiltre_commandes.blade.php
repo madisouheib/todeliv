@@ -11,7 +11,7 @@
                             
                       
                             
-                            <div class="col-3">
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 ">
                             
                                 <div class="form-group">
                                 
@@ -34,13 +34,13 @@
                             </div>
 
 
-<div class="col-3">
+<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 ">
 
 <a href="{{ url('/admin/archoms')}}" class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </a>
 
 </div>
-<div class="col-3"></div>
-<div class="col-3">
+
+<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 ">
 
 <a class="btn btn-info btn-square" href="{{ url('admin/addcoms')}}"   > IMPORTER  <i class="fas fa-plus"></i></a>
 </div>

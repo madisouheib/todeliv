@@ -112,7 +112,7 @@ this.getHubs() ;
    axios.delete('/api/deletehub/'+id)
      .then(res => { 
 
-console.log('hii succefly')
+
 this.getHubs();
 
 

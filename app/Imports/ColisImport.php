@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
+
 HeadingRowFormatter::default('none');
 
 
@@ -33,6 +34,7 @@ private $data ;
 
 $idcom = $this->data ; 
      
+$idhub = Auth::user()->hub_id;
 
 if(!array_filter($row)) { 
     
@@ -55,6 +57,7 @@ if(!array_filter($row)) {
         'wilaya'    => $row['Wilaya'], 
         'produit'     => $row['Produit'],
         'qte'     => $row['Qu'],
+        'id_hub'     => $idhub,
         'price'     => $row['Prix'],
         'remarque'     => $row['Remarque'],
         'id_com'     => $idcom

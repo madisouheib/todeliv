@@ -31,7 +31,7 @@
                 <ul class="nav pcoded-inner-navbar">
  @role('admin')
 
-<nav-admin> </nav-admin>
+<nav-admin  :user_id='@json( Auth::user()->id )' > </nav-admin>
  @endrole
  @role('client pro')
 
