@@ -155,7 +155,8 @@ if( $Data['guard'] == 'admin' ){
     ->whereNotNull('fiche.closed_at')
     ->whereNotNull('fiche.cloture')
     ->where('colis.id_stats','=',4)
-
+    ->groupBy('colis.id_colis')
+    ->distinct('colis.id_colis')
     ->orderBy('colis.id_colis', 'desc')
     ->get();
 
@@ -607,6 +608,7 @@ public function get_returned_barecode($id){
         ->where('validation','=',true)
         ->where('fiche.id_liv','=',$id)
         ->where('colis.id_stats','=',4)
+  
         ->orderBy('colis.id_colis', 'desc')
         ->get();
 

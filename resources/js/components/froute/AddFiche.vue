@@ -121,7 +121,7 @@ name : this.name
 
 
 
-     axios.get('/api/getlivreur')
+     axios.get('/api/getlivreur/'+this.id_user)
      .then(response =>
      { 
        

@@ -202,9 +202,9 @@
                                                     </div><!--/.cg__iconbox-titleWrapper-->
                                                     <div class="cg__iconbox-descWrapper">
                                                         <p class="cg__iconbox-desc">
-                                                            Dimanche - Jeudi 08.00 - 18.00
-                                                            <br>
-                                                            Samedi - vendredi 09.00 - 14.00
+                                                            Samedi au vendredi 08.00 - 17.00
+                                                        
+                                                   
                                                         </p>
                                                     </div><!--/.cg__iconbox-descWrapper-->
                                                 </div><!--/.cg__iconbox-contentWrappe-->
@@ -223,9 +223,9 @@
                                                     </div><!--/.cg__iconbox-titleWrapper-->
                                                     <div class="cg__iconbox-descWrapper">
                                                         <p class="cg__iconbox-desc">
-                                                            +213-677-792-344
+                                                            +213-776-432-750
                                                             <br>
-                                                            +213-677-792-344
+                                                            +213-542-820-869
                                                         </p>
                                                     </div><!--/.cg__iconbox-descWrapper-->
                                                 </div><!--/.cg__iconbox-contentWrappe-->
@@ -399,8 +399,7 @@
                                     </div><!--/.cg__iconbox-titleWrapper-->
                                     <div class="cg__iconbox-descWrapper">
                                         <p class="cg__iconbox-desc">
-                                            Intrinsicly drive stand-alone strategic theme areas vis-a-vis unique metrics. Efficiently cultivate empowered e-services whereas orthogonal human capital. Intrinsicly evisculate cross functional
-                                        </p>
+                                            Par notre flotte de livraison et notre système de stockage et livraison on vous offre les plus court délais de livraison pouvant allez jusqu'à J+1                                        </p>
                                     </div><!--/.cg__iconbox-descWrapper-->
                                 </div><!--/.cg__iconbox-contentWrappe-->
                             </div><!--/.cg__iconBox-inner-->
@@ -418,10 +417,7 @@
                                     </div><!--/.cg__iconbox-titleWrapper-->
                                     <div class="cg__iconbox-descWrapper">
                                         <p class="cg__iconbox-desc">
-                                            lorem loreammm meememe meme mmeme me
-                                            e me 
-                                            e me 
-                                            me mem em m me mem eme me 
+                                            Nous avons élaboré pour vous  un système qui vous faciliterait le suivis de vos colis en temps réel
                                         </p>
                                     </div><!--/.cg__iconbox-descWrapper-->
                                 </div><!--/.cg__iconbox-contentWrappe-->
@@ -441,8 +437,7 @@
                                     </div><!--/.cg__iconbox-titleWrapper-->
                                     <div class="cg__iconbox-descWrapper">
                                         <p class="cg__iconbox-desc">
-                                            Intrinsicly drive stand-alone strategic theme areas vis-a-vis unique metrics. Efficiently cultivate empowered e-services whereas orthogonal human capital. Intrinsicly evisculate cross functional
-                                        </p>
+                                            Vos colis son en toute sécurité par un contrat qui vous assure vos biens </p>                                        </p>
                                     </div><!--/.cg__iconbox-descWrapper-->
                                 </div><!--/.cg__iconbox-contentWrappe-->
                             </div><!--/.cg__iconBox-inner-->
@@ -540,7 +535,10 @@
                         <div class="cg__contactBlock cg__text--left">
                             <h2>Nos services </h2>
                             <span class="cg__symbol"><span></span></span>
-                            <p>Compellingly evisculate error-free e-commerce and cutting-edge best practices. Competently deploy customer directed benefits without premium opportunities. Completely productivate stand-alone materials with prospective scenarios.</p>
+                            <p>
+                                Nous sommes une société de service spécialisée principalement dans la livraison des colis e-commerce , stockage et consulting.
+
+                            </p>
                         </div>
                         <div class="cg__iconsContainer">
                             <div class="row">
@@ -556,8 +554,7 @@
                                                 </div><!--/.cg__iconbox-titleWrapper-->
                                                 <div class="cg__iconbox-descWrapper">
                                                     <p class="cg__iconbox-desc">
-                                                        Interactively generate covalent architectures whereas world-class leadership skills
-                                                    </p>
+                                                        Ramassage sur la wilaya d'Oran et environ en attente vers d'autre wilaya prochainement </p>                                                    </p>
                                                 </div><!--/.cg__iconbox-descWrapper-->
                                             </div><!--/.cg__iconbox-contentWrappe-->
                                         </div><!--/.cg__iconBox-inner-->
@@ -575,8 +572,7 @@
                                                 </div><!--/.cg__iconbox-titleWrapper-->
                                                 <div class="cg__iconbox-descWrapper">
                                                     <p class="cg__iconbox-desc">
-                                                        Interactively generate covalent architectures whereas world-class leadership skills
-                                                    </p>
+                                                        stockage de produit dans notre dépôt avec un suivis pour vous facilite la gestion de votre stock et vous libéré du ramassage                                                    </p>
                                                 </div><!--/.cg__iconbox-descWrapper-->
                                             </div><!--/.cg__iconbox-contentWrappe-->
                                         </div><!--/.cg__iconBox-inner-->
@@ -597,31 +593,14 @@
                                                 </div><!--/.cg__iconbox-titleWrapper-->
                                                 <div class="cg__iconbox-descWrapper">
                                                     <p class="cg__iconbox-desc">
-                                                        Interactively generate covalent architectures whereas world-class leadership skills
-                                                    </p>
+                                                        On vous offre la possibilité de emballée vos commande soit par votre embalage ou l'emballage de notre société                                                    </p>
                                                 </div><!--/.cg__iconbox-descWrapper-->
                                             </div><!--/.cg__iconbox-contentWrappe-->
                                         </div><!--/.cg__iconBox-inner-->
                                     </div><!--/.cg__iconBox-->
                                 </div><!--/.col-md-6 col-sm-6-->
                                 <div class="col-md-6 col-sm-6">
-                                    <div class="cg__iconBox cg__iconBox--style3">
-                                        <div class="cg__iconBox-inner cg__text--left">
-                                            <div class="cg__iconbox-iconWrapper">
-                                                <span class="cg__iconbox-icon cg__icon-forklift"></span>
-                                            </div><!--/.cg__iconbox-iconWrapper-->
-                                            <div class="cg__iconbox-contentWrapper">
-                                                <div class="cg__iconbox-titleWrapper">
-                                                    <h3 class="cg__iconbox-title">SERVICE 4 </h3>
-                                                </div><!--/.cg__iconbox-titleWrapper-->
-                                                <div class="cg__iconbox-descWrapper">
-                                                    <p class="cg__iconbox-desc">
-                                                        Interactively generate covalent architectures whereas world-class leadership skills
-                                                    </p>
-                                                </div><!--/.cg__iconbox-descWrapper-->
-                                            </div><!--/.cg__iconbox-contentWrappe-->
-                                        </div><!--/.cg__iconBox-inner-->
-                                    </div><!--/.cg__iconBox-->
+      
                                 </div><!--/.col-md-6 col-sm-6-->
                             </div><!--/.row-->
                         </div><!--/.cg__iconsContainer-->
@@ -629,7 +608,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="cg__contactForm-container">
                             <div class="cg__contact-titleBlock cg__text--center">
-                                <h4> Devis</h4>
+                                <h4> contact</h4>
                             </div>
                             <!-- contact form start -->
                             <form action="PATH_TO_YOUR_FORM/contactForm.php" class="cg__contactForm row" method="post">
@@ -663,8 +642,7 @@
                                             <option value="1">Service 1</option>
                                             <option value="2">Service 2</option>
                                             <option value="3">Service 3</option>
-                                            <option value="3">Service 4</option>
-                                            <option value="3">Service 5</option>
+                                          
                                         </select>
                                         <label for="select_element">Service:</label>
                                     </div><!--/.cg__form-component-->
@@ -706,7 +684,7 @@
                     <div class="col-md-10 col-sm-10">
                         <div class="cg__cta-titleBlock cg__text--left">
                             <h2>Nous sommes pret pour livrer vos colis</h2>
-                            <p>La société intervient dans le domaine de la messagerie et de la logistique express sur le réseau domestique et assure la collecte et la livraison sur 46 wilayas..</p>
+                            <p>La société intervient dans le domaine de la messagerie et de la logistique express sur le réseau domestique et assure la collecte et la livraison sur 8 wilayas..</p>
                         </div>
                     </div><!--/.col-md-10 col-sm-10-->
                     <div class="col-md-2 col-sm-2">

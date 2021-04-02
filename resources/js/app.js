@@ -8,7 +8,7 @@ require('moment/locale/fr');
 
 
 moment.locale('fr');
-Vue.prototype.moment = moment
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -63,6 +63,7 @@ Vue.component('delivery-colislist', require('./components/delivery/DetailDelever
 Vue.component('undelivred-list', require('./components/undelivred/ListUndelivred.vue').default);
 Vue.component('tracking-detail', require('./components/tracking/Tracking.vue').default);
 Vue.component('tracking-search', require('./components/tracking/TrackingSearch.vue').default);
+Vue.component('tracking-client', require('./components/tracking/TrackingClient.vue').default);
 
 
 Vue.component('transit-send', require('./components/transit/TransitSend.vue').default);
@@ -84,6 +85,8 @@ Vue.component('client-failed', require('./components/client/FailedUser.vue').def
 
 
 Vue.component('compta-accounting', require('./components/accounting/TabAccountig.vue').default);
+Vue.component('compta-facturation', require('./components/accounting/TabFacturation.vue').default);
+Vue.component('compta-facturation-detail', require('./components/accounting/TabFacturationDetail.vue').default);
 
 
 Vue.component('nav-admin', require('./components/AdminNavbar.vue').default);
@@ -109,7 +112,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- const core = new Vue({
+const core = new Vue({
     el: '#core'
 });
 

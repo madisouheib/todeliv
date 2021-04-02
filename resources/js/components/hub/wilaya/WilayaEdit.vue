@@ -31,6 +31,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                      <div class="form-group">
+                                    <label for="nomwi">Prix de livraison : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-money-check-alt"></i> </span>
+                                        </div>
+                                        <input v-model="ShoWilaya.price_deliv" type="text" class="form-control" name="nomwilaya"  id="nomwilaya" placeholder="Nom de la wilaya "  required>
+                                        <div class="invalid-feedback">
+                                            Please choose a wilaya.
+                                        </div>
+                                    </div>
+                                </div>
                   
                           
                                 
@@ -55,6 +67,7 @@ export default {
 axios.patch('/api/editwilaya/'+ this.ShoWilaya.id_wilaya, {
 name: this.ShoWilaya.nom_wilaya,
 mat: this.ShoWilaya.mat_wilaya,
+price: this.ShoWilaya.price_deliv,
 
 
 

@@ -10,7 +10,7 @@ class Wilaya extends Model
     protected $table = 'wilaya';
     public $timestamps = false;
     protected $fillable = [
-        'nom_wilaya','mat_wilaya'
+        'nom_wilaya','mat_wilaya','price_deliv','nom_wilaya_ar'
     ];
 
     public function wilayas(){

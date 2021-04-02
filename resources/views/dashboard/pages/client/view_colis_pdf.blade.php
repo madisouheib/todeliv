@@ -61,9 +61,10 @@ hr {
   <td rowspan="5" style="width:6% ;   
 ">
 
-<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> SEND  EXPRES </h6>  </td>
+<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> ToDeliver </h6>  </td>
   <td rowspan="2"> 
     <img style="" heigth="40" width="40" src="{{ public_path().'/images/a.png' }}">
+    
   
     <h5 style="  font-family:">{{ $nom_client  }}  </h5>
     <h5> commune : {{ $commune  }} </h5>

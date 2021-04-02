@@ -20,10 +20,7 @@
                     <div class="card-block table-border-style">
 
 
-
-
-
-<delivred-liste :user_id='@json( Auth::user()->id )'  >  </delivred-liste>
+<compta-facturation :user_id='@json( Auth::user()->id )'  >   </compta-facturation>
 
 
                         

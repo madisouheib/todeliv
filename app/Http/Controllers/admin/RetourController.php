@@ -4,7 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Colis ; 
+use App\StatsColis ; 
 class RetourController extends Controller
 {
     /**
@@ -17,15 +18,39 @@ class RetourController extends Controller
         return view('dashboard.pages.return.return_table');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+ public function trasnfer_retour(Request $request,$id){
+
+
+$Data = Colis::leftJoin('stats','stats.id_stats','=','colis.id_stats')->where('stats.order_stats','=',5)->pluck('colis.id_colis')->toArray();
+
+
+$count = count($Data);
+
+for($i= 0 ;$i < $count ;$i++)
+{
+
+
+
+    $UpdateColis = Colis::find($Data[$i]);
+    $UpdateColis->id_stats = 3;
+  
+    $UpdateColis->save();
+
+
+        
+
+
+    StatsColis::create(['id_colis' => $Data[$i],
+    'id_stats'=> 3,
+    'by_id_user'=> $id
+     ]);
+
+}
+
+
+
+
+ }
 
     /**
      * Store a newly created resource in storage.

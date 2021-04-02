@@ -8,11 +8,11 @@
                         <div class="cg__imageBox cg__paddingB--30">
                             <div class="cg__imageBox-wrapper">
                                 <div class="cg__imageBox-imgWrapper">
-                                    <img src="img-assets/logo-footer.png" class="cg__imgWidth--auto" alt="">
+                                    <img src="{{ url('/dash/assets/images/logoexp.png')}}" class="cg__imgWidth--auto" alt="">
                                 </div>
                             </div><!--/.cg__imageBox-wrapper-->
                         </div><!--/.cg__imageBox-->
-                        <p class="cg__footer-description">Conveniently administrate resource maximizing meta-services vis-a-vis alternative platforms. Phosfluorescently generate interoperable processes with principle-centered mindshare. Competently foster premier value and client-focused schemas. </p>
+                        <p class="cg__footer-description"> Opérateur de courrier Express en régime domestique. Notre mission principale est de nous assurer de transporter vos courriers et vos colis . </p>
                     </div><!--/.col-md-4 col-sm-4-->
                     <div class="col-md-2 col-sm-2">
                         <h4 class="cg__footer-title"> MENU</h4>

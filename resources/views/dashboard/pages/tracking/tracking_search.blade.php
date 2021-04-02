@@ -18,8 +18,14 @@
 
                     <div class="card-block table-border-style">
 
-
+                        @role('admin')
             <tracking-search  > </tracking-search>
+
+            @endrole
+
+            @role('client pro')
+            <tracking-client :url_id='@json( Request::segment(3) )' > </tracking-client>
+            @endrole
 
                 </div>
             </div>

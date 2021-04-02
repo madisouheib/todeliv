@@ -233,7 +233,7 @@ Route::get('/codedeliv/{id}', 'admin\LivraisonController@code_delivred');
 
 
 
-Route::get('/afterdelivred', 'admin\ConfirmedController@get_delivred_confirmed');
+Route::get('/afterdelivred/{part}/{etat}/{wil}', 'admin\ConfirmedController@get_delivred_confirmed');
 
 
 Route::get('/delivredwils/{id}', 'admin\LivraisonController@filtre_wil_delivred');
@@ -247,6 +247,9 @@ Route::get('/retourliv/{id}/{user}', 'admin\LivraisonController@get_returned_lv'
 Route::get('/retourwils/{wil}/{id}', 'admin\LivraisonController@get_returned_wilaya');
 
 Route::patch('/validreturned', 'admin\LivraisonController@update_retour_cash');
+
+
+Route::patch('/transversretour/{id}', 'admin\RetourController@trasnfer_retour');
 
 
 
@@ -323,9 +326,17 @@ Route::get('/ondelevery/{id}', 'admin\LivraisonController@data_livreur_delevery'
 Route::get('/getcoursier', 'admin\LivraisonController@data_livreur_list');
 
 
+// data accounting -------
+Route::get('/fichescompta', 'admin\AccountingController@data_account');
 
 
+Route::get('/fichescompta/{id}', 'admin\AccountingController@data_account_filtred');
 
+
+Route::get('/fichescomptas/{stats}', 'admin\AccountingController@data_account_etat');
+Route::get('/comptadetail/{id}', 'admin\AccountingController@data_compta_detail');
+
+Route::patch('/updprice', 'admin\AccountingController@compta_update_price');
 
 
 Route::get('/getdelivred', 'admin\LivraisonController@data_fiche_delevery');
@@ -364,3 +375,13 @@ Route::get('/manifiltre/{code}', 'admin\CommandesController@filtre_client');
 
 
 Route::delete('/deletecoms/{id}', 'admin\CommandesController@manif_delete');
+
+
+
+
+Route::post('/addfacture', 'admin\AccountingController@create_invoice');
+
+Route::patch('/validfacture', 'admin\AccountingController@valid_invoice');
+Route::get('/fichpart/{id}', 'admin\AccountingController@part_data');
+
+Route::patch('/updprices', 'admin\AccountingController@udpate_prices');

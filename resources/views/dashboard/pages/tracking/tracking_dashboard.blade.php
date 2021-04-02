@@ -9,7 +9,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Tracking Section   </h5>
+                        <h5> Tracking Section   </h5>
                      
                         
 
@@ -17,9 +17,15 @@
 </div>
 
                     <div class="card-block table-border-style">
-
+                        @role('admin')
 
             <tracking-detail :url_id='@json( Request::segment(3) )' > </tracking-detail>
+
+            @endrole
+            @role('client pro')
+
+            <tracking-client :url_id='@json( Request::segment(3) )' > </tracking-client>
+            @endrole
 
                 </div>
             </div>

@@ -32,7 +32,7 @@ class WilayaController extends Controller
 
 public function wilaya_data()
  {
-    $wilaya = Wilaya::orderBy('id_wilaya', 'desc')->paginate(4);
+    $wilaya = Wilaya::orderBy('id_wilaya', 'desc')->paginate(10);
     //dd($users);
     return response()->json($wilaya);
 
@@ -81,6 +81,7 @@ public function wilaya_tags()
         $Editwilaya = Wilaya::find($id);
         $Editwilaya->nom_wilaya = request('name');
         $Editwilaya->mat_wilaya = request('mat');
+        $Editwilaya->price_deliv = request('price');
         $Editwilaya->save();
         //dd($users);
    

@@ -108,6 +108,10 @@ Route::get('/admin/exportdeliv', 'admin\ColisController@export_livred')->name('e
 
 Route::get('/admin/accounting', 'admin\ConfirmedController@index_acounting')->name('index_acounting');
 Route::get('/admin/facturation', 'admin\ConfirmedController@index_facturation')->name('index_facturation');
+Route::get('/admin/facturation/{id}', 'admin\ConfirmedController@index_facturation_detail')->name('index_facturation_detail');
+
+Route::get('/admin/facturepdf/{id}', 'admin\AccountingController@facture_pdf')->name('facture_pdf');
+
 
 
 

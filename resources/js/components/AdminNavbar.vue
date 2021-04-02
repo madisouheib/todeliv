@@ -73,9 +73,9 @@
                     <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-money-check"></i></span><span class="pcoded-mtext">Comptabilité</span></a>
                     <ul class="pcoded-submenu">
                       
-                  <li class="  pcoded-trigger"><a :href="'/admin/accounting'" class=""><i class="fas fa-calculator"></i>  Saisies <span class="pcoded-badge label label-primary">0</span> </a>
+                  <li class="  pcoded-trigger"><a :href="'/admin/accounting'" class=""><i class="fas fa-calculator"></i>  Saisies <span class="pcoded-badge label label-primary">{{ stats.compta }}</span> </a>
                          </li>
-                           <li class="  pcoded-trigger"><a :href="'/admin/facturation'" class=""> <i class="fas fa-file-alt"></i> Facturation  <span class="pcoded-badge label label-success">0</span>  </a>
+                           <li class="  pcoded-trigger"><a :href="'/admin/facturation'" class=""> <i class="fas fa-file-alt"></i> Facturation  <span class="pcoded-badge label label-success">{{ stats.facture }}</span>  </a>
                          </li>
                     </ul>
                 </li>

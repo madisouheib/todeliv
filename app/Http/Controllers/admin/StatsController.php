@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Accounting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Stats;
@@ -9,6 +10,8 @@ use App\Colis;
 use App\Fiche;
 use App\Transit;
 use App\User;
+
+
 class StatsController extends Controller
 {
 
@@ -81,6 +84,7 @@ if($Data['guard'] == 'admin'){
     $DataStat['livre']  = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
     ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
     ->where('validation','=',true)
+    ->distinct('colis.id_colis')
     ->whereNotNull('fiche.closed_at')
     ->whereNotNull('fiche.cloture')->where('colis.id_stats','=',4)->count();
     
@@ -89,8 +93,7 @@ if($Data['guard'] == 'admin'){
     $DataStat['ech']  = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
     ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
     ->where('validation','=',true)
-    ->whereNotNull('fiche.closed_at')
-    ->whereNotNull('fiche.cloture')->whereIn('colis.id_stats',$GetEch)->count();
+->whereIn('colis.id_stats',$GetEch)->distinct('colis.id_colis')->count();
     
     $DataStat['retour']  = Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
     ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
@@ -101,6 +104,15 @@ if($Data['guard'] == 'admin'){
     $DataStat['trenv'] = Transit::where('transit.send_it','=',true)->where('confirmed','=',false)->count();
     $DataStat['trecp'] = Transit::where('transit.send_it','=',true)->where('confirmed','=',true)->count();
     
+
+    $DataStat['compta']  = Colis::whereNull('colis.shipping_price')
+    ->where(function ($query) {
+        $query->where('colis.id_stats', '=', 13)
+              ->orWhere('colis.id_stats', '=', 12);
+    })->count();
+
+    $DataStat['facture'] = Accounting::where('etat','=',0)->count();
+
     //$DataStat['trrecp'] = Transit::where('transit.confirmed','=',true)->count();
     
 

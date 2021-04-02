@@ -25,6 +25,13 @@
     
     
     </div>
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+       <button class="btn btn-danger btn-glow-danger" type="button" data-toggle="modal" data-target="#ModalRetour"  > <i class="fas fa-undo"></i> basculer vers le retour  </button>
+    
+    
+    
+    
+    </div>
     
 
     </div>            
@@ -196,6 +203,7 @@
 <stats-colis    ref="childref" >    </stats-colis>
     <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
 <message-colis v-bind:Message="Message">  </message-colis>
+<trans-retour v-bind:userid="user_id" @trasn-retour="getColis()">  </trans-retour>
                         </div>
 
       </div>
@@ -212,6 +220,7 @@
   import Message from './Message.vue';
   import Stats from '../inhouse/StatsInfos.vue';
    import ActionStats from './EtatColis.vue';
+      import TransfRetour from './RetourConfirm.vue';
 
   export default {
      props: ['url_id','user_id'],
@@ -242,7 +251,8 @@ return  a.diff(b,'days') // 1
       'view-colis':   ColisInfos,
      'stats-colis': Stats ,
      'action-colis':ActionStats,
-          'message-colis':Message
+          'message-colis':Message,
+          'trans-retour' : TransfRetour
 
   },
 

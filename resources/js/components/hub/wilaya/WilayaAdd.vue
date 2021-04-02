@@ -33,6 +33,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                      <div class="form-group">
+                                    <label for="namewilaya">Matricule de wilaya : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="namewilaya"> <i class="fas fa-money-check-alt"></i> </span>
+                                        </div>
+                                        <input type="text" class="form-control" onfocus="this.value=''"  name="pricewilaya" required v-model="pricewilaya" id="namewilaya" placeholder="Nom de la wilaya " aria-describedby="inputGroupPrepend" >
+                                        <div class="invalid-feedback">
+                                            Please choose a wilaya.
+                                        </div>
+                                    </div>
+                                </div>
 
                                 </form>
                   
@@ -60,7 +72,8 @@ data(){
 
 
 namewilaya :'',
-matwilaya:''
+matwilaya:'',
+pricewilaya: ''
     }
 },
 methods: {
@@ -68,7 +81,8 @@ methods: {
 wilayastore(){
 axios.post('/api/addwilaya', {
 nom_wilaya: this.namewilaya,
-mat_wilaya : this.matwilaya
+mat_wilaya : this.matwilaya,
+price :this.pricewilaya
 
 
 }).then(resposne=>this.$emit('wilaya-added',resposne)).catch(error => console.log(error))

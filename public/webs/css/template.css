@@ -544,8 +544,8 @@ table td, th {
 }
 
 .cg__logoContainer img {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   /* <= 768px */
   margin-top: 16%;
 }
@@ -3403,7 +3403,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .cg__imageBox .cg__imageBox-wrapper .cg__imageBox-imgWrapper img.cg__imgWidth--auto {
-  width: auto;
+width:100px;
+height: 100px;;
+
 }
 
 .cg__imageBox-details {

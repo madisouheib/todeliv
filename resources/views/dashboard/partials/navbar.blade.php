@@ -11,9 +11,9 @@
                 <a href="{{ url('/admin')}}" class="b-brand" >
                     
                     <div class="">
-                        <img class="img-responsive" src="{{ url('/dash/assets/images/logoexp.png')}}" width="50" height="50">
+                        <img class="img-responsive" src="{{ url('/dash/assets/images/logo.png')}}" width="50" height="50">
                     </div>
-                    <span class="b-title">Send Express </span>
+                    <span class="b-title">ToDeliver </span>
                 </a>
 
 
@@ -48,9 +48,7 @@
 
     <section class="header-user-list">
         <div class="h-list-header">
-            <div class="input-group">
-                <input type="text" id="search-friends" class="form-control" placeholder="Search Friend . . .">
-            </div>
+         
         </div>
         <div class="h-list-body">
             <a href="#!" class="h-close-text"><i class="feather icon-chevrons-right"></i></a>

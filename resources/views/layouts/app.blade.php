@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Send Express DZ ') }}</title>
         <link href="{{ asset('webs/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('webs/css/template.css') }}" rel="stylesheet">
         <link href="{{ asset('webs/css/icomoon.css') }}" rel="stylesheet">
@@ -35,7 +35,7 @@
     <a href="#" class="totop">HAUT</a> <!--/.totop -->
 
     <script src="{{ asset('webs/js/src/plugins/jquery-1.11.1.min.js') }} "></script>
-    <script src="{{ asset('webs/js/src/plugins/jquery-1.11.1.min.js') }} js/src/plugins/bootstrap.min.js"></script>
+    <script src="{{ asset('webs/js/src/plugins/bootstrap.min.js') }} "></script>
     <script src="{{ asset('webs/modules/slick/slick.js') }}"></script>
     <script src="{{ asset('webs/modules/Magnific-Popup/jquery.magnific-popup.js') }}"></script>
     <script src="{{ asset('webs/js/src/plugins/jquery.countTo.js') }}"></script>
@@ -51,7 +51,6 @@
     <script type="text/javascript" src="{{ asset('webs/modules/revolution/js/extensions/revolution.extension.navigation.min.js') }} "></script>
     <script type="text/javascript" src="{{ asset('webs/modules/revolution/js/extensions/revolution.extension.parallax.min.js') }} "></script>
     <script type="text/javascript" src="{{ asset('webs/modules/revolution/js/extensions/revolution.extension.slideanims.min.js') }} "></script>
-    <script type="text/javascript" src="{{ asset('webs/modules/revolution/js/extensions/revolution.extension.video.min.js') }} "></script>
     <script type="text/javascript">function setREVStartSize(e){
             try{ var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
                 if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})
