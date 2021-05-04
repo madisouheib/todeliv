@@ -86,7 +86,7 @@
 
             <div class="table-responsive">                 
                 
-                      <table class="table">
+                      <table class="table table-hover">
     
                                     <thead>
                                         <tr>
@@ -108,14 +108,14 @@
                             
                                     <tr v-for=" com  in coms.data" :key="com.id_coms" >
                                  
-                                        <th scope="row" class="text-center" >  <a  v-if="com.colis_count >  (com.validate_count + com.signaler_count) " class="pcoded-badge label label-info" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a>  <a  v-else class="pcoded-badge label label-success" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></th>
+                                        <td  class="text-center" >  <a  v-if="com.colis_count >  (com.validate_count + com.signaler_count) " class="pcoded-badge label label-info" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a>  <a  v-else class="pcoded-badge label label-success" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></td>
                                         
                         
-                                      <th class="text-center"   > {{ com.prices }} DA   </th>
-                                      <th class="text-center" > <span style="color:green;font-weight:bold;"> {{  com.validate_count + com.signaler_count }}     </span>       / <span style="color:black;font-weight:bold;">  {{ com.colis_count}} </span>     </th>
+                                      <td class="text-center"   > {{ com.prices }} DA   </td>
+                                      <td class="text-center" > <span style="color:green;font-weight:bold;"> {{  com.validate_count + com.signaler_count }}     </span>       / <span style="color:black;font-weight:bold;">  {{ com.colis_count}} </span>     </td>
                                     
                                        
-                                        <th class="text-center"> ORAN EST    </th>
+                                        <td class="text-center"> ORAN EST    </td>
                                         <td class="text-center" v-if="com.confirmed == null" >  <i style="font-size:1.6em;" class="fas fa-clock"></i>   </td>
                                                                    <td class="text-center" v-else > <i   class="fas fa-check-circle" style="
                                         color:#3CB371;font-size:1.6em;"> </i>  </td>
@@ -129,7 +129,7 @@
                                         
                                          </td>
                                       
-                                        <th class="text-center" > <a  :href="'/admin/export/'+com.id_coms" class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/print_com/'+com.id_coms"  class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
+                                        <td class="text-center" > <a  :href="'/admin/export/'+com.id_coms" class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/print_com/'+com.id_coms"  class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </td>
                                     </tr>
                                  
                 

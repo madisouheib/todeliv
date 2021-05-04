@@ -136,7 +136,7 @@
 
                                   <h6 v-if="fiche.valid_fiche == true " style="color:green; color:#2dde98;">  <b>  Valider <i class=" fas fa-check-circle"></i>  </b> </h6>
                                         </th>
-                                        <th class="text-center" > <button class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </button> <a target="_blank"  :href="'/admin/fichepdf/'+fiche.id_fiche"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
+                                        <th class="text-center" > <a class="btn btn-outline-success" :href="'/admin/exportfiche/'+fiche.id_fiche"  > <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/fichepdf/'+fiche.id_fiche"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
                                      
                                     </tr>
 

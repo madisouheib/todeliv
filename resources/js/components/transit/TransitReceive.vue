@@ -43,7 +43,7 @@
 
 
                         <div class="table-responsive">
-                            <table class="table table-dark table-sm">
+                            <table class="table table-hover table-sm">
                                 <thead>
                                     <tr>
                                         <th class="text-center" ># Transit-id </th>
@@ -54,7 +54,7 @@
                    
 
                                         <th class="text-center" ><i class="fas fa-road"></i>           Destination </th>
-
+        <th class="text-center"><i class="fas fa-align-left"></i>      Etat </th>
                                         <th class="text-center"><i class="fas fa-align-left"></i>      Statut </th>
                                                                                 <th class="text-center"><i class="fas fa-align-left"></i>      Operation </th>
 
@@ -82,7 +82,7 @@
                                             
                                             </td>
 <td v-if="trans.confirmed == true" class="text-center">  
-    <h6 style="color:#fff;font-style:italic;"> Bien Reçu </h6>
+    <h6 style="font-style:italic;"> Bien Reçu </h6>
 </td>
 <td v-else class="text-center">
 <button v-if="trans.colisapprvd_count == trans.colis_count " class="btn btn-sm btn-success btn-glow-success" @click="GetShow(trans.id_transit,trans.receive_hub)" data-toggle="modal" data-target="#ModalReceive" > valider <i class="fas fa-check"> </i></button>

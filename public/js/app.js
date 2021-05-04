@@ -6816,6 +6816,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
   filters: {
@@ -10641,6 +10644,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -12572,6 +12578,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColisInfos.vue */ "./resources/js/components/retour/ColisInfos.vue");
 /* harmony import */ var _ValidRetour_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ValidRetour.vue */ "./resources/js/components/retour/ValidRetour.vue");
 /* harmony import */ var _StatsInfos_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StatsInfos.vue */ "./resources/js/components/retour/StatsInfos.vue");
+//
+//
 //
 //
 //
@@ -15251,6 +15259,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inhouse_StatsInfos_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../inhouse/StatsInfos.vue */ "./resources/js/components/inhouse/StatsInfos.vue");
 /* harmony import */ var _EtatColis_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EtatColis.vue */ "./resources/js/components/undelivred/EtatColis.vue");
 /* harmony import */ var _RetourConfirm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RetourConfirm.vue */ "./resources/js/components/undelivred/RetourConfirm.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -40901,12 +40915,7 @@ var render = function() {
           _vm._v(" "),
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
-              _c("a", { attrs: { href: "/admin/hub" } }, [
-                _vm._v("Hub "),
-                _c("span", { staticClass: "pcoded-badge label label-info" }, [
-                  _vm._v("100+")
-                ])
-              ])
+              _c("a", { attrs: { href: "/admin/hub" } }, [_vm._v("Hubs ")])
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "  pcoded-trigger" }, [
@@ -40947,7 +40956,7 @@ var render = function() {
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
               _c("a", { attrs: { href: "/admin/transitenvoie" } }, [
-                _vm._v("Envoie "),
+                _vm._v("Envoie des colis  "),
                 _c("span", { staticClass: "pcoded-badge label label-info" }, [
                   _vm._v(_vm._s(_vm.stats.trenv))
                 ])
@@ -40956,7 +40965,7 @@ var render = function() {
             _vm._v(" "),
             _c("li", { staticClass: "  pcoded-trigger" }, [
               _c("a", { attrs: { href: "/admin/transitretour" } }, [
-                _vm._v("Reception  "),
+                _vm._v("Reception des colis  "),
                 _c("span", { staticClass: "pcoded-badge label label-danger" }, [
                   _vm._v(" " + _vm._s(_vm.stats.trecp))
                 ])
@@ -40976,7 +40985,7 @@ var render = function() {
             [
               _vm._m(8),
               _c("span", { staticClass: "pcoded-mtext" }, [
-                _vm._v("IN HOUSE  ")
+                _vm._v("Entrepôt  ")
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "pcoded-badge label label-info" }, [
@@ -41154,7 +41163,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item pcoded-menu-caption" }, [
-      _c("label", [_vm._v("Générale")])
+      _c("label", [_vm._v(" Config ")])
     ])
   },
   function() {
@@ -41189,7 +41198,7 @@ var staticRenderFns = [
       _c("span", { staticClass: "pcoded-micon" }, [
         _c("i", { staticClass: "fas fa-warehouse" })
       ]),
-      _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Stations")])
+      _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Dépots")])
     ])
   },
   function() {
@@ -41197,7 +41206,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item pcoded-menu-caption" }, [
-      _c("label", [_vm._v("Operation")])
+      _c("label", [_vm._v("Expédition des colis")])
     ])
   },
   function() {
@@ -41205,7 +41214,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pcoded-micon" }, [
-      _c("i", { staticClass: "fas fa-building" })
+      _c("i", { staticClass: "fas fa-truck-loading" })
     ])
   },
   function() {
@@ -41264,7 +41273,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pcoded-micon" }, [
-      _c("i", { staticClass: "fas fa-clipboard-check\n" })
+      _c("i", { staticClass: "fas fa-check-circle\n" })
     ])
   },
   function() {
@@ -41364,7 +41373,7 @@ var render = function() {
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
               _c("a", { attrs: { href: "/admin/transitenvoie" } }, [
-                _vm._v("Envoie "),
+                _vm._v("Envoie des colis  "),
                 _c("span", { staticClass: "pcoded-badge label label-info" }, [
                   _vm._v("0")
                 ])
@@ -41373,7 +41382,7 @@ var render = function() {
             _vm._v(" "),
             _c("li", { staticClass: "  pcoded-trigger" }, [
               _c("a", { attrs: { href: "/admin/transitretour" } }, [
-                _vm._v("Retour  "),
+                _vm._v("Reception des colis  "),
                 _c("span", { staticClass: "pcoded-badge label label-danger" }, [
                   _vm._v("0")
                 ])
@@ -41393,7 +41402,7 @@ var render = function() {
             [
               _vm._m(5),
               _c("span", { staticClass: "pcoded-mtext" }, [
-                _vm._v("IN HOUSE  ")
+                _vm._v("Entrepôt  ")
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "pcoded-badge label label-info" }, [
@@ -41538,7 +41547,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pcoded-micon" }, [
-      _c("i", { staticClass: "fas fa-building" })
+      _c("i", { staticClass: "fas fa-truck-loading" })
     ])
   },
   function() {
@@ -41597,7 +41606,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pcoded-micon" }, [
-      _c("i", { staticClass: "fas fa-clipboard-check\n" })
+      _c("i", { staticClass: "fas fa-check-circle\n" })
     ])
   }
 ]
@@ -49516,6 +49525,20 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-6 col-xs-12" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-success",
+            attrs: { href: "/admin/exportdeliv" }
+          },
+          [
+            _vm._v(" Export Excel "),
+            _c("i", { staticClass: "fas fa-file-excel" })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-6 col-xs-12" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group" }, [
             _vm._m(1),
@@ -49609,7 +49632,19 @@ var render = function() {
               _vm._m(5, true),
               _vm._v(" "),
               _c("th", { staticClass: "text-center" }, [
-                _vm._m(6, true),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-outline-success",
+                    attrs: { href: "/admin/exportondeliv/" + livreur.id }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-file-excel",
+                      staticStyle: { margin: "0px" }
+                    })
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "a",
@@ -49752,17 +49787,6 @@ var staticRenderFns = [
           _c("i", { staticClass: "fas fa-shipping-fast" })
         ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-outline-success" }, [
-      _c("i", {
-        staticClass: "fas fa-file-excel",
-        staticStyle: { margin: "0px" }
-      })
     ])
   }
 ]
@@ -53538,7 +53562,19 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "text-center" }, [
-                  _vm._m(8, true),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-outline-success",
+                      attrs: { href: "/admin/exportfiche/" + fiche.id_fiche }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-file-excel",
+                        staticStyle: { margin: "0px" }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "a",
@@ -53756,17 +53792,6 @@ var staticRenderFns = [
     return _c("b", [
       _vm._v("  Valider "),
       _c("i", { staticClass: " fas fa-check-circle" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-outline-success" }, [
-      _c("i", {
-        staticClass: "fas fa-file-excel",
-        staticStyle: { margin: "0px" }
-      })
     ])
   }
 ]
@@ -56397,6 +56422,20 @@ var render = function() {
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-6 col-xs-12" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-glow-success btn-sm btn-success",
+            attrs: { href: "/admin/exportinhouse" }
+          },
+          [
+            _vm._v(" Export Excel "),
+            _c("i", { staticClass: "fas fa-file-excel" })
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -56588,7 +56627,7 @@ var render = function() {
       "div",
       { staticClass: "table-responsive" },
       [
-        _c("table", { staticClass: "table   table-bordered" }, [
+        _c("table", { staticClass: "table   table-hover " }, [
           _vm._m(5),
           _vm._v(" "),
           _c(
@@ -56864,7 +56903,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
+    return _c("thead", {}, [
       _c("tr", [
         _c("th", { staticClass: "text-center" }, [_vm._v("# Tracking-id ")]),
         _vm._v(" "),
@@ -59096,52 +59135,48 @@ var render = function() {
       "div",
       { staticClass: "table-responsive" },
       [
-        _c("table", { staticClass: "table" }, [
+        _c("table", { staticClass: "table table-hover" }, [
           _vm._m(3),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.coms.data, function(com) {
               return _c("tr", { key: com.id_coms }, [
-                _c(
-                  "th",
-                  { staticClass: "text-center", attrs: { scope: "row" } },
-                  [
-                    com.colis_count > com.validate_count + com.signaler_count
-                      ? _c(
-                          "a",
-                          {
-                            staticClass: "pcoded-badge label label-info",
-                            staticStyle: { color: "white" },
-                            attrs: { href: "/admin/addrecp/" + com.id_coms }
-                          },
-                          [
-                            _c("i", { staticClass: "fas fa-folder-open" }),
-                            _vm._v("  #Manif- " + _vm._s(com.id_coms) + "  "),
-                            _c("i", { staticClass: "fas fa-list" })
-                          ]
-                        )
-                      : _c(
-                          "a",
-                          {
-                            staticClass: "pcoded-badge label label-success",
-                            staticStyle: { color: "white" },
-                            attrs: { href: "/admin/addrecp/" + com.id_coms }
-                          },
-                          [
-                            _c("i", { staticClass: "fas fa-folder" }),
-                            _vm._v("  #Manif- " + _vm._s(com.id_coms) + "  "),
-                            _c("i", { staticClass: "fas fa-list" })
-                          ]
-                        )
-                  ]
-                ),
+                _c("td", { staticClass: "text-center" }, [
+                  com.colis_count > com.validate_count + com.signaler_count
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "pcoded-badge label label-info",
+                          staticStyle: { color: "white" },
+                          attrs: { href: "/admin/addrecp/" + com.id_coms }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-folder-open" }),
+                          _vm._v("  #Manif- " + _vm._s(com.id_coms) + "  "),
+                          _c("i", { staticClass: "fas fa-list" })
+                        ]
+                      )
+                    : _c(
+                        "a",
+                        {
+                          staticClass: "pcoded-badge label label-success",
+                          staticStyle: { color: "white" },
+                          attrs: { href: "/admin/addrecp/" + com.id_coms }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-folder" }),
+                          _vm._v("  #Manif- " + _vm._s(com.id_coms) + "  "),
+                          _c("i", { staticClass: "fas fa-list" })
+                        ]
+                      )
+                ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _vm._v(" " + _vm._s(com.prices) + " DA   ")
                 ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _c(
                     "span",
                     { staticStyle: { color: "green", "font-weight": "bold" } },
@@ -59161,7 +59196,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _vm._v(" ORAN EST    ")
                 ]),
                 _vm._v(" "),
@@ -59218,7 +59253,7 @@ var render = function() {
                       )
                 ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _c(
                     "a",
                     {
@@ -60273,6 +60308,21 @@ var render = function() {
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-6 col-xs-12" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-sm btn-glow-success btn-success",
+            staticStyle: { color: "#fff" },
+            attrs: { href: "/admin/exportretour" }
+          },
+          [
+            _vm._v(" Export Excel "),
+            _c("i", { staticClass: "fas fa-file-excel" })
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -63304,7 +63354,7 @@ var render = function() {
       "div",
       [
         _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-bordered table-dark" }, [
+          _c("table", { staticClass: "table table-hover" }, [
             _vm._m(1),
             _vm._v(" "),
             _c(
@@ -63417,7 +63467,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark " }, [
+    return _c("thead", { staticClass: " " }, [
       _c("tr", [
         _c("th", { staticClass: "text-center" }),
         _vm._v(" "),
@@ -63567,7 +63617,7 @@ var render = function() {
       "div",
       [
         _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-bordered table-dark" }, [
+          _c("table", { staticClass: "table table-hover" }, [
             _vm._m(1),
             _vm._v(" "),
             _c(
@@ -63720,7 +63770,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark " }, [
+    return _c("thead", { staticClass: " " }, [
       _c("tr", [
         _c("th", { staticClass: "text-center" }),
         _vm._v(" "),
@@ -63788,7 +63838,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-dark table-sm" }, [
+          _c("table", { staticClass: "table table-hover table-sm" }, [
             _vm._m(1),
             _vm._v(" "),
             _c(
@@ -63902,12 +63952,7 @@ var render = function() {
                       ? _c("td", { staticClass: "text-center" }, [
                           _c(
                             "h6",
-                            {
-                              staticStyle: {
-                                color: "#fff",
-                                "font-style": "italic"
-                              }
-                            },
+                            { staticStyle: { "font-style": "italic" } },
                             [_vm._v(" Bien Reçu ")]
                           )
                         ])
@@ -64049,6 +64094,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-align-left" }),
+          _vm._v("      Etat ")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _c("i", { staticClass: "fas fa-align-left" }),
           _vm._v("      Statut ")
         ]),
         _vm._v(" "),
@@ -64141,7 +64191,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-dark table-sm" }, [
+          _c("table", { staticClass: "table table-hover table-sm" }, [
             _vm._m(1),
             _vm._v(" "),
             _c(
@@ -64289,12 +64339,7 @@ var render = function() {
                               )
                             : _c(
                                 "h6",
-                                {
-                                  staticStyle: {
-                                    color: "#fff",
-                                    "font-style": "italic"
-                                  }
-                                },
+                                { staticStyle: { "font-style": "italic" } },
                                 [
                                   _vm._v(
                                     " La Feuille de transit elle contient aucun colis  "
@@ -64392,6 +64437,11 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-road" }),
           _vm._v("           Destination ")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _c("i", { staticClass: "fas fa-align-left" }),
+          _vm._v("      Etat ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -64913,6 +64963,21 @@ var render = function() {
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-6 col-xs-12" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-glow-success btn-success ",
+            staticStyle: { color: "#fff" },
+            attrs: { href: "/admin/exportfailed" }
+          },
+          [
+            _vm._v(" Export Excel "),
+            _c("i", { staticClass: " fas fa-file-excel" })
+          ]
+        )
       ]),
       _vm._v(" "),
       _vm._m(1)
@@ -83749,6 +83814,13 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 
 __webpack_require__(/*! moment/locale/fr */ "./node_modules/moment/locale/fr.js");
+/*
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; 
+window.axios.defaults.baseURL = 'http://todeliver.co/mydemo/';
+Vue.http.options.root = 'http://todeliver.co/mydemo/';
+
+*/
+
 
 moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('fr');
 /**
@@ -90748,8 +90820,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/souheibmadi/Desktop/www/Delivery /resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/souheibmadi/Desktop/www/Delivery /resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/souheibmadi/Desktop/www/ToDeliver/Delivery /resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/souheibmadi/Desktop/www/ToDeliver/Delivery /resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

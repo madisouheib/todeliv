@@ -79,7 +79,7 @@ hr {
   
   </td>
   <td> tracking id : 
-    send-{{ $id_colis }} <br>
+    Deliv-{{ $id_colis }} <br>
     
     <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($id_colis, 'C39')}}" alt="barcode" /> </td>
   <td  colspan="3" style="padding:0px;">

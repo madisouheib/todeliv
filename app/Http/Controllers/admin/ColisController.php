@@ -6,7 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\ColisImport;
 use App\Exports\ColisExport;
+use App\Exports\InhouseExport;
+use App\Exports\DeliveryExport;
+use App\Exports\OnDeliveryExport;
 use App\Exports\ColisExportDelivered;
+use App\Exports\FailedColisExport;
+use App\Exports\RecpExport;
+use App\Exports\RetourExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Colis;
 use App\Commandes;
@@ -89,11 +95,36 @@ class ColisController extends Controller
     public function export_livred() 
     {
 
-     
-        return Excel::download(new ColisExportDelivered(), 'export_colis_livre.xlsx');
+      return Excel::download(new ColisExportDelivered(), 'export_colis_livre.xlsx');
+
     }
 
+    public function export_recp($id) 
+    {
+    return Excel::download(new RecpExport($id), 'export_colis_commandes.xlsx');
+    }
+    public function export_in_house() 
+    {
+    return Excel::download(new InhouseExport(), 'export_colis_inhouse.xlsx');
+    }
+    public function export_deliv($id)
+    {
+    return Excel::download(new DeliveryExport($id), '_'.$id.'_export_colis_en_livraison.xlsx');
+    }
+    public function export_on_deliv($id)
+    {
+    return Excel::download(new OnDeliveryExport($id), '_'.$id.'_export_colis_F_route.xlsx');
+    }
+    public function export_retour(){
 
+    return Excel::download(new RetourExport(), 'export_colis_retour.xlsx');
+        
+    } 
+    public function export_failed(){
+
+        return Excel::download(new FailedColisExport(), 'export_colis_echec.xlsx');
+            
+        } 
 
     public function data_colis($id){
 if($id == 'all' ){

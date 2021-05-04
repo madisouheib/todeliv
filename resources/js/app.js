@@ -4,9 +4,12 @@ import Vue from 'vue'
 window.axios = require('axios');
 import moment from 'moment';
 require('moment/locale/fr');
+/*
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; 
+window.axios.defaults.baseURL = 'http://todeliver.co/mydemo/';
+Vue.http.options.root = 'http://todeliver.co/mydemo/';
 
-
-
+*/
 moment.locale('fr');
 
 /**

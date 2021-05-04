@@ -35,13 +35,13 @@
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
                                 <img src="/dash/assets/images/user/avatar-2.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>Send Express</span>
+                                <span>ToDeliver</span>
                             <a href="{{ url('/logout')}}" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
+                                <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i> Options</a></li>
                                 <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
                                 
 
@@ -63,12 +63,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Tableau de bord </h5>
+                                        <h5 class="m-b-10">Dashboard </h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="#!">Send Express </a></li>
-                                        <li class="breadcrumb-item"><a href="#!">Tableau de bord  </a></li>
+                                        <li class="breadcrumb-item"><a href="#!">ToDeliver </a></li>
+                                        <li class="breadcrumb-item"><a href="#!">Dashboard  </a></li>
                                   
                                     </ul>
                                 </div>

@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   
- <title> Send Manifest </title>
+ <title> ToDeliver Manifest </title>
 </head>
 <body>
 
@@ -75,7 +75,7 @@ hr {
   <td rowspan="5" style="width:6% ;   
 ">
 
-<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> SEND  EXPRES </h6>  </td>
+<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> ToDeliver </h6>  </td>
   <td rowspan="2"> 
     <img style="" heigth="40" width="40" src="{{ public_path().'/images/a.png' }}">
   
@@ -92,7 +92,7 @@ hr {
   
   </td>
   <td> tracking id : 
-    send-{{ $dat->id_colis }} <br>
+    Deliver-{{ $dat->id_colis }} <br>
     
     <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($dat->id_colis, 'C39')}}" alt="barcode" /> </td>
   <td  colspan="3" style="padding:0px;">
@@ -137,7 +137,7 @@ hr {
 </td>
 
 <td colspan="2" style="">Quantité : {{ $dat->qte }}  </td>
-<td colspan="3"> <h6 style="font-size:10px;"> Tentative</h6></td>
+<td colspan="3"> <h6 style="font-size:10px;"> Tentatives</h6></td>
 
 </tr>
 

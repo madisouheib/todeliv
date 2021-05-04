@@ -25,7 +25,10 @@
     
     
     </div>
-    
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+           <a :href="'/admin/exportinhouse'" class="btn btn-glow-success btn-sm btn-success" > Export Excel <i class="fas fa-file-excel"></i></a>
+       </div>
   
     </div>            
     
@@ -122,9 +125,9 @@
                                                 </div>
                         <div class="table-responsive">
 
-                            <table class="table   table-bordered">
+                            <table class="table   table-hover ">
    
-                                <thead class="thead-dark">
+                                <thead class="">
                                        <tr>
                                    <th class="text-center" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> infos</th>

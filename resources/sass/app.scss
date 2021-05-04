@@ -2,8 +2,7 @@
 
 // Variables
 @import 'variables';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Roboto+Condensed&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
@@ -18,19 +17,65 @@
 // Bootstrap
 h1,h2,h3,h4,h5,h6,p,a,button,a,label,.badge,thead,th,td{
 
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Baloo Bhaina 2', cursive;
 
 }
 #nav {
 
 
-background-color: #212a3e;
+background-color: #04202f;
 
+}
+#nav ul li {
+
+
+    font-size: 14px;
+}
+.page-wrapper , .card{
+
+    border-radius: 10px;
 }
 .table-responsive table tbody tr td {
 
-
+border: none;
 padding: 5px;
+vertical-align: middle;
+
+}
+
+body {
+
+
+    background-color: #e2e8f0;
+}
+.navbar-brand , .header-logo {
+
+    background-color: #000!important;
+    
+}
+
+.table tbody tr {
+ 
+
+    box-shadow: 0 3px 3px rgba(0,0,0,0.06), 0 3px 3px rgba(0,0,0,0.02);
+ padding: 0px !important;
+ border-radius:5px ;
+
+}
+.table-responsive table thead th  { 
+    border: none;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.06), 0 3px 3px rgba(0,0,0,0.02);
+   
+    background-color: none;
+    color:#04202f;
+
+}
+
+.table {
+
+    border-collapse:separate;
+    border-spacing:0 10px;
 
 
 }
+

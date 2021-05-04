@@ -102,10 +102,17 @@ Route::get('/admin/retours', 'admin\RetourController@index')->name('index');
 
 
 
-
-Route::get('/admin/export/{id}', 'admin\ColisController@export')->name('export');
+//export section ---------------
+Route::get('/admin/export/{id}', 'admin\ColisController@export_recp')->name('export_recp');
 Route::get('/admin/exportdeliv', 'admin\ColisController@export_livred')->name('export_livred');
+Route::get('/admin/exportinhouse', 'admin\ColisController@export_in_house')->name('export_in_house');
+Route::get('/admin/exportfiche/{id}', 'admin\ColisController@export_deliv')->name('export_deliv');
+Route::get('/admin/exportondeliv/{id}', 'admin\ColisController@export_on_deliv')->name('export_on_deliv');
 
+Route::get('/admin/exportretour', 'admin\ColisController@export_retour')->name('export_retour');
+Route::get('/admin/exportfailed', 'admin\ColisController@export_failed')->name('export_failed');
+
+//----------------------------
 Route::get('/admin/accounting', 'admin\ConfirmedController@index_acounting')->name('index_acounting');
 Route::get('/admin/facturation', 'admin\ConfirmedController@index_facturation')->name('index_facturation');
 Route::get('/admin/facturation/{id}', 'admin\ConfirmedController@index_facturation_detail')->name('index_facturation_detail');

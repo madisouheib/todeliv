@@ -25,6 +25,12 @@
     
     
     </div>
+
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+<a class="btn btn-glow-success btn-success " style="color:#fff;" :href="'/admin/exportfailed'"> Export Excel <i class=" fas fa-file-excel"></i> </a>
+
+    </div>
        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
        <button class="btn btn-danger btn-glow-danger" type="button" data-toggle="modal" data-target="#ModalRetour"  > <i class="fas fa-undo"></i> basculer vers le retour  </button>
     

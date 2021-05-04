@@ -24,7 +24,9 @@
     
     
     </div>
-
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<a class="btn btn-sm btn-glow-success btn-success" style="color:#fff;" :href="'/admin/exportretour'"> Export Excel <i class="fas fa-file-excel"></i></a>
+    </div>
     
   
     </div>            

@@ -46,8 +46,8 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-bordered table-dark">
-           <thead class="thead-dark ">
+                            <table class="table table-hover">
+           <thead class=" ">
                                     <tr>
                                        <th class="text-center" ></th>
                                         <th class="text-center" ># Tracking-id </th>

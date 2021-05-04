@@ -23,6 +23,9 @@
                                 </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <a :href="'/admin/exportdeliv'" class="btn btn-success"> Export Excel <i class="fas fa-file-excel"></i> </a>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
      
     <div class="form-group">
                             
@@ -86,7 +89,7 @@
                                       <th class="text-center"   >  <label class="badge badge-warning " style="font-size:16px;">   {{ livreur.prix }}  DA     </label>  </th>
                                       <th class="text-center"  >  <label class="badge badge-dark " style="font-size:14px;">    {{ livreur.deliv_count }} </label></th>
                                                                               <td class="text-center" ><span class="pcoded-badge label label-success label-glow-success">En Livraison   <i class="fas fa-shipping-fast"></i> </span></td>
-                                                                               <th class="text-center" > <button class="btn btn-outline-success"> <i  style="margin:0px"  class="fas fa-file-excel"></i> </button> <a target="_blank"  :href="'/admin/fichepdf/'+livreur.id"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
+                                                                               <th class="text-center" > <a :href="'/admin/exportondeliv/'+livreur.id" class="btn btn-outline-success"> <i  style="margin:0px;"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/fichepdf/'+livreur.id"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
 
                                 
 

@@ -47,7 +47,7 @@
 
 
                         <div class="table-responsive">
-                            <table class="table table-dark table-sm">
+                            <table class="table table-hover table-sm">
                                 <thead>
                                     <tr>
                                         <th class="text-center" ># Transit-id </th>
@@ -58,7 +58,7 @@
                    
 
                                         <th class="text-center" ><i class="fas fa-road"></i>           Destination </th>
-
+                                        <th class="text-center"><i class="fas fa-align-left"></i>      Etat </th>
                                         <th class="text-center"><i class="fas fa-align-left"></i>      Statut </th>
 
                                         <th class="text-center"><i class="fas fa-align-left"></i>      Exportation </th>
@@ -90,7 +90,7 @@
                                                 
                                                  <button v-if="trans.colis_count > 0 " type="button" @click="GetidTrans(trans.id_transit)"  class="btn btn-sm btn-glow-success btn-success" data-toggle="modal"  data-target="#ModalSend">  valider et envoyée   <i class="fas fa-check"></i> </button> 
                                                  
-                                                 <h6 v-else style="color:#fff;font-style:italic;"> La Feuille de transit elle contient aucun colis  </h6>
+                                                 <h6 v-else style="font-style:italic;"> La Feuille de transit elle contient aucun colis  </h6>
                                                   </td>
 
 

@@ -22,21 +22,21 @@
 
     
 
-             <li data-username="Animations" class="nav-item"><a :href="'/admin/rec'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-building"></i></span><span class="pcoded-mtext">Reception </span><span class="pcoded-badge label label-info">{{ stats.rec }}</span> </a></li>
+             <li data-username="Animations" class="nav-item"><a :href="'/admin/rec'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-truck-loading"></i></span><span class="pcoded-mtext">Reception </span><span class="pcoded-badge label label-info">{{ stats.rec }}</span> </a></li>
   
    
                 <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
                     <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-sitemap"></i></span><span class="pcoded-mtext">Transit</span></a>
                     <ul class="pcoded-submenu">
                       
-                  <li class="  pcoded-trigger"><a :href="'/admin/transitenvoie'" class="">Envoie <span class="pcoded-badge label label-info">0</span> </a>
+                  <li class="  pcoded-trigger"><a :href="'/admin/transitenvoie'" class="">Envoie des colis  <span class="pcoded-badge label label-info">0</span> </a>
                          </li>
-                           <li class="  pcoded-trigger"><a :href="'/admin/transitretour'" class="">Retour  <span class="pcoded-badge label label-danger">0</span>  </a>
+                           <li class="  pcoded-trigger"><a :href="'/admin/transitretour'" class="">Reception des colis  <span class="pcoded-badge label label-danger">0</span>  </a>
                          </li>
                     </ul>
                 </li>
 
-       <li data-username="Animations" class="nav-item"><a :href="'/admin/inhouse'" class="nav-link"><span class="pcoded-micon"><i class=" fas fa-boxes"></i></span><span class="pcoded-mtext">IN HOUSE  </span> <span class="pcoded-badge label label-info">{{ stats.inhouse }}</span> </a></li>
+       <li data-username="Animations" class="nav-item"><a :href="'/admin/inhouse'" class="nav-link"><span class="pcoded-micon"><i class=" fas fa-boxes"></i></span><span class="pcoded-mtext">Entrepôt  </span> <span class="pcoded-badge label label-info">{{ stats.inhouse }}</span> </a></li>
 
 
                                   <li data-username="Animations" class="nav-item"><a :href="'/admin/ondelivery'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-list"></i></span><span class="pcoded-mtext">Feuille de route  </span> <span class="pcoded-badge label label-success"> {{ stats.countfiche}} </span> </a></li>
@@ -49,7 +49,7 @@
 
                                    <li data-username="Animations" class="nav-item"><a  :href="'/admin/retours'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-undo"></i></span><span class="pcoded-mtext">Retour </span> <span class="pcoded-badge label label-danger">{{ stats.retour }}</span>    </a></li>
 
-                                   <li data-username="Animations" class="nav-item"><a :href="'/admin/livre'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-check
+                                   <li data-username="Animations" class="nav-item"><a :href="'/admin/livre'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-check-circle
 "></i></span><span class="pcoded-mtext">Colis Livrée</span> <span class="pcoded-badge label label-success"> {{ stats.livre }}</span>  </a></li>
 
   
