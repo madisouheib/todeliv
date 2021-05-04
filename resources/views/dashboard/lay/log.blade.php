@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>Send Express Espace </title>
+    <title>ToDeliver Espace </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -15,11 +15,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
               <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Delivery " />
-    <meta name="keywords" content="send , express ">
-    <meta name="author" content="Codedthemes" />
+    <meta name="keywords" content="Deliver , express ">
+    <meta name="author" content="SOCILO" />
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('dash/assets/images/favicon.ico') }} " type="image/x-icon">
+    <link rel="icon" href="{{ asset('dash/assets/images/logo.png') }} " type="image/x-icon">
     <!-- fontawesome icon -->
   <link rel="stylesheet"  href="{{ asset('css/app.css') }}" >
 
