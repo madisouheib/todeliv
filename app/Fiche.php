@@ -12,7 +12,7 @@ class Fiche extends Model
     protected $table = 'fiche';
     public $timestamps = true;
     protected $fillable = [
-        'nom_fiche','id_liv','id_cord','closed_at','cloture','notice','valid_fiche'
+        'nom_fiche','id_liv','id_cord','closed_at','cloture','notice','valid_fiche','hub_id'
     ];
 
     public function fichecolis(){
