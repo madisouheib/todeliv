@@ -1,5 +1,12 @@
 <template>
 <div> 
+  <div class="row">
+<div class="col-md-3 col-lg-3">
+<button class="btn btn-info" data-toggle="modal" data-target="#ModaladdCom" > Ajouter une commande <i class="fas fa-plus"></i> </button>
+
+</div>
+
+  </div>
             <div class="table-responsive">  
                           
                 <table class="table ">

@@ -6545,6 +6545,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48886,12 +48893,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "table-responsive" },
       [
         _c("table", { staticClass: "table " }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "tbody",
@@ -49061,6 +49070,26 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3 col-lg-3" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-info",
+            attrs: { "data-toggle": "modal", "data-target": "#ModaladdCom" }
+          },
+          [
+            _vm._v(" Ajouter une commande "),
+            _c("i", { staticClass: "fas fa-plus" })
+          ]
+        )
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -42,7 +42,8 @@ class ColisController extends Controller
         if(isset($data)){
 
             $data = $request->input('idcoms');
-            
+            Excel::import(new ColisImport($data),$request->file('colis'));
+            return redirect('/admin/listcolis/'.$data)->with('success', 'All good!');
         }else {
 
 
@@ -53,18 +54,23 @@ class ColisController extends Controller
     
                 $idclient = Auth::id();
                 $idhub = Auth::user()->hub_id;
-  
-              $data =   Commandes::create(['id_clt'=> $idclient , 'id_hub'=>  $idhub  ])->id_coms;
-             
-           
             
+             $data = '';
+              $import = new ColisImport($data) ; 
+              Excel::import($import,$request->file('colis'));
+   
+              if(  $import->getRowCount() == 1 ){
 
+                return redirect('/admin/listcolis/'.$import->getComs())->with('success', 'All good!');
+              }else {
+            
+              return  redirect('/admin/addcoms')->with('danger', ' votre fichier excel est vide ! ');
         }
+    }
+
        
 
-        Excel::import(new ColisImport($data),$request->file('colis'));
-
-        return redirect('/admin/listcolis/'.$data)->with('success', 'All good!');
+      
     }
 
     public function list_colis(){

@@ -17,7 +17,8 @@ class ColisImport implements ToModel, WithHeadingRow
 
 private $data ; 
 
-
+private $rows = false;
+private $coms = '';
 
     function __construct($data)
     {
@@ -32,41 +33,52 @@ private $data ;
     public function model(array $row)
     {
 
-$idcom = $this->data ; 
+
      
 $idhub = Auth::user()->hub_id;
+$idclient = Auth::id();
 
-if(!array_filter($row)) { 
+
+
+
+
+    if(!array_filter($row)) { 
     
-    return null;
+        return null;
+    
+    
+    
+    }else {
+    
 
-
-
-}else {
-
-
-
-    return new Colis([
-
-
-
-        'nom_client'     => $row['Nom'],
-        'tel'     => $row['Num'],
-        'adress'     => $row['Adresse'],
-        'commune'     => $row['Commun'],
-        'wilaya'    => $row['Wilaya'], 
-        'produit'     => $row['Produit'],
-        'qte'     => $row['Qu'],
-        'id_hub'     => $idhub,
-        'price'     => $row['Prix'],
-        'remarque'     => $row['Remarque'],
-        'id_com'     => $idcom
-
-        //
-    ]);
-
+        $this->rows = true ; 
+        $idcom =   Commandes::create(['id_clt'=> $idclient , 'id_hub'=>  $idhub  ])->id_coms;
+    $this->coms = $idcom;
+        return new Colis([
+    
+            'nom_client' => $row['Nom'],
+            'tel'        => $row['Num'],
+            'adress'     => $row['Adresse'],
+            'commune'    => $row['Commun'],
+            'wilaya'     => $row['Wilaya'], 
+            'produit'    => $row['Produit'],
+            'qte'        => $row['Qu'],
+            'id_hub'     => $idhub,
+            'price'      => $row['Prix'],
+            'remarque'   => $row['Remarque'],
+            'id_com'     => $idcom
+    
+            //
+        ]);
+    
+     
+    }
 
 }
+
+
+
+
 
       
 
@@ -74,8 +86,16 @@ if(!array_filter($row)) {
 
         
     
+    
+    public function getRowCount(): int
+    {
+        return $this->rows;
     }
 
 
+    public function getComs(): int
+    {
+        return $this->coms;
+    }
     
 }

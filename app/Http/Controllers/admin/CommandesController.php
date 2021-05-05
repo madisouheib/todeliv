@@ -193,8 +193,9 @@ public function validate_manif_user($id){
     $nameCom =  $request->input('namecom');
     $idclient =  $request->input('idclient');
 
-    $idhub = Auth::user()->hub_id;
-  Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub  ]);
+    $user = User::find($idclient);
+    $idhub = $user->hub_id;
+  Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ]);
 
 
   return redirect('admin/commandes');

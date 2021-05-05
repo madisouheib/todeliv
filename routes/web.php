@@ -31,7 +31,7 @@ Route::get('/admin', 'admin\HomeAdminController@index')->name('index');
 Route::get('/admin/data', 'admin\HomeAdminController@index')->name('data_stats');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // admin routes Users  
-
+Route::get('/admin/export/{id}', 'admin\ColisController@export_recp')->name('export_recp');
 Route::get('/admin/users', 'admin\UsersController@index')->name('index');
 
 
