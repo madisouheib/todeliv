@@ -172,7 +172,7 @@ public function add_fiche(Request $request){
     'id_cord'=> $idcord ,
     'ntoice'=> $notice ,
     'nom_fiche'=> $name,
-    'hub_id'=> $idhub
+    'id_hub'=> $idhub
   
      ]);
 
