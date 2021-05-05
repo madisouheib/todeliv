@@ -159,17 +159,20 @@ return response()->json($GetLastID);
 
 public function add_fiche(Request $request){
 
+
+
     $idliv = request('idliv');
     $idcord = request('idcord');
     $notice = request('notice');
     $name = request('name');
-
-
+    $user = User::find($idliv);
+    $idhub = $user->hub_id;
 
     Fiche::create(['id_liv' => $idliv ,
     'id_cord'=> $idcord ,
     'ntoice'=> $notice ,
-    'nom_fiche'=> $name
+    'nom_fiche'=> $name,
+    'hub_id'=> $idhub
   
      ]);
 
