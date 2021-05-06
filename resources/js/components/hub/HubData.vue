@@ -1,10 +1,6 @@
 <template>
 <div>
-    <hub-add>
 
-
-
-    </hub-add>
 
   <table class="table">
 

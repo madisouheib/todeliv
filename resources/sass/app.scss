@@ -2,7 +2,7 @@
 
 // Variables
 @import 'variables';
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap');
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
@@ -17,23 +17,60 @@
 // Bootstrap
 h1,h2,h3,h4,h5,h6,p,a,button,a,label,.badge,thead,th,td{
 
-    font-family: 'Baloo Bhaina 2', cursive;
-
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    color:#04202f;
 }
 #nav {
 
+    box-shadow: none;
+background-color: #071a50;
 
-background-color: #04202f;
+background: linear-gradient(44deg, #081c55 70%, #04184e 20%);
 
+}
+#nav  label {
+
+    color:#eaeaea;
+}
+.navbar-brand {
+
+    background-color:transparent !important;
+}
+
+.header-logo {
+    background-color:transparent !important;
+
+}
+.b-brand {
+
+    background-color:transparent;
+}
+.breadcrumb .breadcrumb-item  a {
+
+
+    color:#ddd !important; 
 }
 #nav ul li {
 
 
     font-size: 14px;
+    font-weight: 300;
 }
 .page-wrapper , .card{
-
+    background: linear-gradient(45deg, #f1f5f8 84%, #ebf2f8 20%);
     border-radius: 10px;
+}
+.page-wrapper {
+
+    //background-color: #f1f5f8;
+
+}
+
+.page-wrapper select {
+
+
+    background-color: #fff;
 }
 .table-responsive table tbody tr td {
 
@@ -45,27 +82,69 @@ vertical-align: middle;
 
 body {
 
+ //background-color: #e2e8f0;
+background: linear-gradient(45deg,#213875 80%, #1c3271 20%);
 
-    background-color: #e2e8f0;
 }
-.navbar-brand , .header-logo {
 
-    background-color: #000!important;
+.page-header-title h5 {
+
+
+    color:#eaeaea;
+}
+.page-header-title .breadcrumb .breadcrumb-item li a{
+
+
+    color:#fff!important;
     
 }
+#nav .pcoded-inner-navbar a {
 
+color:#ddd;
+font-weight: 300;
+
+}
+.collapse {
+
+
+   // border-bottom: 1px solid #91a1d2;
+}
+.table tbody tr .first {
+
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+}
+.table tbody tr .last {
+
+    border-top-right-radius:10px;
+    border-bottom-right-radius:10px;
+}
 .table tbody tr {
- 
+    vertical-align: middle;
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
 
-    box-shadow: 0 3px 3px rgba(0,0,0,0.06), 0 3px 3px rgba(0,0,0,0.02);
  padding: 0px !important;
  border-radius:5px ;
 
 }
+.table tbody tr td label {
+
+margin-bottom: 0;
+}
+.table thead tr { 
+border:none;
+background-color: #fff;
+
+}
+.navbar-nav  i {
+
+    color:rgb(248, 246, 246); 
+}
 .table-responsive table thead th  { 
     border: none;
     box-shadow: 0 3px 3px rgba(0,0,0,0.06), 0 3px 3px rgba(0,0,0,0.02);
-   
+
     background-color: none;
     color:#04202f;
 

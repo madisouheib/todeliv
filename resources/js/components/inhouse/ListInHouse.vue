@@ -132,10 +132,10 @@
                                    <th class="text-center" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> infos</th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
-                                        <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
-                                        <th class="text-center" ><i class="fas fa-address-card"></i> partenaire </th>
-                                        <th class="text-center" ><i class="fas fa-tasks"></i>HUB </th>
-                                             <th class="text-center" ><i class="fas fa-calendar-alt"></i>Date </th>
+                                        <th class="text-center"><i class="fas fa-map-marker-alt"></i> Adresse </th>
+                                        <th class="text-center" ><i class="fas fa-address-card"></i> Partenaire </th>
+                                        <th class="text-center" ><i class="fas fa-warehouse"></i> HUB </th>
+                                             <th class="text-center" ><i class="fas fa-calendar-alt"></i> Date </th>
             
                                
 
@@ -148,23 +148,23 @@
        
 
                              
-                                        <td scope="row" class="text-center" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></td>
+                                        <td scope="row" class="text-center first" > <label class="badge badge-light" style="font-size:14px;">  #send-{{ col.id_colis }} </label></td>
                                         
-                                        <td style=""   class="text-center" > <button  data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"   class="btn   btn-sm btn-glow-primary   btn-primary"><i  style="margin:0px;"  class="fas fa-user-circle" ></i></button> 
-                                        <a   target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn btn-glow-dark btn-dark btn-sm"> <i style="margin:0px;color:#FFCC00;"  class="fas fa-box"></i></a></td>
-                                        <td class="text-center" > <label class="badge badge-warning" style="font-size:16px;">   {{ col.price }}  DA  </label> </td>
-                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;margin:0px;"> {{ col.wilaya }} <br>  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i>  </label> </td>
+                                        <td style=""   class="text-center" > <button  data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"   class="btn   btn-sm shadow-1   btn-primary"><i  style="margin:0px;"  class="fas fa-box-open" ></i></button> 
+                                        <a   target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn shadow-1 btn-info btn-sm"> <i style="margin:0px;color:#fff;"  class="fas fa-route"></i></a></td>
+                                        <td class="text-center" > <label class="badge badge-dark" style="font-size:16px; color:#f1f5f8;">   {{ col.price }}  DA  </label> </td>
+                                        <td class="text-center" > <label class="badge badge-light" style="font-size:15px;margin:0px;"> {{ col.wilaya }} <br>  {{  col.commune }}    </label> </td>
                                         <td class="text-center" > {{ col.name }}    </td>
                                         <td class="text-center" >{{ col.nom_hub }}   </td>
                                                                                              <td class="text-center" > <label class="badge badge-light" style="font-size:15px;" >{{ col.created_at | moment    }} <br> ( {{ col.created_at | days    }} jours ) </label>    </td>        
-                                        <td class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn btn-glow-success  btn-success btn-sm " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-location-arrow"></i></button>         
+                                        <td class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn shadow-1  btn-success btn-sm " ><i style="margin:0px;font-size:1.3em;"  class=" fas fa-tasks"></i></button>         
                         
                                           
                                         </td>
   
-<td>
+<td class="last">
 
- <button class=" btn btn-dark btn-glow-dark btn-sm" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
+ <button class=" btn btn-primary shadow-1 btn-sm" style="background-color:#214090;border:1px solid #214090;" @click="GetIDColis(col.id_colis)" data-toggle="modal" data-target="#ModalColisAction" > Dispatcher  <i class=" fas fa-dolly-flatbed"></i>        </button>
                                         </td>
 
                                      

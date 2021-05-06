@@ -2085,7 +2085,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 // Choose Locale
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
@@ -9633,10 +9632,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HubAdd_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HubAdd.vue */ "./resources/js/components/hub/HubAdd.vue");
 /* harmony import */ var _HubEdit_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HubEdit.vue */ "./resources/js/components/hub/HubEdit.vue");
 /* harmony import */ var _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @voerro/vue-tagsinput */ "./node_modules/@voerro/vue-tagsinput/src/main.js");
-//
-//
-//
-//
 //
 //
 //
@@ -40922,10 +40917,6 @@ var render = function() {
           _vm._v(" "),
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
-              _c("a", { attrs: { href: "/admin/hub" } }, [_vm._v("Hubs ")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "  pcoded-trigger" }, [
               _c("a", { attrs: { href: "/admin/wilaya" } }, [_vm._v("Wilayas")])
             ])
           ])
@@ -41057,7 +41048,7 @@ var render = function() {
                 _vm._v("Livraison echouée   ")
               ]),
               _vm._v(" "),
-              _c("span", { staticClass: "pcoded-badge label label-info" }, [
+              _c("span", { staticClass: "pcoded-badge label label-warning" }, [
                 _vm._v(_vm._s(_vm.stats.ech))
               ])
             ]
@@ -41203,7 +41194,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
       _c("span", { staticClass: "pcoded-micon" }, [
-        _c("i", { staticClass: "fas fa-warehouse" })
+        _c("i", { staticClass: "fas fa-pallet" })
       ]),
       _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Dépots")])
     ])
@@ -53482,7 +53473,7 @@ var render = function() {
             _vm._l(_vm.froute.data, function(fiche) {
               return _c("tr", { key: fiche.id_fiche }, [
                 _c(
-                  "th",
+                  "td",
                   { staticClass: "text-center", attrs: { scope: "row" } },
                   [
                     fiche.valid_fiche == false
@@ -53524,29 +53515,29 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _vm._v(" " + _vm._s(_vm._f("moment")(fiche.created_at)))
                 ]),
                 _vm._v(" "),
                 _vm._m(6, true),
                 _vm._v(" "),
                 fiche.prices == null
-                  ? _c("th", { staticClass: "text-center" }, [
+                  ? _c("td", { staticClass: "text-center" }, [
                       _vm._v(" Fiche vide  ")
                     ])
-                  : _c("th", { staticClass: "text-center" }, [
+                  : _c("td", { staticClass: "text-center" }, [
                       _vm._v(" " + _vm._s(fiche.prices) + " DA  ")
                     ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _vm._v(_vm._s(fiche.fichecolis_count) + "   ")
                 ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _vm._v(" " + _vm._s(fiche.livreur) + " ")
                 ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   fiche.valid_fiche == false && fiche.fichecolis_count > 0
                     ? _c(
                         "button",
@@ -53590,7 +53581,7 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
-                _c("th", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center" }, [
                   _c(
                     "a",
                     {
@@ -53762,7 +53753,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
+    return _c("thead", {}, [
       _c("tr", [
         _c("th", { staticClass: "text-center" }, [_vm._v("# Froute-id ")]),
         _vm._v(" "),
@@ -53807,7 +53798,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("th", { staticClass: "text-center" }, [
+    return _c("td", { staticClass: "text-center" }, [
       _c("i", {
         staticClass: "fas fa-clock",
         staticStyle: { color: "#ffc845", "font-size": "1.6em" }
@@ -53945,14 +53936,14 @@ var render = function() {
       "div",
       [
         _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-bordered" }, [
+          _c("table", { staticClass: "table table-hover" }, [
             _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
               _vm._l(_vm.colis.data, function(col) {
                 return _c("tr", { key: col.id_colis }, [
-                  _c("th", { attrs: { scope: "" } }, [
+                  _c("td", { attrs: { scope: "" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("div", { staticClass: "checkbox d-inline" }, [
                         _c("input", {
@@ -53973,12 +53964,12 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c(
-                    "th",
+                    "td",
                     { staticClass: "text-center", attrs: { scope: "row" } },
                     [_vm._v("#send- " + _vm._s(col.id_colis))]
                   ),
                   _vm._v(" "),
-                  _c("th", { staticClass: "text-center" }, [
+                  _c("td", { staticClass: "text-center" }, [
                     _c(
                       "button",
                       {
@@ -54002,15 +53993,15 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("th", { staticClass: "text-center" }, [
+                  _c("td", { staticClass: "text-center" }, [
                     _vm._v(" " + _vm._s(col.price) + " DA    ")
                   ]),
                   _vm._v(" "),
-                  _c("th", { staticClass: "text-center" }, [
+                  _c("td", { staticClass: "text-center" }, [
                     _vm._v("  " + _vm._s(col.wilaya))
                   ]),
                   _vm._v(" "),
-                  _c("th", { staticClass: "text-center" }, [
+                  _c("td", { staticClass: "text-center" }, [
                     _vm._v(" " + _vm._s(col.partenaire) + " ")
                   ]),
                   _vm._v(" "),
@@ -54103,11 +54094,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark " }, [
+    return _c("thead", { staticClass: " " }, [
       _c("tr", [
-        _c("th", { staticClass: "text-center" }),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("# Tracking-id ")]),
+        _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+          _vm._v("# Tracking-id ")
+        ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-user-circle" }),
@@ -54699,8 +54690,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("hub-add"),
-      _vm._v(" "),
       _c("table", { staticClass: "table" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -56665,7 +56654,7 @@ var render = function() {
               return _c("tr", { key: col.id_colis }, [
                 _c(
                   "td",
-                  { staticClass: "text-center", attrs: { scope: "row" } },
+                  { staticClass: "text-center first", attrs: { scope: "row" } },
                   [
                     _c(
                       "label",
@@ -56682,8 +56671,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "btn   btn-sm btn-glow-primary   btn-primary",
+                      staticClass: "btn   btn-sm shadow-1   btn-primary",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#Moodalcolisinfo"
@@ -56696,7 +56684,7 @@ var render = function() {
                     },
                     [
                       _c("i", {
-                        staticClass: "fas fa-user-circle",
+                        staticClass: "fas fa-box-open",
                         staticStyle: { margin: "0px" }
                       })
                     ]
@@ -56705,7 +56693,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-glow-dark btn-dark btn-sm",
+                      staticClass: "btn shadow-1 btn-info btn-sm",
                       attrs: {
                         target: "_blank",
                         href: "/admin/tracking/" + col.id_colis
@@ -56713,8 +56701,8 @@ var render = function() {
                     },
                     [
                       _c("i", {
-                        staticClass: "fas fa-box",
-                        staticStyle: { margin: "0px", color: "#FFCC00" }
+                        staticClass: "fas fa-route",
+                        staticStyle: { margin: "0px", color: "#fff" }
                       })
                     ]
                   )
@@ -56724,8 +56712,8 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "badge badge-warning",
-                      staticStyle: { "font-size": "16px" }
+                      staticClass: "badge badge-dark",
+                      staticStyle: { "font-size": "16px", color: "#f1f5f8" }
                     },
                     [_vm._v("   " + _vm._s(col.price) + "  DA  ")]
                   )
@@ -56741,8 +56729,7 @@ var render = function() {
                     [
                       _vm._v(" " + _vm._s(col.wilaya) + " "),
                       _c("br"),
-                      _vm._v("  " + _vm._s(col.commune) + "   "),
-                      _c("i", { staticClass: "fas fa-map-marker-alt" })
+                      _vm._v("  " + _vm._s(col.commune) + "    ")
                     ]
                   )
                 ]),
@@ -56778,7 +56765,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-glow-success  btn-success btn-sm ",
+                      staticClass: "btn shadow-1  btn-success btn-sm ",
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisSuivi"
@@ -56791,18 +56778,22 @@ var render = function() {
                     },
                     [
                       _c("i", {
-                        staticClass: " fas fa-location-arrow",
+                        staticClass: " fas fa-tasks",
                         staticStyle: { margin: "0px", "font-size": "1.3em" }
                       })
                     ]
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
+                _c("td", { staticClass: "last" }, [
                   _c(
                     "button",
                     {
-                      staticClass: " btn btn-dark btn-glow-dark btn-sm",
+                      staticClass: " btn btn-primary shadow-1 btn-sm",
+                      staticStyle: {
+                        "background-color": "#214090",
+                        border: "1px solid #214090"
+                      },
                       attrs: {
                         "data-toggle": "modal",
                         "data-target": "#ModalColisAction"
@@ -56948,22 +56939,22 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-map-marker-alt" }),
-          _vm._v(" wilaya & commune ")
+          _vm._v(" Adresse ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-address-card" }),
-          _vm._v(" partenaire ")
+          _vm._v(" Partenaire ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
-          _c("i", { staticClass: "fas fa-tasks" }),
-          _vm._v("HUB ")
+          _c("i", { staticClass: "fas fa-warehouse" }),
+          _vm._v(" HUB ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-calendar-alt" }),
-          _vm._v("Date ")
+          _vm._v(" Date ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -90849,8 +90840,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/souheibmadi/Desktop/www/ToDeliver/Delivery /resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/souheibmadi/Desktop/www/ToDeliver/Delivery /resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/souheibmadi/Desktop/www/ToDeliver/MonoHub/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/souheibmadi/Desktop/www/ToDeliver/MonoHub/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

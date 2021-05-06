@@ -46,11 +46,11 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-bordered">
-           <thead class="thead-dark ">
+                            <table class="table table-hover">
+           <thead class=" ">
                                     <tr>
-                                       <th class="text-center" ></th>
-                                        <th class="text-center" ># Tracking-id </th>
+                                
+                                        <th class="text-center" colspan="2" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> Infos</th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
                                         <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
@@ -64,7 +64,7 @@
                                 <tbody>
                                     <tr v-for=" col  in colis.data" :key="col.id_colis" >
                          
-                                        <th scope="" class="" >
+                                        <td scope="" class="" >
                                             <div class="form-group">
   <div   class="checkbox d-inline">
                                     <input   type="checkbox" name="checkbox-fill-1" :id="'checkbox-'+col.id_colis" checked >
@@ -75,16 +75,16 @@
 
                                             </div>        
                                                                                                
-                                        </th>
+                                        </td>
 
-                                        <th scope="row" class="text-center" >#send- {{ col.id_colis  }}</th>
+                                        <td scope="row" class="text-center" >#send- {{ col.id_colis  }}</td>
 
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
-                                        </th>
-                                      <th class="text-center"   > {{ col.price  }} DA    </th>
-                                        <th class="text-center" >  {{ col.wilaya }}</th>
-                                        <th class="text-center" > {{ col.partenaire }} </th>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#ModalColisInfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
+                                        </td>
+                                      <td class="text-center"   > {{ col.price  }} DA    </td>
+                                        <td class="text-center" >  {{ col.wilaya }}</td>
+                                        <td class="text-center" > {{ col.partenaire }} </td>
 
                                         <td class="text-center" >
        

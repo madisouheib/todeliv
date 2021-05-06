@@ -51,7 +51,7 @@ public function data_coms($id){
 
   $Comas = commandes::withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
-},'colis'])->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(4);
+},'colis'])->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(10);
 
 
  
@@ -63,7 +63,10 @@ public function data_coms($id){
 
 public function data_coms_archive($id){
 
-  $Comas = commandes::withCount(['colis'])->where([['id_clt','=',$id],['cloture','=',1]])->orderBy('id_coms', 'desc')->paginate(4);
+  $Comas = commandes::withCount(['colis'])
+  ->where([['id_clt','=',$id],['cloture','=',1]])
+  ->orderBy('id_coms', 'desc')
+  ->paginate(10);
 
 
  
@@ -78,7 +81,9 @@ public function data_manifs($id){
    // dd($id);
 $CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
 ->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
-->leftJoin('roles','roles.id','=','model_has_roles.role_id')->where('users.id','=',$id)->first();
+->leftJoin('roles','roles.id','=','model_has_roles.role_id')
+->where('users.id','=',$id)
+->first();
 
 //dd($CheckLogin['guard']);
 if($CheckLogin['guard'] == 'admin'){
@@ -86,7 +91,10 @@ if($CheckLogin['guard'] == 'admin'){
 
   $Comas = commandes::withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
-}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(40);
+}, 'colis','signaler','validate'])
+->where([['cloture','=',null],['confirmed_user','=',1]])
+->orderBy('id_coms', 'desc')
+->paginate(40);
 
 
 
@@ -115,9 +123,12 @@ if($CheckLogin['guard'] == 'admin'){
 
 public function filtre_client($code){
   
-  $Comas = commandes::withCount(['price as prices' => function($query) {
-    $query->select(DB::raw('sum(price)'));
-}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1],['id_clt','=',$code]])->orderBy('id_coms', 'desc')->paginate(40);
+      $Comas = commandes::withCount(['price as prices' => function($query) {
+        $query->select(DB::raw('sum(price)'));
+    }, 'colis','signaler','validate'])
+    ->where([['cloture','=',null],['confirmed_user','=',1],['id_clt','=',$code]])
+    ->orderBy('id_coms', 'desc')
+    ->paginate(40);
 
 
 
@@ -132,7 +143,10 @@ public function filtre_etat($code){
 
   $Comas = commandes::withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
-}, 'colis','signaler','validate'])->where([['cloture','=',null],['confirmed_user','=',1],['confirmed','=',$code]])->orderBy('id_coms', 'desc')->paginate(40);
+}, 'colis','signaler','validate'])
+->where([['cloture','=',null],['confirmed_user','=',1],['confirmed','=',$code]])
+->orderBy('id_coms', 'desc')
+->paginate(40);
 
 
 
@@ -143,7 +157,10 @@ public function filtre_etat($code){
 public function data_manifs_archive(){
 
 
-  $Comas = commandes::withCount('colis')->where([['cloture','=',1],['confirmed_user','=',1]])->orderBy('id_coms', 'desc')->paginate(4);
+  $Comas = commandes::withCount('colis')
+  ->where([['cloture','=',1],['confirmed_user','=',1]])
+  ->orderBy('id_coms', 'desc')
+  ->paginate(4);
 
 
   return response()->json($Comas);

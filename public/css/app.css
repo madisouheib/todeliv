@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@200;
+
+300&display=swap);@charset "UTF-8";
 
 /*!
  * animate.css -https://daneden.github.io/animate.css/
@@ -6051,16 +6053,19 @@ p.text-muted {
 }
 
 .pcoded-navbar {
+  margin:10px;
+  border-radius:10px ;
+  margin-top: 15px;
   display: block;
   z-index: 1029;
   position: fixed;
   transition: all 0.3s ease-in-out;
-  box-shadow: 1px 0 20px 0 #3f4d67;
+
   width: 264px;
   height: 100vh;
   top: 0;
-  background: #3f4d67;
-  color: #a9b7d0;
+  background: #071a50;
+  color: #c0cadb;
 }
 .pcoded-navbar ul {
   padding-left: 0;
@@ -6995,7 +7000,7 @@ p.text-muted {
   box-shadow: 7px 0 15px 0 rgba(69, 90, 100, 0.09);
 }
 .pcoded-navbar.menu-light .header-logo {
-  background-color: #3f4d67;
+  background-color:transparent;
 }
 .pcoded-navbar.menu-light .header-logo .logo-dark {
   display: none;
@@ -8918,7 +8923,7 @@ body.layout-6 .pcoded-navbar.menu-light .header-logo {
 body.layout-6 .pcoded-navbar .navbar-content {
   background: #3f4d67;
   border-radius: 0 10px 0 0;
-  box-shadow: 0 0 20px 0 #3f4d67;
+
 }
 body.layout-6.box-layout .pcoded-navbar .navbar-content {
   border-radius: 10px 10px 0 0;
@@ -8965,8 +8970,8 @@ body.layout-6 .pcoded-navbar.navbar-dark .header-logo {
   background: transparent;
 }
 body.layout-6 .pcoded-navbar.navbar-dark .navbar-content {
-  background: #323437;
-  box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.08);
+  background:transparent;
+ 
 }
 @media only screen and (max-width: 991px) {
   body.layout-6 .pcoded-header .input-group .input-group-text,
@@ -9072,7 +9077,7 @@ body.layout-1 .pcoded-navbar .sidemenu {
   left: 0;
   position: relative;
   transition: all 0.3s ease-in-out;
-  box-shadow: inset -1px 0 0 0 rgba(169, 183, 208, 0.2);
+ 
 }
 body.layout-1 .pcoded-navbar .sidemenu li {
   position: relative;
@@ -14035,12 +14040,6 @@ display:none !important;;
     background-color: #007bff;
 }
 @charset "UTF-8";
-
-/*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */
-
 @font-face {
   font-family: "Font Awesome 5 Brands";
   font-style: normal;
@@ -20152,20 +20151,50 @@ label,
 thead,
 th,
 td {
-  font-family: "Baloo Bhaina 2", cursive;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
+  color: #04202f;
 }
 
 #nav {
-  background-color: #04202f;
+  box-shadow: none;
+  background-color: #071a50;
+  background: linear-gradient(44deg, #081c55 70%, #04184e 20%);
+}
+
+#nav label {
+  color: #eaeaea;
+}
+
+.navbar-brand {
+  background-color: transparent !important;
+}
+
+.header-logo {
+  background-color: transparent !important;
+}
+
+.b-brand {
+  background-color: transparent;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: #ddd !important;
 }
 
 #nav ul li {
   font-size: 14px;
+  font-weight: 300;
 }
 
 .page-wrapper,
 .card {
+  background: linear-gradient(45deg, #f1f5f8 84%, #ebf2f8 20%);
   border-radius: 10px;
+}
+
+.page-wrapper select {
+  background-color: #fff;
 }
 
 .table-responsive table tbody tr td {
@@ -20175,18 +20204,51 @@ td {
 }
 
 body {
-  background-color: #e2e8f0;
+  background: linear-gradient(45deg, #213875 80%, #1c3271 20%);
 }
 
-.navbar-brand,
-.header-logo {
-  background-color: #000 !important;
+.page-header-title h5 {
+  color: #eaeaea;
+}
+
+.page-header-title .breadcrumb .breadcrumb-item li a {
+  color: #fff !important;
+}
+
+#nav .pcoded-inner-navbar a {
+  color: #ddd;
+  font-weight: 300;
+}
+
+.table tbody tr .first {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.table tbody tr .last {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .table tbody tr {
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.06), 0 3px 3px rgba(0, 0, 0, 0.02);
+  vertical-align: middle;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   padding: 0px !important;
   border-radius: 5px;
+}
+
+.table tbody tr td label {
+  margin-bottom: 0;
+}
+
+.table thead tr {
+  border: none;
+  background-color: #fff;
+}
+
+.navbar-nav i {
+  color: #f8f6f6;
 }
 
 .table-responsive table thead th {

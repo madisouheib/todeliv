@@ -16,11 +16,10 @@
 
 
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
-                        <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-warehouse"></i></span><span class="pcoded-mtext">Dépots</span></a>
+                        <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-pallet"></i></span><span class="pcoded-mtext">Dépots</span></a>
                         <ul class="pcoded-submenu">
                           
-                      <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hubs </a>
-                             </li>
+
                                <li class="  pcoded-trigger"><a :href="'/admin/wilaya'" class="">Wilayas</a>
                              </li>
                         </ul>
@@ -55,7 +54,7 @@
                                    <li data-username="Animations" class="nav-item"><a :href="'/admin/livraison'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-shipping-fast"></i></span><span class="pcoded-mtext">En Livraison </span><span class="pcoded-badge label label-success">{{ stats.enliv }}</span> </a></li>
 
   <li data-username="Animations" class="nav-item"><a :href="'/admin/echlivraison'" class="nav-link"><span class="pcoded-micon"><i class=" fas fa-window-close
-"></i></span><span class="pcoded-mtext">Livraison echouée   </span> <span class="pcoded-badge label label-info">{{ stats.ech }}</span> </a></li>
+"></i></span><span class="pcoded-mtext">Livraison echouée   </span> <span class="pcoded-badge label label-warning">{{ stats.ech }}</span> </a></li>
 
 
                                    <li data-username="Animations" class="nav-item"><a  :href="'/admin/retours'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-undo"></i></span><span class="pcoded-mtext">Retour </span> <span class="pcoded-badge label label-danger">{{ stats.retour }}</span>    </a></li>

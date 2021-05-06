@@ -91,7 +91,7 @@
 
                         <div class="table-responsive">
                             <table class="table table-bordered">
-                                <thead class="thead-dark">
+                                <thead class="">
                                     <tr >
                                         <th class="text-center" ># Froute-id </th>
                                         <th class="text-center" ><i class="fas fa-calendar-minus"></i> Date Sortie </th>
@@ -110,7 +110,7 @@
                                 <tbody>
                             
                                     <tr  v-for=" fiche  in froute.data" :key="fiche.id_fiche" >
-                                        <th scope="row" class="text-center" >
+                                        <td scope="row" class="text-center" >
                                             
                                             
                                             
@@ -119,24 +119,24 @@
                             <a  v-else  class="pcoded-badge btn-primary btn-glow-primary btn" style="color:white" >#Froute- {{ fiche.id_fiche }}   <i class="fas fa-list"></i>  <i class="fas fa-boxes"></i> </a>
                             
                             
-                             </th>
+                             </td>
                                         
-                                        <th class="text-center" > {{  fiche.created_at | moment  }}</th>
-                                            <th class="text-center" > <i class="fas fa-clock" style="color:#ffc845;font-size:1.6em;"></i> </th>
-                                      <th class="text-center"   v-if="fiche.prices == null " > Fiche vide  </th>
-                                           <th class="text-center"   v-else > {{fiche.prices }} DA  </th>
-                                      <th class="text-center"   >{{fiche.fichecolis_count }}   </th>
-                                        <th class="text-center" > {{ fiche.livreur }} </th>
+                                        <td class="text-center" > {{  fiche.created_at | moment  }}</td>
+                                            <td class="text-center" > <i class="fas fa-clock" style="color:#ffc845;font-size:1.6em;"></i> </td>
+                                      <td class="text-center"   v-if="fiche.prices == null " > Fiche vide  </td>
+                                           <td class="text-center"   v-else > {{fiche.prices }} DA  </td>
+                                      <td class="text-center"   >{{fiche.fichecolis_count }}   </td>
+                                        <td class="text-center" > {{ fiche.livreur }} </td>
                                 
                                      
-                                        <th class="text-center" >
+                                        <td class="text-center" >
                                             <button  v-if="fiche.valid_fiche == false && fiche.fichecolis_count > 0  "   data-toggle="modal" data-target="#ModalValidFiche"   class="btn btn-glow-success btn-success" @click="GetIdFiche(fiche.id_fiche)" > valider <i class="fas fa-check-circle"></i></button>
 
                                             <button  v-if=" fiche.fichecolis_count == 0  "    class="btn btn-glow-dark btn-dark" disabled > valider <i class="fas fa-check-circle"></i></button>
 
                                   <h6 v-if="fiche.valid_fiche == true " style="color:green; color:#2dde98;">  <b>  Valider <i class=" fas fa-check-circle"></i>  </b> </h6>
-                                        </th>
-                                        <th class="text-center" > <a class="btn btn-outline-success" :href="'/admin/exportfiche/'+fiche.id_fiche"  > <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/fichepdf/'+fiche.id_fiche"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </th>
+                                        </td>
+                                        <td class="text-center" > <a class="btn btn-outline-success" :href="'/admin/exportfiche/'+fiche.id_fiche"  > <i  style="margin:0px"  class="fas fa-file-excel"></i> </a> <a target="_blank"  :href="'/admin/fichepdf/'+fiche.id_fiche"   class="btn btn-outline-danger"> <i  style="margin:0px" class="fas fa-file-pdf"></i> </a>  </td>
                                      
                                     </tr>
 

@@ -33,7 +33,7 @@ Route::delete('/deletewilaya/{id}', 'admin\WilayaController@wilaya_delete');
 
 Route::get('/hub', 'admin\HubsController@hub_data');
 Route::get('/huball', 'admin\HubsController@hub_all');
-Route::post('/addhub', 'admin\HubsController@hub_add');
+//Route::post('/addhub', 'admin\HubsController@hub_add');
 Route::get('/showhub/{id}', 'admin\HubsController@hub_show');
 Route::patch('/edithub/{id}', 'admin\HubsController@hub_edit');
 Route::delete('/deletehub/{id}', 'admin\HubsController@hub_delete');
