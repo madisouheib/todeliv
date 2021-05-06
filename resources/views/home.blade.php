@@ -5,6 +5,6 @@
 <script>
 
 
-window.location.replace("http://trailer.todeliver.co/login");
+window.location.replace("/login");
 </script>
 @endsection
