@@ -67475,7 +67475,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("table", { staticClass: "table table-hover table-dark" }, [
+      _c("table", { staticClass: "table table-hover " }, [
         _vm._m(1),
         _vm._v(" "),
         _c(
@@ -67504,7 +67504,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-square  btn-sm   btn-primary ",
+                    staticClass: "btn shadow-1  btn-sm   btn-primary ",
                     attrs: {
                       "data-toggle": "modal",
                       "data-target": "#Modalinfo"
@@ -67529,7 +67529,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-sm   btn-square   btn-info",
+                        staticClass: "btn btn-sm  shadow-1   btn-info",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#ModalEditUser"
@@ -67551,7 +67551,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-square btn-sm   btn-danger ",
+                        staticClass: "btn shadow-1 btn-sm   btn-danger ",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#Modaldelete"
@@ -67573,7 +67573,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-sm btn-warning btn-glow-warning",
+                        staticClass: "btn shadow-1 btn-sm btn-warning ",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#ModalEditPass"

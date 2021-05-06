@@ -21,7 +21,7 @@
                         <h5>Utilisateurs </h5>
                         <span class="d-block m-t-5">la  <code>liste</code> des utilisateurs </span>
  
-                        <button class="btn btn-square btn-success" data-toggle="modal" data-target="#exampleModalCenter"  style="float:right;"> <i class="fas fa-plus"></i> AJOUTER </button>
+                        <button class="btn shadow-1 btn-success" data-toggle="modal" data-target="#exampleModalCenter"  style="float:right;"> <i class="fas fa-plus"></i> AJOUTER </button>
                     </div>
                     <div class="card-block table-border-style">
                         <div class="table-responsive">
