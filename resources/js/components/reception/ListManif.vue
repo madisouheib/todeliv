@@ -79,7 +79,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
 
-<a  :href="'/admin/archrecep'" class="btn btn-dark btn-square">  Archive <i class="fas fa-archive"></i> </a>
+<a  :href="'/admin/archrecep'" class="btn btn-dark shadow-1">  Archive <i class="fas fa-archive"></i> </a>
                         </div>
                         
                                             </div>
@@ -124,7 +124,7 @@
                                
 
                                             
-                                             <button  v-if="com.colis_count ==  (com.validate_count + com.signaler_count) "  data-toggle="modal" data-target="#MdalValidManif" @click="Get(com.id_coms)" style="padding-right:6px;"   class="btn btn-square btn-success  text-center " >  <i class="fas fa-check-circle"></i>  </button> <button v-else   data-toggle="modal" data-target="#MdalClotureManif"  style="padding-right:6px;"  @click="Get(com.id_coms)" class="btn btn-dark btn-square" >
+                                             <button  v-if="com.colis_count ==  (com.validate_count + com.signaler_count) "  data-toggle="modal" data-target="#MdalValidManif" @click="Get(com.id_coms)" style="padding-right:6px;"   class="btn  btn-success shadow-1  text-center " >  <i class="fas fa-check-circle"></i>  </button> <button v-else   data-toggle="modal" data-target="#MdalClotureManif"  style="padding-right:6px;"  @click="Get(com.id_coms)" class="btn btn-dark sahdow-1" >
                                         <i class=" fas fa-archive">  </i> </button>
                                         
                                          </td>

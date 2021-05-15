@@ -42,6 +42,11 @@
 
  <nav-cord :user_id='@json( Auth::user()->id )' > </nav-cord>
   @endrole
+
+
+  @role('livreur')
+<nav-livreur :user_id='@json( Auth::user()->id )' ></nav-livreur>
+  @endrole
             </div>
         </div>
     </nav>

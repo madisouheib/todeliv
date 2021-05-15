@@ -2,12 +2,76 @@
 
     
 <div>
-      
-    
+      <div class="d-lg-none d-md-none ">
+
+          <button @click="turnCamera()" class="btn btn-primary col-12 btn-glow-primary mb-4 " style="font-size:22px;"> SCANNER QR CODE <i class="fas fa-qrcode"> </i></button>
+      </div>
+
+   <qrcode-stream @decode="onDecode"  v-if="camera == true "></qrcode-stream>
+
+     <div class="row mt-4">
+
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6">
+                    <div class="card table-card">
+                        <div class="row-table bg-white">
+                            <div class="col-auto theme-init text-white p-t-40 p-b-40">
+                                <i class="feather icon-package f-30"></i>
+                            </div>
+                            <div class="col text-center">
+                                <span class="text-uppercase d-block m-b-10">Non livré</span>
+                                <h3 class="f-w-300">30</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6">
+                    <div class="card table-card">
+                        <div class="row-table bg-white ">
+                            <div class="col-auto theme-failed text-white p-t-40 p-b-40">
+                                <i class="feather icon-alert-triangle f-30"></i>
+                            </div>
+                            <div class="col text-center">
+                                <span class="text-uppercase d-block m-b-10">Echouée </span>
+                                <h3 class="f-w-300">6</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6 "  >
+                    <div class="card table-card ">
+                        <div class="row-table bg-white">
+                            <div class="col-auto theme-retour text-white p-t-40 p-b-40">
+                                <i class="feather icon-refresh-ccw f-30"></i>
+                            </div>
+                            <div class="col text-center ">
+                                <span class="text-uppercase d-block m-b-10">Retour</span>
+                                <h3 class="f-w-300">5</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6">
+                    <div class="card table-card">
+                        <div class="row-table bg-white ">
+                            <div class="col-auto theme-bg text-white p-t-40 p-b-40">
+                                <i class="feather icon-check-circle f-30"></i>
+                            </div>
+                            <div class="col text-center">
+                                <span class="text-uppercase d-block m-b-10">livré</span>
+                                <h3 class="f-w-300">4</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 <div class="row">
       
    
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class=" col-8 col-lg-3 col-md-6 col-sm-6 col-xs-6">
         <div class="form-group">
 
             <div class="input-group">
@@ -20,108 +84,20 @@
                 </div>
             </div>
         </div>
-    
-    
-    
- 
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
-<button class="btn btn-glow-primary btn-sm btn-primary" data-toggle="modal" data-target="#ModalColisActionGp" @click="GetIDColisGrp()" type="button" > Mise à jour groupée <i class="fas fa-dolly"> </i>  </button>
-    </div>
-    <div class="col-2"> <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-money-check-alt"></i> {{ this.UserDetail.prices }} DA  </label></div>
-    <div class="col-3">
-    <button v-if="this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count " class="btn btn-square btn-sm btn-outline-success" data-toggle="modal" data-target="#ModalValidFiche"  style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
-
-    <button v-else class="btn  btn-glow-dark btn-dark btn-sm " disabled  style=""> Validation groupée  <i class="fas fa-minus-circle" ></i></button>
+         
 
     </div>
+   
+   <div class="col-4 col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                <button class="btn btn-success shadow-1"> trouver <i class="fas fa-search-plus"></i></button>
+            </div>
+
 
 
     </div>            
     
-    <div class="row"> 
-     
-                                                   
-                          
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            
-                                <div class="form-group">
-                               
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
-                                        </div>
- <select class="custom-select" name="" required v-model="wil">
-    <option    style="padding:30%;font-weight:bold;"     v-for="wilaya in wilayas " :key="wilaya.key"   > {{ wilaya }}    </option>
-    
-</select>
 
-                            
-                                      
-                                        <div class="invalid-feedback">
-                                            Please choose a type.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                     
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            
-                                <div class="form-group">
-                                
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-list"></i>  </span>
-                                        </div>
-                            <select class="custom-select"  @change="FiltreFiches(flist)" v-model="flist" >
-                          
-                            <option style="padding:30%;font-weight:bold;" v-for=" fiche  in listfiche " :key="fiche.id_fiche"  :value="fiche.id_fiche"   > #Fiche - {{ fiche.id_fiche }}  </option>
-                      
-                            </select>
-                            
-                                      
-                                        <div class="invalid-feedback">
-                                            Please choose a type.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        
-                            
-                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            
-                                <div class="form-group">
-                       
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
-                                        </div>
-                            <select class="custom-select" @change="Tentatives(tent)"  v-model="tent">
-                            <option  style="padding:30%;font-weight:bold;"  value="all" selected>Tentatives </option>
-            
-                            <option  style="padding:30%;font-weight:bold;"  value="0"> Tentative 0 </option>
-                            <option  style="padding:30%;font-weight:bold;"  value="1"> Tentative 1 </option>
-                            <option  style="padding:30%;font-weight:bold;"  value="2"> Tentative 2 </option>
-                            </select>
-                                         <div class="invalid-feedback">
-                                            Please choose a type.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-   <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" v-if="ShowBtn == true ">
-<label class="badge  badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-file"></i> {{ this.FicheDetail.fprice }} DA  </label>
-    <button v-if="this.FicheDetail.ftotal_count == this.FicheDetail.fchtotal_count " class="btn btn-sm  btn-glow-success btn-sm    btn-success" data-toggle="modal" data-target="#ModalFicheValid"  style=""> Validation Par Fiche  <i class="fas fa-check-circle" ></i></button>
-
-    <button v-else class="btn  btn-glow-dark btn-dark btn-sm " disabled  style=""> Validation Par Fiche  <i class="fas fa-minus-circle" ></i></button>
-
-    </div>
-
-
-                                                </div>
                         <div class="table-responsive">
 
                             <table class="table table-hover ">
@@ -131,15 +107,12 @@
                                    <th class="text-center" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> infos</th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
-                                        <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
-                                        <th class="text-center" ><i class="fas fa-address-card"></i> Partenaire </th>
-                                        <th class="text-center" ><i class="fas fa-tasks"></i> Status </th>
 
-                                          <th class="text-center" ><i class="fas fa-calendar-alt"></i> Date </th>
+                                    
+
+
             
-                               
-
-                                        <th class="text-center"><i class="fas fa-align-left"></i> Suivi </th>
+    
                                         <th class="text-center"><i class="fas fa-align-left"></i> Action </th>
                                     </tr>
                                 </thead>
@@ -163,7 +136,7 @@
                                         
                                         </td>
                                         <td class="text-center" > <b class="badge badge-light " style="font-size:16px;"> {{ col.price }} DA     </b> </td>
-                                        <td class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.wilaya }} /  {{  col.commune }}   <i class="fas fa-map-marker-alt"></i></b>  </td>
+
                                         <td class="text-center" > {{ col.name }}   </td>
                                         <td class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.field_stats }} <i v-if="col.id_stats == 3" class="fas fa-redo-alt "></i>
                                         <i v-else-if="col.id_stats == 4 " class="fas fa-check-circle"></i>
@@ -175,11 +148,7 @@
                                          </b> 
                                         
                                             </td>
-                          <td class="text-center"><b class="badge badge-light" style="font-size:14px;">{{ col.created_at | moment    }} <br> ( {{ col.created_at | days    }} jours )    </b>   </td>
-                                        <td class="text-center" ><button data-toggle="modal" data-target="#ModalColisSuivi" @click="$refs.childref.getstats(col.id_colis)" class="btn  btn-sm   btn-square  btn-glow-dark btn-dark " ><i style="margin:0px;"  class=" fas fa-list-ul"></i></button>         
-                        
-                                          
-                                        </td>
+                       
                                      
 <td>
 
@@ -194,13 +163,13 @@
                                                  <pagination :data="colis" @pagination-change-page="getColis">
 
     </pagination>
-    <valid-modal v-bind:id_liv="UserDetail" >  </valid-modal>
-<valid-fiche @fiche-validate="reload()"   v-bind:flist="flist">  </valid-fiche>
 
-    <action-colis  @colis-added="refreshData()"  v-bind:addstats="addstats"  >    </action-colis>
+
+
+    <action-colis  @colis-added="refreshData()"   v-bind:addstats="addstats"  >    </action-colis>
 <stats-colis    ref="childref" >    </stats-colis>
     <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
-<valid-gp   @colis-added="refreshData()"  v-bind:addstatsgp="addstatsgp"  >   </valid-gp>
+
                         </div>
 
       </div>
@@ -212,13 +181,13 @@
 
 
 <script>
+import { QrcodeStream, QrcodeCapture } from 'vue-qrcode-reader'
 
 import ColisInfos from './ColisInfos.vue';
 import Stats from '../inhouse/StatsInfos.vue';
 import ActionStats from './EtatColis.vue';
-import EtatGroupColis from './EtatGroupColis';
-import ValidFiche from './ValidDelev.vue';
-import ValidByFiche from './ValidFiche.vue';
+
+
 
 
 
@@ -251,43 +220,43 @@ return  a.diff(b,'days') // 1
       'view-colis':   ColisInfos,
      'stats-colis': Stats ,
      'action-colis':ActionStats,
-     'valid-modal' : ValidFiche ,
-     'valid-gp' : EtatGroupColis,
-     'valid-fiche': ValidByFiche
+      QrcodeStream,
+    QrcodeCapture
+
+
+
 
 
   },
 
      data(){
- return {
-colis:{},
-mycolis : [],
-ShowColis: '',
-codebars :'',
-idcom : this.url_id,
-userid : this.user_id,
-ShowCom:'',
-FicheDetail : {},
-clients : {},
-wilayas : {},
-wil : '',
-tent : '',
-clt:'',
-flist :'',
-ShowBtn :'',
-listfiche : {},
-stats : {},
-id_colis: '',
-addstatsgp:{}
-,
-addstats :{
-id_colis :'',
-ShowStats : {},
-
-
-
-},
-UserDetail : {}
+        return {
+        colis:{},
+        mycolis : [],
+        ShowColis: '',
+        codebars :'',
+        camera:false ,
+        idcom : this.url_id,
+        userid : this.user_id,
+        ShowCom:'',
+        FicheDetail : {},
+        clients : {},
+        wilayas : {},
+        wil : '',
+        tent : '',
+        clt:'',
+        flist :'',
+        ShowBtn :'',
+        listfiche : {},
+        stats : {},
+        id_colis: '',
+        addstatsgp:{},
+        addstats  :{
+        id_colis  :'',
+        userid : '',
+        ShowColis:{}
+                  },
+        UserDetail : {}
  }
   },
  created ()
@@ -313,9 +282,29 @@ this.getPrice();
         this.mycolis = [];
 
 },
+turnCamera(){
 
+this.camera = true ;
+},
+ onDecode (result) {
+            console.log(result);
+            this.camera = false ; 
+            // let element = this.$refs.ModalColisAction.$el
+            $('#ModalColisAction').modal('show');
+            this.addstats.id_colis = result ;
+            this.addstats.userid = this.user_id ;
+            axios.get('/api/getcolisinfos/'+result)
+                .then(response =>
+                { 
+                
+            this.addstats.ShowColis = response.data
+                
+            }
+                ).catch(err => console.log(err));
 
+            // $(element).modal('show');
 
+    },
 getPrice(){
 
 
@@ -331,10 +320,22 @@ getPrice(){
 
 
 },
+GetStats(){
+
+     axios.get('/api/livreurstats/'+this.user_id)
+     .then(response =>
+     { 
+       
+   this.UserDetail = response.data
+     
+ }
+     ).catch(err => console.log(err));
+
+},
 reload(){
 
 var page = 1 ; 
-   axios.get('/api/delivliste/'+this.url_id+'?page='+page)
+   axios.get('/api/deliverylist/'+this.user_id+'?page='+page)
      .then(response =>
      { 
        
@@ -361,7 +362,7 @@ var page = 1 ;
      .then(response =>
      { 
 //console.log(response.data)
-this.FicheDetail = response.data
+     this.FicheDetail = response.data
      this.ShowBtn = true ;
  }
      ).catch(err => console.log(err));
@@ -376,42 +377,32 @@ this.mycolis = [];
  
  if(this.codebars !== '' ){
 
-
-
-
-
 var  DataAll = this.colis.data ;
 var  DataAllExist = this.mycolis ;
 var code = this.codebars;  
+
 var valObj = DataAll.filter(function(elem){
     if(elem.id_colis == code ) return true;
 });
+
 var existObj = DataAllExist.filter(function(elem){
     if(elem == code ) return true;
 });
+
 if(valObj.length > 0) {
 
-if(existObj.length > 0) {
+    if(existObj.length > 0) {
 
-this.codebars = '';
+        this.codebars = '';
 
-}else {
-
-
-this.mycolis.push(code);
-this.codebars = '';
-}
+        }else {
 
 
+        this.mycolis.push(code);
+        this.codebars = '';
+        }
 
-
-}else {
-
-
-
-    
-}
-
+                    }
 
 }
 
@@ -421,23 +412,23 @@ getColis(page = 1)
  {
 
 
-   if(this.flist !== '') {
+            if(this.flist !== '') {
 
-this.FiltreFiches(this.flist);
+            this.FiltreFiches(this.flist);
 
-   }else {
+            }else {
 
-   axios.get('/api/delivliste/'+this.url_id+'?page='+page)
-     .then(response =>
-     { 
-       
-   this.colis = response.data
-     
- }
-     ).catch(err => console.log(err));
+            axios.get('/api/deliverylist/'+this.user_id+'?page='+page)
+                .then(response =>
+                { 
+                
+            this.colis = response.data
+                
+            }
+                ).catch(err => console.log(err));
 
- 
-   }
+            
+            }
   
 
 

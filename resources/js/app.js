@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
 
 window.axios = require('axios');
@@ -10,6 +10,10 @@ window.axios.defaults.baseURL = 'http://todeliver.co/mydemo/';
 Vue.http.options.root = 'http://todeliver.co/mydemo/';
 
 */
+
+import VueQrcodeReader from "vue-qrcode-reader";
+
+Vue.use(VueQrcodeReader);
 moment.locale('fr');
 
 /**
@@ -95,12 +99,19 @@ Vue.component('compta-facturation-detail', require('./components/accounting/TabF
 Vue.component('nav-admin', require('./components/AdminNavbar.vue').default);
 Vue.component('nav-client', require('./components/UserNavbar.vue').default);
 Vue.component('nav-cord', require('./components/CordinateurNav.vue').default);
+Vue.component('nav-livreur', require('./components/DeliverNav.vue').default);
 
 
 Vue.component('stats-client', require('./components/stats/StatsUserHome.vue').default);
 Vue.component('stats-admin', require('./components/stats/StatsAdminHome.vue').default);
 
 Vue.component('retour', require('./components/retour/ListRetour.vue').default);
+
+
+
+//livreaur list 
+Vue.component('livreur-colis', require('./components/deliver/DetailDelevery.vue').default);
+
 
 
 

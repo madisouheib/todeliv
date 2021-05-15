@@ -2,14 +2,14 @@
 <div> 
   <div class="row">
 <div class="col-md-3 col-lg-3">
-<button class="btn btn-info" data-toggle="modal" data-target="#ModaladdCom" > Ajouter une commande <i class="fas fa-plus"></i> </button>
+<button class="btn btn-info" data-toggle="modal" style="float:right;" data-target="#ModaladdCom" > Ajouter une commande <i class="fas fa-plus"></i> </button>
 
 </div>
 
   </div>
             <div class="table-responsive">  
                           
-                <table class="table ">
+                <table class="table table-hover ">
     
                                     <thead>
                                         <tr>
@@ -40,15 +40,15 @@
                                       <td class="text-center" >{{ com.colis_count}}    </td>
                                     
                                        
-                                        <td class="text-center"> ORAN EST   </td>
+                                        <td class="text-center">  {{ com.nom_hub }}   </td>
                                         <td class="text-center" > 
                                            <i v-if="com.confirmed_user == null"   class="fas fa-clock"></i> 
                                         <i v-else style="color:#2dde98;font-size:1.3em;"  class="fas fa-clipboard-check"></i> 
                                           </td>
                         
-                                        <td class="text-center" > <button  v-if="com.confirmed_user == null"   data-toggle="modal" data-target="#MdalRemoveManif" @click="Get(com.id_coms)"  class="btn btn-square btn-danger  " style="padding-right:6px;"  >  <i class="fas fa-trash"></i>  </button> 
+                                        <td class="text-center" > <button  v-if="com.confirmed_user == null"   data-toggle="modal" data-target="#MdalRemoveManif" @click="Get(com.id_coms)"  class="btn shadow-1 btn-danger  " style="padding-right:6px;"  >  <i class="fas fa-trash-alt"></i>  </button> 
                                         <button v-if=" (com.confirmed_user == null ) || ( com.colis_count < 0  ) "  @click="Get(com.id_coms)" 
-                                         class="btn btn-success btn-square" data-toggle="modal" data-target="#MdalValidManifUser"  style="padding-right:6px;" > Valider <i class="fas fa-check-circle"></i> </button>
+                                         class="btn btn-success  shadow-1" data-toggle="modal" data-target="#MdalValidManifUser"  style="padding-right:6px;" > Valider <i class="fas fa-check-circle"></i> </button>
                                          
                                          <h6 style="color:#2dde98;font-weight:bold;" v-if="com.confirmed_user == true"  > Validé </h6>
                                           </td>
@@ -93,9 +93,6 @@ idcoms:''
   },
  created ()
  {
-
-
-
 this.getComs();
  },
  

@@ -42,7 +42,6 @@ mix.js('resources/js/app.js', 'public/js').sass('resources/sass/app.scss', 'publ
 'resources/js/webs/modules/revolution/js/extensions/revolution.extension.migration.min.js',
 'resources/js/webs/modules/revolution/js/extensions/revolution.extension.navigation.min.js',
 'resources/js/webs/modules/revolution/js/extensions/revolution.extension.parallax.min.js',
-'resources/js/webs/modules/revolution/js/extensions/revolution.extension.slideanims.min.js',
 'resources/js/webs/modules/revolution/js/extensions/revolution.extension.slideanims.min.js'
 ],'public/js/webs.js').options({
    processCssUrls: true

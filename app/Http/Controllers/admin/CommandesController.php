@@ -51,9 +51,9 @@ public function data_coms($id){
 
   $Comas = commandes::withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
-},'colis'])->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(10);
+},'colis'])->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(10);
 
-
+dd($Comas);
  
         return response()->json($Comas);
 

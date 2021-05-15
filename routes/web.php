@@ -38,6 +38,10 @@ Route::get('/admin/users', 'admin\UsersController@index')->name('index');
 
 Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
+Route::group(['middleware' => ['role:admin|livreur']], function () { 
+    Route::get('/admin/deliver', 'admin\OnDeliveryController@view_livreur')->name('view_livreur');
+
+});
 
 Route::group(['middleware' => ['role:admin|coordinateur']], function () {
 // admin routes Profiles   

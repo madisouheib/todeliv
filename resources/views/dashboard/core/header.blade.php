@@ -9,7 +9,7 @@
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="{{url('/admin/index')}}" class="b-brand">
-            <img class="img-responsive" src="{{ url('/dash/assets/images/logoexp.png')}}" width="40" height="40" >
+            <img class="img-responsive" src="{{ url('/dash/assets/images/logo.png')}}" width="40" height="40" >
                    <span class="b-title">ToDeliver
                    </span>
                </a>
@@ -19,7 +19,7 @@
         </a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+                <li><a href="#!" style="color:#fff;" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i> full screen </a></li>
                
         
             </ul>

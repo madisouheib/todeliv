@@ -37,10 +37,10 @@
     </div>
     
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-    <button class="btn btn-square btn-outline-success" data-toggle="modal" data-target="#ModalvalidGp"   > validation groupée   <i class="fas fa-check-circle" ></i></button>
+    <button class="btn btn-success shadow-1" data-toggle="modal" data-target="#ModalvalidGp"   > Validation groupée   <i class="fas fa-check-circle" ></i></button>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <button class="btn btn-square btn-outline-danger" data-toggle="modal" data-target="#Modalsign"   > Signaler  <i class="fas fa-exclamation" ></i></button>
+        <button class="btn btn-danger shadow-1" data-toggle="modal" data-target="#Modalsign"   > Signaler  <i class="fas fa-exclamation" ></i></button>
         </div>
     </div>            
     
@@ -68,7 +68,7 @@
                                 <tbody>
                                     <tr v-for=" col  in colis.data" :key="col.id_colis" >
                          
-                                        <th scope="" class="" >
+                                        <td scope="" class="" >
                                             <div class="form-group">
 
 <div v-if="col.tmp_validation == null && col.tmp_signaler == null">
@@ -111,24 +111,24 @@
 
                                             </div>        
                                                                                                
-                                        </th>
+                                        </td>
 
-                                        <th scope="row" class="text-center" > #send- {{ col.id_colis  }}</th>
+                                        <td scope="row" class="text-center" > #send- {{ col.id_colis  }}</td>
 
                                         
-                                        <th class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"  class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-plus"></i></button>
-                                        </th>
-                                      <th class="text-center"   > {{ col.price  }} DA    </th>
-                                        <th class="text-center" >  {{ col.wilaya }}</th>
-                                        <th class="text-center" > {{ col.name }} </th>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#Moodalcolisinfo" @click="getColInfos(col.id_colis)"  class="btn btn-sm    shadow-1   btn-info"><i  style="margin:0px;"  class="fas fa-box-open"></i></button>
+                                        </td>
+                                      <td class="text-center"   > {{ col.price  }} DA    </td>
+                                        <td class="text-center" >  {{ col.wilaya }}</td>
+                                        <td class="text-center" > {{ col.name }} </td>
 
                                         <td class="text-center" >
        
                                             
                                             
-                                            <span v-if="col.tmp_validation == true  && col.validation == false    " class="pcoded-badge label label-warning">En attente   <i class="fas fa-hourglass-half"></i> </span>
-                                                                                    <span v-if="col.tmp_validation ==  false  &&  col.validation == false && col.signaler == false    " class="pcoded-badge label label-danger"> En attente    <i class="fas fa-hourglass-half"></i> </span>
-                                                                                                                            <span  v-if="col.tmp_validation == true  &&  col.validation == true     "  class="pcoded-badge label label-success"> Validé   <i class="fas fa-check-circle"></i> </span>
+                                            <span v-if="col.tmp_validation == true  && col.validation == false    " class="pcoded-badge label shadow-1 label-warning">En attente   <i class="fas fa-hourglass-half"></i> </span>
+                                                                                    <span v-if="col.tmp_validation ==  false  &&  col.validation == false && col.signaler == false    " class="pcoded-badge label shadow-1  label-danger"> En attente    <i class="fas fa-hourglass-half"></i> </span>
+                                                                                                                            <span  v-if="col.tmp_validation == true  &&  col.validation == true     "  class="pcoded-badge shadow-1  label label-success"> Validé   <i class="fas fa-check-circle"></i> </span>
                                                                                                                                                                                                                                                         <span  v-if="col.tmp_signaler == true  &&  col.signaler == true     "  class="pcoded-badge label label-danger"> Signaler   <i class="fas fa-check-circle"></i> </span>
                                             
                                             
@@ -136,7 +136,7 @@
                                             
                                             </td>
 
-                                        <td class="text-center"> <button   data-toggle="modal" data-target="#ModalsignByone"   class="btn btn-square btn-danger" @click="GiveIdColis(col.id_colis)"><i  style="margin:0px;" class="fas fa-exclamation-triangle"></i> </button> <button @click="GiveIdColis(col.id_colis)"  data-toggle="modal" data-target="#ModalValidByone"   class="btn btn-square btn-success"><i style="margin:0px;"  class="fas fa-check-circle"></i> </button> </td>
+                                        <td class="text-center"> <button   data-toggle="modal" data-target="#ModalsignByone"   class="btn shadow-1 btn-sm  btn-danger" @click="GiveIdColis(col.id_colis)"><i  style="margin:0px;" class="fas fa-exclamation-triangle"></i> </button> <button @click="GiveIdColis(col.id_colis)"  data-toggle="modal" data-target="#ModalValidByone"   class="btn shadow-1  btn-sm btn-success"><i style="margin:0px;"  class="fas fa-check-circle"></i> </button> </td>
                                     </tr>
                           
                                 </tbody>

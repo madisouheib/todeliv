@@ -1,11 +1,11 @@
 <template>
     <div>
-      <button style="float:right;" @click="getFroute()" class="  btn btn-success btn-sm btn-glow-success" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
+      <button style="float:right;" @click="getFroute()" class="  btn btn-success btn-sm shadow-1" type="button"> <i style="margin:0px;padding:2px;font-size:1.3em" class="fas fa-sync-alt"></i> </button>
 
 <div class="row">
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="float-right">
-        <button class="btn btn-square btn-success btn-sm"  data-toggle="modal" data-target="#Modaladdfroute"  > Ajouter une Feuille de route   <i class="fas fa-plus-square"></i> </button>
+        <button class="btn shadow-1 btn-success btn-sm"  data-toggle="modal" data-target="#Modaladdfroute"  > Ajouter une Feuille de route   <i class="fas fa-plus-square"></i> </button>
     </div>
     </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -90,7 +90,7 @@
 </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-hover">
                                 <thead class="">
                                     <tr >
                                         <th class="text-center" ># Froute-id </th>

@@ -154,9 +154,9 @@
                                                 </div>
                         <div class="table-responsive">
 
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover ">
    
-                                <thead class="thead-dark">
+                                <thead class="">
                                        <tr>
                                    <th class="text-center" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> Infos</th>

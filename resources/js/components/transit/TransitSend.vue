@@ -34,7 +34,7 @@
 </div>
   <div class="col">
         <div class="float-right">
-        <button class="btn btn-square btn-success btn-sm"  data-toggle="modal" data-target="#ModaladdTR"  @click="getInfosTransit()" > Ajouter un transit  <i class="fas fa-plus-square"></i> </button>
+        <button class="btn shadow-1 btn-success btn-sm"  data-toggle="modal" data-target="#ModaladdTR"  @click="getInfosTransit()" > Ajouter un transit  <i class="fas fa-plus-square"></i> </button>
     </div>
 </div>  
 </div>

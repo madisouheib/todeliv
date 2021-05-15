@@ -124,6 +124,9 @@ Route::get('/livreurdetail/{id}', 'admin\OnDeliveryController@detail_livreur');
 Route::get('/livreurfiche/{id}', 'admin\OnDeliveryController@detail_livreur_fiche');
 
 
+Route::get('/livreurstats/{id}', 'admin\OnDeliveryController@detail_livreur_stats');
+
+
 Route::get('/getstats', 'admin\StatsController@stats_tags');
 
 Route::get('/getstatsclient', 'admin\StatsController@stats_tags_client');
@@ -295,10 +298,10 @@ Route::patch('/validbyone', 'admin\ColisController@colis_valider');
 Route::patch('/cashbyone', 'admin\ColisController@cash_by_one');
 
 
+Route::get('/deliverylist/{id}', 'admin\OnDeliveryController@data_livreur');
 
 
 
-Route::get('/delivliste/{idliv}', 'admin\OnDeliveryController@data_colis_froute');
 Route::get('/filtredevlist/{tent}', 'admin\OnDeliveryController@data_colis_filtre_tent');
 Route::get('/fichelist/{user}', 'admin\OnDeliveryController@data_colis_listfiche');
 

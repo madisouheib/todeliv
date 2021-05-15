@@ -47,9 +47,6 @@
      props: ['auth_user'],
 data(){
     return {
-
-
-
 namecom :'',
 iduser:''
     }
@@ -80,27 +77,11 @@ location.reload()
 ).catch(error => console.log(error))
 
 
-},
-getComs(page = 1)
- {
-var id = this.id_user ; 
-
-     axios.get('/api/getcoms/'+id+'?page='+page)
-     .then(response =>
-     { 
-       
-   this.coms= response.data
-     
- }
-     ).catch(err => console.log(err));
-
- }
+}
 
 
-},
-           mounted() {
-            console.log('Component mounted.')
-        }
+
+}
     }
 
 

@@ -19,7 +19,8 @@
                         <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-pallet"></i></span><span class="pcoded-mtext">Dépots</span></a>
                         <ul class="pcoded-submenu">
                           
-
+  <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hub <span class="pcoded-badge label label-info">100+</span> </a>
+                             </li>
                                <li class="  pcoded-trigger"><a :href="'/admin/wilaya'" class="">Wilayas</a>
                              </li>
                         </ul>
@@ -46,7 +47,7 @@
                     </ul>
                 </li>
 
-       <li data-username="Animations" class="nav-item"><a :href="'/admin/inhouse'" class="nav-link"><span class="pcoded-micon"><i class=" fas fa-boxes"></i></span><span class="pcoded-mtext">Entrepôt  </span> <span class="pcoded-badge label label-info">{{ stats.inhouse }}</span> </a></li>
+       <li data-username="Animations" class="nav-item"><a :href="'/admin/inhouse'" class="nav-link"><span class="pcoded-micon"><i class=" fas fa-boxes"></i></span><span class="pcoded-mtext">Prêt à livrer  </span> <span class="pcoded-badge label label-info">{{ stats.inhouse }}</span> </a></li>
 
 
                                   <li data-username="Animations" class="nav-item"><a :href="'/admin/ondelivery'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-clipboard-list"></i></span><span class="pcoded-mtext">Feuille de route  </span> <span class="pcoded-badge label label-success"> {{ stats.countfiche}} </span> </a></li>

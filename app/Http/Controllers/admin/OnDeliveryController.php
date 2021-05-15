@@ -354,6 +354,34 @@ $Data['fprice'] = $Price;
 
 
 }
+
+public function view_livreur(){
+
+    return view('dashboard.pages.deliver.deliver_data');
+    
+}
+
+public function data_livreur($id){
+
+
+    $DataColis = FicheColis::select('colis.*','fiche_fields.*','stats.*','users.name')
+    ->WithCount('stats')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+    ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->leftJoin('users','users.id','=','commandes.id_clt')
+    ->leftJoin('stats','stats.id_stats','=','colis.id_stats')
+    ->whereNull('fiche.closed_at')
+    ->where('fiche.id_liv','=',$id)
+    ->where('fiche.valid_fiche','=',true)
+     ->where('colis.id_stats','!=',12)
+    ->paginate(100);
+
+    return response()->json($DataColis);
+
+}
+
+
   
   
   

@@ -64,11 +64,12 @@ public function add_colis_fiche(Request $request){
             $query->where('colis.id_stats', '=', null)
                   ->orWhere('colis.id_stats', '=', 11);
         })->count();
+    $CheckEnlivraison = Colis::where('id_colis','=',$idcolis)->where('id_stats','=',10)->count();
 if($DataValidation == 1){
 
 
 
-
+if($CheckEnlivraison == 0 ){
 
  if($CountColis == 0){
 
@@ -99,7 +100,7 @@ $EditColis->save();
 
     }
  }
-
+}
 
  $DataFicheColis = FicheColis::select('colis.*','fiche_fields.*','fiche.*','users.name as partenaire')->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->leftJoin('commandes','commandes.id_coms','=','colis.id_com')->leftJoin('users','users.id','=','commandes.id_clt')->where('fiche_fields.id_fiche','=',$idfiche)->paginate(10);
 
