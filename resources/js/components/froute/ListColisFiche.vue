@@ -241,7 +241,7 @@ this.codebars = ''
 
 
 ).catch(error => console.log(error))
- }, 3000);
+ }, 300);
 
 }
 }else {
@@ -282,7 +282,7 @@ iduser : this.userid
                 // Assuming your scanner can emit keystrokes
                 // within 100 milliseconds from one another
                 // otherwise increase this value as necessary
-            }, 3000);
+            }, 300);
 
 
 

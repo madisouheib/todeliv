@@ -26,8 +26,9 @@
 
   
 
-             <li data-username="Animations" class="nav-item"><a :href="'/admin/addcoms/'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-upload"></i></span><span class="pcoded-mtext"> Importer </span> </a></li>
-             <li data-username="Animations" class="nav-item"><a :href="'/admin/commandes/'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-dolly-flatbed"></i></span><span class="pcoded-mtext">Mes Importations </span> </a></li>
+             <li data-username="Animations" class="nav-item"><a :href="'/admin/manaddcom/'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-plus"></i></span><span class="pcoded-mtext"> Ajouter une commande </span> </a></li>
+                          <li data-username="Animations" class="nav-item"><a :href="'/admin/addcoms/'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-upload"></i></span><span class="pcoded-mtext"> Importer Excel </span> </a></li>
+             <li data-username="Animations" class="nav-item"><a :href="'/admin/commandes/'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-dolly-flatbed"></i></span><span class="pcoded-mtext">Mes Commandes  </span> </a></li>
 
 
               <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">

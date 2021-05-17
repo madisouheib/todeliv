@@ -12,7 +12,8 @@
                       <li data-username="Animations" class="nav-item"><a :href="'/admin'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-home"></i></span><span class="pcoded-mtext">Tableau de Bord </span></a></li>
               
                       <li data-username="Animations" class="nav-item"><a :href="'/admin/users'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-users"></i></span><span class="pcoded-mtext">Utilisateurs </span></a></li>
-                                <li data-username="Animations" class="nav-item"><a :href="'/admin/profiles'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-address-card"></i></span><span class="pcoded-mtext">Profiles </span></a></li>
+                                <li data-username="Animations" class="nav-item"><a :href="'/admin/profiles'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-address-card"></i></span><span class="pcoded-mtext">Bordereau </span></a></li>
+                                                                <li data-username="Animations" class="nav-item"><a :href="'/admin/profiles'" class="nav-link"><span class="pcoded-micon"><i class="fab fa-usb"></i></span><span class="pcoded-mtext">Extentions </span></a></li>
 
 
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">

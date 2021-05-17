@@ -127,6 +127,9 @@ Route::get('/admin/facturepdf/{id}', 'admin\AccountingController@facture_pdf')->
 
 
 });
+//bordereau -------------------------------------------------
+
+Route::get('/admin/bordereau', 'admin\BordereauController@index')->name('index');
 
 
 
@@ -136,6 +139,8 @@ Route::get('/admin/archoms', 'admin\CommandesController@archive_commandes')->nam
 Route::get('/admin/addcoms/{id}', 'admin\ColisController@upload_colis')->name('upload_colis');
 Route::get('/admin/addcoms', 'admin\ColisController@upload_colis')->name('upload_colis');
 Route::post('/admin/upload', 'admin\ColisController@import')->name('import');
+Route::get('/admin/manaddcom', 'admin\CommandesController@add_manuel_commande')->name('add_manuel_commande');
+Route::post('/admin/manaddcom', 'admin\CommandesController@post_manuel_commande')->name('post_manuel_commande');
 
 Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('list_colis');
 // admin routes reception   

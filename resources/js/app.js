@@ -113,7 +113,7 @@ Vue.component('retour', require('./components/retour/ListRetour.vue').default);
 Vue.component('livreur-colis', require('./components/deliver/DetailDelevery.vue').default);
 
 
-
+Vue.component('tab-bord', require('./components/bordereau/TabBord.vue').default);
 
 
 Vue.component('pagination', require('laravel-vue-pagination'));

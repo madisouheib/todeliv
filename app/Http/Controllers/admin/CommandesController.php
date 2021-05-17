@@ -45,6 +45,32 @@ public function manif_delete($id){
 
 }
 
+public function add_manuel_commande(){
+
+
+  return view('dashboard.pages.client.commandes.commandes_add_manuel');
+
+}
+
+public function post_manuel_commande(Request $request){
+
+ 
+
+  $nameCom =  $request->input('raisonsocial');
+  $idhub =  Auth::user()->hub_id;
+  $idclient = Auth::user()->id;
+
+
+ 
+$idcoms = Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ])->id_coms;
+
+
+return redirect('admin/listcolis/'.$idcoms);
+
+ 
+
+}
+
 
 
 public function data_coms($id){
@@ -53,7 +79,7 @@ public function data_coms($id){
     $query->select(DB::raw('sum(price)'));
 },'colis'])->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(10);
 
-dd($Comas);
+
  
         return response()->json($Comas);
 
@@ -199,19 +225,12 @@ public function validate_manif_user($id){
 
 
 
-        
-    
-
-       
-
-
-
-
     $nameCom =  $request->input('namecom');
     $idclient =  $request->input('idclient');
 
     $user = User::find($idclient);
     $idhub = $user->hub_id;
+   
   Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ]);
 
 

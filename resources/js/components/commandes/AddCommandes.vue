@@ -67,7 +67,6 @@ idclient : this.auth_user
 
 
 
-location.reload()
 
 
 
