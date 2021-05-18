@@ -19,9 +19,10 @@
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
                         <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-pallet"></i></span><span class="pcoded-mtext">Dépots</span></a>
                         <ul class="pcoded-submenu">
-                          
+                         <!-- 
   <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hub <span class="pcoded-badge label label-info">100+</span> </a>
                              </li>
+                             -->
                                <li class="  pcoded-trigger"><a :href="'/admin/wilaya'" class="">Wilayas</a>
                              </li>
                         </ul>
@@ -36,7 +37,7 @@
 
              <li data-username="Animations" class="nav-item"><a :href="'/admin/rec'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-truck-loading"></i></span><span class="pcoded-mtext">Reception </span><span class="pcoded-badge label label-info">{{ stats.rec }}</span> </a></li>
   
-   
+<!--
                 <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
                     <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-sitemap"></i></span><span class="pcoded-mtext">Transit</span></a>
                     <ul class="pcoded-submenu">
@@ -47,7 +48,7 @@
                          </li>
                     </ul>
                 </li>
-
+-->
        <li data-username="Animations" class="nav-item"><a :href="'/admin/inhouse'" class="nav-link"><span class="pcoded-micon"><i class=" fas fa-boxes"></i></span><span class="pcoded-mtext">Prêt à livrer  </span> <span class="pcoded-badge label label-info">{{ stats.inhouse }}</span> </a></li>
 
 
