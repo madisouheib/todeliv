@@ -20,8 +20,7 @@ return [
 	'auto_language_detection'  => true,
     'temp_dir'               => '',
   'useDefaultCSS2' => true,
-   
-	'pdfa' 			=> true,
+	'pdfa' 			=> false,
         'pdfaauto' 		=> false,
         'custom_font_dir' => base_path('public/fonts/'), // don't forget the trailing slash!
         'custom_font_data' => [

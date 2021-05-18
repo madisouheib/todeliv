@@ -77,7 +77,7 @@ hr {
 
 <h6 style=" margin-top:0%;  transform: rotate(-90deg);"> ToDeliver </h6>  </td>
   <td rowspan="2"> 
-    <img style="" heigth="40" width="40" src="{{ public_path().'/images/a.png' }}">
+
   
     <h5 style="  font-family:">{{ $dat->nom_client  }}  </h5>
     <h5> commune : {{ $dat->commune  }} </h5>
@@ -157,7 +157,7 @@ hr {
   <table style="width:100%;">
   <tr>
   <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
-  <td style="width: 30%;text-align:center;"><h2> Facture n• send-{{ $dat->id_colis  }}  </h2>  </td>
+  <td style="width: 30%;text-align:center;"><h2> Facture n• ToDeliv-{{ $dat->id_colis  }}  </h2>  </td>
   <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
   
   
