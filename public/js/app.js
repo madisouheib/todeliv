@@ -2087,6 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Choose Locale
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
@@ -8176,7 +8177,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var page = 1;
-      axios.get('/api/delivliste/' + this.url_id + '?page=' + page).then(function (response) {
+      axios.get('/api/delivliste/' + this.url_id).then(function (response) {
         _this2.colis = response.data;
 
         _this2.getFiche();

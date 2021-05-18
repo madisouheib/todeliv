@@ -334,7 +334,7 @@ getPrice(){
 reload(){
 
 var page = 1 ; 
-   axios.get('/api/delivliste/'+this.url_id+'?page='+page)
+   axios.get('/api/delivliste/'+this.url_id)
      .then(response =>
      { 
        

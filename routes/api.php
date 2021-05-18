@@ -73,7 +73,7 @@ Route::post('/addcom', 'admin\CommandesController@add_com');
 
 //colis 
 
-
+Route::get('/delivliste/{idliv}', 'admin\OnDeliveryController@data_colis_froute');
 Route::get('/getcolis/{id}', 'admin\ColisController@data_colis');
 
 Route::get('/inhouse/{id}', 'admin\ColisController@data_colis_inhouse');

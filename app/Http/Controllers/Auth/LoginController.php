@@ -41,33 +41,14 @@ class LoginController extends Controller
     }
 
 
-
-    protected function sendFailedLoginResponse(Request $request)
+    protected function credentials(Request $request)
     {
-        throw ValidationException::withMessages([
-            'username' => [trans('auth.failed')],
-        ]);
-    }
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        $login = request()->input('username');
-
-        if(is_numeric($login)){
-            $field = 'phone';
-        } elseif (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-            $field = 'email';
-        } else {
-            $field = 'username';
-        }
-
-        request()->merge([$field => $login]);
-
-        return $field;
+      if(is_numeric($request->get('email'))){
+        return ['phone'=>$request->get('email'),'password'=>$request->get('password')];
+      }
+      elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
+        return ['email' => $request->get('email'), 'password'=>$request->get('password')];
+      }
+      return ['username' => $request->get('email'), 'password'=>$request->get('password')];
     }
 }
