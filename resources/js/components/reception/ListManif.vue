@@ -115,7 +115,7 @@
                                       <td class="text-center" > <span style="color:green;font-weight:bold;"> {{  com.validate_count + com.signaler_count }}     </span>       / <span style="color:black;font-weight:bold;">  {{ com.colis_count}} </span>     </td>
                                     
                                        
-                                        <td class="text-center"> ORAN EST    </td>
+                                        <td class="text-center"> {{  com.nom_hub }}    </td>
                                         <td class="text-center" v-if="com.confirmed == null" >  <i style="font-size:1.6em;" class="fas fa-clock"></i>   </td>
                                                                    <td class="text-center" v-else > <i   class="fas fa-check-circle" style="
                                         color:#3CB371;font-size:1.6em;"> </i>  </td>
@@ -177,10 +177,9 @@ etat : ''
  created ()
  {
 
+        this.getManifs();
+        this.GetClientPro();
 
-
-this.getManifs();
-this.GetClientPro();
  },
  
  methods:{
@@ -189,10 +188,6 @@ this.GetClientPro();
    axios.get('/api/getclientpro/')
      .then(response => {   this.clientpro= response.data })
      .catch(err => console.log(err));
-
-
-
-
 
  },
 getManifs(page = 1)
@@ -233,10 +228,6 @@ getManifs(page = 1)
 
 
 this.idcoms = id ;
-
-
-
-
 
  }
 ,

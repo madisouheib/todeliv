@@ -169,6 +169,10 @@ Route::get('/admin/archrecep', 'admin\ReceptionController@archive_recp')->name('
 Route::get('/admin/pass', 'admin\ReceptionController@pass')->name('pass');
 
 
+Route::get('/admin/wms', 'admin\WharehouseController@index_admin')->name('index_admin');
+Route::get('/admin/wmsproducts', 'admin\WharehouseController@index_admin_products')->name('index_admin_products');
+
+
 Route::get('/admin/tracking', 'TrackingController@index_search')->name('index_search');
 Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
 

@@ -115,6 +115,10 @@ Vue.component('livreur-colis', require('./components/deliver/DetailDelevery.vue'
 
 Vue.component('tab-bord', require('./components/bordereau/TabBord.vue').default);
 
+//WMS --------------Section -----------
+Vue.component('tab-wms', require('./components/wms/list_boutiques.vue').default);
+Vue.component('tab-listproduct', require('./components/wms/list_products.vue').default);
+
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 

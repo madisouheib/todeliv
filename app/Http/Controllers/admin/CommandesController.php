@@ -75,7 +75,7 @@ return redirect('admin/listcolis/'.$idcoms);
 
 public function data_coms($id){
 
-  $Comas = commandes::withCount(['price as prices' => function($query) {
+  $Comas = commandes::select('commandes.*','hubs.*')->withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
 },'colis'])->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(10);
 
@@ -115,9 +115,10 @@ $CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
 if($CheckLogin['guard'] == 'admin'){
 
 
-  $Comas = commandes::withCount(['price as prices' => function($query) {
+  $Comas = commandes::select('commandes.*','hubs.*')->withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
 }, 'colis','signaler','validate'])
+->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')
 ->where([['cloture','=',null],['confirmed_user','=',1]])
 ->orderBy('id_coms', 'desc')
 ->paginate(40);
@@ -128,9 +129,10 @@ if($CheckLogin['guard'] == 'admin'){
 
 
 
-  $Comas = commandes::withCount(['price as prices' => function($query) {
+  $Comas = commandes::select('commandes.*','hubs.*')->withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
 }, 'colis','signaler','validate'])
+->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')
 ->where('commandes.id_hub','=',$CheckLogin['hub'])
 ->where([['cloture','=',null],['confirmed_user','=',1]])
 ->orderBy('id_coms', 'desc')
