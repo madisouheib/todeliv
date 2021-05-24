@@ -2087,6 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Choose Locale
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
@@ -42596,10 +42597,6 @@ var render = function() {
           _vm._v(" "),
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
-              _c("a", { attrs: { href: "/admin/hub" } }, [_vm._v("Hubs  ")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "  pcoded-trigger" }, [
               _c("a", { attrs: { href: "/admin/wilaya" } }, [_vm._v("Wilayas")])
             ])
           ])
@@ -42624,47 +42621,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        {
-          staticClass: "nav-item pcoded-hasmenu ",
-          attrs: {
-            "data-username":
-              "Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark"
-          }
-        },
-        [
-          _vm._m(8),
-          _vm._v(" "),
-          _c("ul", { staticClass: "pcoded-submenu" }, [
-            _c("li", { staticClass: "  pcoded-trigger" }, [
-              _c("a", { attrs: { href: "/admin/transitenvoie" } }, [
-                _vm._v("Envoie des colis  "),
-                _c("span", { staticClass: "pcoded-badge label label-info" }, [
-                  _vm._v(_vm._s(_vm.stats.trenv))
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "  pcoded-trigger" }, [
-              _c("a", { attrs: { href: "/admin/transitretour" } }, [
-                _vm._v("Reception des colis  "),
-                _c("span", { staticClass: "pcoded-badge label label-danger" }, [
-                  _vm._v(" " + _vm._s(_vm.stats.trecp))
-                ])
-              ])
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
         { staticClass: "nav-item", attrs: { "data-username": "Animations" } },
         [
           _c(
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/inhouse" } },
             [
-              _vm._m(9),
+              _vm._m(8),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Prêt à livrer  ")
               ]),
@@ -42685,7 +42648,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/ondelivery" } },
             [
-              _vm._m(10),
+              _vm._m(9),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Feuille de route  ")
               ]),
@@ -42706,7 +42669,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/livraison" } },
             [
-              _vm._m(11),
+              _vm._m(10),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("En Livraison ")
               ]),
@@ -42726,7 +42689,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/echlivraison" } },
             [
-              _vm._m(12),
+              _vm._m(11),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Livraison echouée   ")
               ]),
@@ -42747,7 +42710,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/retours" } },
             [
-              _vm._m(13),
+              _vm._m(12),
               _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Retour ")]),
               _vm._v(" "),
               _c("span", { staticClass: "pcoded-badge label label-danger" }, [
@@ -42766,7 +42729,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/livre" } },
             [
-              _vm._m(14),
+              _vm._m(13),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Colis Livrée")
               ]),
@@ -42779,7 +42742,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(15),
+      _vm._m(14),
       _vm._v(" "),
       _c(
         "li",
@@ -42791,7 +42754,7 @@ var render = function() {
           }
         },
         [
-          _vm._m(16),
+          _vm._m(15),
           _vm._v(" "),
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
@@ -42829,7 +42792,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/tracking" } },
             [
-              _vm._m(17),
+              _vm._m(16),
               _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Tracking")])
             ]
           )
@@ -42904,17 +42867,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pcoded-micon" }, [
       _c("i", { staticClass: "fas fa-truck-loading" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("span", { staticClass: "pcoded-micon" }, [
-        _c("i", { staticClass: "fas fa-sitemap" })
-      ]),
-      _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Transit")])
     ])
   },
   function() {
