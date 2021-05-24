@@ -40,7 +40,7 @@ let options = {
   
   Vue.use(VueBarcodeScanner, options)
 
-
+  Vue.component('login', require('./components/auth/login.vue').default);
 Vue.component('reception-table', require('./components/TableReception.vue').default);
 Vue.component('users-table', require('./components/users/UsersTable.vue').default);
 Vue.component('wilaya-table', require('./components/hub/wilaya/WilayaData.vue').default);

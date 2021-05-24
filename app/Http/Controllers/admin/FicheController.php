@@ -150,7 +150,16 @@ public function data_livreur($id){
 
 public function get_last_id(){
 
-$GetLastID = Fiche::latest()->pluck('id_fiche')->first();
+    $Count = Fiche::count();
+    if($Count == 0){
+
+        $GetLastID = 0 ; 
+
+    }else {
+
+        $GetLastID = Fiche::latest()->pluck('id_fiche')->first();
+    }
+
 
 return response()->json($GetLastID);
 
@@ -163,14 +172,13 @@ public function add_fiche(Request $request){
 
     $idliv = request('idliv');
     $idcord = request('idcord');
-    $notice = request('notice');
+
     $name = request('name');
     $user = User::find($idliv);
     $idhub = $user->hub_id;
 
     Fiche::create(['id_liv' => $idliv ,
     'id_cord'=> $idcord ,
-    'ntoice'=> $notice ,
     'nom_fiche'=> $name,
     'id_hub'=> $idhub
   
@@ -194,6 +202,10 @@ public function valid_fiche(Request $request){
 public function invalid_fiche(Request $request){
 
     $idfiche = request('idfiche');
+
+
+
+
     $EditFiche = Fiche::find($idfiche);
     $EditFiche->valid_fiche = false;
   

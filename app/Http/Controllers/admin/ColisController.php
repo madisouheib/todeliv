@@ -15,9 +15,12 @@ use App\Exports\RecpExport;
 use App\Exports\RetourExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Colis;
+use App\Bordereau;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Commandes;
 use App\User;
 use App\StatsColis;
+use App\Wilaya;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Carbon\Carbon;
@@ -55,7 +58,7 @@ class ColisController extends Controller
                 $idclient = Auth::id();
                 $idhub = Auth::user()->hub_id;
             
-             $data = '';
+              $data = '';
               $import = new ColisImport($data) ; 
               Excel::import($import,$request->file('colis'));
    
@@ -109,23 +112,28 @@ class ColisController extends Controller
     {
     return Excel::download(new RecpExport($id), 'export_colis_commandes.xlsx');
     }
+
     public function export_in_house() 
     {
     return Excel::download(new InhouseExport(), 'export_colis_inhouse.xlsx');
     }
+
     public function export_deliv($id)
     {
     return Excel::download(new DeliveryExport($id), '_'.$id.'_export_colis_en_livraison.xlsx');
     }
+
     public function export_on_deliv($id)
     {
     return Excel::download(new OnDeliveryExport($id), '_'.$id.'_export_colis_F_route.xlsx');
     }
+
     public function export_retour(){
 
     return Excel::download(new RetourExport(), 'export_colis_retour.xlsx');
         
     } 
+
     public function export_failed(){
 
         return Excel::download(new FailedColisExport(), 'export_colis_echec.xlsx');
@@ -185,13 +193,11 @@ if($id == 'all' ){
     }
     public function add_colis(Request $request){
 
-
-
         $iduser   =  $request->input('iduser');
 
-$User = User::find($iduser);
+        $User = User::find($iduser);
 
-$hub = $User['hub_id'];
+        $hub = $User['hub_id'];
 
 
 
@@ -239,9 +245,16 @@ $data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
     }
     public function view_pdf_commandes($id){
 
-        $data = Colis::join('commandes', 'colis.id_com', '=', 'commandes.id_coms')->join('users', 'commandes.id_clt', '=', 'users.id')->where('id_coms','=',$id)->get();
+        $data = Colis::select('commandes.*','colis.*','users.name','users.phone','users.adresse')
+        ->join('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->join('users', 'commandes.id_clt', '=', 'users.id')
+        ->where('id_coms','=',$id)
+        ->get();
+        $wilayas = Wilaya::all();
         //dd($data);
-        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf',[ 'data' => $data]);  
+       
+        $Bordereau = Bordereau::find('1');
+        $pdf = PDF::loadView('dashboard.pages.client.view_all_colis_pdf',['data' => $data,'wilayas' => $wilayas,'brand' => $Bordereau]);  
 
         return $pdf->stream('medium.pdf');
     }

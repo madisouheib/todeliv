@@ -18,7 +18,7 @@ class Bordereau extends Model
 
 
     protected $fillable = [
-        'brand','logo','color','phone','notes'
+        'brand','logo','colors','phone','notes','adresse'
     ];
 
 }

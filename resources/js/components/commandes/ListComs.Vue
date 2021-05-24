@@ -1,4 +1,5 @@
 <template>
+
 <div> 
   <div class="row">
 <div class="col-md-3 col-lg-3">
@@ -65,6 +66,7 @@
                             <manif-validuser v-bind:idcoms="idcoms"  @manif-validuser="getComs" > </manif-validuser>
                          <pagination :data="coms" @pagination-change-page="getComs"> </pagination>    
       </div>
+      
 </div>
 </template>
 

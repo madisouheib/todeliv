@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,10 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
 
-
-
-
+//Route::middleware('auth')->group( function () {
 //wilaya routes : 
 Route::get('/wilaya', 'admin\WilayaController@wilaya_data');
 Route::post('/addwilaya', 'admin\WilayaController@wilaya_add');
@@ -65,7 +65,8 @@ Route::get('/fetchuser/{id}', 'admin\UsersController@users_data_fetched');
 Route::get('/getuser/{id}', 'admin\UsersController@show_user');
 Route::get('/getuserdelete/{id}', 'admin\UsersController@show_user_delete');
 
-Route::patch('/edituser', 'admin\UsersController@edit_user');
+
+
 
 Route::patch('/editpassuser', 'admin\UsersController@edit_user_pass');
 Route::post('/addcom', 'admin\CommandesController@add_com');
@@ -388,3 +389,11 @@ Route::patch('/validfacture', 'admin\AccountingController@valid_invoice');
 Route::get('/fichpart/{id}', 'admin\AccountingController@part_data');
 
 Route::patch('/updprices', 'admin\AccountingController@udpate_prices');
+
+
+Route::get('/bordereau', 'admin\BordereauController@data_bord');
+Route::post('/updatbord','admin\BordereauController@update_bord');
+
+
+ // });
+

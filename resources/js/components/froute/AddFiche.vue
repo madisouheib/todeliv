@@ -49,10 +49,7 @@
                                         </div>
                                     </div>
                       
-                                    <div class="form-group">
-                                        <label for="validationCustomUsername"> Remarque  : </label>
-                                        <textarea class="form-control" v-model="notice"></textarea>
-                                    </div>
+                             
 
                             </div>
                             <div class="modal-footer">
@@ -84,7 +81,7 @@ data(){
 idliv:'',
 coursiers : {},
 idfiche : '',
-notice : '',
+
 name  : ''
 
     }
@@ -96,7 +93,7 @@ created ()
 
 this.getCoursier(),
 this.getLastID()
-
+console.log(this.idfiche);
 
 
  },
@@ -108,7 +105,7 @@ fiche_add(){
 axios.post('/api/addfiche', {
 idcord: this.id_user,
 idliv : this.idliv,
-notice : this.notice,
+
 name : this.name
 
 

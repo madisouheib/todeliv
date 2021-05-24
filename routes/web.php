@@ -25,7 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 // admin routes 
-Route::group([ 'middleware'=>'auth'], function () {   
+
+Route::group(['middleware'=>'auth'], function () {   
 
 Route::get('/admin', 'admin\HomeAdminController@index')->name('index');
 Route::get('/admin/data', 'admin\HomeAdminController@index')->name('data_stats');

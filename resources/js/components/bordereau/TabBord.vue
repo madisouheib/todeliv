@@ -2,124 +2,55 @@
 <div>
 
 <div class="row"> 
-<div class="card-body col-4">  
-<div class="form-group">
 
-    <label for="logo">logo :</label>
-    <input class="form-control" name="logo" type="file"  accept="image/*" >
+<div class="card-body col-12">  
+        <div v-if="stats == true" class="alert alert-success" role="alert">
+   vous avez bien mis à jour votre bordeau  ... 
 </div>
-<div class="form-group">
-
-    <label for="logo">brand :</label>
-    <input class="form-control" name="brand" type="text" >
-</div>
-<div class="form-group">
-
-    <label for="logo">phone :</label>
-    <input class="form-control" name="phone" type="text" >
-</div>
-<div class="form-group">
-
-    <label for="logo">notes :</label>
-    <input class="form-control" name="logo" type="text" >
-</div>
-<div class="form-group">
-
-    <label for="logo">color :</label>
-    <input class="form-control" name="logo" type="color" >
-</div>
+        <form enctype="multipart/form-data" action="/api/updatbord">  
+    <div class="row">   
+<div class="col-12">
+<img :src="DataBord.logo" style="display:block;heigth:100px;width:100px; margin-left:auto;margin-right:auto;">
 
 </div>
-<div class="col-8">
+<div class="form-group col-6 ">
 
-  <table  id="tabledata"    border="1">
-<tr>
-  <td rowspan="5" style="width:6% ;   
-">
 
-<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> ToDeliver </h6>  </td>
-  <td rowspan="2"> 
-    <img style="" heigth="40" width="40" :src="'/images/a.png'">
-    
-  
-    <h5 style="  font-family:">  Jhone Pero  </h5>
-    <h5> commune :   </h5>
-   
-    <p style="font-size: 12px;"> Adresse : 3 rue soudani </p>
-  
-  </td>
-  <td>
-   <h3> 
+    <label for="logo"> Logo : </label>
+    <input class="form-control" name="file" type="file"  @change="onChange" >
+</div>
+<div class="form-group col-6 ">
 
-    Alger </h3>   
-  
-  </td>
-  <td> tracking id : 
-    Deliv-3333 <br>
-    
-    <img  style="height: 50px;width:140px;" src="" alt="barcode" /> </td>
-  <td  colspan="3" style="padding:0px;">
+    <label for="logo"> Brand : </label>
+    <input class="form-control" name="brand" v-model="DataBord.brand" type="text" >
+</div>
+<div class="form-group col-6 ">
 
-   <h6 style="font-size: 12px;"> Remarque : </h6>
-  <div style="font-size: 10px; margin:0px;padding:0px;margin-top:-7px;" > colis créé le :  <br> {{ $created_at   }} </div> <br>
-  <p style="font-size: 10px;" > {{ $remarque  }}    </p>
-      
-  </td>
-</tr>
+    <label for="logo"> Phone : </label>
+    <input class="form-control" name="phone" v-model="DataBord.phone" type="text" >
+</div>
+<div class="form-group col-6">
 
-<tr>
- 
-<td colspan="2" style="height: 50px;">
-  <strong> Expéditeur : </strong> 
- Name  <br>
-Phone  <br>
-Adresse 
-  
-  
-  
-   </td>
-   <td colspan="3">   <h6 style="font-size: 12px;"> Reservez au livreur : </h6>
-  <p style="font-size:12px;"> en  attente </p>  
-  </td>
+    <label for="logo"> Notes : </label>
+    <input class="form-control" name="notes" v-model="DataBord.notes" type="text" >
+</div>
+<div class="form-group col-6">
 
-</tr>
+    <label for="logo"> Color : </label>
+    <input class="form-control" name="color" type="color" v-model="DataBord.colors"  >
+</div>
+<div class="form-group col-6">
 
-<tr>
-
-<td style="height: 40px;"> <h6 style="font-size:12px;  font-family: DejaVu Sans, sans-serif;  "> N-Tel : 0333 33 33  </h6> </td>
-<td colspan="2" >
-  
-  <h3 style="font-family: cairo, sans-serif; font-size:16px;background-color:black; color:#fff;margin-t:15px;"> 
-  Recouverement : 3333  DA </h3>
-</td>
-<td colspan="3" > <p style="font-size:8px;color:grey; "> cochez si oui  </p></td>
-</tr>
-
-<tr >
-<td style="padding-bottom:3px;"  >  <p style="margin:0px;">  </p> 
-  <img  style="height: 25px;width:120px;" src="" alt="barcode" />
-
-</td>
-
-<td colspan="2" style="">Quantité : 1   </td>
-<td colspan="3"> <h6 style="font-size:10px;"> Tentative</h6></td>
-
-</tr>
-
-<tr>
-  <td colspan="3" style="height: 50px;"> <h5> Produit :    Montre swatch </h5> </td>
-  <td >1</td>
-<td >2</td>
-<td >3</td>
- 
-</tr>
-    </table>
-
+    <label for="logo"> Adresse : </label>
+    <input class="form-control" name="adresse" type="text" v-model="DataBord.adresse"  >
+</div>
 
 </div>
+ </form>
+<button class="btn shadow-1 btn-primary"  @click="UpdateBord" > Mettre à jour <i class="fas fa-sync-alt"></i></button>
                         
                                      </div>
-
+</div>
                  </div>                  
 </template>
 
@@ -136,7 +67,10 @@ Adresse
 
      data(){
  return {
-  
+  DataBord : {},
+  stats : false ,
+  file :null
+
 
    
     };
@@ -145,7 +79,7 @@ Adresse
  {
 
 
-
+this.GetBordereau();
 
 
 
@@ -153,16 +87,59 @@ Adresse
  methods:{
   
  
-   
+  GetBordereau(){
+
+
+         axios.get('/api/bordereau')
+     .then(response =>
+     { 
        
+   this.DataBord = response.data
+
+ }
+     ).catch(err => console.log(err));
+
+  } ,
+    onChange(e) {
+                this.file = e.target.files[0];
+                
+            },
+    UpdateBord(e){
+
+  const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    }
+                }
+
+       let formData = new FormData();
+                 formData.append('file', this.file);
+                 formData.append('colors', this.DataBord.colors);
+                 formData.append('phone', this.DataBord.phone);
+                 formData.append('brand', this.DataBord.brand);
+                 formData.append('notes', this.DataBord.notes);
+                 formData.append('adresse', this.DataBord.adresse);
+
+axios.post('/api/updatbord',formData,config).then(
+    
+
+this.GetBordereau(),
+    this.stats = true
+    
+    ).catch(error => console.log(error))
 
 
 
- },
+
+
+
+ }
  
 
 
      }
+  }
 
       
 

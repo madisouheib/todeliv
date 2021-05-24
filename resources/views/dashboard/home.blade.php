@@ -31,7 +31,7 @@
 
    @role('admin')
 
-<stats-admin> </stats-admin>
+<stats-admin :user_id='@json( Auth::user()->id )'  > </stats-admin>
  @endrole
  @role('client pro')
 
@@ -41,7 +41,7 @@
 
   @role('coordinateur')
 
-<stats-admin> </stats-admin>
+<stats-admin user_id='@json( Auth::user()->id )'  > </stats-admin>
  @endrole
 
 

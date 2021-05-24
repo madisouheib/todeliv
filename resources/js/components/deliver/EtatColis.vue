@@ -40,8 +40,9 @@
 <label style="font-weight:bold;"> <i class="fas fa-pallet"></i> Action :    </label>
 <select class="form-control"  @change="ShowTextarea(idstat)"      v-model="idstat">
 <option value="all" >  Re-dispatcher </option>
-     <option      v-for="stat in stats " :key="stat.id_stats"  v-if=" stat.order_stats == 1 "    :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
-
+<div   v-for="stat in stats " :key="stat.id_stats"  > 
+     <option     v-if=" stat.order_stats == 1 "    :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
+ </div>
 </select>
 
 
@@ -53,9 +54,10 @@
 
 <label style="font-weight:bold;"> <i class="fas fa-question-circle"></i> Raison  :    </label>
 <select class="form-control"      v-model="idstatech">
-
-     <option      v-for="statech in stats " :key="statech.id_stats"  v-if="statech.order_stats == 5 "    :value=" statech.id_stats "  > {{ statech.field_stats}}    </option>
-
+<div v-for="statech in stats " :key="statech.id_stats"  >  
+    
+    <option       v-if="statech.order_stats == 5 "    :value=" statech.id_stats "  > {{ statech.field_stats}}    </option>
+</div>
 </select>
 
 

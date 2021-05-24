@@ -35,12 +35,7 @@ margin-left:-43px;
 text-align: center;
 
 }
-table tr td {
 
-
-  
-
-}
 hr {
 
 border: 1px dashed red;
@@ -65,36 +60,64 @@ hr {
 }
 
   </style>
+
+
+
    @foreach($data ?? '' as $dat)
    
-   <div   >
+   <div>
+
+  
   <table  id="tabledata"     border="1">
 
  
 <tr>
-  <td rowspan="5" style="width:6% ;   
-">
+  <td rowspan="5" style=" padding:0px; border: dotted 2px {{ $brand->colors }};  ">
+    <table  style="margin:0px;"  >
 
-<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> ToDeliver </h6>  </td>
-  <td rowspan="2"> 
+<tr> <td style="padding-top:0px;">
 
+  <img style="margin-top:-40px;margin-bottom:30px;display:block;" heigth="40" width="40" src="{{ public_path().$brand->logo }}">
+
+ 
+</td></tr>
+<tr> <td> <h6 style="  transform: rotate(-90deg);"> {{ $brand->brand }} </h6>  </td></tr>
+    </table>
+
+
+
+
+
+ </td>
+  <td rowspan="2" style="width:24%;"> 
+ 
   
     <h5 style="  font-family:">{{ $dat->nom_client  }}  </h5>
-    <h5> commune : {{ $dat->commune  }} </h5>
+    <h5> Commune : {{ $dat->commune  }} </h5>
    
-    <p style="font-size: 12px;"> Adresse : {{ $dat->adress  }}</p>
+    <p style="font-size: 12px; word-break: break-all;"> Adresse : {{ $dat->adress  }}</p>
   
   </td>
   <td>
-   <h3> 16 </h3>  
+  @foreach ($wilayas as $item)
+       @if(Str::upper($item->nom_wilaya) == $dat->wilaya or $dat->wilaya ==  $item->nom_wilaya_ar )
+       <h3> 
+  
+     {{ $item->mat_wilaya  }}
 
-    {{Str::upper($dat->wilaya)  }}
+       </h3>  
+        @endif
+
+   @endforeach 
+   <h5>  
+   {{ $dat->wilaya  }}
+  </h5>
+
   
   </td>
-  <td> tracking id : 
-    Deliver-{{ $dat->id_colis }} <br>
+  <td> 
     
-    <img  style="height: 50px;width:140px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG($dat->id_colis, 'C39')}}" alt="barcode" /> </td>
+    <img src="data:image/svg;base64, {{ base64_encode(QrCode::format('svg')->size(100)->generate($dat->id_colis)) }} "> </td>
   <td  colspan="3" style="padding:0px;">
 
    <h6 style="font-size: 12px;"> Remarque : </h6>
@@ -107,10 +130,10 @@ hr {
 <tr>
  
 <td colspan="2" style="height: 50px;">
-  <strong> Expéditeur : </strong> 
-  {{Str::upper($dat->name)  }} <br>
-  {{Str::upper($dat->phone)  }} <br>
-    {{ $dat->adresse  }} 
+  <strong style="font-size:12px;"> Expéditeur : </strong> 
+  {{Str::upper($brand->brand)  }} <br>
+  {{Str::upper($brand->phone)  }} <br>
+    {{ $brand->adresse  }} 
   
   
   
@@ -124,14 +147,14 @@ hr {
 <tr>
 
 <td style="height: 40px;"> <h6 style="font-size:12px;  font-family: DejaVu Sans, sans-serif;  "> {{  'N-TEL : '.$dat->tel }} </h6> </td>
-<td colspan="2" >
+<td colspan="2" style="border: 2px dotted {{ $brand->colors }}" >
   Recouverement : {{ $dat->price }} DA
 </td>
 <td colspan="3" > <p style="font-size:8px;color:grey; "> cochez si oui  </p></td>
 </tr>
 
 <tr >
-<td style="padding-bottom:3px;"  >  <p style="margin:0px;"> {{ '#'.$dat->id_colis  }}  </p> 
+<td style="padding-bottom:3px; vertical-align: middle;"  >  <p style="margin:0px; vertical-align: middle;"> {{ $dat->id_colis.' >'  }}  </p> 
   <img  style="height: 25px;width:120px;" src="data:image/png;base64,{{DNS1D::getBarcodePNG('17', 'C39')}}" alt="barcode" />
 
 </td>
@@ -143,39 +166,38 @@ hr {
 
 <tr>
   <td colspan="3" style="height: 50px;"> <h5> Produit :   {{ $dat->produit }}</h5> </td>
-  <td >1</td>
-<td >2</td>
-<td >3</td>
+  <td style="  border: 1px dotted   #000 " >1</td>
+<td   style="  border: 1px dotted   #000 "  >2</td>
+<td   style="  border: 1px dotted   #000 "   >3</td>
  
 </tr>
     </table>
-    <hr style=" " >
+    <hr style=" height:2px; color:{{ $brand->colors}}"  >
 </div>
 
 
 <div  style=""   >
   <table style="width:100%;">
   <tr>
-  <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
-  <td style="width: 30%;text-align:center;"><h2> Facture n• ToDeliv-{{ $dat->id_colis  }}  </h2>  </td>
-  <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
-  
-  
+  <td style="width: 30%;background-color:{{ $brand->colors }};height:30px;" ></td>
+  <td style="width: 30%;text-align:center;"><h4> Facture n• {{ $brand->brand }}-{{ $dat->id_colis  }}  </h4>  </td>
+  <td style="width: 30%;background-color:{{ $brand->colors }};height:30px;" ></td>
+
     </tr>
   </table>
   <table style="width:100%;height: 20%;">
     <tr>
     <td style="width:50%;"> 
-    <h4 style="font-family: cairo, sans-serif;">  Vendeur </h4>
-    <p>  {{Str::upper($dat->name)  }} <br>
+    <h4 style="font-family: cairo, sans-serif;">  Vendeur </h4> <br>
+    <p>  {{Str::upper($brand->brand)  }} <br>
     
-      {{Str::upper($dat->phone)  }} <br>
-      {{Str::upper($dat->adresse)  }} <br>
+      {{Str::upper($brand->phone)  }} <br>
+      {{Str::upper($brand->adresse)  }} <br>
     </p>
     
     </td>
     <td style="width:50%;">
-    <h4 style="font-family: cairo, sans-serif;">  Achteur </h4>
+    <h4 style="font-family: cairo, sans-serif;">  Achteur </h4> <br> 
     <p> 
       {{Str::upper($dat->nom_client)  }} <br>
       {{Str::upper($dat->tel)  }} <br>
