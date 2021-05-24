@@ -20,7 +20,7 @@
                         <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-pallet"></i></span><span class="pcoded-mtext">Dépots</span></a>
                         <ul class="pcoded-submenu">
                    
-  <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hubs <span class="pcoded-badge label label-info"> 3<span> </a>
+  <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hubs  </a>
                              </li>
                    
                                <li class="  pcoded-trigger"><a :href="'/admin/wilaya'" class="">Wilayas</a>
