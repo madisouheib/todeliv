@@ -1,15 +1,25 @@
 
 <template>
 <div class="wil" >
+
+    <div class="row">
+
+<div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+
+<button class="btn btn-primary shadow-1 btn-sm" data-toggle="modal" data-target="#ModaladdWilHub"   > Ajouter une wilaya <i class="fas fa-plus"></i>    </button>
+
+</div>
+
+    </div>
        <table class="table" >
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th class="text-center" ><i class="fas fa-map"></i> Nom de la wilaya</th>
                                         <th class="text-center" ><i class="fas fa-map"></i> Nom en arabe</th>
-                                          <th class="text-center" ><i class="fas fa-map-pin"></i> Mat de la wilaya</th>
+                                    <th class="text-center" ><i class="fas fa-map-pin"></i> Mat de la wilaya</th>
                                       
-                         <th class="text-center"> <i class="fas fa-money-check-alt"></i> Prix de livraison </th>
+
                       
                                   
 
@@ -22,14 +32,14 @@
                                         <td class="text-center">{{ wilaya.nom_wilaya}}  </td>
                                           <td class="text-center">{{ wilaya.nom_wilaya_ar}}  </td>
                                           <td class="text-center" >{{ wilaya.mat_wilaya}}  </td>
-                                                <td class="text-center" >{{ wilaya.price_deliv}} DA </td>
+
                                
                     
                             
 
-                                        <td class="text-center" > <button data-toggle="modal" data-target="#Modaleditwilaya"  class="btn  btn-sm shadow-1   btn-info"  @click="GetWilayaId(wilaya.id_wilaya)"  ><i  style="margin:0px;"  class="fas fa-edit"></i></button>
-                                        
-                                            <button data-toggle="modal" data-target="#Modaldelwilaya"  class="btn btn-sm shadow-1    btn-danger " @click="GetWilayaId(wilaya.id_wilaya)"   ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
+                                        <td class="text-center" > 
+
+                                            <button data-toggle="modal" data-target="#Modaldelwilaya"  @click="ShowWilaya(wilaya.nom_wilaya,wilaya.id_hubwil)" class="btn btn-sm shadow-1    btn-danger "   ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                  
@@ -38,13 +48,12 @@
                             </table>
                      
 
-    <pagination :data="wilayas" @pagination-change-page="getWilayas">
+    <pagination :data="wilayas" @pagination-change-page="getWilayasHub">
 
     </pagination>
     <div>
-    <wilaya-add @wilaya-added="getWilayas"></wilaya-add>
-        <wilaya-edit v-bind:ShoWilaya="ShoWilaya"  @wilaya-edit="getWilayas" > </wilaya-edit>
-              <wilaya-delete v-bind:ShoWilaya="ShoWilaya"  @wilaya-delete="getWilayas" > </wilaya-delete>
+      <wilaya-add  v-bind:hub="url_id" @wilaya-added="getWilayasHub"></wilaya-add>
+            <wilaya-delete  v-bind:ShowWil="ShowWil" @wilaya-deleted="getWilayasHub"></wilaya-delete>
     </div>
 </div>
 
@@ -58,42 +67,46 @@
 
 
 <script>
-import WilayaAdd from './WilayaAdd' ; 
-import WilayaEdit from './WilayaEdit' ; 
-import WilayaDel from './WilayaDelete' ; 
+import WilayaAdd from './add_hubwilaya' ; 
+import WilayaDelete from './delete_hubwilaya' ; 
 
   export default {
-
+     props:['url_id','user_id']  ,
  components: {
-    
-   'wilaya-add' :  WilayaAdd,
-   'wilaya-edit': WilayaEdit ,
-   'wilaya-delete' : WilayaDel 
+   'wilaya-add':  WilayaAdd  ,
+   'wilaya-delete': WilayaDelete
+
   },
 
      data(){
  return {
 
 wilayas : {},
-ShoWilaya : ''
+ShoWilaya : '',
 
+ShowWil : {
+name_wilaya : '',
+idlink : ''
+
+
+}
 
  }
   },
  created ()
  {
 
-this.getWilayas() ; 
+this.getWilayasHub() ; 
 
 
  },
  
  methods:{
- getWilayas(page = 1)
+ getWilayasHub(page = 1)
  {
 
 
-     axios.get('/api/wilaya?page='+ page)
+     axios.get('/api/wilayabyhub/'+this.url_id+'?page='+ page)
      .then(response =>
      { 
        
@@ -113,6 +126,12 @@ this.getWilayas() ;
 
 
 
+
+ },
+ ShowWilaya(wilayaname,idlink){
+
+this.ShowWil.name_wilaya  = wilayaname ;
+this.ShowWil.idlink = idlink;
 
  }
 

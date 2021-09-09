@@ -12,6 +12,7 @@
                                         <th><i class="fas fa-map"></i> Nom de HUB</th>
                                         <th class="text-center"><i class="fas fa-globe"></i> Nombre wilayas</th>
                                         <th class="text-center" ><i class="fas fa-chalkboard-teacher"></i> Nombre utilisateurs</th>
+                                       <th class="text-center" ><i class="fas fa-map-alt"></i> liste des wilayas </th>
                          
                       
                                   
@@ -25,11 +26,12 @@
                                         <td> {{ hub.nom_hub }}  </td>
                                         <td class="text-center" ><span class="pcoded-badge label label-info">{{ hub.wilayas_count }}</span> </td>
                                         <td class="text-center" ><span class="pcoded-badge label label-primary">{{ hub.users_count }}</span> </td>
+                                       <td class="text-center" > <a :href="'/admin/wilayabyhubs/'+hub.id_hub"  class="btn btn-info shadow-1 btn-sm"> <i class="fas fa-list-alt"></i> liste des wilayas <i class="fas fa-map-marker-alt"></i> </a> </td>
                             
 
-                                        <td class="text-center" > <button data-toggle="modal" data-target="#Modaledithub" @click="GetHubId(hub.id_hub)"   class="btn   btn-square   btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
+                                        <td class="text-center" > <button data-toggle="modal" data-target="#Modaledithub" @click="GetHubId(hub.id_hub)"   class="btn   btn-sm shadow-1  btn-info"><i  style="margin:0px;"  class="fas fa-edit"></i></button>
                                         
-                                            <button @click="del_hub(hub.id_hub)" class="btn btn-square  btn-danger " ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
+                                            <button @click="del_hub(hub.id_hub)" class="btn  shadow-1 btn-danger btn-sm " ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                               

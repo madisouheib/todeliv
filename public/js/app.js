@@ -10655,6 +10655,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -57819,9 +57821,24 @@ var render = function() {
               _vm._v(" "),
               _c("td", { staticClass: "text-center" }, [
                 _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-info shadow-1 btn-sm",
+                    attrs: { href: "/admin/wilayabyhubs/" + hub.id_hub }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-list-alt" }),
+                    _vm._v(" liste des wilayas "),
+                    _c("i", { staticClass: "fas fa-map-marker-alt" })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                _c(
                   "button",
                   {
-                    staticClass: "btn   btn-square   btn-info",
+                    staticClass: "btn   btn-sm shadow-1  btn-info",
                     attrs: {
                       "data-toggle": "modal",
                       "data-target": "#Modaledithub"
@@ -57843,7 +57860,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-square  btn-danger ",
+                    staticClass: "btn  shadow-1 btn-danger btn-sm ",
                     on: {
                       click: function($event) {
                         return _vm.del_hub(hub.id_hub)
@@ -57901,6 +57918,11 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-chalkboard-teacher" }),
           _vm._v(" Nombre utilisateurs")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _c("i", { staticClass: "fas fa-map-alt" }),
+          _vm._v(" liste des wilayas ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -58526,7 +58548,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn   btn-square   btn-info",
+                    staticClass: "btn  btn-sm shadow-1   btn-info",
                     attrs: {
                       "data-toggle": "modal",
                       "data-target": "#Modaleditwilaya"
@@ -58548,7 +58570,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-square  btn-danger ",
+                    staticClass: "btn btn-sm shadow-1    btn-danger ",
                     attrs: {
                       "data-toggle": "modal",
                       "data-target": "#Modaldelwilaya"
