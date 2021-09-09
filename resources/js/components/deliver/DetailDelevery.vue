@@ -11,7 +11,7 @@
 
      <div class="row mt-4">
 
-                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6">
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-12">
                     <div class="card table-card">
                         <div class="row-table bg-white">
                             <div class="col-auto theme-init text-white p-t-40 p-b-40">
@@ -19,13 +19,13 @@
                             </div>
                             <div class="col text-center">
                                 <span class="text-uppercase d-block m-b-10">Non livré</span>
-                                <h3 class="f-w-300">30</h3>
+                                <h3 class="f-w-300"> {{ DetailStats.delivenliv }}</h3>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6">
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-12">
                     <div class="card table-card">
                         <div class="row-table bg-white ">
                             <div class="col-auto theme-failed text-white p-t-40 p-b-40">
@@ -33,13 +33,13 @@
                             </div>
                             <div class="col text-center">
                                 <span class="text-uppercase d-block m-b-10">Echouée </span>
-                                <h3 class="f-w-300">6</h3>
+                                <h3 class="f-w-300"> {{ DetailStats.delivech }} </h3>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6 "  >
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-12 "  >
                     <div class="card table-card ">
                         <div class="row-table bg-white">
                             <div class="col-auto theme-retour text-white p-t-40 p-b-40">
@@ -47,13 +47,13 @@
                             </div>
                             <div class="col text-center ">
                                 <span class="text-uppercase d-block m-b-10">Retour</span>
-                                <h3 class="f-w-300">5</h3>
+                                <h3 class="f-w-300"> {{ DetailStats.delivretour }} </h3>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-6">
+                <div class="col-md-3 col-xl-3 col-xs-5 col-sm-5 col-12">
                     <div class="card table-card">
                         <div class="row-table bg-white ">
                             <div class="col-auto theme-bg text-white p-t-40 p-b-40">
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col text-center">
                                 <span class="text-uppercase d-block m-b-10">livré</span>
-                                <h3 class="f-w-300">4</h3>
+                                <h3 class="f-w-300">{{ DetailStats.delivlivre }}</h3>
                             </div>
                         </div>
                     </div>
@@ -103,15 +103,10 @@
                             <table class="table table-hover ">
    
                                 <thead class="">
-                                       <tr>
-                                   <th class="text-center" ># Tracking-id </th>
+                                     <tr>
+                                        <th class="text-center" ># Tracking-id </th>
                                         <th class="text-center" ><i class="fas fa-user-circle"></i> infos</th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant</th>
-
-                                    
-
-
-            
     
                                         <th class="text-center"><i class="fas fa-align-left"></i> Action </th>
                                     </tr>
@@ -119,18 +114,18 @@
                                 <tbody>
              
                                     <tr v-for=" col  in colis.data" :key="col.id_colis"   :style="{ background: col.id_stats == 4 ? '#2dde98'   : '' || col.id_stats == 3 ? '#ff4c4c'  : '' ||   col.id_stats == 10 ? ''  : '#ffc20e'   , color: col.id_stats == 4 ? 'white'  : ''  || col.id_stats == 3 ? 'white'   : '' || col.id_stats == 10 ? ''   : 'white' }"  >
-   <td scope="row" class="text-center" >                 
+                        <td scope="row" class="text-center" >                 
                           <div class="form-group">
                                     <div  class="checkbox checkbox-fill d-inline" >   
                                          <input   type="checkbox" v-model="mycolis" :value="col.id_colis" :name="'checkbox-fill-'+col.id_colis" :id="'checkbox-fill-'+col.id_colis" >
-                                 <label :for="'checkbox-fill-'+col.id_colis" class="cr"> #Send-{{ col.id_colis }}  </label>  
+                                 <label :for="'checkbox-fill-'+col.id_colis" class="cr"> #COLS-{{ col.id_colis }}  </label>  
                                </div>
                           </div>        
                         </td>
                                         
          <td class="text-center" >
-                                         <button data-toggle="modal" data-target="#ModalColisInfo"  class="btn btn-sm  btn-glow-dark  btn-square   btn-dark" @click="getColInfos(col.id_colis)"><i  style="margin:0px;"  class="fas  fa-user-circle"></i></button>   
-       <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm  btn-glow-dark btn-dark">
+       <button data-toggle="modal" data-target="#ModalColisInfo"  class="btn btn-sm  btn-glow-dark  btn-square  btn-dark" @click="getColInfos(col.id_colis)"><i  style="margin:0px;"  class="fas fa-user-circle"></i></button>   
+        <a  target="_blank"  :href="'/admin/tracking/'+col.id_colis" class="btn  btn-sm  btn-glow-dark btn-dark">
         <i style="margin:0px;font-size:1.4em; color:#FFCC00;"  class="fas fa-box"></i>
          </a>
                                         
@@ -181,6 +176,7 @@
 
 
 <script>
+
 import { QrcodeStream, QrcodeCapture } from 'vue-qrcode-reader'
 
 import ColisInfos from './ColisInfos.vue';
@@ -235,6 +231,7 @@ return  a.diff(b,'days') // 1
         mycolis : [],
         ShowColis: '',
         codebars :'',
+        DetailStats : {},
         camera:false ,
         idcom : this.url_id,
         userid : this.user_id,
@@ -266,10 +263,10 @@ return  a.diff(b,'days') // 1
 this.getColis();
 
 this.GetWilayas();
-
 this.GetStats();
 this.getPrice();
- this.getFiche();
+this.getFiche();
+this.StatsDeliver();
  },
  
  methods:{
@@ -287,7 +284,7 @@ turnCamera(){
 this.camera = true ;
 },
  onDecode (result) {
-            console.log(result);
+            //console.log(result);
             this.camera = false ; 
             // let element = this.$refs.ModalColisAction.$el
             $('#ModalColisAction').modal('show');
@@ -308,7 +305,7 @@ this.camera = true ;
 getPrice(){
 
 
-     axios.get('/api/livreurdetail/'+this.url_id)
+     axios.get('/api/livreurdetail/'+this.user_id)
      .then(response =>
      { 
        
@@ -317,6 +314,19 @@ getPrice(){
  }
      ).catch(err => console.log(err));
 
+
+
+},
+StatsDeliver(){
+console.log(this.user_id);
+     axios.get('/api/getdeliver/'+this.user_id)
+     .then(response =>
+     { 
+       
+   this.DetailStats = response.data
+     
+ }
+     ).catch(err => console.log(err));
 
 
 },
@@ -354,7 +364,9 @@ FiltreFiches(flist){
 var page = 1 ; 
  axios.get('/api/filtreflist/'+flist+'?page='+page)
      .then(response =>
-     {       this.colis = response.data  }
+     {    
+           this.colis = response.data  
+     }
      ).catch(err => console.log(err));
 
 

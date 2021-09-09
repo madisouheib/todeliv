@@ -20,6 +20,29 @@ public function data_recp_client(){
 
 }
 
+$DataProducts = FactureProducts::where('facture_id',$id)->get();
+$count = count($DataProducts);
+
+$myinvoice = Facture::find($id);
+for ($x = 0; $x <= $count ; $x++) {
+    
+    $GetIdProduct = Lotconteneur::where('id_produit',$DataProducts[$x]['product_id'])
+    ->first();
+    
+    
+    $StockMoin = Stockpoinvente::where('id_lotproduit',$GetIdProduct->cle_lotproduit)
+    ->where('cle_stockpoinvente',$myinvoice->point_vente)
+    ->first();
+    
+     $StockUpdate = Stockpoinvente::find($StockMain->cle_stockpoinvente);
+     $StockUpdate->quantite_stockpoinvente = $StockUpdate->quantite_stockpoinvente - $DataProducts[$x]['quantity'];
+     $StatsUpdate->save(); 
+    
+    
+    
+}
+
+
 public function data_user_recp($id){
 
 

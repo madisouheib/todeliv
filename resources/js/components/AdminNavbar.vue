@@ -19,10 +19,10 @@
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu ">
                         <a href="#" class="nav-link"><span class="pcoded-micon"><i class="fas fa-pallet"></i></span><span class="pcoded-mtext">Dépots</span></a>
                         <ul class="pcoded-submenu">
-                         <!-- 
-  <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hub <span class="pcoded-badge label label-info">100+</span> </a>
+                   
+  <li class="  pcoded-trigger"><a :href="'/admin/hub'" class="">Hub <span class="pcoded-badge label label-info">9</span> </a>
                              </li>
-                             -->
+                  
                                <li class="  pcoded-trigger"><a :href="'/admin/wilaya'" class="">Wilayas</a>
                              </li>
                         </ul>

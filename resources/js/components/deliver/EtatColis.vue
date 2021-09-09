@@ -2,7 +2,7 @@
     
     <div>  
   
-                <div id="ModalColisAction" class="modal ModalColisAction  fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div id="ModalColisAction" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -10,23 +10,6 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <table class="table table-hover">
-<tr>
-<td> <i class="fas  fa-address-card"> </i> Nom & prenom  : </td><td style="font-weight:bold;" >{{ addstats.ShowColis.nom_client}}</td> </tr>
-<tr>
-<td> <i class="fas fa-map"> </i> Wilaya : </td><td style="font-weight:bold;" >{{ addstats.ShowColis.wilaya }}</td> </tr>
-<tr>
-<td> <i class="fas fa-phone"> </i> Numero de telephone : </td><td style="font-weight:bold;" >{{ addstats.ShowColis.tel}}</td> </tr>
-<tr>
-    <td> <i class="fas fa-money-bill "> </i> Prix  : </td><td style="font-weight:bold;" >{{ addstats.ShowColis.price}}</td> </tr>
-
-
-
-
-
-
-
-                                </table>
                                 <div class="text-center">   
 
 
@@ -40,9 +23,8 @@
 <label style="font-weight:bold;"> <i class="fas fa-pallet"></i> Action :    </label>
 <select class="form-control"  @change="ShowTextarea(idstat)"      v-model="idstat">
 <option value="all" >  Re-dispatcher </option>
-<div   v-for="stat in stats " :key="stat.id_stats"  > 
-     <option     v-if=" stat.order_stats == 1 "    :value=" stat.id_stats "  > {{ stat.field_stats}}    </option>
- </div>
+     <option    v-for="stat in stats" :key="stat.id_stats"  v-if="stat.order_stats == 1"    :value="stat.id_stats"  > {{ stat.field_stats}}    </option>
+
 </select>
 
 
@@ -54,10 +36,9 @@
 
 <label style="font-weight:bold;"> <i class="fas fa-question-circle"></i> Raison  :    </label>
 <select class="form-control"      v-model="idstatech">
-<div v-for="statech in stats " :key="statech.id_stats"  >  
-    
-    <option       v-if="statech.order_stats == 5 "    :value=" statech.id_stats "  > {{ statech.field_stats}}    </option>
-</div>
+
+     <option      v-for="statech in stats " :key="statech.id_stats"  v-if="statech.order_stats == 5 "    :value=" statech.id_stats "  > {{ statech.field_stats}}    </option>
+
 </select>
 
 
@@ -88,17 +69,14 @@
 
 <script>
 export default {
-    props:['addstats'],
-    
-    data(){
-
+    props:['addstats']  ,
+       data(){
  return {
-
-    stats:{} ,
-    idstat : '' ,
-    seen : false ,
-    secondselect: false ,
-    idstatech: ''
+stats:{} ,
+idstat : '' ,
+seen : false ,
+secondselect: false ,
+idstatech: ''
 
  }
   },
@@ -118,62 +96,62 @@ this.GetStats();
 
  GetStats(){
 
-        axios.get('/api/getstats')
-            .then(response =>
-            { 
-            
-        this.stats = response.data
-            
-        }
-            ).catch(err => console.log(err));
+
+
+
+ axios.get('/api/getstats')
+     .then(response =>
+     { 
+       
+   this.stats = response.data
+     
+ }
+     ).catch(err => console.log(err));
 
  },
  ShowTextarea(id){
 
-                    if(id == 8 )
-                    {
+if(id == 8 )
+{
 
-                       this.seen = true
-
-
-                    }else if(id == 5 || id == 'all' ){
+this.seen = true
 
 
-                      this.secondselect = true
+}else if(id == 5 || id == 'all' ) {
 
-                    }else {
 
-                     this.seen = false
-                     this.secondselect = false
+this.secondselect = true
 
-                    }
+}else {
+
+this.seen = false
+this.secondselect = false
+}
 
 
 
 
  },
   AddStats(){
+if(this.idstat == 'all'){
 
-    if(this.idstat == 'all'){
-
-    status = this.idstatech
+status = this.idstatech
 
 
-    axios.post('/api/addstatsredsip', {
+axios.post('/api/addstatsredsip', {
+idcolis: this.addstats.id_colis,
 
-                idcolis: this.addstats.id_colis,
-
-                idstats : status,
-                iduser : this.addstats.userid
+idstats : status,
+iduser : this.addstats.userid
 
 
 
-          }).then(
+}).then(
     
     
     
     
-      resposne=>this.$emit('colis-added',resposne)
+    resposne=>this.$emit('colis-added',resposne)
     
     
     
@@ -184,50 +162,50 @@ this.GetStats();
 }else {
 
 
-    if(this.idstat == 5 ) {
+if(this.idstat == 5 ) {
 
-    status = this.idstatech
+status = this.idstatech
     
-    }else {
+}else {
 
-    status = this.idstat
+status = this.idstat
 
 
 }
-        axios.post('/api/addstatscolis', {
-                idcolis: this.addstats.id_colis,
+axios.post('/api/addstatscolis', {
+idcolis: this.addstats.id_colis,
 
-                idstats : status,
-                iduser : this.addstats.userid
-
-
-
-        }).then(
-            
-            
-            
-            
-            resposne=>this.$emit('colis-added',resposne)
-            
-            
-            
-            
-            ).catch(error => console.log(error))
+idstats : status,
+iduser : this.addstats.userid
 
 
+
+}).then(
+    
+    
+    
+    
+    resposne=>this.$emit('colis-added',resposne)
+    
+    
+    
+    
+    ).catch(error => console.log(error))
 
 
 
 
-                                }   
+
+
+}
 
 
 
 
-                                }  
-                    }  
+ }
+
+    }  
 
 
-        }   
-
+}
 </script>
