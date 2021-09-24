@@ -79,7 +79,10 @@ Vue.component('transit-receive', require('./components/transit/TransitReceive.vu
 Vue.component('transdetail-send', require('./components/transit/TransitDetailSend.vue').default);
 Vue.component('transdetail-receive', require('./components/transit/TransitDetailReceive.vue').default);
 
+//---------- la listes des wilayas par hub 
 
+
+Vue.component('list-hubwilaya', require('./components/hub/hubwilaya/list_hubwilayas.vue').default);
 
 //clients space : 
 
