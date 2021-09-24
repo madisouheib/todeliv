@@ -58829,7 +58829,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text", attrs: { id: "Adressehub" } },
-        [_c("i", { staticClass: "fas fa-map-marker-alt" })]
+        [_c("i", { staticClass: "fas fa-dolly-flatbed" })]
       )
     ])
   },
@@ -58841,7 +58841,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text", attrs: { id: "Adressehub" } },
-        [_c("i", { staticClass: "fas fa-map-marker-alt" })]
+        [_c("i", { staticClass: "fas fa-credit-card" })]
       )
     ])
   },
@@ -58853,7 +58853,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text", attrs: { id: "Adressehub" } },
-        [_c("i", { staticClass: "fas fa-map-marker-alt" })]
+        [_c("i", { staticClass: "fas fa-shipping-fast" })]
       )
     ])
   },

@@ -35,7 +35,7 @@
                                     <label for="Adressehub">Prix StopDesk   : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-map-marker-alt"></i> </span>
+                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-dolly-flatbed"></i> </span>
                                         </div>
 <input class="form-control" v-model="stopdesk" type="number" >
 
@@ -50,7 +50,7 @@
                                     <label for="Adressehub">Prix livraison   : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-map-marker-alt"></i> </span>
+                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-credit-card"></i> </span>
                                         </div>
 <input class="form-control" v-model="price_home" type="number" >
 
@@ -66,7 +66,7 @@
                                     <label for="Adressehub">Comission livreur   : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-map-marker-alt"></i> </span>
+                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-shipping-fast"></i> </span>
                                         </div>
 <input class="form-control" v-model="comission" type="number" >
 
