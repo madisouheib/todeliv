@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HubWilaya extends Model
 {
-    protected $table = 'hub_wilayas';
+    protected $table = 'hub_wilaya';
     public $timestamps = false;
     protected $primaryKey = 'id_hubwil';
     protected $fillable = [
