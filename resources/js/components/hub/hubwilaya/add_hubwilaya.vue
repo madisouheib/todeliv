@@ -30,6 +30,52 @@
                                     </div>
                                 </div>
                        
+                          
+                                <div class="form-group">
+                                    <label for="Adressehub">Prix StopDesk   : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-map-marker-alt"></i> </span>
+                                        </div>
+<input class="form-control" v-model="stopdesk" type="number" >
+
+                                      
+                                        <div class="invalid-feedback">
+                                            Please choose a region.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Adressehub">Prix livraison   : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-map-marker-alt"></i> </span>
+                                        </div>
+<input class="form-control" v-model="price_home" type="number" >
+
+                                      
+                                        <div class="invalid-feedback">
+                                            Please choose a region.
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="Adressehub">Comission livreur   : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="Adressehub"> <i class="fas fa-map-marker-alt"></i> </span>
+                                        </div>
+<input class="form-control" v-model="comission" type="number" >
+
+                                      
+                                        <div class="invalid-feedback">
+                                            Please choose a region.
+                                        </div>
+                                    </div>
+                                </div>
 
 
                             </div>
@@ -57,6 +103,9 @@ components: {
      namehub :'',
      idwilaya : '',
      wils :{},
+     comission : '',
+     stopdesk : '',
+     price_home :''
 
 
 
@@ -103,7 +152,10 @@ Wilayas(){
  
 axios.post('/api/addwiltohub', {
 wilaya: this.idwilaya, 
-hub : this.hub 
+hub : this.hub ,
+comission : this.comission,
+price_home : this.price_home,
+stopdesk: this.stopdesk
 
 
 }).then(

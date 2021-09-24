@@ -23,7 +23,10 @@ class HubsController extends Controller
     {
         
         $ShowHub = Hub::join('wilaya', 'hubs.adresse', '=', 'wilaya.id_wilaya')->find($id);
-        $Selectedwilaya = HubWilaya::join('wilaya', 'hub_wilaya.id_wilaya', '=', 'wilaya.id_wilaya')->where('hub_wilaya.id_hub','=',$id)->get(['wilaya.nom_wilaya AS name', 'wilaya.id_wilaya AS key' ])->toArray();
+        $Selectedwilaya = HubWilaya::join('wilaya', 'hub_wilayas.id_wilaya', '=', 'wilaya.id_wilaya')
+        ->where('hub_wilayas.id_hub','=',$id)
+        ->get(['wilaya.nom_wilaya AS name', 'wilaya.id_wilaya AS key' ])
+        ->toArray();
         //dd($users);
         $ShowHub['vals']  = $Selectedwilaya ;  
         return response()->json($ShowHub);
@@ -33,7 +36,10 @@ class HubsController extends Controller
 
     public function wilaya_hub_selected($id){
         
-        $Selectedwilaya = HubWilaya::join('wilaya', 'hub_wilaya.id_wilaya', '=', 'wilaya.id_wilaya')->where('hub_wilaya.id_hub','=',$id)->get(['wilaya.nom_wilaya AS name', 'wilaya.id_wilaya AS key' ])->toArray();
+        $Selectedwilaya = HubWilaya::join('wilaya', 'hub_wilayas.id_wilaya', '=', 'wilaya.id_wilaya')
+        ->where('hub_wilayas.id_hub','=',$id)
+        ->get(['wilaya.nom_wilaya AS name', 'wilaya.id_wilaya AS key' ])
+        ->toArray();
 
         return response()->json($Selectedwilaya);
 
@@ -45,7 +51,9 @@ class HubsController extends Controller
      */
     public function hub_data()
     {
-       $hubs = Hub::withCount(['users','wilayas'])->orderBy('id_hub', 'desc')->paginate(4);
+       $hubs = Hub::withCount(['users','wilayas'])
+       ->orderBy('id_hub', 'desc')
+       ->paginate(4);
        //dd($users);
        return response()->json($hubs);
    
@@ -91,7 +99,9 @@ HubWilaya::create([
        }
 
 
-       $hubs = Hub::withCount(['users','wilayas'])->orderBy('id_hub', 'desc')->paginate(4);
+       $hubs = Hub::withCount(['users','wilayas'])
+       ->orderBy('id_hub', 'desc')
+       ->paginate(4);
        //dd($users);
        return response()->json($hubs);
 
@@ -119,40 +129,77 @@ $delhub->delete();
 
     public function wilaya_add(Request $request)
     {
- Hub::create($request->all());
+
+     Hub::create($request->all());
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+  
+
+
+    public function wilaya_byhub($id){
+
+        $data = Hub::find($id);
+
+        return view('dashboard.pages.hub.hub_wilayalist')->with('data',$data);
+
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+
+//------------ update la listes des wilayas 
+
+
+
+
+    public function list_wilayabyhubs($id){
+
+
+        $Selectedwilaya = HubWilaya::join('wilaya', 'hub_wilayas.id_wilaya', '=', 'wilaya.mat_wilaya')
+        ->where('hub_wilayas.id_hub','=',$id)
+        ->paginate(10);
+
+
+
+
+        return response()->json($Selectedwilaya);
+
+
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+    public function add_wilaya_tohub(Request $request){
+      
+         $wilaya = $request->input('wilaya');
+         $hub = $request->input('hub');
+         $comission = $request->input('comission');
+         $stopdesk = $request->input('stopdesk');
+         $price_home = $request->input('price_home');
+         
+          HubWilaya::create([
+            'id_wilaya' => $wilaya ,  
+            'id_hub'=> $hub,
+            'comission'=> $comission,
+            'stopdesk'=> $stopdesk,
+            'price_home'=> $price_home,
+
+
+
+          ]); 
+
+
+
     }
+
+    public function delete_wilaya_tohub(Request $request){
+
+        $wilaya = $request->input('wilaya');
+        $toDelete = HubWilaya::find($wilaya);
+        $toDelete->delete();
+
+    }
+
+
+
 }

@@ -178,5 +178,6 @@ Route::get('/admin/tracking', 'TrackingController@index_search')->name('index_se
 Route::get('/admin/tracking/{id}', 'TrackingController@index')->name('index');
 
 
+Route::get('/admin/wilayabyhubs/{id}', 'admin\HubsController@wilaya_byhub')->name('wilaya_byhub');
 });
 
