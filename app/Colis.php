@@ -15,7 +15,7 @@ class Colis extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'nom_client','wilaya','remarque','id_com','tel','adress','commune','qte','produit','price','shipping_price','tmp_validation','validation','signaler','tmp_signaler','id_stats','id_hub'
+        'nom_client','wilaya','remarque','id_com','tel','adress','commune','qte','produit','price','shipping_price','tmp_validation','validation','comun_id','wilaya_id','signaler','tmp_signaler','id_stats','id_hub'
     ];
     public function stats(){
 

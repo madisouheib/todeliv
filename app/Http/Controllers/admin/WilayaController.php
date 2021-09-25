@@ -5,6 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Wilaya;
+use App\Communs;
+use App\User;
+use App\HubWilaya;
+
 class WilayaController extends Controller
 {
     /**
@@ -50,11 +54,25 @@ public function wilaya_hub()
 
 public function wilaya_tags()
  {
-    $wilaya = Wilaya::orderBy('id_wilaya', 'desc')->get(['wilaya.nom_wilaya AS name', 'wilaya.id_wilaya AS key' ])->toArray();
+    $wilaya = Wilaya::orderBy('id_wilaya', 'desc')->get();
 
     return response()->json($wilaya);
 
 
+}
+
+public function get_communes($id,$hub){
+
+
+    $UserHub = User::find($hub);
+
+
+    $communes = Communs::where('wilaya_id','=',$id)->get();
+    $price =   HubWilaya::where('id_wilaya','=',$id)->where('id_hub','=',$UserHub->hub_id)->first();
+    $data = array();
+    $data['communes'] = $communes ;
+    $data['price'] = $price;
+    return response()->json($data);
 }
 
 

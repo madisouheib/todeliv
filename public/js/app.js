@@ -6154,6 +6154,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['GetInf'],
   data: function data() {
@@ -6166,7 +6182,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       phone: '',
       produit: '',
       adresse: ''
-    }, _defineProperty(_ref, "name", ''), _defineProperty(_ref, "wilayas", []), _defineProperty(_ref, "wilaya", ''), _defineProperty(_ref, "price", ''), _defineProperty(_ref, "remarque", ''), _ref;
+    }, _defineProperty(_ref, "name", ''), _defineProperty(_ref, "wilayas", []), _defineProperty(_ref, "wilaya", ''), _defineProperty(_ref, "price", ''), _defineProperty(_ref, "remarque", ''), _defineProperty(_ref, "communes", {}), _defineProperty(_ref, "pricing", []), _ref;
   },
   created: function created() {
     this.getWilayas();
@@ -6193,11 +6209,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return console.log(error);
       });
     },
-    getWilayas: function getWilayas() {
+    GetCommunes: function GetCommunes(wilaya) {
       var _this2 = this;
 
+      axios.get('/api/getcommunesbywil/' + wilaya + '/' + this.GetInf.userid).then(function (response) {
+        _this2.communes = response.data.communes;
+        _this2.pricing = response.data.price;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    getWilayas: function getWilayas() {
+      var _this3 = this;
+
       axios.get('/api/getwilayas').then(function (response) {
-        _this2.wilayas = response.data;
+        _this3.wilayas = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -42964,13 +42990,47 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
+        {
+          staticClass: "nav-item pcoded-hasmenu ",
+          attrs: {
+            "data-username":
+              "Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark"
+          }
+        },
+        [
+          _vm._m(8),
+          _vm._v(" "),
+          _c("ul", { staticClass: "pcoded-submenu" }, [
+            _c("li", { staticClass: "  pcoded-trigger" }, [
+              _c("a", { attrs: { href: "/admin/transitenvoie" } }, [
+                _vm._v("Envoie des colis  "),
+                _c("span", { staticClass: "pcoded-badge label label-info" }, [
+                  _vm._v(_vm._s(_vm.stats.trenv))
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "  pcoded-trigger" }, [
+              _c("a", { attrs: { href: "/admin/transitretour" } }, [
+                _vm._v("Reception des colis  "),
+                _c("span", { staticClass: "pcoded-badge label label-danger" }, [
+                  _vm._v(" " + _vm._s(_vm.stats.trecp))
+                ])
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
         { staticClass: "nav-item", attrs: { "data-username": "Animations" } },
         [
           _c(
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/inhouse" } },
             [
-              _vm._m(8),
+              _vm._m(9),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Prêt à livrer  ")
               ]),
@@ -42991,7 +43051,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/ondelivery" } },
             [
-              _vm._m(9),
+              _vm._m(10),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Feuille de route  ")
               ]),
@@ -43012,7 +43072,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/livraison" } },
             [
-              _vm._m(10),
+              _vm._m(11),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("En Livraison ")
               ]),
@@ -43032,7 +43092,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/echlivraison" } },
             [
-              _vm._m(11),
+              _vm._m(12),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Livraison echouée   ")
               ]),
@@ -43053,7 +43113,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/retours" } },
             [
-              _vm._m(12),
+              _vm._m(13),
               _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Retour ")]),
               _vm._v(" "),
               _c("span", { staticClass: "pcoded-badge label label-danger" }, [
@@ -43072,7 +43132,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/livre" } },
             [
-              _vm._m(13),
+              _vm._m(14),
               _c("span", { staticClass: "pcoded-mtext" }, [
                 _vm._v("Colis Livrée")
               ]),
@@ -43085,7 +43145,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(14),
+      _vm._m(15),
       _vm._v(" "),
       _c(
         "li",
@@ -43097,7 +43157,7 @@ var render = function() {
           }
         },
         [
-          _vm._m(15),
+          _vm._m(16),
           _vm._v(" "),
           _c("ul", { staticClass: "pcoded-submenu" }, [
             _c("li", { staticClass: "  pcoded-trigger" }, [
@@ -43135,7 +43195,7 @@ var render = function() {
             "a",
             { staticClass: "nav-link", attrs: { href: "/admin/tracking" } },
             [
-              _vm._m(16),
+              _vm._m(17),
               _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Tracking")])
             ]
           )
@@ -43210,6 +43270,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pcoded-micon" }, [
       _c("i", { staticClass: "fas fa-truck-loading" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+      _c("span", { staticClass: "pcoded-micon" }, [
+        _c("i", { staticClass: "fas fa-sitemap" })
+      ]),
+      _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Transit")])
     ])
   },
   function() {
@@ -49876,7 +49947,89 @@ var render = function() {
                         }
                       ],
                       staticClass: "custom-select",
-                      attrs: { name: "", required: "" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.wilaya = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            return _vm.GetCommunes(_vm.wilaya)
+                          }
+                        ]
+                      }
+                    },
+                    _vm._l(_vm.wilayas, function(wil) {
+                      return _c(
+                        "option",
+                        { key: wil.key, domProps: { value: wil.mat_wilaya } },
+                        [
+                          _vm._v(
+                            _vm._s(wil.nom_wilaya) +
+                              " - " +
+                              _vm._s(wil.nom_wilaya_ar) +
+                              "  "
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                                            Please choose a Hub .\n                                        "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.pricing
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "theme-bg text-center" }, [
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("h4", { staticStyle: { color: "#fff" } }, [
+                        _vm._v(" " + _vm._s(_vm.pricing.price_home) + " "),
+                        _c("i", {
+                          staticClass: "fas fa-credit-card",
+                          staticStyle: { color: "#fff" }
+                        })
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "validationCustomUsername" } }, [
+                  _vm._v("Commune : ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.commune,
+                          expression: "commune"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { required: "" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -49887,16 +50040,21 @@ var render = function() {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.wilaya = $event.target.multiple
+                          _vm.commune = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         }
                       }
                     },
-                    _vm._l(_vm.wilayas, function(wil) {
-                      return _c("option", { key: wil.key }, [
-                        _vm._v(_vm._s(wil.name) + " ")
-                      ])
+                    _vm._l(_vm.communes, function(coms) {
+                      return _c(
+                        "option",
+                        {
+                          key: coms.key,
+                          domProps: { value: coms.code_postal }
+                        },
+                        [_vm._v(_vm._s(coms.nom) + " ")]
+                      )
                     }),
                     0
                   ),
@@ -49910,56 +50068,12 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "nomprenom" } }, [
-                  _vm._v(" Commune  : ")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _vm._m(7),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.commune,
-                        expression: "commune"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "nomprenom",
-                      placeholder: "Commune ..  ",
-                      "aria-describedby": "inputGroupPrepend",
-                      required: ""
-                    },
-                    domProps: { value: _vm.commune },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.commune = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(
-                      "\n                                            Please choose a nom.\n                                        "
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "validationCustomUsername" } }, [
                   _vm._v("Adresse : ")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(8),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50003,7 +50117,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(9),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50043,7 +50157,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
-              _vm._m(10),
+              _vm._m(11),
               _vm._v(" "),
               _c(
                 "button",
@@ -50170,11 +50284,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("label", { staticStyle: { color: "#fff" } }, [
+      _c("b", [_vm._v("  Prix de livraison : ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
         { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
-        [_c("i", { staticClass: "fas fa-sitemap" })]
+        [_c("i", { staticClass: "fas fa-map" })]
       )
     ])
   },

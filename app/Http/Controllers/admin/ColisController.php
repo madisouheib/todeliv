@@ -16,8 +16,10 @@ use App\Exports\RetourExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Colis;
 use App\Bordereau;
+use App\HubWilaya;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Commandes;
+use App\Communs;
 use App\User;
 use App\StatsColis;
 use App\Wilaya;
@@ -199,31 +201,39 @@ if($id == 'all' ){
 
         $hub = $User['hub_id'];
 
-
-
+       
         $phone   =  $request->input('phone');
         $name    =  $request->input('name');
         $wilaya  =  $request->input('wilaya');
+
         $qte     =  $request->input('qte');
         $adresse =  $request->input('adresse');
         $commune =  $request->input('commune');
-        $produit =  $request->input('produit');
-        $price   =  $request->input('price');
-        $idcom   =  $request->input('idcom');
 
+        $produit  =  $request->input('produit');
+        $price    =  $request->input('price');
+        $idcom    =  $request->input('idcom');
+        $GetPrice =   HubWilaya::where('id_wilaya','=',$wilaya)
+        ->where('id_hub','=',$hub)
+        ->first();
+        $Price = $GetPrice['price_home'] ; 
         $remarque   =  $request->input('remarque');
 
-
-    
+       $Fetch_wilaya = Wilaya::where('mat_wilaya',$wilaya)->first();
+       $Fetch_commune = Communs::where('code_postal',$commune)->first();
+       $name_wilaya = $Fetch_wilaya['nom_wilaya'];
+       $name_commune = $Fetch_commune['nom'];
       Colis::create(['nom_client' => $name ,
                          'tel'=> $phone ,
-                         'wilaya'=> $wilaya ,
+                         'wilaya'=> $name_wilaya ,
                          'price'=> $price ,
                          'produit'=> $produit ,
                          'id_com'=> $idcom ,
                          'qte'=> $qte ,
+                         'comun_id'=>$commune,
+                         'wilaya_id'=> $wilaya,
                          'adress'=> $adresse,
-                         'commune'=> $commune ,
+                         'commune'=> $name_commune ,
                          'id_hub'=> $hub ,
                          'remarque'=>$remarque
                           ]);

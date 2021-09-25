@@ -41,7 +41,7 @@ Route::get('/getwilayas', 'admin\WilayaController@wilaya_tags');
 Route::get('/getallwilayas', 'admin\WilayaController@wilaya_hub');
 Route::get('/GetSelectedWilaya/{id}', 'admin\HubsController@wilaya_hub_selected');
 
-
+Route::get('/getcommunesbywil/{id}/{hub}', 'admin\WilayaController@get_communes');
 
 
 //Profiles and permissions routes 

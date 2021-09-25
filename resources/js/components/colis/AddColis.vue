@@ -84,11 +84,11 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map"></i> </span>
                                         </div>
-  <select class="custom-select" name="" required v-model="wilaya" >
+  <select class="custom-select"  @change="GetCommunes(wilaya)"  v-model="wilaya" >
 
 
 
-    <option  v-for="wil in wilayas " :key="wil.key"   >{{ wil.name }} </option>
+    <option  v-for="wil in wilayas " :value="wil.mat_wilaya"  :key="wil.key"    >{{ wil.nom_wilaya }} - {{ wil.nom_wilaya_ar }}  </option>
 
     
 </select>
@@ -99,19 +99,35 @@
                                         </div>
                                     </div>
                                 </div>
-          <div class="form-group">
-                                    <label for="nomprenom"> Commune  : </label>
+                                <div class="form-group" v-if="pricing ">
+<div class="theme-bg text-center">
+<label style="color:#fff;"> <b>  Prix de livraison : </b> </label>
+    <h4 style="color:#fff;"> {{ pricing.price_home }} <i style="color:#fff;" class="fas fa-credit-card"></i> </h4>
+</div>
+
+                                </div>
+       
+                                      <div class="form-group">
+                                    <label for="validationCustomUsername">Commune : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-sitemap"></i> </span>
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control"  v-model="commune"  id="nomprenom" placeholder="Commune ..  " aria-describedby="inputGroupPrepend" required>
+  <select class="custom-select"  required v-model="commune" >
+
+
+
+    <option  v-for="coms in communes " :key="coms.key" :value="coms.code_postal"    >{{ coms.nom }} </option>
+
+    
+</select>
+
+                                      
                                         <div class="invalid-feedback">
-                                            Please choose a nom.
+                                            Please choose a Hub .
                                         </div>
                                     </div>
                                 </div>
-                             
                                 <div class="form-group">
                                     <label for="validationCustomUsername">Adresse : </label>
                                     <div class="input-group">
@@ -168,7 +184,9 @@ name: '',
 wilayas :[],
 wilaya:'',
 price :'',
-remarque:''
+remarque:'',
+communes : {},
+pricing: []
 
 
     }
@@ -189,6 +207,7 @@ methods: {
 
 colis_add(){
 axios.post('/api/addcolis', {
+
 name: this.name,
 produit : this.produit,
 phone  : this.phone,
@@ -203,6 +222,22 @@ remarque:this.remarque
 
 
 }).then(resposne=>this.$emit('colis-added',resposne)).catch(error => console.log(error))
+
+
+},
+GetCommunes(wilaya){
+  axios.get('/api/getcommunesbywil/'+wilaya+'/'+this.GetInf.userid)
+     .then(response =>
+     { 
+       
+     this.communes = response.data.communes
+     this.pricing  = response.data.price 
+ 
+     
+ }
+     )
+     .catch(err => console.log(err));
+
 
 
 },
