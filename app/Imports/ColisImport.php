@@ -33,10 +33,9 @@ private $coms = '';
     public function model(array $row)
     {
 
+        $idhub = Auth::user()->hub_id;
 
-     
-$idhub = Auth::user()->hub_id;
-$idclient = Auth::id();
+
 
 
 
@@ -51,9 +50,7 @@ $idclient = Auth::id();
     }else {
     
 
-        $this->rows = true ; 
-        $idcom =   Commandes::create(['id_clt'=> $idclient , 'id_hub'=>  $idhub  ])->id_coms;
-    $this->coms = $idcom;
+ 
         return new Colis([
     
             'nom_client' => $row['Nom'],
@@ -66,7 +63,8 @@ $idclient = Auth::id();
             'id_hub'     => $idhub,
             'price'      => $row['Prix'],
             'remarque'   => $row['Remarque'],
-            'id_com'     => $idcom
+            'id_com'     => $this->data['idcom'],
+            'id_partenaire'=> $this->data['user']
     
             //
         ]);

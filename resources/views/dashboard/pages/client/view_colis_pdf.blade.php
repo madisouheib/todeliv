@@ -61,7 +61,7 @@ hr {
   <td rowspan="5" style="width:6% ;   
 ">
 
-<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> ToDeliver </h6>  </td>
+<h6 style=" margin-top:0%;  transform: rotate(-90deg);"> {{ config('app.name') }} </h6>  </td>
   <td rowspan="2"> 
     <img style="" heigth="40" width="40" src="{{ public_path().'/images/a.png' }}">
     

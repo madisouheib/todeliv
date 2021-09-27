@@ -50,33 +50,28 @@ class ColisController extends Controller
             Excel::import(new ColisImport($data),$request->file('colis'));
             return redirect('/admin/listcolis/'.$data)->with('success', 'All good!');
         }else {
-
-
+     
+            $idclient = Auth::id();
+            $idhub = Auth::user()->hub_id;
+            $idcom =   Commandes::create(['id_clt'=> $idclient , 'id_hub'=>  $idhub  ])->id_coms;
+       
             $request->validate([
                 'colis'=> 'required' 
     
                 ]);
     
-                $idclient = Auth::id();
-                $idhub = Auth::user()->hub_id;
-            
-              $data = '';
+              $data['idcom'] = $idcom;
+              $data['user'] = $idclient;
+          
               $import = new ColisImport($data) ; 
-              Excel::import($import,$request->file('colis'));
+              Excel::import(new ColisImport($data),$request->file('colis'));
    
-              if(  $import->getRowCount() == 1 ){
+              
 
-                return redirect('/admin/listcolis/'.$import->getComs())->with('success', 'All good!');
-              }else {
-            
-              return  redirect('/admin/addcoms')->with('danger', ' votre fichier excel est vide ! ');
-        }
+                return redirect('/admin/listcolis/'.$idcom)->with('success', 'All good!');
+          
     }
-
-       
-
-      
-    }
+}
 
     public function list_colis(){
 
@@ -169,7 +164,12 @@ if($id == 'all' ){
 
 
         
-            $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+            $Colis = Colis::select('commandes.*', 'colis.*','users.name')
+            ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+            ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+            ->where('id_com','=',$idcom)
+            ->orderBy('colis.updated_at', 'desc')
+            ->paginate(60);
         
     
             
@@ -243,14 +243,17 @@ if($id == 'all' ){
     }
     public function view_pdf($id){
 
-$data = Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->join('users', 'commandes.id_clt', '=', 'users.id')->where('id_colis','=',$id)->first()->toArray();
-//dd($data);
- // This  $data array will be passed to our PDF blade
-
+        $data = Colis::leftJoin('commandes','colis.id_com','=','commandes.id_coms')
+        ->join('users', 'commandes.id_clt', '=', 'users.id')
+        ->where('id_colis','=',$id)
+        ->first()
+        ->toArray();
+        //dd($data);
+        // This  $data array will be passed to our PDF blade
   
-  $pdf = PDF::loadView('dashboard.pages.client.view_colis_pdf', $data);  
+        $pdf = PDF::loadView('dashboard.pages.client.view_colis_pdf', $data);  
 
-  return $pdf->stream('medium.pdf');
+        return $pdf->stream('medium.pdf');
 
     }
     public function view_pdf_commandes($id){
@@ -330,7 +333,12 @@ public function data_colis_inhouse($id){
             $tmpColis->signaler = false;
             $tmpColis->save();
 
-            $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+            $Colis = Colis::select('commandes.*', 'colis.*','users.name')
+            ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+            ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+            ->where('id_com','=',$idcom)
+            ->orderBy('colis.updated_at', 'desc')
+            ->paginate(60);
         
     
             
@@ -346,7 +354,12 @@ public function data_colis_inhouse($id){
     public function data_colis_recp($idcom){
 
         
-        $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+        $Colis = Colis::select('commandes.*', 'colis.*','users.name')
+        ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+        ->where('id_com','=',$idcom)
+        ->orderBy('colis.updated_at', 'desc')
+        ->paginate(60);
         
     
             
@@ -359,10 +372,12 @@ public function data_colis_inhouse($id){
 
     public function tmp_colis_signaler(Request $request){
 
-$id = request('id');
+        $id = request('id');
         $tmpColis = Colis::find($id);
         $idcom = $tmpColis['id_com'];
-        $CountTmp = Colis::where('id_colis','=',$id)->whereNull('tmp_signaler')->count();
+        $CountTmp = Colis::where('id_colis','=',$id)
+        ->whereNull('tmp_signaler')
+        ->count();
 
         if( $CountTmp == 0  )
         {
@@ -375,7 +390,12 @@ $id = request('id');
 
         }
 
-        $Colis = Colis::select('commandes.*', 'colis.*','users.name')->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->leftJoin('users', 'users.id', '=', 'commandes.id_clt')->where('id_com','=',$idcom)->orderBy('colis.updated_at', 'desc')->paginate(60);
+        $Colis = Colis::select('commandes.*', 'colis.*','users.name')
+        ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
+        ->where('id_com','=',$idcom)
+        ->orderBy('colis.updated_at', 'desc')
+        ->paginate(60);
         
     
             
@@ -422,7 +442,9 @@ public function update_all_livre(Request $request){
 
 if($idliv == null ){
 
-    $GetIdColis =   Colis::where('colis.id_stats','=',4)->pluck('colis.id_colis')->toArray();
+    $GetIdColis =   Colis::where('colis.id_stats','=',4)
+    ->pluck('colis.id_colis')
+    ->toArray();
 
     Colis::where('colis.id_stats','=',4)->update(['id_stats' => 12]);
 $count = count($GetIdColis);
@@ -441,11 +463,20 @@ for($i=0 ; $i < $count ;$i++ ){
 }else {
 
 
-  $GetIdColis =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->where('fiche.id_liv','=',$idliv)->where('colis.id_stats','=',4)->pluck('colis.id_colis')->toArray();
+  $GetIdColis =   Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+  ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+  ->where('fiche.id_liv','=',$idliv)
+  ->where('colis.id_stats','=',4)
+  ->pluck('colis.id_colis')
+  ->toArray();
 
   $count = count($GetIdColis);
 
-    Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')->where('fiche.id_liv','=',$idliv)->where('colis.id_stats','=',4)->update(['id_stats' => 12]);
+    Colis::leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
+    ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
+    ->where('fiche.id_liv','=',$idliv)
+    ->where('colis.id_stats','=',4)
+    ->update(['id_stats' => 12]);
 
     for($i=0 ; $i < $count ;$i++ ){
 
