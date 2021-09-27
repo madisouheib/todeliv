@@ -248,7 +248,7 @@ if($id == 'all' ){
     public function view_pdf($id){
 
         $data = Colis::leftJoin('commandes','colis.id_com','=','commandes.id_coms')
-        ->join('users', 'commandes.id_clt', '=', 'users.id')
+        ->join('users','users.id','=','commandes.id_clt')
         ->where('id_colis','=',$id)
         ->first()
         ->toArray();
@@ -263,8 +263,8 @@ if($id == 'all' ){
     public function view_pdf_commandes($id){
 
         $data = Colis::select('commandes.*','colis.*','users.name','users.phone','users.adresse')
-        ->join('commandes', 'colis.id_com', '=', 'commandes.id_coms')
-        ->join('users', 'commandes.id_clt', '=', 'users.id')
+        ->join('commandes','commandes.id_coms','=','colis.id_com')
+        ->join('users','users.id','=','commandes.id_clt')
         ->where('id_coms','=',$id)
         ->get();
         $wilayas = Wilaya::all();
