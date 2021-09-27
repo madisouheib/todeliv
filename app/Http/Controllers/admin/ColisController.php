@@ -46,7 +46,8 @@ class ColisController extends Controller
 
         if(isset($data)){
 
-            $data = $request->input('idcoms');
+            $idcom = $request->input('idcoms');
+            $data = Commandes::find($idcom);
             Excel::import(new ColisImport($data),$request->file('colis'));
             return redirect('/admin/listcolis/'.$data)->with('success', 'All good!');
         }else {
