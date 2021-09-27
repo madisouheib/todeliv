@@ -189,10 +189,10 @@ hr {
     <tr>
     <td style="width:50%;"> 
     <h4 style="font-family: cairo, sans-serif;">  Vendeur </h4> <br>
-    <p>  {{Str::upper($data->name)  }} <br>
+    <p>  {{Str::upper($dat->name)  }} <br>
     
-      {{Str::upper($data->phone)  }} <br>
-      {{Str::upper($data->adresse)  }} <br>
+      {{Str::upper($dat->phone)  }} <br>
+      {{Str::upper($dat->adresse)  }} <br>
     </p>
     
     </td>
