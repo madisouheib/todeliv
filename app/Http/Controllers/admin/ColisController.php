@@ -262,7 +262,7 @@ if($id == 'all' ){
     }
     public function view_pdf_commandes($id){
 
-        $data = Colis::select('commandes.*','colis.*','users.name','users.phone','users.adresse')
+        $data = Colis::select('commandes.*','colis.*','users.name as name','users.phone as phone','users.adresse as adresse')
         ->join('commandes','commandes.id_coms','=','colis.id_com')
         ->join('users','users.id','=','commandes.id_clt')
         ->where('id_coms','=',$id)
