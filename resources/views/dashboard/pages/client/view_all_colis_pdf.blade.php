@@ -131,9 +131,9 @@ hr {
  
 <td colspan="2" style="height: 50px;">
   <strong style="font-size:12px;"> Expéditeur : </strong> 
-  {{Str::upper($brand->brand)  }} <br>
-  {{Str::upper($brand->phone)  }} <br>
-    {{ $brand->adresse  }} 
+  {{Str::upper($dat->name)  }} <br>
+  {{Str::upper($dat->phone)  }} <br>
+    {{ $dat->adresse  }} 
   
   
   
