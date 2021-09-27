@@ -48,8 +48,11 @@ class ColisController extends Controller
 
             $idcom = $request->input('idcoms');
             $data = Commandes::find($idcom);
+
+            $data['idcom'] = $data->id_com;
+            $data['user'] = $data->id_com;
             Excel::import(new ColisImport($data),$request->file('colis'));
-            return redirect('/admin/listcolis/'.$data)->with('success', 'All good!');
+            return redirect('/admin/listcolis/'.$idcom)->with('success', 'All good!');
         }else {
      
             $idclient = Auth::id();
