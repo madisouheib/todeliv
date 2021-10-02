@@ -57,12 +57,13 @@ public function post_manuel_commande(Request $request){
  
 
   $nameCom =  $request->input('raisonsocial');
+  $stopdesk =  $request->input('stopdesk');
   $idhub =  Auth::user()->hub_id;
   $idclient = Auth::user()->id;
 
 
  
-$idcoms = Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ])->id_coms;
+$idcoms = Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ,'stopdesk' => $stopdesk ])->id_coms;
 
 
 return redirect('admin/listcolis/'.$idcoms);
@@ -229,11 +230,12 @@ public function validate_manif_user($id){
 
     $nameCom =  $request->input('namecom');
     $idclient =  $request->input('idclient');
+    $stopdesk =  $request->input('stopdesk');
 
     $user = User::find($idclient);
     $idhub = $user->hub_id;
    
-  Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ]);
+  Commandes::create(['nom_com' => $nameCom ,'id_clt'=> $idclient ,'id_hub' =>  $idhub ,'stopdesk' => $stopdesk]);
 
 
   return redirect('admin/commandes');

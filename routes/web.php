@@ -142,6 +142,9 @@ Route::get('/admin/addcoms', 'admin\ColisController@upload_colis')->name('upload
 Route::post('/admin/upload', 'admin\ColisController@import')->name('import');
 Route::get('/admin/manaddcom', 'admin\CommandesController@add_manuel_commande')->name('add_manuel_commande');
 Route::post('/admin/manaddcom', 'admin\CommandesController@post_manuel_commande')->name('post_manuel_commande');
+Route::get('/admin/support', 'admin\CommandesController@support_client')->name('support_client');
+
+
 
 Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('list_colis');
 // admin routes reception   

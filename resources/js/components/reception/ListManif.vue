@@ -91,8 +91,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center" > <i class="fas fa-folder-open"></i> manifest-id </th>
-                            
-                                            <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant Total</th>
+   <th class="text-center" > <i class="fas fa-shipping-fast"></i> type </th>                                   
+            <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant Total</th>
                                             <th class="text-center"><i class="fas fa-cubes"></i> Nombre colis  </th>
                         
 
@@ -109,7 +109,9 @@
                                     <tr v-for=" com  in coms.data" :key="com.id_coms" >
                                  
                                         <td  class="text-center" >  <a  v-if="com.colis_count >  (com.validate_count + com.signaler_count) " class="pcoded-badge label label-info" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a>  <a  v-else class="pcoded-badge label label-success" style="color:white"  :href="'/admin/addrecp/'+com.id_coms">  <i class="fas fa-folder"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></td>
-                                        
+                                         <td class="text-center"> <h6 v-if="com.stopdesk == true"> Stop-Desk </h6>
+                                        <h6 v-else>  livraison à domicile  </h6>
+                                         </td>
                         
                                       <td class="text-center"   > {{ com.prices }} DA   </td>
                                       <td class="text-center" > <span style="color:green;font-weight:bold;"> {{  com.validate_count + com.signaler_count }}     </span>       / <span style="color:black;font-weight:bold;">  {{ com.colis_count}} </span>     </td>

@@ -35,11 +35,16 @@
 
 <div class="row" style="margin: 5%;">
 
-<div class="col-8">
+<div class="col-6">
 <input type="text" placeholder="veuillez saisir votre titre de commande .. " name="raisonsocial" class="form-control" required>
 
 </div>
 <div class="col-4">
+    <label> stopdesk : 
+    <input type="checkbox"  value="1" name="stopdesk" class="form-control" >
+</label>
+    </div>
+<div class="col-2">
 <button class="btn btn-success shadow-1" name="add" type="submit" > Ajouter <i class="fas fa-plus"></i> </button>
 
 </div>

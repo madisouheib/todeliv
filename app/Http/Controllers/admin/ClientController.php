@@ -139,5 +139,12 @@ $StatsUpdate->save();
 }
 
 
+public function support_client(){
+
+
+    return view('dashboard.pages.support.table_client_support');
+    
+}
+
 
 }

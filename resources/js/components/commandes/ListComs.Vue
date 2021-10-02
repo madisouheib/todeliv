@@ -15,6 +15,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center" > <i class="fas fa-folder-open"></i> manifest-id </th>
+                                            <th class="text-center" > <i class="fas fa-shipping-fast"></i> type </th>
                             
                                             <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Montant Total</th>
                                             <th class="text-center"><i class="fas fa-cubes"></i> Nombre colis  </th>
@@ -35,7 +36,9 @@
                                        
                                         <td scope="row" class="text-center" > <a class="btn btn-info btn-glow-info" style="color:white"  :href="'/admin/listcolis/'+com.id_coms">  <i class="fas fa-folder-open"></i>  #Manif- {{ com.id_coms}}  <i class="fas fa-list"></i>  </a></td>
                                      
-                                        
+                                        <td class="text-center"> <h6 v-if="com.stopdesk == true"> Stop-Desk </h6>
+                                        <h6 v-else>  livraison à domicile  </h6>
+                                         </td>
                         
                                       <td class="text-center"   > <label class="badge badge-warning" style="font-size:14px;padding:10px;"> {{ com.prices }}  DA   </label>  </td>
                                       <td class="text-center" >{{ com.colis_count}}    </td>

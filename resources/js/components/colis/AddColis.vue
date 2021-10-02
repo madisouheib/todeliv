@@ -7,7 +7,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter un utilisateur</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter un colis</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
@@ -18,7 +18,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-address-card"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control"  v-model="name"  id="nomprenom" placeholder="Nom et prenom " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text" class="form-control"  onfocus="this.value=''"   v-model="name"  id="nomprenom" placeholder="Nom et prenom " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a nom.
                                         </div>
@@ -31,7 +31,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class=" fas fa-money-bill"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control"  v-model="price"  id="price" placeholder="prix.. " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text" class="form-control"  onfocus="this.value=''"   v-model="price"  id="price" placeholder="prix.. " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a nom.
                                         </div>
@@ -44,7 +44,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-box"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control"  v-model="produit"  id="produit" placeholder="Produit ...  " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text" class="form-control"  onfocus="this.value=''"  v-model="produit"  id="produit" placeholder="Produit ...  " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a nom.
                                         </div>
@@ -57,7 +57,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-boxes"></i> </span>
                                         </div>
-                                        <input type="number" class="form-control"  v-model="qte"  id="qte" placeholder="Quantité ...  " aria-describedby="inputGroupPrepend" required>
+                                        <input type="number" class="form-control" onfocus="this.value=''"   v-model="qte"  id="qte" placeholder="Quantité ...  " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a nom.
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
                                         </div>
-                                        <input type="number" class="form-control" v-model="phone" id="phone" placeholder="Numéro de telephone " aria-describedby="inputGroupPrepend" required>
+                                        <input type="number" class="form-control" onfocus="this.value=''"  v-model="phone" id="phone" placeholder="Numéro de telephone " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a phone.
                                         </div>
@@ -134,7 +134,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map-marker-alt"></i> </span>
                                         </div>
-                                        <input type="text"  v-model="adresse" class="form-control" id="validationCustomUsername" placeholder="Adresse " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text"  v-model="adresse" onfocus="this.value=''"  class="form-control" id="validationCustomUsername" placeholder="Adresse " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a adresse.
                                         </div>
@@ -147,7 +147,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-sticky-note"></i> </span>
                                         </div>
-                                        <input type="text"  v-model="remarque" class="form-control" id="validationCustomUsername" placeholder="Remarque .. " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text"  v-model="remarque" onfocus="this.value=''"  class="form-control" id="validationCustomUsername" placeholder="Remarque .. " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a adresse.
                                         </div>

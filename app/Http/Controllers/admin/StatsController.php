@@ -122,7 +122,12 @@ if($Data['guard'] == 'admin'){
 }else {
 
 
-    $DataStat['rec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->whereNull('colis.id_stats')->where('validation','=',false)->where('commandes.confirmed_user','=',true)->count();
+    $DataStat['rec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->whereNull('colis.id_stats')
+    ->where('validation','=',false)
+    ->where('commandes.confirmed_user','=',true)
+    ->where('colis.id_hub','=',$Data['hub'])
+    ->count();
 
 
     $DataStat['inhouse']= Colis::where(function ($query) {

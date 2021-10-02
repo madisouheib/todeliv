@@ -2518,6 +2518,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 // Choose Locale
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id'],
@@ -6594,12 +6599,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['auth_user'],
   data: function data() {
     return {
       namecom: '',
-      iduser: ''
+      iduser: '',
+      stopdesk: false
     };
   },
   created: function created() {},
@@ -6607,7 +6617,8 @@ __webpack_require__.r(__webpack_exports__);
     add_com: function add_com() {
       axios.post('/api/addcom', {
         namecom: this.namecom,
-        idclient: this.auth_user
+        idclient: this.auth_user,
+        stopdesk: this.stopdesk
       }).then()["catch"](function (error) {
         return console.log(error);
       });
@@ -6792,6 +6803,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ValidateComs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ValidateComs.vue */ "./resources/js/components/commandes/ValidateComs.vue");
 /* harmony import */ var _DeleteComs_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteComs.vue */ "./resources/js/components/commandes/DeleteComs.vue");
+//
+//
+//
 //
 //
 //
@@ -13361,6 +13375,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ValidateManif__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ValidateManif */ "./resources/js/components/reception/ValidateManif.vue");
 /* harmony import */ var _ClotureManif__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClotureManif */ "./resources/js/components/reception/ClotureManif.vue");
+//
+//
 //
 //
 //
@@ -44033,6 +44049,21 @@ var render = function() {
             ]
           )
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        { staticClass: "nav-item", attrs: { "data-username": "Animations" } },
+        [
+          _c(
+            "a",
+            { staticClass: "nav-link", attrs: { href: "/admin/support" } },
+            [
+              _vm._m(14),
+              _c("span", { staticClass: "pcoded-mtext" }, [_vm._v("Support")])
+            ]
+          )
+        ]
       )
     ])
   ])
@@ -44143,6 +44174,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item pcoded-menu-caption" }, [
       _c("label", [_vm._v("Plus")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "pcoded-micon" }, [
+      _c("i", { staticClass: "fas fa-project-diagram\n" })
     ])
   },
   function() {
@@ -49729,6 +49768,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      onfocus: "this.value=''",
                       id: "nomprenom",
                       placeholder: "Nom et prenom ",
                       "aria-describedby": "inputGroupPrepend",
@@ -49773,6 +49813,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      onfocus: "this.value=''",
                       id: "price",
                       placeholder: "prix.. ",
                       "aria-describedby": "inputGroupPrepend",
@@ -49817,6 +49858,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      onfocus: "this.value=''",
                       id: "produit",
                       placeholder: "Produit ...  ",
                       "aria-describedby": "inputGroupPrepend",
@@ -49861,6 +49903,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "number",
+                      onfocus: "this.value=''",
                       id: "qte",
                       placeholder: "Quantité ...  ",
                       "aria-describedby": "inputGroupPrepend",
@@ -49903,6 +49946,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "number",
+                      onfocus: "this.value=''",
                       id: "phone",
                       placeholder: "Numéro de telephone ",
                       "aria-describedby": "inputGroupPrepend",
@@ -50087,6 +50131,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      onfocus: "this.value=''",
                       id: "validationCustomUsername",
                       placeholder: "Adresse ",
                       "aria-describedby": "inputGroupPrepend",
@@ -50131,6 +50176,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      onfocus: "this.value=''",
                       id: "validationCustomUsername",
                       placeholder: "Remarque .. ",
                       "aria-describedby": "inputGroupPrepend",
@@ -50191,7 +50237,7 @@ var staticRenderFns = [
           staticClass: "modal-title",
           attrs: { id: "exampleModalCenterTitle" }
         },
-        [_vm._v("Ajouter un utilisateur")]
+        [_vm._v("Ajouter un colis")]
       ),
       _vm._v(" "),
       _c(
@@ -51013,7 +51059,6 @@ var render = function() {
                       attrs: {
                         type: "text",
                         onfocus: "this.value=''",
-                        name: "namewilaya",
                         required: "",
                         id: "namewilaya",
                         placeholder: "Nom de la commandes ",
@@ -51032,10 +51077,55 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        "\n                            Please choose a wilaya.\n                        "
+                        "\n                                            Please choose a wilaya.\n                                        "
                       )
                     ])
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "namewilaya" } }, [
+                    _vm._v(" StopDesk : ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.stopdesk,
+                        expression: "stopdesk"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.stopdesk)
+                        ? _vm._i(_vm.stopdesk, null) > -1
+                        : _vm.stopdesk
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.stopdesk,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.stopdesk = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.stopdesk = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.stopdesk = $$c
+                        }
+                      }
+                    }
+                  })
                 ])
               ])
             ]),
@@ -51507,6 +51597,12 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center" }, [
+                  com.stopdesk == true
+                    ? _c("h6", [_vm._v(" Stop-Desk ")])
+                    : _c("h6", [_vm._v("  livraison à domicile  ")])
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
                   _c(
                     "label",
                     {
@@ -51680,6 +51776,11 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-folder-open" }),
           _vm._v(" manifest-id ")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _c("i", { staticClass: "fas fa-shipping-fast" }),
+          _vm._v(" type ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -63405,6 +63506,12 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center" }, [
+                  com.stopdesk == true
+                    ? _c("h6", [_vm._v(" Stop-Desk ")])
+                    : _c("h6", [_vm._v("  livraison à domicile  ")])
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
                   _vm._v(" " + _vm._s(com.prices) + " DA   ")
                 ]),
                 _vm._v(" "),
@@ -63608,6 +63715,11 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-folder-open" }),
           _vm._v(" manifest-id ")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _c("i", { staticClass: "fas fa-shipping-fast" }),
+          _vm._v(" type ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [

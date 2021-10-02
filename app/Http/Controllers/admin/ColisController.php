@@ -51,6 +51,7 @@ class ColisController extends Controller
 
             $data['idcom'] = $data->id_coms;
             $data['user'] = $data->id_clt;
+            $data['stopdesk'] = $data->stopdesk;
             Excel::import(new ColisImport($data),$request->file('colis'));
             return redirect('/admin/listcolis/'.$idcom)->with('success', 'All good!');
         }else {
@@ -66,7 +67,7 @@ class ColisController extends Controller
     
               $data['idcom'] = $idcom;
               $data['user'] = $idclient;
-          
+              $data['stopdesk'] = 0;
               $import = new ColisImport($data) ; 
               Excel::import(new ColisImport($data),$request->file('colis'));
    

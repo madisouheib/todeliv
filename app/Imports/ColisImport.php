@@ -57,7 +57,8 @@ private $coms = '';
             'price'      => $row['Prix'],
             'remarque'   => $row['Remarque'],
             'id_com'     => $this->data['idcom'],
-            'id_partenaire'=> $this->data['user']
+            'id_partenaire'=> $this->data['user'],
+            'stopdesk'=> $this->data['stopdesk']
     
             //
         ]);

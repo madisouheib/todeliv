@@ -14,13 +14,17 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="namewilaya"> <i class="fas fa-file-alt"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control" onfocus="this.value=''"  name="namewilaya" required v-model="namecom" id="namewilaya" placeholder="Nom de la commandes " aria-describedby="inputGroupPrepend" >
+                                        <input type="text" class="form-control" onfocus="this.value=''"   required v-model="namecom" id="namewilaya" placeholder="Nom de la commandes " aria-describedby="inputGroupPrepend" >
                                         <div class="invalid-feedback">
                                             Please choose a wilaya.
                                         </div>
                                     </div>
                                 </div>
 
+<div class="form-group">
+ <label for="namewilaya"> StopDesk : </label>
+<input class="form-control" type="checkbox" v-model="stopdesk">
+</div>
 
                          
                                 </form>
@@ -48,7 +52,8 @@
 data(){
     return {
 namecom :'',
-iduser:''
+iduser:'',
+stopdesk : false
     }
 },
 created(){
@@ -60,7 +65,8 @@ methods: {
 add_com(){
 axios.post('/api/addcom', {
 namecom: this.namecom,
-idclient : this.auth_user
+idclient : this.auth_user,
+stopdesk : this.stopdesk
 
 }).then(
 

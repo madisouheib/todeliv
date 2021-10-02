@@ -63,6 +63,11 @@
                                    <span class="pcoded-micon"><i class="fas fa-project-diagram
 "></i></span><span class="pcoded-mtext">Tracking</span></a></li>
 
+
+                                   <li data-username="Animations" class="nav-item"><a :href="'/admin/support'" class="nav-link">
+                                   <span class="pcoded-micon"><i class="fas fa-project-diagram
+"></i></span><span class="pcoded-mtext">Support</span></a></li>
+
                 </ul>
             </div>
         
