@@ -39,7 +39,13 @@ private $coms = '';
 
 
 
-
+        if(!array_filter($row)) { 
+    
+            return null;
+        
+        
+        
+        }else {
 
     
 
@@ -62,7 +68,7 @@ private $coms = '';
     
             //
         ]);
-    
+        }
      
   
 
