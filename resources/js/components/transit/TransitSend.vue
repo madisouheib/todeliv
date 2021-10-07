@@ -94,7 +94,7 @@
                                                   </td>
 
 
-                                        <td class="text-center" > <button class="btn btn-outline-danger"> <i  style="margin:0px"  class="fas fa-file-pdf"></i> </button>   </td>
+                                        <td class="text-center" > <a  :href="'/admin/transitpdf/'+trans.id_transit"  class="btn btn-outline-danger"> <i  style="margin:0px"  class="fas fa-file-pdf"></i> </a>   </td>
                                      
                                     </tr>
                                  

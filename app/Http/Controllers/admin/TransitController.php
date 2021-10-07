@@ -8,6 +8,7 @@ use App\User;
 use App\Transit;
 use App\Colis;
 use App\TransitColis;
+use PDF;
 use Illuminate\Support\Facades\DB;
 class TransitController extends Controller
 {
@@ -317,6 +318,53 @@ $idhub = $request->input('hub');
     
 }
   
-  
+public function view_transit($idtransit){
+
+
+
+    $dataTransitColis = TransitColis::select('transitcolis.*','colis.*','partenaire.name as partenaire','partenaire.adresse as partenaire_adresse','colis.created_at as created')
+    ->withCount('stats')
+    ->leftJoin('transit','transit.id_transit','=','transitcolis.id_transit')
+    ->leftJoin('colis','colis.id_colis','=','transitcolis.id_colis')
+    ->leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->leftJoin('users as partenaire','partenaire.id','=','commandes.id_clt')
+    ->where('transitcolis.id_transit','=',$idtransit)
+    ->get();
+//dd($dataTransitColis);
+        $dataPrice = TransitColis::leftJoin('transit','transit.id_transit','=','transitcolis.id_transit')
+        ->leftJoin('colis','colis.id_colis','=','transitcolis.id_colis')
+        ->where('transitcolis.id_transit','=',$idtransit)
+        ->pluck('colis.price')
+        ->all();
+
+
+//dd($dataPrice);
+
+    $DataTransitInfos = Transit::select('transit.*','sender.nom_hub as send','receiver.nom_hub as receive')
+    ->withCount('colis')
+    ->leftJoin('hubs as sender','sender.id_hub','=','transit.id_hub')
+    ->leftJoin('hubs as receiver','receiver.id_hub','=','transit.receive_hub')
+    ->where('id_transit','=',$idtransit)
+    ->first();
+
+
+/*
+$total = 0 ;
+
+$val = (float)$dataPrice['0'] ;
+dd($val);
+for($i = 0 ; $i < $DataFiheInfos['fichecolis_count'] ; $i++){
+
+$total = $total + intval(number_format($dataPrice[$i], 2, '.', ''))  ;
+
+
+}
+*/
+
+$pdf = PDF::loadView('dashboard.pages.transit.transit_pdf',['data' => $DataTransitInfos,'colis'=>$dataTransitColis]
+);  
+
+return $pdf->stream('feuilledetransit.pdf');
+}
    
 }

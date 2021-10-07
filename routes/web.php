@@ -143,8 +143,8 @@ Route::post('/admin/upload', 'admin\ColisController@import')->name('import');
 Route::get('/admin/manaddcom', 'admin\CommandesController@add_manuel_commande')->name('add_manuel_commande');
 Route::post('/admin/manaddcom', 'admin\CommandesController@post_manuel_commande')->name('post_manuel_commande');
 Route::get('/admin/support', 'admin\CommandesController@support_client')->name('support_client');
-
-
+//---transit 
+Route::get('/admin/transitpdf/{idtransit}', 'admin\TransitController@view_transit')->name('view_transit');
 
 Route::get('/admin/listcolis/{id}', 'admin\ColisController@list_colis')->name('list_colis');
 // admin routes reception   
