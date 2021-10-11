@@ -185,7 +185,7 @@ return response()->json($Colis);
     ->join('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
     ->join('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
     ->where('validation','=',true)
-    ->where('colis.id_hub','=',$Data['hub'])
+    ->where('commandes.id_hub','=',$Data['hub'])
     ->whereNotNull('fiche.closed_at')
     ->whereNotNull('fiche.cloture')
     ->where('colis.id_stats','=',4)

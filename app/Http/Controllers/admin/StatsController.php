@@ -59,8 +59,16 @@ $Data = $this->CheckLogin($id);
 
 if($Data['guard'] == 'admin'){
 
-    $DataStat['nonrec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->whereNull('colis.id_stats')->where('validation','=',false)->where('commandes.confirmed_user','=',false)->count();
-    $DataStat['rec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')->whereNull('colis.id_stats')->where('validation','=',false)->where('commandes.confirmed_user','=',true)->count();
+    $DataStat['nonrec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->whereNull('colis.id_stats')
+    ->where('validation','=',false)
+    ->where('commandes.confirmed_user','=',false)
+    ->count();
+    $DataStat['rec'] = Colis::leftJoin('commandes','commandes.id_coms','=','colis.id_com')
+    ->whereNull('colis.id_stats')
+    ->where('validation','=',false)
+    ->where('commandes.confirmed_user','=',true)
+    ->count();
 
 
     $DataStat['inhouse']= Colis::where(function ($query) {
@@ -126,7 +134,7 @@ if($Data['guard'] == 'admin'){
     ->whereNull('colis.id_stats')
     ->where('validation','=',false)
     ->where('commandes.confirmed_user','=',true)
-    ->where('colis.id_hub','=',$Data['hub'])
+    ->where('commandes.id_hub','=',$Data['hub'])
     ->count();
 
 
