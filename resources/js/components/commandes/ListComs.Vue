@@ -51,7 +51,7 @@
                                           </td>
                         
                                         <td class="text-center" > <button  v-if="com.confirmed_user == null"   data-toggle="modal" data-target="#MdalRemoveManif" @click="Get(com.id_coms)"  class="btn shadow-1 btn-danger  " style="padding-right:6px;"  >  <i class="fas fa-trash-alt"></i>  </button> 
-                                        <button v-if=" (com.confirmed_user == null ) || ( com.colis_count < 0  ) "  @click="Get(com.id_coms)" 
+                                        <button v-if=" (com.confirmed_user == null ) || ( com.colis_count < 0  )   "  @click="Get(com.id_coms)" 
                                          class="btn btn-success  shadow-1" data-toggle="modal" data-target="#MdalValidManifUser"  style="padding-right:6px;" > Valider <i class="fas fa-check-circle"></i> </button>
                                          
                                          <h6 style="color:#2dde98;font-weight:bold;" v-if="com.confirmed_user == true"  > Validé </h6>

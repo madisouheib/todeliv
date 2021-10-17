@@ -54,7 +54,7 @@ public function wilaya_hub()
 
 public function wilaya_tags()
  {
-    $wilaya = Wilaya::orderBy('id_wilaya', 'desc')->get();
+    $wilaya = Wilaya::orderBy('id_wilaya', 'asc')->get();
 
     return response()->json($wilaya);
 

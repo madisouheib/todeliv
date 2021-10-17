@@ -221,7 +221,16 @@ if($id == 'all' ){
         $GetPrice =   HubWilaya::where('id_wilaya','=',$wilaya)
         ->where('id_hub','=',$hub)
         ->first();
-        $Price = $GetPrice['price_home'] ; 
+        $FreeShipping = $request->input('free');
+        if($FreeShipping == true){
+   
+             $Price = '';
+
+        }else {
+
+            $Price = $GetPrice['price_home'] ; 
+        }
+       
         $remarque   =  $request->input('remarque');
 
        $Fetch_wilaya = Wilaya::where('mat_wilaya',$wilaya)->first();
@@ -240,6 +249,7 @@ if($id == 'all' ){
                          'adress'=> $adresse,
                          'commune'=> $name_commune ,
                          'id_hub'=> $hub ,
+                         'shipping_price' => $Price,
                          'remarque'=>$remarque
                           ]);
 
@@ -556,12 +566,43 @@ public function colis_valider(){
 public function data_clients(){
 
 
-    $FetchClients = User::select('users.*')->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')->where('model_has_roles.role_id', '=',19)->get();
+    $FetchClients = User::select('users.*')
+    ->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
+    ->where('model_has_roles.role_id', '=',19)
+    ->get();
 
     return response()->json($FetchClients);
 
 }
+public function fix_colis_wilaya(Request $request){
 
+    $name_wilaya  = $request->input('namewilaya');
+    $id  = $request->input('idcolis');
+
+   $wilaya =  Wilaya::where('mat_wilaya','=',$name_wilaya)->first();
+
+    if(!empty($name_wilaya)){
+
+        $colis_infos = Colis::find($id);
+      
+        $GetPrice =   HubWilaya::where('id_wilaya','=',$wilaya['mat_wilaya'])
+        ->where('id_hub','=',$colis_infos->id_hub)
+        ->first();
+    if(count($GetPrice) > 0) {
+
+        $Colis = Colis::find($id);
+        $Colis->wilaya = $wilaya['nom_wilaya'];
+        $Colis->shipping_price = $GetPrice['price_home'];
+        $Colis->wilaya_id = $wilaya['mat_wilaya'];
+
+    
+        $Colis->save();
+        }
+    }
+
+
+
+}
 
 
 

@@ -67,7 +67,7 @@ hr {
     
   
     <h5 style="  font-family:">{{ $nom_client  }}  </h5>
-    <h5> commune : {{ $commune  }} </h5>
+    <h5> Commune : {{ $commune  }} </h5>
    
     <p style="font-size: 12px;"> Adresse : {{ $adress  }}</p>
   
@@ -103,7 +103,12 @@ hr {
   
    </td>
    <td colspan="3">   <h6 style="font-size: 12px;"> Reservez au livreur : </h6>
-  <p style="font-size:12px;"> en  attente </p>  
+  <h5 style="margin-top:16px;">  @if($stopdesk == true)
+    <b> STOP DESK </b> 
+  @else 
+ <b> à domicile  </b> 
+  @endif
+  </h5>  
   </td>
 
 </tr>
@@ -125,14 +130,15 @@ hr {
 
 </td>
 
-<td colspan="2" style="">Quantité : {{ $qte }}  </td>
+<td  style="">Quantité : {{ $qte }}  </td>
+<td > <h4 style="background-color: #000;color:#fff;"> Livraison  :  {{ $shipping_price }} DA </h4> </td>
 <td colspan="3"> <h6 style="font-size:10px;"> Tentative</h6></td>
 
 </tr>
 
 <tr>
   <td colspan="3" style="height: 50px;"> <h5> Produit :   {{ $produit }}</h5> </td>
-  <td >1</td>
+<td >1</td>
 <td >2</td>
 <td >3</td>
  
@@ -145,7 +151,7 @@ hr {
 <table style="width:100%;">
 <tr>
 <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
-<td style="width: 30%;text-align:center;"><h2> Facture n• send-{{ $id_colis  }}  </h2>  </td>
+<td style="width: 30%;text-align:center;"><h2> Facture n• INV-{{ $id_colis  }}  </h2>  </td>
 <td style="width: 30%;background-color:#0079c1;height:35px;" ></td>
 
 

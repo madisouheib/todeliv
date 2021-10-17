@@ -71,7 +71,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
                                         </div>
-                                        <input type="number" class="form-control" onfocus="this.value=''"  v-model="phone" id="phone" placeholder="Numéro de telephone " aria-describedby="inputGroupPrepend" required>
+                                        <input type="text" class="form-control" onfocus="this.value=''"  v-model="phone" id="phone" placeholder="Numéro de telephone " aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please choose a phone.
                                         </div>

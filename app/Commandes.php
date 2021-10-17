@@ -60,6 +60,13 @@ class Commandes extends Model
 
     }
 
+    public function nodelivred(){
+
+        return $this->hasMany(Colis::class,'id_com', 'id_coms');
+ 
+    
+    }
+
 
  
 

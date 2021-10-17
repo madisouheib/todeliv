@@ -139,7 +139,13 @@ hr {
   
    </td>
    <td colspan="3">   <h6 style="font-size: 12px;"> Reservez au livreur : </h6>
-  <p style="font-size:12px;"> en  attente </p>  
+    <h5 style="margin-top:16px;">  @if($dat->stopdesk == true)
+      <b> STOP DESK </b> 
+    @else 
+   <b> à domicile  </b> 
+    @endif
+    </h5>  
+
   </td>
 
 </tr>

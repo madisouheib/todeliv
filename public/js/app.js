@@ -6353,6 +6353,105 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/colis/FixWilaya.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/colis/FixWilaya.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['idcolis'],
+  data: function data() {
+    return {
+      namewilaya: '',
+      wilayas: []
+    };
+  },
+  created: function created() {
+    this.getWilayas();
+  },
+  methods: {
+    colis_edit_wilaya: function colis_edit_wilaya() {
+      var _this = this;
+
+      axios.patch('/api/fixwilaya', {
+        namewilaya: this.namewilaya,
+        idcolis: this.idcolis
+      }).then(function (response) {
+        return _this.$emit('wilaya-fixed', response);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    getWilayas: function getWilayas() {
+      var _this2 = this;
+
+      axios.get('/api/getwilayas').then(function (response) {
+        _this2.wilayas = response.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/colis/ListColis.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/colis/ListColis.vue?vue&type=script&lang=js& ***!
@@ -6365,6 +6464,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddColis_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddColis.vue */ "./resources/js/components/colis/AddColis.vue");
 /* harmony import */ var _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColisInfos.vue */ "./resources/js/components/colis/ColisInfos.vue");
 /* harmony import */ var _DeleteColis_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DeleteColis.vue */ "./resources/js/components/colis/DeleteColis.vue");
+/* harmony import */ var _FixWilaya_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FixWilaya.vue */ "./resources/js/components/colis/FixWilaya.vue");
 //
 //
 //
@@ -6479,6 +6579,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -6487,11 +6591,13 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     'view-colis': _ColisInfos_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'add-colis': _AddColis_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    'delete-colis': _DeleteColis_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    'delete-colis': _DeleteColis_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    'fix-wilaya': _FixWilaya_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
       colis: {},
+      idcolis: '',
       ShowColis: '',
       idcom: this.url_id,
       userid: this.user_id,
@@ -6533,6 +6639,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    pushColisid: function pushColisid(val) {
+      this.idcolis = val;
     },
     getComInfos: function getComInfos() {
       var _this3 = this;
@@ -49945,7 +50054,7 @@ var render = function() {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "number",
+                      type: "text",
                       onfocus: "this.value=''",
                       id: "phone",
                       placeholder: "Numéro de telephone ",
@@ -50720,6 +50829,198 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/colis/FixWilaya.vue?vue&type=template&id=3ccb9144&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/colis/FixWilaya.vue?vue&type=template&id=3ccb9144& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "FixWilaya",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalCenterTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "validationCustomUsername" } }, [
+                  _vm._v("Wilaya : ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.namewilaya,
+                          expression: "namewilaya"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { name: "", required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.namewilaya = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "", disabled: "" } }, [
+                        _vm._v(" Selectionner  la wilaya  ")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.wilayas, function(wil) {
+                        return _c(
+                          "option",
+                          { key: wil.key, domProps: { value: wil.mat_wilaya } },
+                          [
+                            _vm._v(
+                              _vm._s(wil.nom_wilaya) +
+                                " - " +
+                                _vm._s(wil.nom_wilaya_ar) +
+                                " "
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                                           Please choose a Hub .\n                                       "
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success shadow-1",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.colis_edit_wilaya()
+                    }
+                  }
+                },
+                [_vm._v("Corriger  "), _c("i", { staticClass: "fas fa-save" })]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "exampleModalCenterTitle" }
+        },
+        [_vm._v(" Correction de la nomination WILAYA")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
+        [_c("i", { staticClass: "fas fa-map" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary shadow-1 ",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_vm._v("Fermer "), _c("i", { staticClass: " fas fa-window-close" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/colis/ListColis.vue?vue&type=template&id=0e707f28&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/colis/ListColis.vue?vue&type=template&id=0e707f28& ***!
@@ -50787,6 +51088,34 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center" }, [
                   _vm._v(" " + _vm._s(col.price) + "   ")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  !!col.shipping_price
+                    ? _c("div", [
+                        _vm._v("  " + _vm._s(col.shipping_price) + "  ")
+                      ])
+                    : _c("div", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning shadow-1",
+                            attrs: {
+                              "data-toggle": "modal",
+                              "data-target": "#FixWilaya"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.pushColisid(col.id_colis)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v("    Corriger la wilaya "),
+                            _c("i", { staticClass: "fas fa-edit" })
+                          ]
+                        )
+                      ])
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center" }, [
@@ -50880,6 +51209,11 @@ var render = function() {
         _c("add-colis", {
           attrs: { GetInf: _vm.GetInf },
           on: { "colis-added": _vm.getColis }
+        }),
+        _vm._v(" "),
+        _c("fix-wilaya", {
+          attrs: { idcolis: _vm.idcolis },
+          on: { "wilaya-fixed": _vm.getColis }
         })
       ],
       1
@@ -50972,6 +51306,11 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [
           _c("i", { staticClass: "fas fa-money-bill-wave" }),
           _vm._v(" Prix ")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _c("i", { staticClass: "fas fa-money-bill-wave" }),
+          _vm._v(" Livraison ")
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -103521,6 +103860,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteColis_vue_vue_type_template_id_2dda1fff___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteColis_vue_vue_type_template_id_2dda1fff___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/colis/FixWilaya.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/colis/FixWilaya.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FixWilaya_vue_vue_type_template_id_3ccb9144___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FixWilaya.vue?vue&type=template&id=3ccb9144& */ "./resources/js/components/colis/FixWilaya.vue?vue&type=template&id=3ccb9144&");
+/* harmony import */ var _FixWilaya_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FixWilaya.vue?vue&type=script&lang=js& */ "./resources/js/components/colis/FixWilaya.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FixWilaya_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FixWilaya_vue_vue_type_template_id_3ccb9144___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FixWilaya_vue_vue_type_template_id_3ccb9144___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/colis/FixWilaya.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/colis/FixWilaya.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/colis/FixWilaya.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FixWilaya_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FixWilaya.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/colis/FixWilaya.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FixWilaya_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/colis/FixWilaya.vue?vue&type=template&id=3ccb9144&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/colis/FixWilaya.vue?vue&type=template&id=3ccb9144& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FixWilaya_vue_vue_type_template_id_3ccb9144___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FixWilaya.vue?vue&type=template&id=3ccb9144& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/colis/FixWilaya.vue?vue&type=template&id=3ccb9144&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FixWilaya_vue_vue_type_template_id_3ccb9144___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FixWilaya_vue_vue_type_template_id_3ccb9144___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

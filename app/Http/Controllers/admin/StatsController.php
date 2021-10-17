@@ -140,12 +140,11 @@ if($Data['guard'] == 'admin'){
 
     $DataStat['inhouse']= Colis::where(function ($query) {
         $query->where('validation','=', 1)
-            ->where('id_stats', '=', 11);
+            ->where('id_stats','=', 11);
     })->orWhere(function($query) {
-        $query->where('validation', '=',1)
-            ->where('id_stats', '=', null);	
-    })
-    ->where('colis.id_hub','=',$Data['hub'])
+        $query->where('validation','=',1)
+            ->whereNull('id_stats');	
+    })->where('colis.id_hub','=',$Data['hub'])
     ->count();
     
     

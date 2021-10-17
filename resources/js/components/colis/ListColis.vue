@@ -68,6 +68,7 @@
                         
  <th class="text-center" ><i class="fas fa-address-card"></i> Wilaya </th>
                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Prix </th>
+                                         <th class="text-center" ><i class="fas fa-money-bill-wave"></i> Livraison </th>
                         
                                        
                                         <th class="text-center"><i class="fas fa-edit"></i> Action </th>
@@ -84,6 +85,7 @@
 <td class="text-center"> {{ col.qte}}   </td>
 <td class="text-center" > {{ col.wilaya}}   </td>
 <td class="text-center" > {{ col.price}}   </td>
+<td class="text-center"  > <div v-if="!!col.shipping_price">  {{ col.shipping_price}}  </div>  <div v-else > <button data-toggle="modal" data-target="#FixWilaya"  @click="pushColisid(col.id_colis)"  class="btn btn-warning shadow-1">    Corriger la wilaya <i class="fas fa-edit"></i> </button>  </div>  </td>
 <td class="text-center" >   <button data-toggle="modal" data-target="#ModalColisInfo" class="btn btn-square  btn-primary " @click="getColInfos(col.id_colis)"  ><i style="margin:0px;"  class=" fas fa-plus-circle"></i></button> 
 
 <button v-if="ShowCom.confirmed_user == null " data-toggle="modal" data-target="#ModalDelColis"  class="btn btn-square  btn-danger " @click="getColInfos(col.id_colis)"   ><i style="margin:0px;"  class=" fas fa-trash-alt"></i></button>
@@ -102,6 +104,7 @@
 <delete-colis v-bind:ShowColis="ShowColis"  @colis-delete="getColis" > </delete-colis>
     <view-colis v-bind:ShowColis="ShowColis" ></view-colis>
        <add-colis @colis-added="getColis" v-bind:GetInf="GetInf" ></add-colis>
+       <fix-wilaya @wilaya-fixed="getColis" v-bind:idcolis="idcolis"  ></fix-wilaya>
                         </div>
 
       </div>
@@ -116,19 +119,21 @@
  import AddColis from './AddColis.vue';
  import ColisInfos from './ColisInfos.vue';
  import ColisDelete from './DeleteColis.vue' ; 
+ import FixWilaya from './FixWilaya.vue';
   export default {
      props: ['url_id','user_id'],
  components: {
     
       'view-colis':   ColisInfos,
       'add-colis':AddColis ,
-      'delete-colis' : ColisDelete
+      'delete-colis' : ColisDelete,
+      'fix-wilaya': FixWilaya
   },
 
      data(){
  return {
 colis:{},
-
+idcolis: '',
 ShowColis: '',
 idcom : this.url_id,
 userid : this.user_id,
@@ -189,6 +194,10 @@ var id = this.url_id ;
      ).catch(err => console.log(err));
 
 
+ },
+ pushColisid(val){
+
+this.idcolis = val ;
  },
  getComInfos(){
 
