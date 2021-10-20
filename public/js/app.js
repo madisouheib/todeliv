@@ -6175,6 +6175,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['GetInf'],
   data: function data() {
@@ -6187,7 +6215,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       phone: '',
       produit: '',
       adresse: ''
-    }, _defineProperty(_ref, "name", ''), _defineProperty(_ref, "wilayas", []), _defineProperty(_ref, "wilaya", ''), _defineProperty(_ref, "price", ''), _defineProperty(_ref, "remarque", ''), _defineProperty(_ref, "communes", {}), _defineProperty(_ref, "pricing", []), _ref;
+    }, _defineProperty(_ref, "name", ''), _defineProperty(_ref, "wilayas", []), _defineProperty(_ref, "wilaya", ''), _defineProperty(_ref, "price", ''), _defineProperty(_ref, "remarque", ''), _defineProperty(_ref, "livraison", ''), _defineProperty(_ref, "communes", {}), _defineProperty(_ref, "free", false), _defineProperty(_ref, "pricing", []), _ref;
   },
   created: function created() {
     this.getWilayas();
@@ -6207,6 +6235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         idcom: this.GetInf.idcom,
         iduser: this.GetInf.userid,
         price: this.price,
+        livraison: this.livraison,
         remarque: this.remarque
       }).then(function (resposne) {
         return _this.$emit('colis-added', resposne);
@@ -49858,9 +49887,14 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "nomprenom" } }, [
-                  _vm._v("Nom & prenom  : ")
-                ]),
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "nomprenom" }
+                  },
+                  [_vm._v("Nom & prenom  : ")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _vm._m(1),
@@ -49903,9 +49937,14 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "nomprenom" } }, [
-                  _vm._v(" Prix  : ")
-                ]),
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "nomprenom" }
+                  },
+                  [_vm._v(" Prix  : ")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _vm._m(2),
@@ -49948,9 +49987,14 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "nomprenom" } }, [
-                  _vm._v(" Produit  : ")
-                ]),
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "nomprenom" }
+                  },
+                  [_vm._v(" Produit  : ")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _vm._m(3),
@@ -49993,9 +50037,14 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "nomprenom" } }, [
-                  _vm._v(" Quantité  : ")
-                ]),
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "nomprenom" }
+                  },
+                  [_vm._v(" Quantité  : ")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _vm._m(4),
@@ -50038,10 +50087,78 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "ntel" } }, [_vm._v("N-tel : ")]),
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "validationCustomUsername" }
+                  },
+                  [_vm._v("Livraison : ")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _vm._m(5),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.livraison,
+                          expression: "livraison"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.livraison = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: true } }, [
+                        _vm._v("  STOP DESK ")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { domProps: { value: false } }, [
+                        _vm._v("   à domicile  ")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n                                            Please choose a Hub .\n                                        "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "ntel" }
+                  },
+                  [_vm._v("N-tel : ")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50081,12 +50198,73 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "validationCustomUsername" } }, [
-                  _vm._v("Wilaya : ")
-                ]),
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "ntel" }
+                  },
+                  [_vm._v("Livraison gratuite : ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.free,
+                      expression: "free"
+                    }
+                  ],
+                  staticClass: "form-control input-lg",
+                  attrs: {
+                    type: "checkbox",
+                    id: "phone",
+                    placeholder: "Numéro de telephone ",
+                    "aria-describedby": "inputGroupPrepend",
+                    required: ""
+                  },
+                  domProps: {
+                    checked: Array.isArray(_vm.free)
+                      ? _vm._i(_vm.free, null) > -1
+                      : _vm.free
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.free,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.free = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.free = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.free = $$c
+                      }
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticStyle: { "font-weight": "bold" },
+                    attrs: { for: "validationCustomUsername" }
+                  },
+                  [_vm._v("Wilaya : ")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(6),
+                  _vm._m(7),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -50146,13 +50324,20 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.pricing
+              _vm.free == true
                 ? _c("div", { staticClass: "form-group" }, [
                     _c("div", { staticClass: "theme-bg text-center" }, [
-                      _vm._m(7),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c("h4", { staticStyle: { color: "#fff" } }, [
-                        _vm._v(" " + _vm._s(_vm.pricing.price_home) + " "),
+                        _vm.livraison == true
+                          ? _c("div", [
+                              _vm._v(" " + _vm._s(_vm.pricing.stopdesk) + " ")
+                            ])
+                          : _c("div", [
+                              _vm._v(" " + _vm._s(_vm.pricing.price_home) + " ")
+                            ]),
+                        _vm._v(" "),
                         _c("i", {
                           staticClass: "fas fa-credit-card",
                           staticStyle: { color: "#fff" }
@@ -50168,7 +50353,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(8),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -50226,7 +50411,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(9),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50271,7 +50456,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _vm._m(10),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -50312,7 +50497,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
-              _vm._m(11),
+              _vm._m(12),
               _vm._v(" "),
               _c(
                 "button",
@@ -50419,6 +50604,18 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
+        [_c("i", { staticClass: "fas fa-map" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
         [_c("i", { staticClass: "fas fa-phone" })]
       )
     ])
@@ -50451,7 +50648,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
-        [_c("i", { staticClass: "fas fa-map" })]
+        [_c("i", { staticClass: "fas fa-shipping-fast" })]
       )
     ])
   },

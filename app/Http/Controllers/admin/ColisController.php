@@ -217,6 +217,7 @@ if($id == 'all' ){
 
         $produit  =  $request->input('produit');
         $price    =  $request->input('price');
+        $livraiosn = $request->input('livraison');
         $idcom    =  $request->input('idcom');
         $GetPrice =   HubWilaya::where('id_wilaya','=',$wilaya)
         ->where('id_hub','=',$hub)
@@ -227,8 +228,16 @@ if($id == 'all' ){
              $Price = '';
 
         }else {
+            if($livraiosn == true){
 
-            $Price = $GetPrice['price_home'] ; 
+                $Price = $GetPrice['stopdesk'] ; 
+            }else {
+
+                $Price = $GetPrice['price_home'] ; 
+
+            }
+
+       
         }
        
         $remarque   =  $request->input('remarque');
@@ -237,7 +246,7 @@ if($id == 'all' ){
        $Fetch_commune = Communs::where('code_postal',$commune)->first();
        $name_wilaya = $Fetch_wilaya['nom_wilaya'];
        $name_commune = $Fetch_commune['nom'];
-      Colis::create(['nom_client' => $name ,
+       Colis::create(['nom_client' => $name ,
                          'tel'=> $phone ,
                          'wilaya'=> $name_wilaya ,
                          'price'=> $price ,
@@ -250,7 +259,8 @@ if($id == 'all' ){
                          'commune'=> $name_commune ,
                          'id_hub'=> $hub ,
                          'shipping_price' => $Price,
-                         'remarque'=>$remarque
+                         'remarque'=>$remarque,
+                         'stopdesk'=>$livraiosn
                           ]);
 
                           return true ;

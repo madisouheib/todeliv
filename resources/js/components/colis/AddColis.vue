@@ -13,7 +13,7 @@
                             <div class="modal-body">
                        
                                 <div class="form-group">
-                                    <label for="nomprenom">Nom & prenom  : </label>
+                                    <label style="font-weight:bold;"   for="nomprenom">Nom & prenom  : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-address-card"></i> </span>
@@ -26,7 +26,7 @@
                                 </div>
                              
                                 <div class="form-group">
-                                    <label for="nomprenom"> Prix  : </label>
+                                    <label style="font-weight:bold;"  for="nomprenom"> Prix  : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class=" fas fa-money-bill"></i> </span>
@@ -39,7 +39,7 @@
                                 </div>
                              
                                    <div class="form-group">
-                                    <label for="nomprenom"> Produit  : </label>
+                                    <label style="font-weight:bold;"  for="nomprenom"> Produit  : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-box"></i> </span>
@@ -52,7 +52,7 @@
                                 </div>
                              
                                        <div class="form-group">
-                                    <label for="nomprenom"> Quantité  : </label>
+                                    <label style="font-weight:bold;"   for="nomprenom"> Quantité  : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-boxes"></i> </span>
@@ -63,10 +63,31 @@
                                         </div>
                                     </div>
                                 </div>
-                             
+                               <div class="form-group">
+                                    <label style="font-weight:bold;"  for="validationCustomUsername">Livraison : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map"></i> </span>
+                                        </div>
+  <select class="custom-select"  required v-model="livraison" >
+
+
+
+<option :value="true" >  STOP DESK </option>
+<option :value="false" >   à domicile  </option>
+
+    
+</select>
+
+                                      
+                                        <div class="invalid-feedback">
+                                            Please choose a Hub .
+                                        </div>
+                                    </div>
+                                </div>
                              
                                 <div class="form-group">
-                                    <label for="ntel">N-tel : </label>
+                                    <label style="font-weight:bold;"  for="ntel">N-tel : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-phone"></i> </span>
@@ -77,9 +98,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                      <div class="form-group">
+                                    <label style="font-weight:bold;" for="ntel">Livraison gratuite : </label>
+                                  
+                                        <input type="checkbox" class="form-control input-lg"  v-model="free"  id="phone" placeholder="Numéro de telephone " aria-describedby="inputGroupPrepend" required>
+                                     
+                                </div>
                              
                                 <div class="form-group">
-                                    <label for="validationCustomUsername">Wilaya : </label>
+                                    <label style="font-weight:bold;"  for="validationCustomUsername">Wilaya : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map"></i> </span>
@@ -99,10 +126,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group" v-if="pricing ">
-<div class="theme-bg text-center">
+                                <div class="form-group" v-if=" free == true ">
+<div class="theme-bg text-center"  >
 <label style="color:#fff;"> <b>  Prix de livraison : </b> </label>
-    <h4 style="color:#fff;"> {{ pricing.price_home }} <i style="color:#fff;" class="fas fa-credit-card"></i> </h4>
+    <h4 style="color:#fff;"> <div v-if="livraison == true" > {{ pricing.stopdesk }} </div>   <div v-else> {{ pricing.price_home }} </div>  <i style="color:#fff;" class="fas fa-credit-card"></i> </h4>
 </div>
 
                                 </div>
@@ -111,7 +138,7 @@
                                     <label for="validationCustomUsername">Commune : </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-map"></i> </span>
+                                            <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-shipping-fast"></i> </span>
                                         </div>
   <select class="custom-select"  required v-model="commune" >
 
@@ -128,6 +155,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="validationCustomUsername">Adresse : </label>
                                     <div class="input-group">
@@ -185,7 +213,9 @@ wilayas :[],
 wilaya:'',
 price :'',
 remarque:'',
+livraison : '',
 communes : {},
+free : false ,
 pricing: []
 
 
@@ -218,6 +248,7 @@ commune:this.commune,
 idcom : this.GetInf.idcom,
 iduser : this.GetInf.userid,
 price : this.price,
+livraison : this.livraison ,
 remarque:this.remarque
 
 
