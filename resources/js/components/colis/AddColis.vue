@@ -126,7 +126,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group" v-if=" free == true ">
+                                <div class="form-group" v-if=" free == false ">
 <div class="theme-bg text-center"  >
 <label style="color:#fff;"> <b>  Prix de livraison : </b> </label>
     <h4 style="color:#fff;"> <div v-if="livraison == true" > {{ pricing.stopdesk }} </div>   <div v-else> {{ pricing.price_home }} </div>  <i style="color:#fff;" class="fas fa-credit-card"></i> </h4>

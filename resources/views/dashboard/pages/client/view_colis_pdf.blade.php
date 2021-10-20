@@ -73,6 +73,20 @@ hr {
   
   </td>
   <td>
+    @if($wilaya_id->isEmpty())
+    <h3> 
+
+  {{ $wilaya  }}
+
+    </h3>  
+    @else 
+    <h3> 
+
+     {{ $wilaya_id }}
+
+       </h3>  
+
+     @endif
    <h3> 
 
     {{ $wilaya  }}</h3>   

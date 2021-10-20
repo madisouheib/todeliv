@@ -50324,7 +50324,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.free == true
+              _vm.free == false
                 ? _c("div", { staticClass: "form-group" }, [
                     _c("div", { staticClass: "theme-bg text-center" }, [
                       _vm._m(8),

@@ -106,6 +106,13 @@ hr {
      {{ $item->mat_wilaya  }}
 
        </h3>  
+       @else 
+       <h3> 
+  
+        {{ $item->nom_wilaya  }}
+   
+          </h3>  
+
         @endif
 
    @endforeach 
@@ -139,12 +146,12 @@ hr {
   
    </td>
    <td colspan="3">   <h6 style="font-size: 12px;"> Reservez au livreur : </h6>
-    <h5 style="margin-top:16px;">  @if($dat->stopdesk == true)
+    <h3 style="margin-top:16px;">  @if($dat->stopdesk == true)
       <b> STOP DESK </b> 
     @else 
    <b> à domicile  </b> 
     @endif
-    </h5>  
+    </h3>  
 
   </td>
 
