@@ -107,13 +107,7 @@ hr {
 
        </h3>  
        @else 
-       <h3> 
-  
-        {{ $item->nom_wilaya  }}
    
-          </h3>  
-
-        @endif
 
    @endforeach 
    <h5>  
