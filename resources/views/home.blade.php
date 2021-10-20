@@ -5,6 +5,6 @@
 <script>
 
 
-window.location.replace("/login");
+window.location.replace("/admin");
 </script>
 @endsection
