@@ -106,7 +106,7 @@ hr {
      {{ $item->mat_wilaya  }}
 
        </h3>  
-       @else 
+       @endif 
    
 
    @endforeach 
