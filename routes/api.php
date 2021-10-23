@@ -58,7 +58,11 @@ Route::get('/showpermission/{id}', 'admin\ProfilesController@permission_show');
 
 // users section operation 
 Route::get('/users', 'admin\UsersController@users_data');
+Route::get('/delivers', 'admin\UsersController@users_data_delivers');
 Route::post('/adduser', 'admin\UsersController@store');
+Route::post('/addeliver', 'admin\UsersController@store_deliver');
+
+
 
 Route::get('/fetchuser/{id}', 'admin\UsersController@users_data_fetched');
 

@@ -33,9 +33,10 @@ Route::get('/admin/data', 'admin\HomeAdminController@index')->name('data_stats')
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // admin routes Users  
 Route::get('/admin/export/{id}', 'admin\ColisController@export_recp')->name('export_recp');
+Route::group(['middleware' => ['role:admin']], function () { 
 Route::get('/admin/users', 'admin\UsersController@index')->name('index');
 
-
+});
 
 Route::get('/admin/download', 'admin\CommandesController@getDownload')->name('getDownload');
 
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['role:admin|livreur']], function () {
 
 Route::group(['middleware' => ['role:admin|coordinateur']], function () {
 // admin routes Profiles   
-
+Route::get('/admin/delivers', 'admin\UsersController@index_delivers')->name('index_delivers');
 Route::get('/admin/profiles', 'admin\ProfilesController@index')->name('index');
 Route::get('/admin/permission', 'admin\ProfilesController@display_permission')->name('display_permission');
 

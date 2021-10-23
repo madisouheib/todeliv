@@ -22,6 +22,14 @@ class UsersController extends Controller
         return view('dashboard.pages.users.users_table');
     }
 
+    public function index_delivers(){
+
+
+        return view('dashboard.pages.users.users_delivers');
+
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -44,12 +52,27 @@ class UsersController extends Controller
     {
 
 
-    $users = Users::select('users.*','roles.name as field_name')->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+    $users = Users::select('users.*','roles.name as field_name')
+    ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
     ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
     ->latest()
     ->paginate(10);
 
     return response()->json($users);
+    }
+
+    public function users_data_delivers(){
+
+        $users = Users::select('users.*','roles.name as field_name')
+        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->latest()
+        ->where('roles.id','=',21)
+        ->paginate(10);
+    
+        return response()->json($users);
+
+
     }
 
     /**
@@ -86,6 +109,36 @@ $hub = request('hub');
 
         $user->assignRole($role);
 
+    }
+
+    public function store_deliver(Request $request){
+
+
+                $username = request('username');
+                $name = request('name');
+                $email = request('email');
+                $password= request('password');
+                $adresse= request('adresse');
+                $role = 'livreur';
+                $phone = request('phone');
+                $hub = request('hub');
+
+
+                $deliver = User::create([
+                        'name' => $name,
+                        'email' => $email,
+                        'password' => Hash::make($password),
+                        'full_name'=> $username,
+                        'adresse'=> $adresse,
+                        'phone'=> $phone,
+                        'hub_id'=> $hub
+                    ]);
+
+
+
+
+                $deliver->assignRole($role);
+        
     }
     public function data_client_pro(){
 

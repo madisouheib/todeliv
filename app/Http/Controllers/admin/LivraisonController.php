@@ -163,7 +163,8 @@ if( $Data['guard'] == 'admin' ){
 //--Price Pour Livré ----------------------------------------------------------------------------------/
 
 $TotalPrice =   Colis::where('validation','=',true)
-->where('colis.id_stats','=',4)->sum('price'); 
+->where('colis.id_stats','=',4)
+->sum('price'); 
 
 
 
@@ -189,14 +190,15 @@ return response()->json($Colis);
     ->whereNotNull('fiche.closed_at')
     ->whereNotNull('fiche.cloture')
     ->where('colis.id_stats','=',4)
-
     ->orderBy('colis.id_colis', 'desc')
     ->get();
 
 //-----Price Pour Livré ------------------------------------------------------/
 
 $TotalPrice =   Colis::where('validation','=',true)
-->where('colis.id_stats','=',4)->sum('price'); 
+->where('colis.id_stats','=',4)
+->where('colis.hub_id','=',$Data['hub'])
+->sum('price'); 
 
 
 
@@ -601,14 +603,13 @@ public function get_returned_barecode($id){
 
         $ColisData =    Colis::select('commandes.*', 'colis.*','users.name','hubs.nom_hub')
         ->leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
-        ->leftJoin('users', 'users.id', '=', 'commandes.id_clt')
-        ->leftJoin('hubs', 'hubs.id_hub', '=', 'users.hub_id')
+        ->leftJoin('users','users.id','=','commandes.id_clt')
+        ->leftJoin('hubs','hubs.id_hub', '=', 'users.hub_id')
         ->leftJoin('fiche_fields','fiche_fields.id_colis','=','colis.id_colis')
         ->leftJoin('fiche','fiche.id_fiche','=','fiche_fields.id_fiche')
         ->where('validation','=',true)
         ->where('fiche.id_liv','=',$id)
         ->where('colis.id_stats','=',4)
-  
         ->orderBy('colis.id_colis', 'desc')
         ->get();
 
@@ -619,7 +620,7 @@ public function get_returned_barecode($id){
         ->where('colis.id_stats','=',4)
         ->sum('price'); 
 
-        $Colis = array('colis' => $ColisData , 'amount' => $TotalPrice );
+        $Colis = array('colis' => $ColisData ,'amount' => $TotalPrice );
 
         return response()->json($Colis);
     }

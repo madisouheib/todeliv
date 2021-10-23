@@ -73,7 +73,7 @@ hr {
   
   </td>
   <td>
-    @if($wilaya_id->isEmpty())
+    @if($wilaya_id->count() == 0)
     <h3> 
 
   {{ $wilaya  }}

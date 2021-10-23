@@ -56,7 +56,8 @@ public function get_delivred_confirmed($part,$etat,$wil)
         ->where(function ($query) {
             $query->where('id_stats', '=', 12)
                   ->orWhere('id_stats', '=', 13);
-        })->orderBy('colis.id_colis', 'desc')->paginate(120);
+        })->orderBy('colis.id_colis', 'desc')
+        ->paginate(120);
 
 
         $TotalPrice =   Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
@@ -64,8 +65,8 @@ public function get_delivred_confirmed($part,$etat,$wil)
         ->where('colis.id_stats','=',12)
         ->whereNull('shipping_price')
         ->sum('price'); 
-        $PriceRetour =   Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->
-        where('validation','=',true)
+        $PriceRetour =   Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')
+        ->where('validation','=',true)
         ->where('colis.id_stats','=',13)
         ->whereNull('shipping_price')
         ->sum('price'); 
@@ -87,7 +88,8 @@ public function get_delivred_confirmed($part,$etat,$wil)
         })
         ->where('id_stats','=',$etat)
         ->whereNull('shipping_price')
-    ->orderBy('colis.id_colis', 'desc')->paginate(120);
+        ->orderBy('colis.id_colis', 'desc')
+        ->paginate(120);
 
 
     $TotalPrice =   Colis::leftJoin('commandes', 'colis.id_com', '=', 'commandes.id_coms')->

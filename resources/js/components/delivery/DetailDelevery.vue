@@ -361,7 +361,7 @@ var page = 1 ;
      .then(response =>
      { 
 //console.log(response.data)
-this.FicheDetail = response.data
+     this.FicheDetail = response.data
      this.ShowBtn = true ;
  }
      ).catch(err => console.log(err));
@@ -419,7 +419,6 @@ this.codebars = '';
 ,
 getColis(page = 1)
  {
-
 
    if(this.flist !== '') {
 
@@ -499,9 +498,6 @@ this.FiltreFiches(this.flist);
 
  },
  getFiche(){
-
-
-
 
      axios.get('/api/fichelist/'+this.url_id)
      .then(response =>

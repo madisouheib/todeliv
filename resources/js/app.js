@@ -43,6 +43,7 @@ let options = {
   Vue.component('login', require('./components/auth/login.vue').default);
 Vue.component('reception-table', require('./components/TableReception.vue').default);
 Vue.component('users-table', require('./components/users/UsersTable.vue').default);
+Vue.component('delivers-table', require('./components/users/delivers_users.vue').default);
 Vue.component('wilaya-table', require('./components/hub/wilaya/WilayaData.vue').default);
 Vue.component('hub-table', require('./components/hub/HubData.vue').default);
 Vue.component('profiles-table', require('./components/profiles/ProfilesTable.vue').default);
