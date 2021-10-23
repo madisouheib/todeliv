@@ -73,20 +73,16 @@ hr {
   
   </td>
   <td>
-    @if($wilaya_id->count() == 0)
-    <h3> 
+  
 
-  {{ $wilaya  }}
 
-    </h3>  
-    @else 
     <h3> 
 
      {{ $wilaya_id }}
 
        </h3>  
 
-     @endif
+
    <h3> 
 
     {{ $wilaya  }}</h3>   
