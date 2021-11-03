@@ -8307,7 +8307,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -8366,6 +8365,7 @@ __webpack_require__.r(__webpack_exports__);
       wil: '',
       tent: '',
       clt: '',
+      comission: '',
       flist: '',
       ShowBtn: '',
       listfiche: {},
@@ -8396,7 +8396,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/livreurdetail/' + this.url_id).then(function (response) {
-        _this.UserDetail = response.data;
+        _this.UserDetail = response.data.detail;
+        _this.comission = response.data.comission;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -18264,22 +18265,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UsersEdit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UsersEdit.vue */ "./resources/js/components/users/UsersEdit.vue");
 /* harmony import */ var _ViewUser_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ViewUser.vue */ "./resources/js/components/users/ViewUser.vue");
 /* harmony import */ var _UsersDelete_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UsersDelete.vue */ "./resources/js/components/users/UsersDelete.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -54486,6 +54471,25 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [
+        _c(
+          "label",
+          {
+            staticClass: "badge badge-success",
+            staticStyle: {
+              "font-weight": "bold",
+              "font-size": "18px",
+              padding: "5px",
+              "background-color": "#2dde98"
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-money-check-alt" }),
+            _vm._v(" " + _vm._s(this.FicheDetail.comission) + " DA  ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "col-3" }, [
         this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count
           ? _c(
@@ -67381,10 +67385,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("h5", { staticClass: "mt-3" }, [
                       _vm._v("  " + _vm._s(this.Client.nom_client) + "    ")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "d-block" }, [
-                      _vm._v(" HUB : OUEST ALGERIE ")
                     ])
                   ]),
                   _vm._v(" "),
@@ -73516,74 +73516,8 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "div",
-        { staticClass: "form-group col-md-3 col-lg-3 col-sm-6 col-xs-12" },
-        [
-          _c("div", { staticClass: "input-group" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.idrole,
-                    expression: "idrole"
-                  }
-                ],
-                staticClass: "custom-select",
-                attrs: { required: "" },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.idrole = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    },
-                    function($event) {
-                      return _vm.getFetchUsers($event)
-                    }
-                  ]
-                }
-              },
-              [
-                _c("option", { attrs: { selected: "" } }, [
-                  _vm._v(" tout les profiles")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.roles, function(role) {
-                  return _c(
-                    "option",
-                    { key: role.id, domProps: { value: role.id } },
-                    [_vm._v(" " + _vm._s(role.name) + "  ")]
-                  )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "invalid-feedback" }, [
-              _vm._v(
-                "\n                                    Please choose a type.\n                                "
-              )
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
       _c("table", { staticClass: "table table-hover " }, [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
@@ -73737,18 +73671,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text", attrs: { id: "inputGroupPrepend" } },
-        [_c("i", { staticClass: "fas fa-user-tag" })]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -234,11 +234,35 @@ return response()->json($Colis);
     public function detail_livreur($id)
     {
         
-       
+       $data = array();
         $DataLivr = User::withCount(['amount as prices' => function($query) {
             $query->select(DB::raw('sum(price)'));
-        },'fiche','totalchnge','totalexist'])->leftJoin('fiche','fiche.id_liv','=','users.id')->where('fiche.cloture','=',false)->where('id','=',$id)->first();
+        },'fiche','totalchnge','totalexist'])
+        ->leftJoin('fiche','fiche.id_liv','=','users.id')
+        ->where('fiche.cloture','=',false)
+        ->where('id','=',$id)
+        ->first();
   
+        $get_delivredids = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+        ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+        ->where('colis.id_stats','=',4)
+        ->where('fiche.id_fiche','=',$id)
+        ->pluck('colis.id_colis')
+        ->toAraay();
+    
+        $sum_shipping = Colis::distinct()
+        ->leftJoin('hub_wilayas', function($join)
+            {
+                $join->on('hub_wilayas.id_wilaya','=','colis.wilaya_id');
+                $join->on('hub_wilayas.id_hub','=','colis.id_hub');
+    
+            })->whereIn('colis.id_colis',$get_delivredids)
+            ->sum('hub_wilayas.comission');
+    
+    
+          
+        $data['detail'] = $DataLivr ; 
+        $data['comission'] = 
         return response()->json($DataLivr);
 
 
@@ -247,15 +271,16 @@ return response()->json($Colis);
 public function validate_delevery_gp(Request $request){
 
     $idliv = request('idliv');
-$date = date('Y-m-d h:i:s');
+    $date = date('Y-m-d h:i:s');
 //dd($date);
 
-Fiche::where('id_liv', '=', $idliv)->where('valid_fiche','=',true)
-    ->update([
-        'cloture' => true,
-        'closed_at' => $date
+        Fiche::where('id_liv', '=', $idliv)
+        ->where('valid_fiche','=',true)
+            ->update([
+                'cloture' => true,
+                'closed_at' => $date
 
-    ]);
+            ]);
 
 
 
@@ -277,7 +302,11 @@ public function validate_delevery_fiche($id){
   public function data_colis_listfiche($user){
 
 
-$GetFiches = Fiche::where('fiche.id_liv','=',$user)->whereNull('closed_at')->where('valid_fiche','=',true)->where('cloture','=',false)->get();
+    $GetFiches = Fiche::where('fiche.id_liv','=',$user)
+    ->whereNull('closed_at')
+    ->where('valid_fiche','=',true)
+    ->where('cloture','=',false)
+    ->get();
 
 
 return response()->json($GetFiches);
@@ -296,7 +325,9 @@ $DataWilayas = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche
 ->whereNull('closed_at')
 ->whereNotNull('valid_fiche')
 ->where('fiche.id_liv','=',$liv)
-->groupBy('wilaya')->pluck('wilaya')->toArray();
+->groupBy('wilaya')
+->pluck('wilaya')
+->toArray();
 
 return response()->json($DataWilayas);
 
@@ -326,30 +357,49 @@ public function detail_livreur_fiche($id)
 {
     
    
-   $Data = array();
-$Price = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
-->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
-->where('colis.id_stats','=',4)
-->where('fiche.id_fiche','=',$id)
-->sum('colis.price');
+    $Data = array();
+    $Price = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+    ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+    ->where('colis.id_stats','=',4)
+    ->where('fiche.id_fiche','=',$id)
+    ->sum('colis.price');
 
-$CountAll = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
-->where('fiche.id_fiche','=',$id)
-->count();
+    $get_delivredids = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+    ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+    ->where('colis.id_stats','=',4)
+    ->where('fiche.id_fiche','=',$id)
+    ->pluck('colis.id_colis')
+    ->toAraay();
 
-$CountWithChange = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
-->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
-->where('fiche.cloture','=',false)
-->where('fiche.valid_fiche','=',true)
-->where('colis.id_stats','!=',10)
-->where('fiche.id_fiche','=',$id)
-->count();
+    $sum_shipping = Colis::distinct()
+    ->leftJoin('hub_wilayas', function($join)
+        {
+            $join->on('hub_wilayas.id_wilaya','=','colis.wilaya_id');
+            $join->on('hub_wilayas.id_hub','=','colis.id_hub');
+
+        })->whereIn('colis.id_colis',$get_delivredids)
+        ->sum('hub_wilayas.comission');
+
+
+    $CountAll = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+    ->where('fiche.id_fiche','=',$id)
+    ->count();
+
+    $CountWithChange = Fiche::leftJoin('fiche_fields','fiche_fields.id_fiche','=','fiche.id_fiche')
+    ->leftJoin('colis','colis.id_colis','=','fiche_fields.id_colis')
+    ->where('fiche.cloture','=',false)
+    ->where('fiche.valid_fiche','=',true)
+    ->where('colis.id_stats','!=',10)
+    ->where('fiche.id_fiche','=',$id)
+    ->count();
 
 //dd($CountWithChange);
-$Data['ftotal_count']= $CountWithChange;
-$Data['fchtotal_count']= $CountAll;
-$Data['fprice'] = $Price;
-    return response()->json($Data);
+
+        $Data['ftotal_count']= $CountWithChange;
+        $Data['fchtotal_count']= $CountAll;
+        $Data['comission'] = $sum_shipping;
+        $Data['fprice'] = $Price;
+        return response()->json($Data);
 
 
 

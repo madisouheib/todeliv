@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Transit;
 use App\Colis;
+use App\StatsColis;
 use App\TransitColis;
 use PDF;
 use Illuminate\Support\Facades\DB;
@@ -284,9 +285,34 @@ public function transit_unselect_colis($id){
 public function transit_send_valid($id){
 
 
+    
+
+    $get_colis = TransitColis::where('id_transit','=',$id)->get();
+
+    $get_hubs = Transit::select('sender.nom_hub as send','receiver.nom_hub as receive','transit.id_cordem as iduser')
+    ->leftJoin('hubs as sender','sender.id_hub','=','transit.id_hub')
+    ->leftJoin('hubs as receiver','receiver.id_hub','=','transit.receive_hub')
+    ->first();
+
+    $remarque = 'de  '.$get_hubs['send'].'vers '.$get_hubs['receive']; 
+
+    $count_colis = count($get_colis);
+
+
+    for($i = 0 ; $i < $count_colis ; $i++){
+
+
+        StatsColis::create([
+        'id_stats'=> 15 ,
+        'id_colis' => $get_colis[$i]['id_colis'] ,
+        'message'=> $remarque,
+        'by_id_user'=> $get_hubs['iduser']
+        ]);
+
+    }
+
     $EditTrans = Transit::find($id);
     $EditTrans->send_it = true  ;
-    
     $EditTrans->save();
 
 }

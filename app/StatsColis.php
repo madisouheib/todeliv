@@ -12,7 +12,7 @@ class StatsColis extends Model
     protected $table = 'stats_colis';
     public $timestamps = true;
     protected $fillable = [
-        'id_stats','by_id_user','id_colis'
+        'id_stats','by_id_user','id_colis','message'
     ];
 
 

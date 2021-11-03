@@ -52,7 +52,7 @@
                                             <div class="text-center m-b-30">
                                                 <img class="img-fluid rounded-circle" width="100px" height="100px"   src="/dash/assets/images/clients/client_finale.png" alt="dashboard-user">
                                                 <h5 class="mt-3">  {{ this.Client.nom_client }}    </h5>
-                                                <span class="d-block"> HUB : OUEST ALGERIE </span>
+                                           
                                             </div>
                                       
                                          

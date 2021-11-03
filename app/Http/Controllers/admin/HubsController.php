@@ -141,7 +141,8 @@ $delhub->delete();
 
         $data = Hub::find($id);
 
-        return view('dashboard.pages.hub.hub_wilayalist')->with('data',$data);
+        return view('dashboard.pages.hub.hub_wilayalist')
+        ->with('data',$data);
 
 
     }
@@ -155,7 +156,7 @@ $delhub->delete();
     public function list_wilayabyhubs($id){
 
 
-        $Selectedwilaya = HubWilaya::join('wilaya', 'hub_wilayas.id_wilaya', '=', 'wilaya.mat_wilaya')
+        $Selectedwilaya = HubWilaya::join('wilaya','hub_wilayas.id_wilaya','=','wilaya.mat_wilaya')
         ->where('hub_wilayas.id_hub','=',$id)
         ->paginate(10);
 

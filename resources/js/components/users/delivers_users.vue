@@ -1,23 +1,7 @@
 <template>
     
 <div>
-     <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12" >
-                       
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend"> <i class="fas fa-user-tag"></i> </span>
-                                </div>
-                    <select class="custom-select" @change="getFetchUsers($event)" v-model="idrole" required>
-                  <option  selected> tout les profiles</option>
-            
-                    <option  v-for=" role  in roles " :key="role.id"  :value="role.id"> {{  role.name }}  </option>
-          
-                    </select>
-                                 <div class="invalid-feedback">
-                                    Please choose a type.
-                                </div>
-                            </div>
-                        </div>
+   
 
 <table class="table table-hover ">
                                 <thead>

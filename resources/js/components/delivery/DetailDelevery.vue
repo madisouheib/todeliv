@@ -30,6 +30,9 @@
 <button class="btn btn-glow-primary btn-sm btn-primary" data-toggle="modal" data-target="#ModalColisActionGp" @click="GetIDColisGrp()" type="button" > Mise à jour groupée <i class="fas fa-dolly"> </i>  </button>
     </div>
     <div class="col-2"> <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-money-check-alt"></i> {{ this.UserDetail.prices }} DA  </label></div>
+    <div class="col-2"> 
+    <label class="badge badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-money-check-alt"></i> {{ this.FicheDetail.comission }} DA  </label>
+    </div>
     <div class="col-3">
     <button v-if="this.UserDetail.totalchnge_count == this.UserDetail.totalexist_count " class="btn btn-square btn-sm btn-outline-success" data-toggle="modal" data-target="#ModalValidFiche"  style=""> Validation groupée  <i class="fas fa-check-circle" ></i></button>
 
@@ -114,6 +117,7 @@
                             </div>
    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" v-if="ShowBtn == true ">
 <label class="badge  badge-success" style="font-weight:bold;font-size:18px;padding:5px;background-color:#2dde98;"> <i class="fas fa-file"></i> {{ this.FicheDetail.fprice }} DA  </label>
+
     <button v-if="this.FicheDetail.ftotal_count == this.FicheDetail.fchtotal_count " class="btn btn-sm  btn-glow-success btn-sm    btn-success" data-toggle="modal" data-target="#ModalFicheValid"  style=""> Validation Par Fiche  <i class="fas fa-check-circle" ></i></button>
 
     <button v-else class="btn  btn-glow-dark btn-dark btn-sm " disabled  style=""> Validation Par Fiche  <i class="fas fa-minus-circle" ></i></button>
@@ -134,11 +138,7 @@
                                         <th class="text-center"><i class="fas fa-map-marker-alt"></i> wilaya & commune </th>
                                         <th class="text-center" ><i class="fas fa-address-card"></i> Partenaire </th>
                                         <th class="text-center" ><i class="fas fa-tasks"></i> Status </th>
-
-                                          <th class="text-center" ><i class="fas fa-calendar-alt"></i> Date </th>
-            
-                               
-
+                                        <th class="text-center" ><i class="fas fa-calendar-alt"></i> Date </th> 
                                         <th class="text-center"><i class="fas fa-align-left"></i> Suivi </th>
                                         <th class="text-center"><i class="fas fa-align-left"></i> Action </th>
                                     </tr>
@@ -146,10 +146,10 @@
                                 <tbody>
              
                                     <tr v-for=" col  in colis.data" :key="col.id_colis"   :style="{ background: col.id_stats == 4 ? '#2dde98'   : '' || col.id_stats == 3 ? '#ff4c4c'  : '' ||   col.id_stats == 10 ? ''  : '#ffc20e'   , color: col.id_stats == 4 ? 'white'  : ''  || col.id_stats == 3 ? 'white'   : '' || col.id_stats == 10 ? ''   : 'white' }"  >
-   <td scope="row" class="text-center" >                 
+                      <td scope="row" class="text-center" >                 
                           <div class="form-group">
                                     <div  class="checkbox checkbox-fill d-inline" >   
-                                         <input   type="checkbox" v-model="mycolis" :value="col.id_colis" :name="'checkbox-fill-'+col.id_colis" :id="'checkbox-fill-'+col.id_colis" >
+                                    <input   type="checkbox" v-model="mycolis" :value="col.id_colis" :name="'checkbox-fill-'+col.id_colis" :id="'checkbox-fill-'+col.id_colis" >
                                  <label :for="'checkbox-fill-'+col.id_colis" class="cr"> #Send-{{ col.id_colis }}  </label>  
                                </div>
                           </div>        
@@ -167,9 +167,8 @@
                                         <td class="text-center" > {{ col.name }}   </td>
                                         <td class="text-center" > <b class="badge badge-light" style="font-size:14px;"> {{ col.field_stats }} <i v-if="col.id_stats == 3" class="fas fa-redo-alt "></i>
                                         <i v-else-if="col.id_stats == 4 " class="fas fa-check-circle"></i>
-
                                         <i v-else-if="col.id_stats == 10 " class="fas fa-shipping-fast"></i>
-                                         <i v-else class="fas fa-history "></i>
+                                        <i v-else class="fas fa-history "></i>
                                         
                                         
                                          </b> 
@@ -273,6 +272,7 @@ wilayas : {},
 wil : '',
 tent : '',
 clt:'',
+comission : '',
 flist :'',
 ShowBtn :'',
 listfiche : {},
@@ -293,14 +293,12 @@ UserDetail : {}
  created ()
  {
 
-
 this.getColis();
-
 this.GetWilayas();
-
 this.GetStats();
 this.getPrice();
- this.getFiche();
+this.getFiche();
+
  },
  
  methods:{
@@ -309,26 +307,20 @@ this.getPrice();
 
         this.getColis();
         this.getPrice();
-
         this.mycolis = [];
 
+
 },
-
-
-
 getPrice(){
-
 
      axios.get('/api/livreurdetail/'+this.url_id)
      .then(response =>
      { 
        
-   this.UserDetail = response.data
-     
+   this.UserDetail = response.data.detail
+     this.comission  = response.data.comission
  }
      ).catch(err => console.log(err));
-
-
 
 },
 reload(){
@@ -344,8 +336,6 @@ var page = 1 ;
  }
      ).catch(err => console.log(err));
 
-
-
 }
 ,
 FiltreFiches(flist){
@@ -353,17 +343,19 @@ FiltreFiches(flist){
 var page = 1 ; 
  axios.get('/api/filtreflist/'+flist+'?page='+page)
      .then(response =>
-     {       this.colis = response.data  }
+     {     
+           this.colis = response.data 
+      }
      ).catch(err => console.log(err));
 
 
      axios.get('/api/livreurfiche/'+this.flist)
      .then(response =>
      { 
-//console.log(response.data)
+    //console.log(response.data)
      this.FicheDetail = response.data
      this.ShowBtn = true ;
- }
+     }
      ).catch(err => console.log(err));
 
 this.mycolis = [];

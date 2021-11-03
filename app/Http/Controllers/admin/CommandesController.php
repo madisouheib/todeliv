@@ -37,13 +37,13 @@ class CommandesController extends Controller
 
     }
 
-public function manif_delete($id){
+    public function manif_delete($id){
 
-  $delComs  = commandes::find($id);
-  $delComs->delete();
+          $delComs  = commandes::find($id);
+          $delComs->delete();
 
 
-}
+    }
 
 public function add_manuel_commande(){
 
@@ -76,10 +76,14 @@ return redirect('admin/listcolis/'.$idcoms);
 
 public function data_coms($id){
 
-  $Comas = commandes::select('commandes.*','hubs.*')->withCount(['price as prices' => function($query) {
-    $query->select(DB::raw('sum(price)'));
-},'colis','nodelivred'])->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')->where('id_clt','=',$id)->orderBy('id_coms', 'desc')->paginate(10);
-
+      $Comas = commandes::select('commandes.*','hubs.*')
+      ->withCount(['price as prices' => function($query) {
+        $query->select(DB::raw('sum(price)'));
+    },'colis','nodelivred'])
+    ->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')
+    ->where('id_clt','=',$id)
+    ->orderBy('id_coms', 'desc')
+    ->paginate(10);
 
  
         return response()->json($Comas);
@@ -116,7 +120,8 @@ $CheckLogin = User::select('roles.name as guard','users.hub_id as hub')
 if($CheckLogin['guard'] == 'admin'){
 
 
-  $Comas = commandes::select('commandes.*','hubs.*')->withCount(['price as prices' => function($query) {
+  $Comas = commandes::select('commandes.*','hubs.*')
+  ->withCount(['price as prices' => function($query) {
     $query->select(DB::raw('sum(price)'));
 }, 'colis','signaler','validate'])
 ->leftJoin('hubs','hubs.id_hub','=','commandes.id_hub')
