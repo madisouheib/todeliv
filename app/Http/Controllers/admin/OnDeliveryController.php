@@ -262,7 +262,7 @@ return response()->json($Colis);
     
           
         $data['detail'] = $DataLivr ; 
-        $data['comission'] = 
+        $data['comission'] = $sum_shipping; 
         return response()->json($DataLivr);
 
 
