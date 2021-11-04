@@ -2,6 +2,10 @@
     
 <div>
    
+                        <button class="btn shadow-1 btn-success" data-toggle="modal" data-target="#AddClient"  style="float:right;"> <i class="fas fa-plus"></i> AJOUTER </button>
+            
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
 
 <table class="table table-hover ">
                                 <thead>
@@ -43,12 +47,13 @@
                        <pagination :data="users" @pagination-change-page="getUsers">
 
     </pagination>
-
+      </div>
+            </div>
 </div>
 </template>
 
 <script>
-    import UsersAdd from './add_deliver.vue';
+    import UsersAdd from './add_client.vue';
     import UserPass from './ChangePasswordUser.vue';
     import UsersEdit from './UsersEdit.vue';
     import ViewUser from './ViewUser.vue';
@@ -82,7 +87,7 @@ ShowUser: ''
  {
 
 this.getUsers() ; 
-this.getRoles();
+
 
 
 
@@ -92,7 +97,7 @@ this.getRoles();
  {
 
 
-     axios.get('/api/delivers/'+this.hub_id+'?page='+page)
+     axios.get('/api/clients/'+this.hub_id+'?page='+page)
      .then(response =>
      { 
         
@@ -130,20 +135,6 @@ this.getUsers();
 
 
  ,
- getRoles(){
-
-
-     axios.get('/api/getprofiles')
-     .then(response =>
-     { 
-        
-     this.roles = response.data
-     
- }
-     )
-     .catch(err => console.log(err));
-
- },
  getUser(id){
 
 

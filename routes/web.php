@@ -48,6 +48,7 @@ Route::group(['middleware' => ['role:admin|livreur']], function () {
 Route::group(['middleware' => ['role:admin|coordinateur']], function () {
 // admin routes Profiles   
 Route::get('/admin/delivers', 'admin\UsersController@index_delivers')->name('index_delivers');
+Route::get('/admin/clients', 'admin\UsersController@index_clients')->name('index_clients');
 Route::get('/admin/profiles', 'admin\ProfilesController@index')->name('index');
 Route::get('/admin/permission', 'admin\ProfilesController@display_permission')->name('display_permission');
 

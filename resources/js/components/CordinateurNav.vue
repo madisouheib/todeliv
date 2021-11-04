@@ -11,6 +11,7 @@
                 
                       <li data-username="Animations" class="nav-item"><a :href="'/admin'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-home"></i></span><span class="pcoded-mtext">Tableau de Bord </span></a></li>
                                             <li data-username="Animations" class="nav-item"><a :href="'/admin/delivers'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-people-carry"></i></span><span class="pcoded-mtext">Livreurs </span></a></li>
+                                                                                        <li data-username="Animations" class="nav-item"><a :href="'/admin/clients'" class="nav-link"><span class="pcoded-micon"><i class="fas fa-users "></i></span><span class="pcoded-mtext">Clients </span></a></li>
               
                
 

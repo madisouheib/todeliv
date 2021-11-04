@@ -58,9 +58,12 @@ Route::get('/showpermission/{id}', 'admin\ProfilesController@permission_show');
 
 // users section operation 
 Route::get('/users', 'admin\UsersController@users_data');
-Route::get('/delivers', 'admin\UsersController@users_data_delivers');
+Route::get('/delivers/{idhub}', 'admin\UsersController@users_data_delivers');
+Route::get('/clients/{idhub}', 'admin\UsersController@users_data_clients');
+
 Route::post('/adduser', 'admin\UsersController@store');
 Route::post('/addeliver', 'admin\UsersController@store_deliver');
+Route::post('/addclient', 'admin\UsersController@store_client');
 
 
 

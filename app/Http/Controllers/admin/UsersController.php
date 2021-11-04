@@ -30,6 +30,13 @@ class UsersController extends Controller
 
     }
 
+
+    public function index_clients(){
+
+
+        return view('dashboard.pages.users.users_clients');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -61,16 +68,33 @@ class UsersController extends Controller
     return response()->json($users);
     }
 
-    public function users_data_delivers(){
+    public function users_data_delivers($idhub){
 
         $users = Users::select('users.*','roles.name as field_name')
         ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
         ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
         ->latest()
         ->where('roles.id','=',21)
+        ->where('users.hub_id',$idhub)
         ->paginate(10);
     
         return response()->json($users);
+
+
+    }
+
+    public function users_data_clients($idhub){
+
+        $users = Users::select('users.*','roles.name as field_name')
+        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->latest()
+        ->where('roles.id','=',19)
+        ->where('users.hub_id',$idhub)
+        ->paginate(10);
+    
+        return response()->json($users);
+
 
 
     }
@@ -140,10 +164,46 @@ $hub = request('hub');
                 $deliver->assignRole($role);
         
     }
+
+    public function store_client(Request $request){
+
+
+
+        $username = request('username');
+        $name = request('name');
+        $email = request('email');
+        $password= request('password');
+        $adresse= request('adresse');
+        $role = 'client pro';
+        $phone = request('phone');
+        $hub = request('hub');
+
+
+        $deliver = User::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => Hash::make($password),
+                'full_name'=> $username,
+                'adresse'=> $adresse,
+                'phone'=> $phone,
+                'hub_id'=> $hub
+            ]);
+
+
+
+
+        $deliver->assignRole($role);
+
+
+    }
     public function data_client_pro(){
 
 
-        $usersPro = Users::select('users.id','users.full_name')->rightJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')->rightJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')->where('roles.name','=','client pro')->get();
+        $usersPro = Users::select('users.id','users.full_name')
+        ->rightJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->rightJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->where('roles.name','=','client pro')
+        ->get();
 
         return response()->json($usersPro);
 
@@ -151,7 +211,9 @@ $hub = request('hub');
 
     public function users_data_fetched($id){
 
-        $users = Users::join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')->where('model_has_roles.role_id','=',$id)->paginate(6);
+        $users = Users::join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->where('model_has_roles.role_id','=',$id)
+        ->paginate(6);
         //dd($users);
         return response()->json($users);
 
